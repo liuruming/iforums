@@ -1,0 +1,76 @@
+<#setting number_format = "#"/>
+<#setting datetime_format = dateTimeFormat/>
+<#assign logged = logged?default(false)/>
+<#assign language = language?default("en_US")/>
+<#assign hasCodeBlock = hasCodeBlock?default(false)/>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=${encoding}" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="-1" />
+<style type="text/css">@import url( ${contextPath}/templates/${templateName}/styles/style.css?${startupTime} );</style>
+<SCRIPT src="${contextPath}/templates/${templateName}/js/common.js" type=text/javascript></SCRIPT>
+<SCRIPT src="${contextPath}/templates/${templateName}/js/ajax.js" type=text/javascript></SCRIPT>
+<title>${pageTitle?default("JForum")?html}</title>
+
+</head>
+<body class="${language}">
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+	<tr>
+		<td>
+			<a href="${homepageLink}"><img src="${contextPath}/templates/${templateName}/images/logo.jpg"  vspace="1" border="0" alt="[Logo]" /></a>
+		</td>					 
+		<td width="100%" align="center" valign="middle">
+			<!--span class="boardtitle">${forumTitle?default("JForum")}</span-->
+			<table cellspacing="0" cellpadding="2" border="0">
+				<tr>
+					<td valign="top" nowrap="nowrap" align="center">&nbsp;
+					
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+<div id="headermenu">
+	<ul>
+	<#if !logged && !sso>
+		<li><a id="register" class="mainmenu" href="${JForumContext.encodeURL("/user/insert")}">
+		${I18n.getMessage("ForumBase.register")}</a></li>
+		<li><a id="login" class="mainmenu" href="${JForumContext.encodeURL("/user/login")}">
+		 ${I18n.getMessage("ForumBase.login")}</a></li>
+	</#if>
+	<li><a id="search" class="mainmenu" href="${JForumContext.encodeURL("/search/filters")}">${I18n.getMessage("ForumBase.search")}</a></li>
+	<li><a id="latest" class="mainmenu" href="${JForumContext.encodeURL("/recentTopics/list")}">${I18n.getMessage("ForumBase.recentTopics")}</a></li>
+	<li><a id="hottest" class="mainmenu" href="${JForumContext.encodeURL("/hottestTopics/list")}">${I18n.getMessage("ForumBase.hottestTopics")}</a></li>
+	<li><a id="latest2" class="mainmenu" href="${JForumContext.encodeURL("/user/list")}">${I18n.getMessage("ForumBase.usersList")}</a></li>
+	<li><a id="backtosite" class="mainmenu" href="${homepageLink}">${I18n.getMessage("ForumBase.backToSite")}</a>&nbsp;</li>
+	<#if canAccessModerationLog?default(false)>
+		<li><a id="moderationlog" class="mainmenu" href="${JForumContext.encodeURL("/moderation/showActivityLog")}">${I18n.getMessage("ModerationLog.moderationLog")}</a></li>
+	</#if>
+	<#if logged>
+		<li><a id="myprofile" class="mainmenu" href="${JForumContext.encodeURL("/user/edit/${session.userId}")}">
+		 ${I18n.getMessage("ForumBase.profile")}</a>&nbsp; </li>
+		<#if bookmarksEnabled>
+			<li><a class="mainmenu" href="${JForumContext.encodeURL("/bookmarks/list/${session.userId}")}">
+			${I18n.getMessage("Bookmarks.myBag")}</a>&nbsp;</li>
+		</#if>
+		<li><a id="privatemessages" class="mainmenu" href="${JForumContext.encodeURL("/pm/inbox")}">
+			<#if (session.privateMessages > 0)>
+				${I18n.getMessage("ForumBase.newPm")}: (${session.privateMessages})
+			<#else>
+				${I18n.getMessage("ForumBase.privateMessages")}
+			</#if>
+		</a>&nbsp;</li>
+		<#if !sso>
+			<li><a id="logout" class="mainmenu" href="${JForumContext.encodeURL("/user/logout")}">
+			${I18n.getMessage("ForumBase.logout")} ${session.username} </a></li>
+		</#if>
+	</#if>
+	</ul>
+</div>
+
+<table width="100%" border="0">
+	<tr>
+		<td>
+
