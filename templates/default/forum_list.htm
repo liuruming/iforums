@@ -96,7 +96,6 @@ function doSearch() {
 	<H2><a class="forumlink" href="${JForumContext.encodeURL("/forums/show/${forum.id}")}">${forum.name?html}</a></H2>
 	<p class="moderators">
 		<!--${forum.description?default("")}-->
-		banzhu:
 		<#if forum.isModerated()><br />
 		${I18n.getMessage("ForumIndex.moderators")}
 		<#assign moderators = forumRepository.getModeratorList(forum.id)/>

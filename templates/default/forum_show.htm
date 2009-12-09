@@ -136,11 +136,6 @@
 <div id="headfilter">
 <ul class="tabs">
   <li class="spec"><a href="./forum-5.html">All</a></li>
-  <li><a href="forum.jsp?fid=5&amp;spec=hot">Hot</a></li>
-  <li><a href="forum.jsp?fid=5&amp;spec=digest">Excel</a></li>
-  <li><a href="forum.jsp?fid=5&amp;spec=pic">Image</a></li>
-  <li><a href="forum.jsp?fid=5&amp;spec=vote">Vote</a></li>
-  <li><a href="forum.jsp?fid=5&amp;spec=reward">Xuanshang</a></li>
   <#if rssEnabled>
 	  <li>
 		<a href="${JForumContext.encodeURL("/rss/forumTopics/${forum.id}")}"><img src="${contextPath}/templates/${templateName}/images/xml_button.gif" border="0" alt="[XML]" /></a>
@@ -218,7 +213,7 @@
 			</#if>
 		</TD>
 	    <TD class=author><CITE><a href="${JForumContext.encodeURL("/user/profile/${topic.postedBy.id}")}">${topic.postedBy.username}</a>
-	      </CITE><br/><EM>date and time</EM></TD>
+	      </CITE></TD>
 
 	    <TD class=nums><SPAN>${topic.totalReplies}</SPAN> / <EM>${topic.totalViews}</EM></TD>
 	    <TD class="lastpost" align="right">
