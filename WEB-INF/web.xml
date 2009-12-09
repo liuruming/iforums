@@ -15,7 +15,7 @@
 
 	<filter-mapping>
 		<filter-name>clickstream-jforum</filter-name>
-		<url-pattern>*.page</url-pattern>
+		<url-pattern>*.html</url-pattern>
 	</filter-mapping>
     
     <listener>
