@@ -66,18 +66,19 @@ function doSearch() {
 <img src="${contextPath}/templates/${templateName}/images/search.gif" alt="searchInsite" align="absbottom" border="0"></a></form></div></div>
 <div id="ad_text"></div>
 <!-- START FORUM LISTING -->
+
 <#list allCategories as category>
 <DIV class="mainbox forumlist">
 	<SPAN class=headactions><IMG id=section_0_img title="open/close" onClick="toggle_collapse('section_${category.id}');"
 		alt="open/close" src="${contextPath}/templates/${templateName}/images/collapsed_no.gif"></SPAN>
-	<H3><A href="./index.jsp?sid=1">${category.name}</A></H3>
+	<H3>${category.name}</H3>
 	<TABLE id="section_${category.id}" cellSpacing=0 cellPadding=0>
   	<TR>
   	<td valign="middle" align="center" width="5%"></td>
     <td>${I18n.getMessage("ForumListing.forums")}</td>
     <TD class="nums">${I18n.getMessage("ForumListing.totalTopics")}</TD>
     <TD class="nums">${I18n.getMessage("ForumListing.totalMessages")}</TD>
-    <TD align="left">${I18n.getMessage("ForumListing.lastMessage")}</TD>
+    <TD align="right" width="15%">${I18n.getMessage("ForumListing.lastMessage")}</TD>
     </TR>
 	<#list category.getForums() as forum>
 	<#assign lpi = forumRepository.getLastPostInfo(forum.id)/>
@@ -111,21 +112,20 @@ function doSearch() {
 		<#assign total = forum.totalTopics/>
 	</#if>
 	<#if (total > 0)>${total}<#else>${I18n.getMessage("ForumListing.noMessages")}</#if>
-	</TD>
-	<TD class=lastpost align="left">
+	</TD>    
+	<TD class=lastpost align="right">
 	<#if (lpi.postTimeMillis > 0)>
 		<#if (lpi.postTimeMillis > 0)>
-			<#if (lpi.userId > 0)><a href="${JForumContext.encodeURL("/user/profile/${lpi.userId}")}"></#if>${lpi.username}</a> 
 			<#assign startPage = ""/>
 			<#if (lpi.topicReplies + 1 > topicsPerPage)>
 				<#assign startPage = ((lpi.topicReplies / topicsPerPage)?int * topicsPerPage) +"/"/>
 			</#if>
 
 			<#assign url = JForumContext.encodeURL("/posts/list/${startPage}${lpi.topicId}") + "#" + lpi.postId/>
-			<a href="${url}"><img src="${contextPath}/templates/${templateName}/images/icon_latest_reply.gif" border="0" alt="[Latest Reply]" /></a>
+			<em><a href="${url}">${lpi.postDate}</a></em>
 		</#if>
-		<CITE>${lpi.postDate}&nbsp; by &nbsp;
-		<#if (lpi.userId > 0)><a href="${JForumContext.encodeURL("/user/profile/${lpi.userId}")}" target='_blank'></#if>${lpi.username}</a> 
+		<CITE>by &nbsp;
+		<#if (lpi.userId > 0)><a href="${JForumContext.encodeURL("/user/profile/${lpi.userId}")}" target='_blank'></#if>${lpi.username}</a>
 		</CITE>
 	<#else>
 			${I18n.getMessage("ForumListing.noMessages")}

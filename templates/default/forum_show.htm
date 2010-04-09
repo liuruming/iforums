@@ -42,11 +42,19 @@
 				</#list>
 			</b>
 			</div>
-	</#if>
+	</#if>  
 </div>
 <div class="pages_btns" valign="center">
+	<div class="pages">
+		<a href="${JForumContext.encodeURL("/forums/list")}" class="next"> &lsaquo;&lsaquo; ${I18n.getMessage("ForumListing.forumIndex")}</a>
+	</div>
 	<#assign paginationData><@pagination.doPagination action, forum.id/></#assign>
 	${paginationData}
+	<SPAN class=postbtn id="newtopic" onmouseover="$('newtopic').id = 'newtopictmp';this.id = 'newtopic';showMenu(this.id);">
+		<A href="${JForumContext.encodeURL("/jforum${extension}?module=posts&amp;action=insert&amp;forum_id=${forum.id}", "")}">
+			<IMG src="${contextPath}/templates/${templateName}/images/newtopic.gif" border=0>
+		</A>
+	</SPAN>
 </div>
 <#if (canApproveMessages && topicsToApprove.size() > 0)>
 	<script type="text/javascript">
@@ -135,14 +143,8 @@
 </#if>
 <div id="headfilter">
 <ul class="tabs">
-  <li class="spec"><a href="./forum-5.html">All</a></li>
-  <#if rssEnabled>
-	  <li>
-		<a href="${JForumContext.encodeURL("/rss/forumTopics/${forum.id}")}"><img src="${contextPath}/templates/${templateName}/images/xml_button.gif" border="0" alt="[XML]" /></a>
-	  </li>
-  </#if>
   <#if logged>
-	<li style="border: medium none ;">
+	<li>
 	<#if !watching>
 		<#assign watchMessage = I18n.getMessage("ForumShow.watch")/>
 		<a href="#watch" onClick="watchForum('${JForumContext.encodeURL("/forums/watchForum/${forum.id}")}', '${I18n.getMessage("ForumShow.confirmWatch")}');">
@@ -152,21 +154,43 @@
 	</#if>
 	&nbsp;${watchMessage}</a>
 	</li>
+	<li><a href="${JForumContext.encodeURL("/forums/readAll/${forum.id}")}">${I18n.getMessage("ForumIndex.setAllTopicsAsRead")}</a></li>
   </#if>
-</ul>
+  <#if rssEnabled>
+	  <li>
+		<a href="${JForumContext.encodeURL("/rss/forumTopics/${forum.id}")}"><img src="${contextPath}/templates/${templateName}/images/xml_button.gif" border="0" alt="[XML]" /></a>
+	  </li>
+  </#if>
+
+		<#if moderator>
+			<li style="border: medium none ;">
+			<#if openModeration?default(false)>
+				<#assign link = ""/>
+				<#if (start > 0)>
+					<#assign link = JForumContext.encodeURL("/forums/show/" + start + "/" + forum.id)/>
+				<#else>
+					<#assign link = JForumContext.encodeURL("/forums/show/" + forum.id)/>
+				</#if>
+				<a href="${link}">${I18n.getMessage("Moderation.CloseModeration")}</a>
+			<#else>
+				<a href="${contextPath}/forums/moderation/<#if (start > 0)>${start}/</#if>${forum.id}${extension}">${I18n.getMessage("Moderation.OpenModeration")}</a>
+			</#if>
+			</li>
+		</#if>
+	</ul>
 </div>
 <div class="mainbox topiclist">
 <h1><a class="forumlink" href="${JForumContext.encodeURL("/forums/show/${forum.id}")}">${forum.name?html}</a></h1>
 <TABLE cellSpacing=0 cellPadding=0>
 	<THEAD class=category>
 	<tr>
-		<TD>&nbsp;</TD>
+		<TD>${I18n.getMessage("ForumIndex.topics")}</TD>
 		<TD>&nbsp;${I18n.getMessage("ForumIndex.topics")}&nbsp;</TD>
 		<TD class=author>&nbsp;${I18n.getMessage("ForumIndex.author")}&nbsp;</TD>
 		<TD class=nums>&nbsp;${I18n.getMessage("ForumIndex.answers")}/${I18n.getMessage("ForumIndex.views")}&nbsp;</TD>
 		<TD class=lastpost>&nbsp;${I18n.getMessage("ForumIndex.lastMessage")}&nbsp;</TD>
 		<#if moderator && openModeration?default(false)>
-			<TD align="center" width="5%">&nbsp;${I18n.getMessage("ForumIndex.moderation")}&nbsp;</TD>
+			<TD align="center" width="5%">${I18n.getMessage("ForumIndex.moderation")}</TD>
 		</#if>
 	</tr>
 	</THEAD>
@@ -178,8 +202,7 @@
 		    <TD>No Topics</TD>
 		    <TD class=author></TD>
 		    <TD class=nums></TD>
-		    <TD class="lastpost" align="right">
-		    </TD>
+		    <TD class="lastpost" align="right"></TD>
 	    </TR>
 	</#if>
 	<#list topics as topic>
@@ -207,8 +230,7 @@
 			</#if></A>
 			<#if topic.paginate>
 					<span class="gensmall">
-					<br />
-					<@pagination.littlePostPagination topic.id, postsPerPage, topic.totalReplies/>
+						<@pagination.littlePostPagination topic.id, postsPerPage, topic.totalReplies/>
 					</span>
 			</#if>
 		</TD>
@@ -218,13 +240,13 @@
 	    <TD class=nums><SPAN>${topic.totalReplies}</SPAN> / <EM>${topic.totalViews}</EM></TD>
 	    <TD class="lastpost" align="right">
 	    <#if (topic.lastPostTime?length > 0)>
-		    <em><a href="./topic-276.html?page=999">${topic.lastPostTime}</a></em>
-			<cite>by <a href="${JForumContext.encodeURL("/user/profile/${topic.lastPostBy.id}")}">${topic.lastPostBy.username}</a>
 			<#assign startPage = ""/>
 			<#if (topic.totalReplies + 1 > postsPerPage?number)>
 				<#assign startPage = ((topic.totalReplies / postsPerPage?number)?int * postsPerPage?number) +"/"/>
 			</#if>
-			<a href="${JForumContext.encodeURL("/posts/list/${startPage}${topic.id}")}#${topic.lastPostId}"><img src="${contextPath}/templates/${templateName}/images/icon_latest_reply.gif" border="0" alt="[Latest Reply]" /></a></span>
+		    <em><a href="${JForumContext.encodeURL("/posts/list/${startPage}${topic.id}")}#${topic.lastPostId}">${topic.lastPostTime}</a></em>
+			<cite>by <a href="${JForumContext.encodeURL("/user/profile/${topic.lastPostBy.id}")}">${topic.lastPostBy.username}</a>
+			</span>
 			</cite>
 		</#if>
 	    </TD>
@@ -249,8 +271,16 @@
 </DIV>
 <#if moderator></form></#if>	
 <div class="pages_btns">
+	<div class="pages">
+		<a href="${JForumContext.encodeURL("/forums/list")}" class="next"> &lsaquo;&lsaquo; ${I18n.getMessage("ForumListing.forumIndex")}</a>
+	</div>
 	<#assign paginationData><@pagination.doPagination action, forum.id/></#assign>
 	${paginationData}
+	<SPAN class=postbtn id="newtopic" onmouseover="$('newtopic').id = 'newtopictmp';this.id = 'newtopic';showMenu(this.id);">
+		<A href="${JForumContext.encodeURL("/jforum${extension}?module=posts&amp;action=insert&amp;forum_id=${forum.id}", "")}">
+			<IMG src="${contextPath}/templates/${templateName}/images/newtopic.gif" border=0>
+		</A>
+	</SPAN>
 </div>
 <div id="foruminfo">
 	<div id="nav">
