@@ -3,15 +3,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <style type="text/css">@import url( ${contextPath}/templates/${templateName}/styles/style.css?${startupTime} );</style>
 </head>
-<body text="#000000" vlink="#5493b4" link="#006699" bgcolor="#e5e5e5">
+<body text="#000000" vlink="#5493b4" link="#006699" bgcolor="#e5e5e5" style="margin:0px;">
 <div id="nav">
-	<table class="mainbox" cellspacing="1" cellpadding="4" width="140" border="0">
+	<table class="mainbox" cellspacing="1" cellpadding="4" width="100%" border="0" style="margin:0px;">
 		<tr>
-			<th align="left" height="25"><h1>${I18n.getMessage("Admin.administration")}</h1></th>
+			<th class="catsides" height="28" >
+				<h1>${I18n.getMessage("Admin.administration")}</h1>
+			</th>
 		</tr>
-
-		<tr><td class="row1"><a id="forumIndex" class="genmed" target="_top" href="${contextPath}/forums/list${extension}">${I18n.getMessage("Admin.forumIndex")}</a></td></tr>
-		<tr><td class="row1"><a id="forumIndex" class="genmed" target="main" href="${contextPath}/jforum${extension}?module=admBase&action=main">${I18n.getMessage("Admin.adminIndex")}</a></td>
+		<tr><td class="row1"><a id="forumIndex" target="_top" href="${contextPath}/forums/list${extension}">${I18n.getMessage("Admin.forumIndex")}</a>
+		<a id="forumIndex" target="main" href="${contextPath}/jforum${extension}?module=admBase&action=main">${I18n.getMessage("Admin.adminIndex")}</a></td></tr>
 		<tr>
 			<td class="catsides" height="28" bgcolor="#dFdFdF"><b>${I18n.getMessage("Admin.forumAdmin")}</b></td>
 		</tr>
@@ -70,13 +71,13 @@
 		</tr>
 
 		<tr>
+			<td colspan="2" class="catsides" height="28" bgcolor="#dFdFdF">
+				<a href="#"><b>${I18n.getMessage("Admin.attachments")}</b></a>
+			</td>
+		</tr>
+		<tr>
 			<td class="row1">
-				<table width="100%" cellspacing="0" cellpadding="0">
-					<tr>
-						<td colspan="2" class="genmed">
-							${I18n.getMessage("Admin.attachments")}
-						</td>
-					</tr>
+				<table id="attachOption" width="100%" cellspacing="0" cellpadding="0">
 					<tr>
 						<td width="20px">&nbsp;</td>
 						<td>
