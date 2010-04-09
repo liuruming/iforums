@@ -86,6 +86,7 @@
 	<div class="pages">
 		<a href="${JForumContext.encodeURL("/forums/show/${forum.id}")}" class="next"> &lsaquo;&lsaquo; ${forum.name}</a>
 	</div>
+	<#assign paginationData><@pagination.doPagination "list", topic.id/></#assign>${paginationData}
 	<SPAN class=postbtn id="newtopic" onmouseover="$('newtopic').id = 'newtopictmp';this.id = 'newtopic';showMenu(this.id);">
 		<A href="${JForumContext.encodeURL("/jforum${extension}?module=posts&amp;action=insert&amp;forum_id=${forum.id}", "")}">
 			<IMG src="${contextPath}/templates/${templateName}/images/newtopic.gif" border=0>
@@ -102,10 +103,6 @@
 
 <div id="headfilter">
 <ul class="tabs">
-  <li class="spec"><a href="${JForumContext.encodeURL("/posts/list/${topic.id}")}">All</a></li>
-  <#if rssEnabled>
-  <li><a href="${contextPath}/rss/topicPosts/${topic.id}${extension}"><img src="${contextPath}/templates/${templateName}/images/xml_button.gif" border="0" alt="XML" /></a></li>
-  </#if>
     <#if logged>
 		<#if bookmarksEnabled>
 			<li><a href="javascript:addBookmark(2, ${topic.id});">${I18n.getMessage("Bookmarks.addTo")}</a></li>
@@ -119,6 +116,9 @@
 			<li><a href="${JForumContext.encodeURL("/posts/unwatch/${start}/${topic.id}")}">
 		</#if>
 		${watchMessage}</a><li>
+	</#if>
+	<#if rssEnabled>
+		<li style="border: medium none ;"><a href="${contextPath}/rss/topicPosts/${topic.id}${extension}"><img src="${contextPath}/templates/${templateName}/images/xml_button.gif" border="0" alt="XML" /></a></li>
 	</#if>
 </ul>
 </div>
@@ -251,30 +251,6 @@
 	  </TABLE>
 </DIV>
 </#list>
-<!--table cellspacing="2" cellpadding="2" width="100%" border="0">
-	<tr>
-		<#if !readonly>
-		<td width="8%" align="left" valign="bottom" nowrap="nowrap">
-		</#if>
-			<#if topic.status == STATUS_LOCKED>
-				<span class="icon_reply_locked"><img src="${contextPath}/images/transp.gif" alt="" /></span>
-			<#else>
-				<#if !readonly>
-					<a href="${JForumContext.encodeURL("/posts/reply/${start}/${topic.id}")}" rel="nofollow" class="icon_reply nav"><img src="${contextPath}/images/transp.gif" alt="" /></a>
-				<#else>
-					<#assign colspan = "2"/>
-				</#if>
-			</#if>
-		</td>
-
-		<td valign="middle" align="left" colspan="${colspan?default("0")}"></td>
-		<td valign="middle" align="right"><#assign paginationData><@pagination.doPagination "list", topic.id/></#assign>${paginationData}</td>
-	</tr>
-</table-->
-<!--
-<div width="100%">
-<#assign paginationData><@pagination.doPagination "list", topic.id/></#assign>${paginationData}
-</div>
 <table class="mainbox" cellspacing="1" cellpadding="3" width="100%" border="0">
 	<#if poll?exists>
 		<tr>
@@ -308,12 +284,13 @@
 		</tr>
 	</#if>
 </table>
--->
+
 
 <DIV class=pages_btns>
 	<div class="pages">
 		<a href="${JForumContext.encodeURL("/forums/show/${forum.id}")}" class="next"> &lsaquo;&lsaquo; ${forum.name}</a>
 	</div>
+	<#assign paginationData><@pagination.doPagination "list", topic.id/></#assign>${paginationData}
 	<SPAN class=postbtn id="newtopic" onmouseover="$('newtopic').id = 'newtopictmp';this.id = 'newtopic';showMenu(this.id);">
 		<A href="${JForumContext.encodeURL("/jforum${extension}?module=posts&amp;action=insert&amp;forum_id=${forum.id}", "")}">
 			<IMG src="${contextPath}/templates/${templateName}/images/newtopic.gif" border=0>

@@ -309,7 +309,7 @@ function smiliePopup()
 					    <li target="postOptions"><a href="javascript:void(0);" onClick="activateTab('postOptions', this);"><span>Options</span></a></li>
 	
 						<#if allowPoll>
-							<li target="postPoll"><a href="javascript:void(0);" onClick="activateTab('postPoll', this);"><span>Poll</span></a></li>
+							<li target="postPoll"><a href="javascript:void(0);" onClick="activateTab('postPoll', this);"><span>${I18n.getMessage("PostForm.pollQuestion")}</span></a></li>
 						</#if>
 						<#if attachmentsEnabled>
 						    <li target="postAttachments"><a href="javascript:void(0);" onClick="activateTab('postAttachments', this);"><span>Attachments</span></a></li>
