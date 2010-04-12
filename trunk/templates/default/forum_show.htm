@@ -156,27 +156,27 @@
 	</li>
 	<li><a href="${JForumContext.encodeURL("/forums/readAll/${forum.id}")}">${I18n.getMessage("ForumIndex.setAllTopicsAsRead")}</a></li>
   </#if>
-  <#if rssEnabled>
-	  <li>
-		<a href="${JForumContext.encodeURL("/rss/forumTopics/${forum.id}")}"><img src="${contextPath}/templates/${templateName}/images/xml_button.gif" border="0" alt="[XML]" /></a>
-	  </li>
-  </#if>
 
-		<#if moderator>
-			<li style="border: medium none ;">
-			<#if openModeration?default(false)>
-				<#assign link = ""/>
-				<#if (start > 0)>
-					<#assign link = JForumContext.encodeURL("/forums/show/" + start + "/" + forum.id)/>
-				<#else>
-					<#assign link = JForumContext.encodeURL("/forums/show/" + forum.id)/>
-				</#if>
-				<a href="${link}">${I18n.getMessage("Moderation.CloseModeration")}</a>
+	<#if moderator>
+		<li>
+		<#if openModeration?default(false)>
+			<#assign link = ""/>
+			<#if (start > 0)>
+				<#assign link = JForumContext.encodeURL("/forums/show/" + start + "/" + forum.id)/>
 			<#else>
-				<a href="${contextPath}/forums/moderation/<#if (start > 0)>${start}/</#if>${forum.id}${extension}">${I18n.getMessage("Moderation.OpenModeration")}</a>
+				<#assign link = JForumContext.encodeURL("/forums/show/" + forum.id)/>
 			</#if>
-			</li>
+			<a href="${link}">${I18n.getMessage("Moderation.CloseModeration")}</a>
+		<#else>
+			<a href="${contextPath}/forums/moderation/<#if (start > 0)>${start}/</#if>${forum.id}${extension}">${I18n.getMessage("Moderation.OpenModeration")}</a>
 		</#if>
+		</li>
+	</#if>
+	  <#if rssEnabled>
+		  <li style="border: medium none ;">
+			<a href="${JForumContext.encodeURL("/rss/forumTopics/${forum.id}")}"><img src="${contextPath}/templates/${templateName}/images/xml_button.gif" border="0" alt="[XML]" /></a>
+		  </li>
+	  </#if>
 	</ul>
 </div>
 <div class="mainbox topiclist">
