@@ -21,7 +21,7 @@ ${breadCrumb}
 			<td>${I18n.getMessage("ForumIndex.answers")}</td>
 			<td>${I18n.getMessage("ForumIndex.author")}</td>
 			<td>${I18n.getMessage("ForumIndex.views")}</td>
-			<td>${I18n.getMessage("ForumIndex.lastMessage")}</td>
+			<td align="right">${I18n.getMessage("ForumIndex.lastMessage")}</td>
 		</tr>
 	</thead>
 
@@ -37,7 +37,6 @@ ${breadCrumb}
 
 			<#if topic.paginate>
 				<span class="gensmall">
-				<br />
 				<@pagination.littlePostPagination topic.id, postsPerPage, topic.totalReplies/>				
 				</span>
 			</#if>		
@@ -49,17 +48,16 @@ ${breadCrumb}
 		</td>
 
 		<td><span class="postdetails">${topic.totalViews}</span></td>
-		<td>
+		<td class="lastpost" align="right">
 			<#if (topic.lastPostTime?length > 0)>
-				${topic.lastPostTime}
-				<a href="${JForumContext.encodeURL("/user/profile/${topic.lastPostBy.id}")}">${topic.lastPostBy.username}</a>
-
 				<#assign startPage = ""/>
 				<#if (topic.totalReplies + 1 > postsPerPage?number)>
 					<#assign startPage = ((topic.totalReplies / postsPerPage?number)?int * postsPerPage?number) +"/"/>
 				</#if>
-	  
-				<a href="${JForumContext.encodeURL("/posts/list/${startPage}${topic.id}")}#${topic.lastPostId}"><img src="${contextPath}/templates/${templateName}/images/icon_latest_reply.gif" border="0" alt="Latest Reply" /></a></span>
+				<em><a href="${JForumContext.encodeURL("/posts/list/${startPage}${topic.id}")}#${topic.lastPostId}">${topic.lastPostTime}</a></em>
+				<br/><cite>by <a href="${JForumContext.encodeURL("/user/profile/${topic.lastPostBy.id}")}">${topic.lastPostBy.username}</a>
+				</cite>	  
+				</span>
 			</#if>		 
 		</td>
 	</tr>
