@@ -145,7 +145,7 @@ public class AdminAction extends Command {
 	
 	private void checkBoardVersion()
 	{
-		String data = this.readVersionFromSocket();
+		String data = "";//this.readVersionFromSocket();
 		
 		if (data == null || data.trim().length() == 0) {
 			this.context.put("developmentVersion", false);
@@ -154,8 +154,8 @@ public class AdminAction extends Command {
 		
 		int index = data.indexOf('\n');
 		
-		String version = data.substring(0, index).trim();
-		String notes = data.substring(index + 1, data.length());
+		String version = "2.1.8";
+		String notes = "IForums Java中文论坛系统";//data.substring(index + 1, data.length());
 		
 		this.matchVersion(version);
 		this.context.put("notes", notes);
