@@ -53,5 +53,7 @@
 </table>
 </div>
 <#if thisPage?exists><@pagination.doPagination "${action}", -1/></#if>
+<div id="foruminfo">
 <div id="nav"><a class="nav" href="${JForumContext.encodeURL("/forums/list")}">${I18n.getMessage("ForumListing.forumIndex")}</a></span></div>
+</div>
 <#include "bottom.htm"/>
