@@ -66,6 +66,7 @@ import net.jforum.entities.Category;
 import net.jforum.entities.Config;
 import net.jforum.entities.Forum;
 import net.jforum.entities.LastPostInfo;
+import net.jforum.entities.ModeratorInfo;
 import net.jforum.entities.MostUsersEverOnline;
 import net.jforum.entities.Post;
 import net.jforum.entities.Topic;
@@ -77,6 +78,7 @@ import net.jforum.security.SecurityConstants;
 import net.jforum.util.CategoryOrderComparator;
 import net.jforum.util.preferences.ConfigKeys;
 import net.jforum.util.preferences.SystemGlobals;
+import net.jforum.view.forum.common.ViewCommon;
 
 /**
  * Repository for the forums of the System.
@@ -604,7 +606,33 @@ public class ForumRepository implements Cacheable
 		
 		return l;
 	}
-	
+	public static List getModeratorIdList(int forumId) {     
+        List ulist = new ArrayList();     
+        List l = getModeratorList(forumId);     
+        if (l != null && l.size() > 0) {     
+            for (Iterator it = l.iterator(); it.hasNext();) {     
+                ModeratorInfo mi = (ModeratorInfo) it.next();     
+                int groupId = mi.getId();     
+                List users = listGroup(groupId);     
+                ulist.addAll(users);     
+            }     
+        }     
+        return ulist;     
+    }  
+    public static List listGroup(int groupId) {     
+        int start = preparePagination(DataAccessDriver.getInstance()     
+                .newUserDAO().getTotalUsersByGroup(groupId));     
+        int usersPerPage = SystemGlobals.getIntValue(ConfigKeys.USERS_PER_PAGE);     
+        List users = DataAccessDriver.getInstance().newUserDAO()     
+                .selectAllByGroup(groupId, start, usersPerPage);     
+        return users;     
+    }   
+    private static int preparePagination(int totalUsers) {     
+        int start = ViewCommon.getStartPage();     
+        int usersPerPage = SystemGlobals.getIntValue(ConfigKeys.USERS_PER_PAGE);     
+        ViewCommon.contextToPagination(start, totalUsers, usersPerPage);     
+        return start;     
+    }    
 	public static void clearModeratorList()
 	{
 		cache.remove(FQN_MODERATORS);
