@@ -73,7 +73,7 @@
 			<#-- Intermediate links -->
 			<#-- ------------------ -->
 			<#if (thisPage > 1 && thisPage < totalPages)>
-				<#if (thisPage > 5)><span class="gensmall">...</span></#if>
+				<#if (thisPage > 5)><a>...</a></#if>
 
 				<#if (thisPage > 4)>
 					<#assign min = thisPage - 1/>
@@ -93,9 +93,9 @@
 					</#list>
 				</#if>
 
-				<#if (thisPage < totalPages - 4)><span class="gensmall">...</span></#if>
+				<#if (thisPage < totalPages - 4)><a>...</a></#if>
 			<#else>
-				<span class="gensmall">...</span>
+				<a>...</a>
 			</#if>
 
 			<#-- ---------------------- -->
