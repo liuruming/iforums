@@ -27,9 +27,9 @@
 			</#if>
 			<#if post.userId != 1>
 				<#if user.isOnline()>
-					<DT>Status:</DT><DD><span class="online">${I18n.getMessage("PostShow.userOnline")}</span></DD>
+					<DT>${I18n.getMessage("UserProfile.status")}:</DT><DD><span class="online">${I18n.getMessage("PostShow.userOnline")}</span></DD>
 				<#else>
-					<DT>Status:</DT><DD><span class="offline">${I18n.getMessage("PostShow.userOffline")} </span></DD>
+					<DT>${I18n.getMessage("UserProfile.status")}:</DT><DD><span class="offline">${I18n.getMessage("PostShow.userOffline")} </span></DD>
 				</#if>
 				<DT>${I18n.getMessage("PostShow.userRegistrationDate")}:</DT><br/><DD>${user.registrationDate}</DD>
 			</#if>
