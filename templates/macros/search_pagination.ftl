@@ -16,7 +16,7 @@
 		<#assign baseUrl = contextPath +"/jforum" + extension + "?module=search&amp;action=search"/>
 		<#assign baseUrl = baseUrl + moderationParams()/>
 
-		<div class="pagination">
+		<div class="pages" valign="center">
 		<#assign link = ""/>
 
 		<#-- ------------- -->
@@ -39,7 +39,7 @@
 			<#-- Intermediate links -->
 			<#-- ------------------ -->
 			<#if (thisPage > 1 && thisPage < totalPages)>
-				<#if (thisPage > 5)><span class="gensmall">...</span></#if>
+				<#if (thisPage > 5)><a>...</a></#if>
 
 				<#if (thisPage > 4)>
 					<#assign min = thisPage - 1/>
@@ -59,9 +59,9 @@
 					</#list>
 				</#if>
 
-				<#if (thisPage < totalPages - 4)><span class="gensmall">...</span></#if>
+				<#if (thisPage < totalPages - 4)><a>...</a></#if>
 			<#else>
-				<span class="gensmall">...</span>
+				<a>...</a>
 			</#if>
 
 			<#-- ---------------------- -->
@@ -84,16 +84,12 @@
 			<a href="${baseUrl}&amp;start=${start}">&#9658;</a>
 		</#if>
 
-		<a href="#goto" onClick="return overlay(this, 'goToBox', 'rightbottom');">${I18n.getMessage("ForumIndex.goToGo")}</a>
-		<div id="goToBox">
-			<div class="title">${I18n.getMessage("goToPage")}...</div>
-			<div class="form">
-				<input type="text" style="width: 50px;" id="pageToGo">
-				<input type="button" value=" ${I18n.getMessage("ForumIndex.goToGo")} " onClick="goToAnotherPageSearch(${totalPages}, ${recordsPerPage}, '${baseUrl}');">
-				<input type="button" value="${I18n.getMessage("cancel")}" onClick="document.getElementById('goToBox').style.display = 'none';">
-			</div>
-		</div>
 
+		</div>
+		<div class="pages">
+			<b>${I18n.getMessage("goToPage")}:</b>
+			<input type="text" style="width: 50px;" id="pageToGo">
+			<input class="submit" type="button" value=" ${I18n.getMessage("ForumIndex.goToGo")} " onClick="goToAnotherPageSearch(${totalPages}, ${recordsPerPage}, '${baseUrl}');">
 		</div>
 	</#if>
 </#macro>
@@ -103,7 +99,7 @@
 	<#if page != thisPage>
 		<#assign link><a href="${baseUrl}&amp;start=${start}">${page}</a></#assign>
 	<#else>
-		<#assign link><span class="current">${page}</span></#assign>
+		<#assign link><strong>${page}</strong></#assign>
 	</#if>
 
 	${link}
