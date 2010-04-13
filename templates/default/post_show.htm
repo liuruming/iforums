@@ -194,7 +194,13 @@
 				</#if>
 			  </DIV>
 		  </DIV>
-		  <#if (logged || anonymousPosts) && topic.status != STATUS_LOCKED && !readonly>
+		  </TD></TR>
+			  <TR>
+			    <TD class=postsign>
+		  			<#if useSignature>
+						<hr/><span class="signature">${user.signature}</span>
+					</#if>
+					<#if (logged || anonymousPosts) && topic.status != STATUS_LOCKED && !readonly>
 					<form action="${JForumContext.encodeURL("/jforum")}" method="post" name="post" id="post" onsubmit="return validatePostForm(this);" enctype="multipart/form-data" accept-charset="${encoding}">
 						<input type="hidden" name="action" value="insertSave" />
 						<input type="hidden" name="module" value="posts" />
@@ -231,14 +237,9 @@
 						</div>
 					</form>
 				</#if>
-		  </TD></TR>
-		  <#if useSignature>
-			  <TR>
-			    <TD class=postsign>
-					<hr/><span class="gensmall">${user.signature}</span>
 				</TD>
 			  </TR>
-		  </#if>
+		  
 		  <TR>
 		    <TD class=postfooter>
 				<#include "post_show_action_buttons_inc.htm"/>
