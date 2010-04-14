@@ -272,7 +272,7 @@ public class BookmarkAction extends Command
 		User u=DataAccessDriver.getInstance().newUserDAO().selectById(userId);
 		this.context.put("user", u);
 		this.context.put("loggedUserId", new Integer(SessionFacade.getUserSession().getUserId()));
-		this.context.put("pageTitle", I18n.getMessage("Bookmarks.for")+" "+u.getUsername());				
+		this.context.put("pageTitle", u.getUsername()+" "+I18n.getMessage("Bookmarks.for"));				
 	}
 	
 	/**
