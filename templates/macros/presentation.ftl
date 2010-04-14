@@ -111,18 +111,18 @@
 	</script>
 	<#if isModerator || isAdmin>
 		<#if can_remove_posts?default(false)>
-			<a href="javascript:deleteTopic();">${I18n.getMessage("Delete")}</a>
+			<li><a href="javascript:deleteTopic();">${I18n.getMessage("Delete")}</a></li>
 		</#if>
 		
 		<#if can_move_topics?default(false)>
-			<a href="javascript:moveTopic();">${I18n.getMessage("move")}</a>
+			<li><a href="javascript:moveTopic();">${I18n.getMessage("move")}</a></li>
 		</#if>
 
 		<#if can_lockUnlock_topics?default(false)>			
 			<#if topic.status == STATUS_LOCKED>
-				<a href="javascript:lockUnlock(false);">${I18n.getMessage("Unlock")}</a>
+				<li><a href="javascript:lockUnlock(false);">${I18n.getMessage("Unlock")}</a></li>
 			<#else>
-				<a href="javascript:lockUnlock(true);">${I18n.getMessage("Lock")}</a>
+				<li><a href="javascript:lockUnlock(true);">${I18n.getMessage("Lock")}</a></li>
 			</#if>
 		</#if>
 	</#if>
