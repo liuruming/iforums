@@ -117,6 +117,19 @@
 		</#if>
 		${watchMessage}</a><li>
 	</#if>
+	<#if isModerator || isAdmin>
+			<form action="${JForumContext.encodeURL("/jforum")}" method="post" name="formModeration" id="formModeration">
+			<input type="hidden" name="action" value="doModeration" />
+			<input type="hidden" name="module" value="moderation" />
+			<input type="hidden" name="returnUrl" value="${JForumContext.encodeURL("/${moduleName}/${action}/${start}/${topic.id}")}" />
+			<input type="hidden" name="forum_id" value="${topic.forumId}" />
+			<input type="hidden" name="topic_id" value="${topic.id}" />
+			<input type="hidden" name="log_type" value="0"/>
+			<input type="hidden" name="log_description">
+			<input type="hidden" id="moderationTodo" />
+			<@presentation.moderationImages/>
+			</form>
+	</#if>
 	<#if rssEnabled>
 		<li style="border: medium none ;"><a href="${contextPath}/rss/topicPosts/${topic.id}${extension}"><img src="${contextPath}/templates/${templateName}/images/xml_button.gif" border="0" alt="XML" /></a></li>
 	</#if>
@@ -195,12 +208,18 @@
 			  </DIV>
 		  </DIV>
 		  </TD></TR>
-			  <TR>
-			    <TD class=postsign>
-		  			<#if useSignature>
-						<hr/><span class="signature">${user.signature}</span>
-					</#if>
-					<#if (logged || anonymousPosts) && topic.status != STATUS_LOCKED && !readonly>
+		  <TR>
+		    <TD class=postfooter>
+		    	<hr/>
+	  			<b>${I18n.getMessage("User.signature")}:</b>
+	  			<#if useSignature>
+					${user.signature}						
+			  	</#if>
+			</TD>
+		  </TR>
+		  <TR>
+		    <TD class=postfooter>
+		    <#if (logged || anonymousPosts) && topic.status != STATUS_LOCKED && !readonly>
 					<form action="${JForumContext.encodeURL("/jforum")}" method="post" name="post" id="post" onsubmit="return validatePostForm(this);" enctype="multipart/form-data" accept-charset="${encoding}">
 						<input type="hidden" name="action" value="insertSave" />
 						<input type="hidden" name="module" value="posts" />
@@ -209,9 +228,6 @@
 						<input type="hidden" name="topic_id" value="${topic.id}" />
 						<input type="hidden" name="disable_html" value="1" />
 						<input type="hidden" name="quick" value="1" />
-						<div align="right">
-							<b><a href="javascript:activateQuickReply('${post_index}')">${I18n.getMessage("PostForm.quickReply")}</a></b>
-						</div>
 						<div align="center" style="display: none;" id="quickReply${post_index}">
 							<table>
 								<tr>
@@ -237,11 +253,6 @@
 						</div>
 					</form>
 				</#if>
-				</TD>
-			  </TR>
-		  
-		  <TR>
-		    <TD class=postfooter>
 				<#include "post_show_action_buttons_inc.htm"/>
 			</TD>
 		  </TR>

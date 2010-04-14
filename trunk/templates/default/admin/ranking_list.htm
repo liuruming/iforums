@@ -1,15 +1,13 @@
 <#setting number_format = "#"/>
 <style type="text/css">@import url( ${contextPath}/templates/${templateName}/styles/style.css?${startupTime} );</style>
-
+<div class="mainbox">
+	<h1>${I18n.getMessage("Rank.List.Title")}</h1>
+</div>
 <form accept-charset="${encoding}" name="form" action="${contextPath}/jforum${extension}" method="post">
 <input type="hidden" name="action" value="delete" />
 <input type="hidden" name="module" value="${moduleName}" />
 
 <table class="mainbox" cellspacing="1" cellpadding="3" width="100%" border="0">
-	<tr>
-		<th class="thhead" valign="middle" colspan="5" height="25"><h1>${I18n.getMessage("Rank.List.Title")}</h1></th>
-	</tr>
-
 	<tr>
 		<td class="row2"><span class="gen"><b>${I18n.getMessage("Rank.List.rankName")}</b></span></td>
 		<td class="row2" align="center"><span class="gen"><b>${I18n.getMessage("Rank.List.minPosts")}</b></span></td>

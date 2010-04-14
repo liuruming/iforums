@@ -73,16 +73,16 @@ function doSearch() {
 		alt="open/close" src="${contextPath}/templates/${templateName}/images/collapsed_no.gif"></SPAN>
 	<H3>${category.name}</H3>
 	<TABLE id="section_${category.id}" cellSpacing=0 cellPadding=0>
-  	<TR>
-  	<td valign="middle" align="center" width="5%"></td>
-    <td>${I18n.getMessage("ForumListing.forums")}</td>
-    <TD class="nums">${I18n.getMessage("ForumListing.totalTopics")}</TD>
-    <TD class="nums">${I18n.getMessage("ForumListing.totalMessages")}</TD>
-    <TD align="right" width="15%">${I18n.getMessage("ForumListing.lastMessage")}</TD>
-    </TR>
+	<TBODY>
+	  	<TR>
+	  	<td valign="middle" align="center" width="5%"></td>
+	    <td>${I18n.getMessage("ForumListing.forums")}</td>
+	    <TD class="nums">${I18n.getMessage("ForumListing.totalTopics")}</TD>
+	    <TD class="nums">${I18n.getMessage("ForumListing.totalMessages")}</TD>
+	    <TD align="right" width="15%">${I18n.getMessage("ForumListing.lastMessage")}</TD>
+	    </TR>
 	<#list category.getForums() as forum>
 	<#assign lpi = forumRepository.getLastPostInfo(forum.id)/>
-	<TBODY>
 	<TR>
 	<td align="center">
 		<A title="Open In New Window" href='${JForumContext.encodeURL("/forums/show/${forum.id}")}' target=_blank>
@@ -94,17 +94,19 @@ function doSearch() {
 		</A>
 	</td>
 	<td align="left">
-	<H2><a class="forumlink" href="${JForumContext.encodeURL("/forums/show/${forum.id}")}">${forum.name?html}</a></H2>
-	<p class="moderators">
-		<!--${forum.description?default("")}-->
-		<#if forum.isModerated()><br />
-		${I18n.getMessage("ForumIndex.moderators")}
-		<#assign moderators = forumRepository.getModeratorList(forum.id)/>
-		<#list moderators as m>
-		  <a href="${JForumContext.encodeURL("/user/listGroup/${m.id}")}">${m.name?html}</a>
-		</#list>
-		</#if>
-	</p></td>
+		<b><a class="forumlink" href="${JForumContext.encodeURL("/forums/show/${forum.id}")}">${forum.name?html}</a></b>
+		<p>${forum.description?default("")}</p>
+		<p class="moderators">
+			<!--${forum.description?default("")}-->
+			<#if forum.isModerated()><br />
+			${I18n.getMessage("ForumIndex.moderators")}
+			<#assign moderators = forumRepository.getModeratorList(forum.id)/>
+			<#list moderators as m>
+			  <a href="${JForumContext.encodeURL("/user/listGroup/${m.id}")}">${m.name?html}</a>
+			</#list>
+			</#if>
+		</p>
+	</td>
 	<TD class="nums">${forum.totalTopics}</TD>
 	<TD class="nums">
 	<#assign total = forum.totalPosts/>
