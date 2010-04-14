@@ -101,7 +101,7 @@
 		<td valign="middle" nowrap="nowrap" align="right"><span class="gen">${I18n.getMessage("Bookmarks.myBag")}:</span></td>
 		<td>
 			<#if (nbookmarks > 0)>
-				<a class="gen" href="${JForumContext.encodeURL("/bookmarks/list/${u.id}")}"> ${I18n.getMessage("Bookmarks.for")}[${nbookmarks}]</a>
+				<a class="gen" href="${JForumContext.encodeURL("/bookmarks/list/${u.id}")}"> ${u.username}${I18n.getMessage("Bookmarks.for")}[${nbookmarks}]</a>
 			<#else>
 				<span class="gensmall">${I18n.getMessage("Bookmarks.empty")}</span>
 			</#if>
@@ -118,7 +118,7 @@
 				<td class="row1" valign="middle" width="100%">
 					<b><span class="gen">
 					<#assign e = u.email.split("@")/>
-					<a href="#" onclick="document.location = 'mailto:' + showEmail('${e[0]}', '${e[1]}');"><img src="${contextPath}/templates/${templateName}/images/icon_email.gif" border="0" /></a>
+					<a href="#" onclick="document.location = 'mailto:' + showEmail('${e[0]}', '${e[1]}');"><img src="${contextPath}/templates/${templateName}/images/icon_mail.gif" border="0" /></a>
 					</span></b>
 				</td>
 			</tr>
@@ -129,7 +129,7 @@
 				<td valign="middle" nowrap="nowrap" align="right"><span class="gen">${I18n.getMessage("UserProfile.privateMessage")}:</span></td>
 				<td class="row1" valign="middle">
 					<b><span class="gen">
-					<a href="${JForumContext.encodeURL("/pm/sendTo/${u.id}")}" class="icon_pm"><img src="${contextPath}/images/transp.gif"  alt="" /></a>
+					<a href="${JForumContext.encodeURL("/pm/sendTo/${u.id}")}" class="icon_pm"><img src="${contextPath}/templates/${templateName}/images/sendsms.gif"  alt="" /></a>
 					</span></b>
 				</td>
 			</tr>

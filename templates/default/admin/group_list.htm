@@ -5,11 +5,10 @@
 <form accept-charset="${encoding}" name="form" action="${contextPath}/jforum${extension}" method="post">
 <input type="hidden" name="action" value="delete" />
 <input type="hidden" name="module" value="${moduleName}" />
-
+<div class="mainbox">
+	<h1>${I18n.getMessage("Groups.List.Title")}</h1>
+</div>
 <table class="mainbox" cellspacing="1" cellpadding="3" width="100%" border="0">
-	<tr>
-		<th class="thhead" valign="middle" colspan="4" height="25"><h1>${I18n.getMessage("Groups.List.Title")}</h1></th>
-	</tr>
 	<#if errorMessage?exists>
 	<tr>
 		<td class="row2" colspan="4">&nbsp; <span class="nav">

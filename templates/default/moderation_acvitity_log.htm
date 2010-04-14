@@ -11,21 +11,20 @@
 				<span class="nav">&raquo;</span>
 				<a id="latest3" class="nav" href="${JForumContext.encodeURL("/moderation/showActivityLog")}">${I18n.getMessage("ModerationLog.moderationLog")}</a>
 			</td>
-			<td class="gen" align="right">
-				<@pagination.doPagination action/>
-			</td>
 		</tr>
 	</table>
 </div>
 </#assign>
 ${sectionTable}
-<div class="mainbox formbox"><span class="headactions">
-<a class="notabs" href="/forum/help/member.jsp" target="_blank"></a></span> 
-<h1>${I18n.getMessage("ForumBase.recentTopics")}</h1>
+<div class="pages_btns" valign="center">
+<@pagination.doPagination action/>
+</div>
+<div class="mainbox formbox"> 
+<h1>${I18n.getMessage("ModerationLog.moderationLog")}</h1>
 <table class="mainbox gen" cellspacing="1" cellpadding="4" width="100%" border="0">
 	<thead>
 		<tr>
-			<td>${I18n.getMessage("ModerationLog.date")}</td>
+			<td width="150px">${I18n.getMessage("ModerationLog.date")}</td>
 			<#if canAccessFullModerationLog>
 				<td>${I18n.getMessage("ModerationLog.moderator")}</td>
 			</#if>
@@ -80,6 +79,9 @@ ${sectionTable}
 	</tr>
 	</#list>
 </table>  
+</div>
+<div class="pages_btns" valign="center">
+<@pagination.doPagination action/>
 </div>
 ${sectionTable}
 <#include "bottom.htm"/>

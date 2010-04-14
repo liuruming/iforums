@@ -1,5 +1,4 @@
-	<CITE><A href="${JForumContext.encodeURL("/user/profile/${user.id}")}" target=_blank>${I18n.getMessage("PostShow.author")}:${user.username?html}</A></CITE> 
-	<span class="gensmall">
+	<b><A href="${JForumContext.encodeURL("/user/profile/${user.id}")}" target=_blank>${I18n.getMessage("PostShow.author")}:${user.username?html}</A></b>
 	<#if post.userId != 1>
 		<P><EM>${rank.getRankTitle(user.rankId, user.totalPosts)}</EM>&nbsp;
 	<#else>
@@ -31,7 +30,7 @@
 				<#else>
 					<DT>${I18n.getMessage("UserProfile.status")}:</DT><DD><span class="offline">${I18n.getMessage("PostShow.userOffline")} </span></DD>
 				</#if>
-				<DT>${I18n.getMessage("PostShow.userRegistrationDate")}:</DT><br/><DD>${user.registrationDate}</DD>
+				<DT>${I18n.getMessage("PostShow.userRegistrationDate")}:</DT><DD>${user.registrationDate}</DD>
 			</#if>
 		</DL>
 	<#else>
@@ -40,7 +39,7 @@
 			<#if (user.from?exists && user.from?length > 0)>
 				<DT>${I18n.getMessage("PostShow.userFrom")}:</DT><DD>${user.from?html}</DD>
 			</#if>
-			<DT>Status:</DT><DD><span class="online">${I18n.getMessage("PostShow.userOnline")}</span></DD>
+			<DT>${I18n.getMessage("UserProfile.status")}:</DT><DD><span class="online">${I18n.getMessage("PostShow.userOnline")}</span></DD>
 			<DT>${I18n.getMessage("PostShow.userRegistrationDate")}:</DT><br/><DD></DD>
 		</DL>
 	</#if>
