@@ -81,6 +81,10 @@ import freemarker.template.Template;
  */
 public class JForum extends JForumBaseServlet 
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private static boolean isDatabaseUp;
 	
 	/**
@@ -167,9 +171,7 @@ public class JForum extends JForumBaseServlet
 			String module = request.getModule();
 			
 			// Gets the module class name
-			String moduleClass = module != null 
-				? ModulesRepository.getModuleClass(module) 
-				: null;
+			String moduleClass = module != null ? ModulesRepository.getModuleClass(module) : null;
 			
 			if (moduleClass == null) {
 				// Module not found, send 404 not found response
