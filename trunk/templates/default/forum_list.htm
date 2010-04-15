@@ -1,4 +1,5 @@
 <#include "header.htm"/>
+<#import "../macros/presentation.ftl" as presentation/>
 <link rel="alternate" type="application/rss+xml" title="RSS" href="${contextPath}/rss/forums${extension}" />
 <div id="foruminfo">
 <div id="nav">
@@ -150,9 +151,13 @@ ${I18n.getMessage("ForumListing.mostUsersEverOnline", [ mostUsersEverOnline.getT
 </h4>
 </div>
 
-<div class="legend">
+<div class="legend" id="footfilter">
 <label><img alt="new" src="${contextPath}/templates/${templateName}/images/forum_new.gif" align="absmiddle">${I18n.getMessage("ForumListing.newMessages")}</label>
 <label><img alt="nonew" src="${contextPath}/templates/${templateName}/images/forum.gif" align="absmiddle">${I18n.getMessage("ForumListing.noNewMessages")}</label>
-<label><img alt="blocked" src="${contextPath}/templates/${templateName}/images/folder_lock.gif" align="absmiddle">${I18n.getMessage("ForumListing.blocked")}</label> 
+<label><img alt="blocked" src="${contextPath}/templates/${templateName}/images/forum_lock.gif" align="absmiddle">${I18n.getMessage("ForumListing.blocked")}</label>
+	<div class="jump_sort">
+			<@presentation.forumsComboTable/>
+		</div> 
 </div>
+	
 <#include "bottom.htm"/>
