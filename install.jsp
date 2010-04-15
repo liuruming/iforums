@@ -1,1 +1,1 @@
-<jsp:forward page="install/install.page?module=install&action=welcome"/>
+<jsp:forward page="install/install.html?module=install&action=welcome"/>
