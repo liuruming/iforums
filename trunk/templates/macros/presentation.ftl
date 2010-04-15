@@ -6,38 +6,38 @@
 		<#if topic.read>
 			<#if topic.status == STATUS_UNLOCKED>
 				<#if topic.type == TOPIC_ANNOUNCE>
-					<img class="icon_folder_announce" src="${contextPath}/images/folder_common.gif" alt="" />
+					<img class="icon_folder_announce" src="${contextPath}/templates/${templateName}/images/icon_folder_announce.gif" alt="" />
 				<#elseif topic.type == TOPIC_STICKY>
-					<img class="icon_folder_sticky" src="${contextPath}/images/folder_common.gif" alt="" />
+					<img class="icon_folder_sticky" src="${contextPath}/templates/${templateName}/images/icon_folder_sticky.gif" alt="" />
 				<#else>
 					<#if topic.isHot()>
-						<img class="icon_folder_hot" src="${contextPath}/images/folder_hot.gif" alt="" />
+						<img class="icon_folder_hot" src="${contextPath}/templates/${templateName}/images/folder_hot.gif" alt="" />
 					<#else>
-						<img class="icon_folder" src="${contextPath}/images/folder_common.gif" alt="" />
+						<img class="icon_folder" src="${contextPath}/templates/${templateName}/images/folder_common.gif" alt="" />
 					</#if>
 				</#if>
 			<#else>
-				<img class="icon_folder_lock" src="${contextPath}/images/folder_lock.gif" alt="" />
+				<img class="icon_folder_lock" src="${contextPath}/templates/${templateName}/images/folder_lock.gif" alt="" />
 			</#if>
 		<#else>
 			<#if topic.status == STATUS_UNLOCKED>
 				<#if topic.type == TOPIC_ANNOUNCE>
-					<img class="icon_folder_announce_new" src="${contextPath}/images/folder_hot.gif" alt="" />
+					<img class="icon_folder_announce_new" src="${contextPath}/templates/${templateName}/images/folder_hot.gif" alt="" />
 				<#elseif topic.type == TOPIC_STICKY>
-					<img class="icon_folder_sticky_new" src="${contextPath}/images/folder_hot.gif" alt="" />
+					<img class="icon_folder_sticky_new" src="${contextPath}/templates/${templateName}/images/icon_folder_sticky.gif" alt="" />
 				<#else>
 					<#if topic.isHot()>
-						<img class="icon_folder_new_hot" src="${contextPath}/images/folder_hot.gif" alt="" />
+						<img class="icon_folder_new_hot" src="${contextPath}/templates/${templateName}/images/folder_hot.gif" alt="" />
 					<#else>
-						<img class="icon_folder_new" src="${contextPath}/images/folder_hot.gif" alt="" />
+						<img class="icon_folder_new" src="${contextPath}/templates/${templateName}/images/folder_common.gif" alt="" />
 					</#if>
 				</#if>
 			<#else>
-				<img class="icon_folder_lock_new" src="${contextPath}/images/folder_lock.gif" alt="" />
+				<img class="icon_folder_lock_new" src="${contextPath}/templates/${templateName}/images/folder_lock.gif" alt="" />
 			</#if>
 		</#if>
 	<#else>
-		<img class="icon_topic_move" src="${contextPath}/images/folder_common.gif" alt="" />
+		<img class="icon_topic_move" src="${contextPath}/templates/${templateName}/images/folder_common.gif" alt="" />
 	</#if>
 </#macro>
 
@@ -47,9 +47,9 @@
 				<tr>
 					<td>${option.text}</td>
 					<td width="70%">
-						<img class="icon_vote_lcap" src="${contextPath}/images/voting_bar.gif" alt="" />
+						<img class="icon_vote_lcap" src="${contextPath}/templates/${templateName}/images/voting_bar.gif" alt="" />
 						<img src="${contextPath}/templates/${templateName}/images/voting_bar.gif" width="${option.votePercentage * 2}" height="12" alt="" />
-						<img class="icon_vote_rcap" src="${contextPath}/images/voting_bar.gif" alt="" />
+						<img class="icon_vote_rcap" src="${contextPath}/templates/${templateName}/images/voting_bar.gif" alt="" />
 					</td>
 					<td width="5%"><b>${option.votePercentage}%</b></td>
 					<td width="5%">[ <b>${option.voteCount}</b> ]</td>
