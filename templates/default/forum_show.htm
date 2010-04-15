@@ -27,7 +27,7 @@
 			<input type="hidden" name="action" value="search"/>
 			<input type="hidden" name="forum" value="${forum.id}">
 			<input type="hidden" name="match_type" value="all">
-			<img valign="bottom" onclick="javascript:window.open('http://www.google.cn/')" src="/iforums/templates/default/images/google.png">
+			<img valign="bottom" onclick="javascript:window.open('http://www.google.cn/')" src="${contextPath}/templates/${templateName}/images/google.png">
 			<input type="text" onblur="if (this.value == '') this.value = '${I18n.getMessage("ForumIndex.searchThisForum")}...';" onclick="if (this.value == '${I18n.getMessage("ForumIndex.searchThisForum")}...') this.value = '';" value="${I18n.getMessage("ForumIndex.searchThisForum")}..." size="20" name="search_keywords" class="inputSearchForum"/>
 			<input type="submit" value="${I18n.getMessage("ForumBase.search")}" class="liteoption">
 		</form>
@@ -220,7 +220,7 @@
 		<!------->
 	 	<TR>
 	    <TD class=folder><@presentation.folderImage topic/></TD>
-	    <TD>
+	    <TD ${class1}>
 			<a href="${JForumContext.encodeURL("/posts/list/${topic.id}")}">
 			<#if topic.vote>${I18n.getMessage("ForumListing.pollLabel")}</#if>
 			<#if (topic.title?length == 0)>
@@ -235,20 +235,20 @@
 			</#if>
 		</TD>
 	    <TD class=author><CITE><a href="${JForumContext.encodeURL("/user/profile/${topic.postedBy.id}")}">${topic.postedBy.username}</a>
-	      </CITE></TD>
-
+	      </CITE>
+	    </TD>
 	    <TD class=nums><SPAN>${topic.totalReplies}</SPAN> / <EM>${topic.totalViews}</EM></TD>
 	    <TD class="lastpost" align="right">
-	    <#if (topic.lastPostTime?length > 0)>
-			<#assign startPage = ""/>
-			<#if (topic.totalReplies + 1 > postsPerPage?number)>
-				<#assign startPage = ((topic.totalReplies / postsPerPage?number)?int * postsPerPage?number) +"/"/>
+		    <#if (topic.lastPostTime?length > 0)>
+				<#assign startPage = ""/>
+				<#if (topic.totalReplies + 1 > postsPerPage?number)>
+					<#assign startPage = ((topic.totalReplies / postsPerPage?number)?int * postsPerPage?number) +"/"/>
+				</#if>
+			    <em><a href="${JForumContext.encodeURL("/posts/list/${startPage}${topic.id}")}#${topic.lastPostId}">${topic.lastPostTime}</a></em>
+				<cite>by <a href="${JForumContext.encodeURL("/user/profile/${topic.lastPostBy.id}")}">${topic.lastPostBy.username}</a>
+				</span>
+				</cite>
 			</#if>
-		    <em><a href="${JForumContext.encodeURL("/posts/list/${startPage}${topic.id}")}#${topic.lastPostId}">${topic.lastPostTime}</a></em>
-			<cite>by <a href="${JForumContext.encodeURL("/user/profile/${topic.lastPostBy.id}")}">${topic.lastPostBy.username}</a>
-			</span>
-			</cite>
-		</#if>
 	    </TD>
 	    <#if moderator && openModeration?default(false)>
 			<td ${class2} valign="middle" align="center">

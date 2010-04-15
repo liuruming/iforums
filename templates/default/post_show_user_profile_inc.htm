@@ -1,9 +1,9 @@
 <#if post.userId != 1>
 	<table>
 	<tr>
-	<td><img align="absmiddle" border="0" alt="${I18n.getMessage("UserProfile.profileFor")}" src="${contextPath}/images/user_add.gif" alt="" />
+	<td><img align="absmiddle" border="0" alt="${I18n.getMessage("UserProfile.profileFor")}" src="${contextPath}/templates/${templateName}/images/user_add.gif" alt="" />
 	<a href="${JForumContext.encodeURL("/user/profile/${user.id}")}" class="icon_profile" title="${I18n.getMessage("UserProfile.profileFor")}">${I18n.getMessage("UserProfile.profileFor")}</a></td>
-	<td><img src="${contextPath}/images/sendsms.gif" align="absmiddle" border="0" alt="${I18n.getMessage("UserProfile.sendMessage")}" />
+	<td><img src="${contextPath}/templates/${templateName}/images/sendsms.gif" align="absmiddle" border="0" alt="${I18n.getMessage("UserProfile.sendMessage")}" />
 	<a href="${JForumContext.encodeURL("/pm/sendTo/${user.id}")}" class="icon_profile" title="${I18n.getMessage("UserProfile.sendMessage")}">${I18n.getMessage("UserProfile.sendMessage")}</a></td>
 	</tr>
 	<tr>
