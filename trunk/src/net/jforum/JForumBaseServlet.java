@@ -73,6 +73,11 @@ import freemarker.template.Configuration;
  */
 public class JForumBaseServlet extends HttpServlet
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private static Logger logger = Logger.getLogger(JForumBaseServlet.class);
 
 	protected boolean debug;
