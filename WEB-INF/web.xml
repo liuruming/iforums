@@ -4,7 +4,7 @@
     "http://java.sun.com/dtd/web-app_2_3.dtd">
 
 <web-app>
-    <display-name>JForum - Powering Communities</display-name>
+    <display-name>iforums - Powering Communities</display-name>
     <description>Open Source Java Forum Software</description>
 
 	<!-- Clickstream -->
@@ -29,7 +29,7 @@
 		
 		<init-param>
 			<param-name>development</param-name>
-			<param-value>true</param-value>
+			<param-value>false</param-value>
 		</init-param>
     </servlet>
 
@@ -40,7 +40,7 @@
     	
     	<init-param>
 			<param-name>development</param-name>
-			<param-value>true</param-value>
+			<param-value>false</param-value>
 		</init-param>
     </servlet>
 
