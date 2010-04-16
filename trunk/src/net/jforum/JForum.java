@@ -86,6 +86,7 @@ public class JForum extends JForumBaseServlet
 	 */
 	private static final long serialVersionUID = 1L;
 	private static boolean isDatabaseUp;
+	private static boolean isInit = false;
 	
 	/**
 	 * @see javax.servlet.Servlet#init(javax.servlet.ServletConfig)
@@ -93,6 +94,15 @@ public class JForum extends JForumBaseServlet
 	public void init(ServletConfig config) throws ServletException
 	{
 		super.init(config);
+	}
+	
+	protected void delayInit(){
+		isInit = true;
+		try {
+			super.init(this.getServletConfig());
+		} catch (ServletException e1) {
+			e1.printStackTrace();
+		}
 		super.startApplication();
 		
 		// Start database
@@ -125,12 +135,18 @@ public class JForum extends JForumBaseServlet
 			JForumExecutionContext.finish();
 		}
 	}
-	
 	/**
 	 * @see javax.servlet.http.HttpServlet#service(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
 	 */
 	public void service(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException
 	{
+		if (!SystemGlobals.getInstallState()){
+			res.sendRedirect(req.getContextPath()+"/install.jsp");
+			return;
+		}
+		if(!isInit){
+			delayInit();
+		}
 		Writer out = null;
 		JForumContext forumContext = null;
 		RequestContext request = null;
