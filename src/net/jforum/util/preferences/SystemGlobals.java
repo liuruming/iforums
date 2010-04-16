@@ -414,4 +414,11 @@ public class SystemGlobals implements VariableStore
 	{
 		return new Properties(globals.defaults);
 	}
+	public static boolean getInstallState(){
+		File f = new File(SystemGlobals.getValue(ConfigKeys.INSTALLATION_CONFIG));
+		if(f.exists()){
+			return true;
+		}
+		return false;
+	}
 }
