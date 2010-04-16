@@ -121,7 +121,7 @@ public class InstallServlet extends JForumBaseServlet
 			context.put("JForumContext", forumContext);
 			context.put("version", SystemGlobals.getValue(ConfigKeys.VERSION));
 			
-			if (SystemGlobals.getInstallState()&&false) {
+			if (SystemGlobals.getInstallState()&&!"finished".equals(request.getAction())) {
 				JForumExecutionContext.setRedirect(request.getContextPath() 
 					+ "/forums/list" + SystemGlobals.getValue(ConfigKeys.SERVLET_EXTENSION));
 			}
