@@ -295,7 +295,7 @@ public class InstallAction extends Command
 	
 	private void fixModulesMapping()
 	{
-		FileInputStream fis = null;
+		/*FileInputStream fis = null;
 		FileOutputStream fos = null;
 		
 		try {
@@ -316,7 +316,6 @@ public class InstallAction extends Command
 					ConfigLoader.loadModulesMapping(SystemGlobals.getValue(ConfigKeys.CONFIG_DIR));
 				}
 				
-				this.addToSessionAndContext("mappingFixed", "true");
 			}
 		}
 		catch (Exception e) {
@@ -330,7 +329,9 @@ public class InstallAction extends Command
 			if (fos != null) {
 				try { fos.close(); } catch (Exception e) {}
 			}
-		}
+		}*/
+		ConfigLoader.loadModulesMapping(SystemGlobals.getValue(ConfigKeys.CONFIG_DIR));
+		this.addToSessionAndContext("mappingFixed", "true");
 	}
 	
 	private void configureSystemGlobals()
@@ -837,7 +838,7 @@ public class InstallAction extends Command
 			
 			SystemGlobals.loadQueries(SystemGlobals.getValue(ConfigKeys.SQL_QUERIES_GENERIC));
 			SystemGlobals.loadQueries(SystemGlobals.getValue(ConfigKeys.SQL_QUERIES_DRIVER));
-			
+			logger.info(SystemGlobals.getValue(ConfigKeys.SQL_QUERIES_DRIVER));
 			SystemGlobals.setValue(ConfigKeys.SEARCH_INDEXING_ENABLED, "false");
 			
 			JForumExecutionContext ex = JForumExecutionContext.get();
