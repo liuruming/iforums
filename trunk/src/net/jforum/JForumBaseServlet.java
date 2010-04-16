@@ -102,15 +102,15 @@ public class JForumBaseServlet extends HttpServlet
 		}
 	}
 
-	public void init(ServletConfig config) throws ServletException
-	{
-		super.init(config);
-
+	private static boolean isInit = false;
+	private void delayInit(){
+		isInit = true;
+		ServletConfig config = getServletConfig();
 		try {
 			String appPath = config.getServletContext().getRealPath("");
 			debug = "true".equals(config.getInitParameter("development"));
 
-			DOMConfigurator.configure(appPath + "/WEB-INF/log4j.xml");
+			//DOMConfigurator.configure(appPath + "/WEB-INF/log4j.xml");
 
 			logger.info("Starting JForum. Debug mode is " + debug);
 
@@ -143,7 +143,7 @@ public class JForumBaseServlet extends HttpServlet
 
 			ModulesRepository.init(SystemGlobals.getValue(ConfigKeys.CONFIG_DIR));
 
-			this.loadConfigStuff();
+			loadConfigStuff();
 
 			if (!this.debug) {
 				templateCfg.setTemplateUpdateDelay(3600);
@@ -155,8 +155,13 @@ public class JForumBaseServlet extends HttpServlet
 			throw new ForumStartupException("Error while starting JForum", e);
 		}
 	}
+	public void init(ServletConfig config) throws ServletException
+	{
+		super.init(config);
+		delayInit();
+	}
 
-	protected void loadConfigStuff()
+	protected static void loadConfigStuff()
 	{
 		ConfigLoader.loadUrlPatterns();
 		I18n.load();
