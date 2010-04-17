@@ -11,11 +11,9 @@ p, td { font-size: 11px; }
 <body bgcolor="#E5E5E5" text="#000000">
 <div class="mainbox" width="80%">
 <a name="top"></a>
-
 <!--
 <a href="${contextPath}/jforum${extension}?module=admBase&action=fetchMail">Fetch mail</a><br>
 -->
-
 <h1>${I18n.getMessage("ForumListing.versionInformation")}</h1>
 
 <#if !upToDate?exists>
@@ -36,7 +34,7 @@ p, td { font-size: 11px; }
 
 <#if developmentVersion> <p style="color: red"><b>${I18n.getMessage("Admin.welcome.warning")}</b></p> </#if>
 
-<#if installModuleExists>
+<#if installModuleExists&false>
 	<h1>${I18n.getMessage("Admin.welcome.securityWarning")}</h1>
 	<p style="color:red">${I18n.getMessage("Admin.welcome.enabledInstallation")}</p>
 
@@ -108,10 +106,4 @@ p, td { font-size: 11px; }
 </table>
 </div>
 </div>
-<DIV id=footer><DIV class=wrap><DIV id=footlinks><P>当前时区&nbsp;GMT+8, 现在时间是&nbsp;2009-11-20 13:34</P>
-<P><A href="mailto:adminMail">联系我们</A>&nbsp;-&nbsp;<A href="http://localhost" target=_blank>localhost</A>&nbsp;-&nbsp;<span class="scrolltop" title="顶部" onclick="window.scrollTo(0,0);">TOP</span></P></DIV>
-<P class=copyright> Powered by <STRONG><a href="http://www.jforum.net">JForum Team</a></STRONG> <EM>2.3</EM> &copy; 2005-2009 <A
- href="http://www.ibooks.org.cn/" target=_blank>Hongshee software</A></P></DIV></DIV>
-
-</body>
-</html>
+<#include "bottom.htm"/>
