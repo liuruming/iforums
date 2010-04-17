@@ -37,6 +37,21 @@ ${sectionTable}
 			<td>${I18n.getMessage("ModerationLog.action")}</td>
 		</tr>
 	</thead>
+	<#if activityLog.size() == 0>
+		<#if canAccessFullModerationLog>
+			<tr>
+				<td colspan="7">
+					<span class="gen">${I18n.getMessage("ModerationLog.moderationLogEmpty")}</span>
+				</td>
+			</tr>
+		<#else>
+			<tr>
+				<td colspan="5">
+					<span class="gen">${I18n.getMessage("ModerationLog.moderationLogEmpty")}</span>
+				</td>
+			</tr>
+		</#if>
+	</#if>
 	<#list activityLog as log>
 	<tr>
 		<td>${log.date?datetime}</td>
