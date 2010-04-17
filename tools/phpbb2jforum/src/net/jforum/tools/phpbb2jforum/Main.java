@@ -43,7 +43,7 @@ public class Main
 
 	private void init(String baseDir) throws IOException
 	{
-		SystemGlobals.initGlobals(baseDir, baseDir + "/phpbb2jforum/resource/SystemGlobals.properties");
+		SystemGlobals.initGlobals(baseDir, baseDir + "/phpbb2jforum/resource/system.properties");
 		SystemGlobals.loadQueries(baseDir + "/phpbb2jforum/resource/" + SystemGlobals.getValue(ConfigKeys.DATABASE_QUERIES));
 	}
 
