@@ -81,14 +81,14 @@ public class ConfigLoader
 	/**
 	 * Start ( or restart ) <code>SystemGlobals</code>.
 	 * This method loads all configuration keys set at
-	 * <i>SystemGlobals.properties</i>, <i>&lt;user.name&gt;.properties</i>
+	 * <i>system.properties</i>, <i>&lt;user.name&gt;.properties</i>
 	 * and database specific stuff.
 	 * 
 	 * @param appPath The application root's directory
 	 */
 	public static void startSystemglobals(String appPath)
 	{
-		SystemGlobals.initGlobals(appPath, appPath + "/WEB-INF/config/SystemGlobals.properties");
+		SystemGlobals.initGlobals(appPath, appPath + "/WEB-INF/config/system.properties");
 		SystemGlobals.loadAdditionalDefaults(SystemGlobals.getValue(ConfigKeys.DATABASE_DRIVER_CONFIG));
 		
 		if (new File(SystemGlobals.getValue(ConfigKeys.INSTALLATION_CONFIG)).exists()) {
@@ -168,7 +168,7 @@ public class ConfigLoader
 	/**
 	 * Listen for changes in common configuration files.
 	 * The watched files are: <i>generic_queries.sql</i>, 
-	 * <i>&lt;database_name&gt;.sql</i>, <i>SystemGlobals.properties</i>
+	 * <i>&lt;database_name&gt;.sql</i>, <i>system.properties</i>
 	 * and <i>&lt;user.name&gt;.properties</i>
 	 */
 	public static void listenForChanges()

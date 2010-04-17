@@ -57,7 +57,7 @@ import net.jforum.util.preferences.SystemGlobals;
  * DataSource connection implementation for JForum.
  * The datasourcename should be set in the key 
  * <code>database.datasource.name</code> at 
- * SystemGlobals.properties.
+ * system.properties.
  * 
  * @author Rafael Steil
  * @version $Id: DataSourceConnection.java,v 1.10 2006/08/23 02:24:05 rafaelsteil Exp $

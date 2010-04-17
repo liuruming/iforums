@@ -71,12 +71,21 @@ import freemarker.template.Template;
  */
 public class InstallServlet extends JForumBaseServlet
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	/** 
 	 * @see javax.servlet.GenericServlet#init(javax.servlet.ServletConfig)
 	 */
 	public void init(ServletConfig config) throws ServletException
 	{
-		super.init(config);
+		String appPath = config.getServletContext().getRealPath("");
+		ConfigLoader.startSystemglobals(appPath);
+		if(!SystemGlobals.getInstallState()){
+			super.init(config);
+		}
 	}
 	
 	/** 
