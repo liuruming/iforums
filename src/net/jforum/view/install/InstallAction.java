@@ -222,7 +222,7 @@ public class InstallAction extends Command
 				return;
 			}
 			
-			this.storeSupportProjectMessage(conn);
+			//this.storeSupportProjectMessage(conn);
 		}
 		finally {
 			if (conn != null) {
