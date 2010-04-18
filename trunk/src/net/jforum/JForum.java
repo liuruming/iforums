@@ -300,7 +300,7 @@ public class JForum extends JForumBaseServlet
 				new ExceptionWriter().handleExceptionData(e, out, request);
 			}
 			else {
-				new ExceptionWriter().handleExceptionData(e, new BufferedWriter(new OutputStreamWriter(response.getOutputStream())), request);
+				new ExceptionWriter().handleExceptionData(e, new BufferedWriter(new OutputStreamWriter(response.getOutputStream(),encoding)), request);
 			}
 		}
 	}
