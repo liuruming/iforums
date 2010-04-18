@@ -30,7 +30,7 @@
 			<tr align="left">		  
 				<td><span class="gen">${user.id}</span></td>			
 				<td><span class="gen"><a href="${JForumContext.encodeURL("/user/profile/${user.id}")}">${user.username}</a></span></td>
-				<td><span class="gen"><#if user.id != 1><a href="${JForumContext.encodeURL("/pm/sendTo/${user.id}")}" class="icon_pm"><img src="${contextPath}/images/transp.gif" alt="" /></a><#else>&nbsp;</#if></span></td>
+				<td><span class="gen"><#if user.id != 1><a href="${JForumContext.encodeURL("/pm/sendTo/${user.id}")}" class="icon_pm"><img src="${contextPath}/templates/${templateName}/images/msg_new.gif" alt="" /></a><#else>&nbsp;</#if></span></td>
 				<td><span class="gen">
 					<#if (user.isViewEmailEnabled() && user.email?exists && user.email?length > 0)>
 						<#assign e = user.email.split("@")/>
