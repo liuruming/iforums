@@ -61,7 +61,7 @@ var oldClasses = {}
 
 function changeTrClass(from, trIndex)
 {
-	var tr = from.parentNode.parentNode;
+	/*var tr = from.parentNode.parentNode;
 	trIndex = trIndex.toString();
 
 	if (from.checked) {
@@ -87,5 +87,5 @@ function changeTrClass(from, trIndex)
 				node.className = oldClasses[trIndex].pop();
 			}
 		}
-	}	
+	}*/
 }

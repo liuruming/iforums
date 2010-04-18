@@ -391,31 +391,6 @@ function smiliePopup()
 		</tr>
 	</table>
 </div>
-<#if ((topic?exists && topic.id > 0) || pmReply?default(false))>
-	<table cellspacing="0" cellpadding="10" width="100%" align="center" border="0">
-		<tr>
-		<td colspan="2">
-			<table border="0" cellpadding="3" cellspacing="0" width="100%" class="mainbox">
-				<tr>
-					<th class="cathead" height="28" align="center"><b><span class="cattitle">${I18n.getMessage("PostShow.topicReview")}</span></b></th>
-				</tr>
-		
-				<tr>
-					<td class="row1">
-						<#if pmReply?default(false)>
-							<iframe width="100%" height="300" frameborder="0" src="${JForumContext.encodeURL("/jforum${extension}?module=pm&amp;action=review&amp;id=${pm.id}", "")}" ></iframe>
-						<#else>
-							<iframe width="100%" height="300" frameborder="0" src="${JForumContext.encodeURL("/posts/review/${start}/${topic.id}")}" ></iframe>
-						</#if>
-					</td>
-				</tr>
-				
-			</table>
-		</td>
-		</tr>
-	</table>
-</#if>
-
 <script type="text/javascript">
 <!--
 <#if attachments?exists>
