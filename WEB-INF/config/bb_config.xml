@@ -36,7 +36,7 @@
 		<![CDATA[
 		<blockquote>
 			<div>
-				<cite>$1 wrote:</cite>
+				<cite>在 <b>$1</b> 的大作中提到:</cite>
 		]]>
 		</replace>
 	</match>
