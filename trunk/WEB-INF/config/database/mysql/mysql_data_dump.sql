@@ -65,7 +65,7 @@ INSERT INTO jforum_categories VALUES (1,'默认分区',1,0);
 INSERT INTO jforum_forums VALUES (1,1,'默认版块','这是一个默认版块',1,1,1,0);
 INSERT INTO jforum_topics VALUES (1,1,'欢迎使用iforums论坛系统',2,'2005-01-04 16:59:54',1,0,0,0,0,1,1,0, 0);
 INSERT INTO jforum_posts VALUES (1,1,1,2,'2005-01-04 16:59:54','127.0.0.1',1,0,1,1,null,0,1,0,0);
-INSERT INTO jforum_posts_text VALUES (1,'[b][color=blue][size=18]成功安装 :!: [/size][/color][/b]\n你已经完成了安装, iforums已经在运行. \n\n用 [i]admin[/i]用户登录，开始使用管理功能(使用您在安装时提供的密码) 并访问[b][url=/admBase/login.html]管理员面板[/url][/b] (可以使用底部链接). 你可以创建更多分区和版面 :D  \n\n获取更多信息, 请参考以下页面:\n\n:arrow: 更多信息请访问: http://code.google.com/p/iforums/\n\n\n[b]谢谢使用iforums论坛系统[/b].\n\n[url=http://code.google.com/p/iforums/]iforum主页[/url]\n\n','欢迎使用iforums');
+INSERT INTO jforum_posts_text VALUES (1,'[b][color=blue][size=18]成功安装 :!: [/size][/color][/b]\n你已经完成了安装, iforums已经在运行. \n\n用 [i]admin[/i]用户登录，开始使用管理功能(使用您在安装时提供的密码) 并访问[b]管理员面板[/b] (可以使用底部链接). 你可以创建更多分区和版面 :D  \n\n获取更多信息, 请参考以下页面:\n\n:arrow: 更多信息请访问: http://code.google.com/p/iforums/\n\n\n[b]谢谢使用iforums论坛系统[/b].\n\n[url=http://code.google.com/p/iforums/]iforum主页[/url]\n\n','欢迎使用iforums');
 
 #
 # Roles
