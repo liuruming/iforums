@@ -284,8 +284,8 @@ function changeDbPort(dbName)
 		<tr>
 			<td class="row3" align="right" valign="top"><span class="gen"><b>${I18n.getMessage("Install.dbName")}: </b></span></td>
 			<td class="row3">
-			<input type="text" name="dbname" value="${dbname?default("iforums")}" /><br/>
-			<span class="gensmall"><font color="green">${I18n.getMessage("Install.dbNameTip")}</font></span>
+			<input type="text" name="dbname" value="${dbname?default("iforums")}" />${I18n.getMessage("Install.dbNameTip")}<br/>
+			<span class="gensmall"><font color="green">${I18n.getMessage("Install.dbNameTipX")}</font></span>
 			</td>
 		</tr>
 		<tr>
