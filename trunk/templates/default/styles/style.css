@@ -890,7 +890,7 @@ TD.selector {
 	BORDER: #ddd 1px solid; PADDING: 6px; BACKGROUND: #fff repeat-x; MARGIN-BOTTOM: 10px
 }
 blockquote div{
-	 border:2px dashed #464547;
+	 border:1px dashed #464547;
 	 clear:both;
 	 padding:0 5px 0 68px;
 	 background:#f0f0f0;
