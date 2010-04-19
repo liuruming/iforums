@@ -1,5 +1,5 @@
 = jforum的用户权限=
-(来源：http://opensource.csdn.net/bbs/thread/3587)
+(来源：http://opensource.csdn.net/bbs/thread/3587)<br/>
 JForum默认匿名用户是可以发帖的，要限制这个操作首先建立一个匿名用户组，然后给这个用户组指派权限不允许所有的论坛发帖，然后将JForum自动创建的匿名用户放到这个组中即可。
 
 最近的项目用到了jforum,于是就研究了下jorum的权限管理机制。
