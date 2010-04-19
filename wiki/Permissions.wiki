@@ -50,7 +50,7 @@ jforum并没有为二次开发提供比较好的文档和API只有读源代码�
 GroupAction >><br/>
 添加权限控制为group控制 permissionsSave<br/>
 GroupSecurityDAO gmodel = DataAccessDriver.getInstance().newGroupSecurityDAO(); （提示使用gorup管理，看来以后还有扩展）<br/>
-
+<code>
 PermissionControl pc = new PermissionControl();<br/>
 pc.setSecurityModel(gmodel);<br/>
 
@@ -60,7 +60,9 @@ Role role = new Role();<br/>
 role.setName(paramName);<br/>
 this.pc.addRole(this.groupId, role, roleValues);  》》》 pc = PermissionControl<br/>
 
-this.addRole(pc, SecurityConstants.PERM_FORUM, f.getId(), groups); >> Forumaction (推荐用这个比较方便)<br/>
+this.addRole(pc, SecurityConstants.PERM_FORUM, f.getId(), groups);
+</code>
+ >> Forumaction (推荐用这个比较方便)<br/>
 
 roleValues 是forum id， 可以访问的话就加上。(注意这里和管理界面上的概念是相反的，界面上选中的是禁止，而在DB中存在这个字段就表允许)<br/>
 
