@@ -103,4 +103,6 @@ this.addRole(pc, SecurityConstants.PERM_ATTACHMENTS_DOWNLOAD, f.getId(), gorupId
 this.addRole(pc, SecurityConstants.PERM_ATTACHMENTS_DOWNLOAD, f.getId(), gorupIds);
 }
 
-在jforum的论坛看到作者正在为jforum3努力，期待 jforum3啊~~ 现在最新的jforum2.1.8功能相比一些PHP的论坛还是比较简单的。
+在jforum的论坛看到作者正在为jforum3努力，期待 jforum3啊~~ 
+
+现在最新的jforum2.1.8功能相比一些PHP的论坛还是比较简单的。
