@@ -7,14 +7,14 @@ SET @ADMIN_ID = 2;
 #
 # Groups
 #
-INSERT INTO jforum_groups ( group_id, group_name, group_description ) VALUES (@GENERAL_GROUP_ID, 'General', 'General Users');
-INSERT INTO jforum_groups ( group_id, group_name, group_description ) VALUES (@ADMIN_GROUP_ID, 'Administration', 'Admin Users');
+INSERT INTO jforum_groups ( group_id, group_name, group_description ) VALUES (@GENERAL_GROUP_ID, '普通用户', '普通用户');
+INSERT INTO jforum_groups ( group_id, group_name, group_description ) VALUES (@ADMIN_GROUP_ID, '管理员', '管理员用户');
 
 # 
 # Users
 #
-INSERT INTO jforum_users ( user_id, username, user_password, user_regdate ) VALUES (@ANONYMOUS_ID, 'Anonymous', 'nopass', NOW());
-INSERT INTO jforum_users ( user_id, username, user_password, user_regdate, user_posts ) VALUES (@ADMIN_ID, 'Admin', '21232f297a57a5a743894a0e4a801fc3', NOW(), 1);
+INSERT INTO jforum_users ( user_id, username, user_password, user_regdate ) VALUES (@ANONYMOUS_ID, '游客', 'nopass', NOW());
+INSERT INTO jforum_users ( user_id, username, user_password, user_regdate, user_posts ) VALUES (@ADMIN_ID, 'admin', '21232f297a57a5a743894a0e4a801fc3', NOW(), 1);
 
 #
 # User Groups
@@ -61,11 +61,11 @@ INSERT INTO jforum_smilies (code, url, disk_name) VALUES (':|', '<img src=\"#CON
 #
 # Demonstration Forum
 #
-INSERT INTO jforum_categories VALUES (1,'Category Test',1,0);
-INSERT INTO jforum_forums VALUES (1,1,'Test Forum','This is a test forum',1,1,1,0);
-INSERT INTO jforum_topics VALUES (1,1,'Welcome to JForum',2,'2005-01-04 16:59:54',1,0,0,0,0,1,1,0, 0);
+INSERT INTO jforum_categories VALUES (1,'默认分区',1,0);
+INSERT INTO jforum_forums VALUES (1,1,'默认版块','这是一个默认版块',1,1,1,0);
+INSERT INTO jforum_topics VALUES (1,1,'欢迎使用iforums论坛系统',2,'2005-01-04 16:59:54',1,0,0,0,0,1,1,0, 0);
 INSERT INTO jforum_posts VALUES (1,1,1,2,'2005-01-04 16:59:54','127.0.0.1',1,0,1,1,null,0,1,0,0);
-INSERT INTO jforum_posts_text VALUES (1,'[b][color=blue][size=18]Congratulations :!: [/size][/color][/b]\nYou have completed the installation, and JForum is up and running. \n\nTo start administering the board, login as [i]Admin / <the password you supplied in the installer>[/i] and access the [b][url=/admBase/login.page]Admin Control Panel[/url][/b] using the link that shows up in the bottom of the page. There you will be able to create Categories, Forums and much more  :D  \n\nFor more information and support, please refer to the following pages:\n\n:arrow: Community forum: http://www.jforum.net/community.jsp\n:arrow: Documentation: http://www.jforum.net/doc\n\nThank you for choosing JForum.\n\n[url=http://www.jforum.net/doc/Team]The JForum Team[/url]\n\n','Welcome to JForum');
+INSERT INTO jforum_posts_text VALUES (1,'[b][color=blue][size=18]成功安装 :!: [/size][/color][/b]\n你已经完成了安装, iforums已经在运行. \n\n用 [i]admin[/i]用户登录，开始使用管理功能(使用您在安装时提供的密码) 并访问[b][url=/admBase/login.html]管理员面板[/url][/b] (可以使用底部链接). 你可以创建更多分区和版面 :D  \n\n获取更多信息, 请参考以下页面:\n\n:arrow: 更多信息请访问: http://code.google.com/p/iforums/\n\n\n[b]谢谢使用iforums论坛系统[/b].\n\n[url=http://code.google.com/p/iforums/]iforum主页[/url]\n\n','欢迎使用iforums');
 
 #
 # Roles
