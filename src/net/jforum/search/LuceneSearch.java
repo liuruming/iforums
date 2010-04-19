@@ -159,7 +159,8 @@ public class LuceneSearch implements NewDocumentAdded
 			}
 		}
 		catch (Exception e) {
-			throw new SearchException(e);
+			logger.error("",e);
+			result = new SearchResult(new ArrayList(), 0);
 		}
 		
 		return result;
