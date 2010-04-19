@@ -49,16 +49,16 @@ jforum并没有为二次开发提供比较好的文档和API只有读源代码�
 添加一个权限：<br/>
 GroupAction >><br/>
 添加权限控制为group控制 permissionsSave<br/>
-GroupSecurityDAO gmodel = DataAccessDriver.getInstance().newGroupSecurityDAO(); （提示使用gorup管理，看来以后还有扩展）<br/>
+GroupSecurityDAO gmodel = DataAccessDriver.getInstance().newGroupSecurityDAO(); （提示使用gorup管理，看来以后还有扩展）
 <code>
-PermissionControl pc = new PermissionControl();<br/>
-pc.setSecurityModel(gmodel);<br/>
+PermissionControl pc = new PermissionControl();
+pc.setSecurityModel(gmodel);
 
-PermissionProcessHelper<br/>
+PermissionProcessHelper
 
-Role role = new Role();<br/>
-role.setName(paramName);<br/>
-this.pc.addRole(this.groupId, role, roleValues);  》》》 pc = PermissionControl<br/>
+Role role = new Role();
+role.setName(paramName);
+this.pc.addRole(this.groupId, role, roleValues);  》》》 pc = PermissionControl
 
 this.addRole(pc, SecurityConstants.PERM_FORUM, f.getId(), groups);
 </code>
