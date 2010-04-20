@@ -67,6 +67,10 @@ import org.xml.sax.helpers.DefaultHandler;
  */
 public class BBCodeHandler extends DefaultHandler implements Serializable
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Map bbMap = new LinkedHashMap();
 	private Map alwaysProcessMap = new LinkedHashMap();
 	private String tagName = "";
