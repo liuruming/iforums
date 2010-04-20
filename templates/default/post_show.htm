@@ -44,16 +44,25 @@
 -->
 </script>
 <script type="text/javascript">
-	function newCaptcha()
+	var  tempid="";
+	function newCaptcha(id)
 	{
-		document.getElementById("captcha_img").src = "${contextPath}/jforum${extension}?module=captcha&action=generate&timestamp=" + new Date().getTime();
+		document.getElementById("captcha_img"+id).src = "${contextPath}/jforum${extension}?module=captcha&action=generate&timestamp=" + new Date();
 	}	
+
 	function activateQuickReply(id)
 	{
-		$("#captcha_img").attr("src", "${JForumContext.encodeURL("/captcha/generate/${timestamp}")}");
+		$("#captcha_img"+id).attr("src", "${contextPath}/captcha/generate/"+new Date()+".html");
+		if(tempid===""){
+		}else{
+			$("#quickReply"+tempid).slideToggle('slow', function() {
+				//window.scrollBy(0, 1000);
+			});		
+		}
 		$("#quickReply"+id).slideToggle('slow', function() {
 			//window.scrollBy(0, 1000);
 		});
+		tempid = id;
 	}
 	
 	function validatePostForm(f)
@@ -228,23 +237,18 @@
 						<input type="hidden" name="topic_id" value="${topic.id}" />
 						<input type="hidden" name="disable_html" value="1" />
 						<input type="hidden" name="quick" value="1" />
-						<div align="center" style="display: none;" id="quickReply${post_index}">
+						<div align="center" style="display: none;" name="quickReplyDivTable" id="quickReply${post_index}">
 							<table>
 								<tr>
-									<td align="left" width="90%">
+									<td align="left" width="70%">
 										<input class="post" style="width: 100%" name="message" rows="0" cols="35" onkeyup="enterText(this);" onclick="enterText(this);" onselect="enterText(this);" onblur="leaveText();" type="textbox">
+										<#if needCaptcha?default(false)>
+											<br/><span class="gensmall" valign="absmiddle">${I18n.getMessage("User.captchaResponse")}</span>
+											<input type="text" style="width: 80px; font-weight: bold;" valign="absmiddle" maxlength="25" name="captcha_anwser" /> 
+											<img border="0" align="middle" id="captcha_img${post_index}"/>
+											<span class="gensmall" valign="absmiddle">${I18n.getMessage("User.hardCaptchaPart1")} <a href="#newCaptcha" onClick="newCaptcha('${post_index}')"><b>${I18n.getMessage("User.hardCaptchaPart2")}</b></a></span>
+										</#if>
 									</td>
-								<#if needCaptcha?default(false)>
-										<td>
-											<img border="0" align="middle" id="captcha_img"/>
-											<br />
-											<span class="gensmall">${I18n.getMessage("User.captchaResponse")}</span>
-											<input type="text" class="post" style="width: 80px; font-weight: bold;" maxlength="25" name="captcha_anwser" /> 
-											<br />
-											<span class="gensmall">${I18n.getMessage("User.hardCaptchaPart1")} <a href="#newCaptcha" onClick="newCaptcha()"><b>${I18n.getMessage("User.hardCaptchaPart2")}</b></a></span>
-										</td>
-									
-								</#if>
 								<td align="center" valign="center" width="10%">
 										<input type="submit" id="btnSubmit" value="${I18n.getMessage("PostForm.submit")}" class="submit" />
 									</td>
