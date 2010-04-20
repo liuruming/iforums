@@ -52,6 +52,10 @@ import java.io.Serializable;
  */
 public class BBCode implements Serializable
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String tagName = "";
 	private String regex;
 	private String replace;
