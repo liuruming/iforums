@@ -106,7 +106,7 @@ public class SearchAction extends Command
 		this.setTemplateName(operation.viewTemplate());
 		
 		this.context.put("results", operation.filterResults(operation.results()));
-		this.context.put("categories", ForumRepository.getAllCategories());
+		this.context.put("allCategories", ForumRepository.getAllCategories());
 		this.context.put("searchArgs", args);
 		this.context.put("fr", new ForumRepository());
 		this.context.put("pageTitle", I18n.getMessage("ForumBase.search"));
