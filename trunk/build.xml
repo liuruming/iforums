@@ -23,7 +23,7 @@
 	<property name="srcfile" value="${filename}-src.zip"/>
 	<property name="javadoc.packages" value="net.jforum.*" />
 
-	<property name="build.dir" location="build" />
+	<property name="build.dir" location="WEB-INF" />
 	<property name="dist.dir" location="dist" />
 	<property name="docs.dir" location="docs" />
 	<property name="api.dir" location="${docs.dir}/api" />
