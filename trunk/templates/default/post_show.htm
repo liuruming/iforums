@@ -52,16 +52,28 @@
 
 	function activateQuickReply(id)
 	{
-		$("#captcha_img"+id).attr("src", "${contextPath}/captcha/generate/"+new Date()+".html");
-		if(tempid===""){
+		if(tempid==""){
+			$("#captcha_img"+id).attr("src", "${contextPath}/captcha/generate/"+new Date()+".html");
+			$("#quickReply"+id).slideToggle('slow', function() {
+					//window.scrollBy(0, 1000);
+			});
 		}else{
-			$("#quickReply"+tempid).slideToggle('slow', function() {
-				//window.scrollBy(0, 1000);
-			});		
+			if(tempid==id){
+				$("#quickReply"+id).slideToggle('slow', function() {
+					//window.scrollBy(0, 1000);
+				});
+				tempid ="";
+				return;
+			}else{
+				$("#captcha_img"+id).attr("src", "${contextPath}/captcha/generate/"+new Date()+".html");
+				$("#quickReply"+tempid).slideToggle('slow', function() {
+					//window.scrollBy(0, 1000);
+				});		
+				$("#quickReply"+id).slideToggle('slow', function() {
+					//window.scrollBy(0, 1000);
+				});
+			}
 		}
-		$("#quickReply"+id).slideToggle('slow', function() {
-			//window.scrollBy(0, 1000);
-		});
 		tempid = id;
 	}
 	
