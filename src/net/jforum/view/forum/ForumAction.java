@@ -84,7 +84,7 @@ public class ForumAction extends Command
 	{
 		this.setTemplateName(TemplateKeys.FORUMS_LIST);
 
-		this.context.put("allCategories", ForumCommon.getAllCategoriesAndForums(true));
+		this.context.put("allCategories", ForumCommon.getCategoriesAndForumsById(this.request.getParameter("catid")));
 		this.context.put("topicsPerPage", new Integer(SystemGlobals.getIntValue(ConfigKeys.TOPICS_PER_PAGE)));
 		this.context.put("rssEnabled", SystemGlobals.getBoolValue(ConfigKeys.RSS_ENABLED));
 

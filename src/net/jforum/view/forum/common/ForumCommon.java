@@ -111,7 +111,7 @@ public class ForumCommon
 	 * object
 	 */
 	public static List getAllCategoriesAndForums(UserSession us, int anonymousUserId, 
-			Map tracking, boolean checkUnreadPosts)
+			Map tracking, boolean checkUnreadPosts,int catid)
 	{
 		long lastVisit = 0;
 		int userId = anonymousUserId;
@@ -133,7 +133,9 @@ public class ForumCommon
 		List returnCategories = new ArrayList();
 		for (Iterator iter = categories.iterator(); iter.hasNext(); ) {
 			Category c = new Category((Category)iter.next());
-			
+			if(catid!=-1&&catid!=c.getId()){
+				continue;
+			}
 			for (Iterator tmpIterator = c.getForums().iterator(); tmpIterator.hasNext(); ) {
 				Forum f = (Forum)tmpIterator.next();
 				ForumCommon.checkUnreadPosts(f, tracking, lastVisit);
@@ -155,7 +157,25 @@ public class ForumCommon
 		return getAllCategoriesAndForums(SessionFacade.getUserSession(), 
 				SystemGlobals.getIntValue(ConfigKeys.ANONYMOUS_USER_ID), 
 				SessionFacade.getTopicsReadTime(), 
-				checkUnreadPosts);
+				checkUnreadPosts,-1);
+	}
+	/**
+	 * @see #getAllCategoriesAndForums(UserSession, int, Map, boolean)
+	 * @return List
+	 * @param checkUnreadPosts boolean
+	 */
+	public static List getCategoriesAndForumsById(String catid)
+	{
+		int cid = -1;
+		try{
+			cid = Integer.parseInt(catid);
+		}catch(Exception e){
+			logger.info("",e);
+			cid = -1;
+		}
+		return getAllCategoriesAndForums(SessionFacade.getUserSession(), 
+				SystemGlobals.getIntValue(ConfigKeys.ANONYMOUS_USER_ID), 
+				SessionFacade.getTopicsReadTime(), true,cid);
 	}
 	
 	/**
