@@ -141,7 +141,7 @@ public class JForum extends JForumBaseServlet
 	public void service(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException
 	{
 		if (!SystemGlobals.getInstallState()){
-			res.sendRedirect(req.getContextPath()+"/install.jsp");
+			res.sendRedirect(req.getContextPath()+"/install/install.html?module=install&action=welcome");
 			return;
 		}
 		if(!isInit){
