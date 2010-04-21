@@ -208,4 +208,5 @@ public class TemplateKeys
 	public static final String AJAX_LOAD_POST = "ajax.load.post";
 	
 	public static final String FRAME_LEFT_MENU = "frame.leftmenu";
+	public static final String FRAME_FRAME = "frame.frame";
 }
