@@ -18,7 +18,10 @@ import net.jforum.view.forum.common.ForumCommon;
 public class FrameAction extends Command {
 
 	public void list() {
-		leftMenu();
+		frame();
+	}
+	public void frame() {
+		this.setTemplateName(TemplateKeys.FRAME_FRAME);
 	}
 	public void leftMenu() {
 		this.setTemplateName(TemplateKeys.FRAME_LEFT_MENU);
