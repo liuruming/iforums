@@ -72,7 +72,7 @@ function doSearch() {
 <DIV class="mainbox forumlist">
 	<SPAN class=headactions><IMG id=section_0_img title="open/close" onClick="toggle_collapse('section_${category.id}');"
 		alt="open/close" src="${contextPath}/templates/${templateName}/images/collapsed_no.gif"></SPAN>
-	<H3>${category.name}</H3>
+	<H3><a href="${JForumContext.encodeURL("/forums/list")}?catid=${category.id}">${category.name}</a></H3>
 	<TABLE id="section_${category.id}" cellSpacing=0 cellPadding=0>
 	<TBODY>
 	  	<TR>
