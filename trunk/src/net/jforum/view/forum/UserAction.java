@@ -512,7 +512,11 @@ public class UserAction extends Command
 			}
 		} 
 		else if (this.request.getParameter("returnPath") != null) {
-			JForumExecutionContext.setRedirect(this.request.getParameter("returnPath"));
+			if(!request.getParameter("returnPath").contains("module=frame")){
+				JForumExecutionContext.setRedirect(this.request.getParameter("returnPath"));
+			}else{
+				JForumExecutionContext.setRedirect(this.request.getContextPath() + "/forums/list"+ SystemGlobals.getValue(ConfigKeys.SERVLET_EXTENSION));				
+			}
 		}
 	}
 
