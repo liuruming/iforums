@@ -18,7 +18,7 @@
 	<property name="author" value="iforums" />
 	<property name="copyright" value="(c) iforums Team" />
 	<property name="version" value="1.0" />
-	<property name="filename" value="iforums-${version}" />
+	<property name="filename" value="iforums${version}" />
 	<property name="warfile" value="${filename}.war" />
 	<property name="srcfile" value="${filename}-src.zip"/>
 	<property name="javadoc.packages" value="net.jforum.*" />
