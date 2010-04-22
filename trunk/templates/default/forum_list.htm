@@ -96,11 +96,11 @@ function doSearch() {
 	</td>
 	<td align="left">
 		<b><a class="forumlink" href="${JForumContext.encodeURL("/forums/show/${forum.id}")}">${forum.name?html}</a></b>
-		<p>${forum.description?default("")}</p>
+		<br/>${forum.description?default("")}
 		<p class="moderators">
 			<!--${forum.description?default("")}-->
-			<#if forum.isModerated()><br />
-			${I18n.getMessage("ForumIndex.moderators")}
+			<#if forum.isModerated()>
+			${I18n.getMessage("ForumIndex.moderators")}:
 			<#assign moderators = forumRepository.getModeratorList(forum.id)/>
 			<#list moderators as m>
 			  <a href="${JForumContext.encodeURL("/user/listGroup/${m.id}")}">${m.name?html}</a>
