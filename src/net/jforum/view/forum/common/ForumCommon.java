@@ -113,7 +113,7 @@ public class ForumCommon
 	public static List getAllCategoriesAndForums(UserSession us, int anonymousUserId, 
 			Map tracking, boolean checkUnreadPosts,int catid)
 	{
-		long lastVisit = 0;
+		long lastVisit = 0; 
 		int userId = anonymousUserId;
 		
 		if (us != null) {
@@ -126,7 +126,7 @@ public class ForumCommon
 
 		List categories = ForumRepository.getAllCategories(userId);
 		
-		if (!checkUnreadPosts) {
+		if (!checkUnreadPosts&&catid==-1) {
 			return categories;
 		}
 
@@ -170,7 +170,6 @@ public class ForumCommon
 		try{
 			cid = Integer.parseInt(catid);
 		}catch(Exception e){
-			logger.info("",e);
 			cid = -1;
 		}
 		return getAllCategoriesAndForums(SessionFacade.getUserSession(), 
