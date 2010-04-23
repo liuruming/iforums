@@ -8,7 +8,6 @@
 		<meta name="generator" content="${pageTitle?default("iforums")?html}">
 		<meta name="MSSmartTagsPreventParsing" content="TRUE">
 		<meta http-equiv="MSThemeCompatible" content="Yes">
-		<link rel="archives" title="${pageTitle?default("iforums")?html}" href="http://www.xiaomicheng.com/bbs/archiver/">
 		<link rel="stylesheet" type="text/css" id="css" href="${contextPath}/templates/frame/styles/leftmenu.css">
 		<style type="text/css">
 			html { background: #FFF; }
@@ -69,7 +68,7 @@
 			<h1>${pageTitle?default("iforums")?html}</h1>
 			<h2>
 			<#if logged>
-				<strong>${session.username}<strong>
+				<strong>${session.username},${I18n.getMessage("Admin.welcome")}!<strong>
 			<#else>
 				<strong>
 					<a href="${JForumContext.encodeURL("/user/insert")}" target="main" onclick="parent.frames['main'].location.href='${JForumContext.encodeURL("/user/insert")}';">[${I18n.getMessage("ForumBase.register")}]</a>
@@ -80,24 +79,29 @@
 			<div id="root">
 				<script type="text/javascript">
 					var tree = new dzTree('tree');
-					tree.addNode(0, -1, '${I18n.getMessage("ForumListing.forumIndex")}', '${JForumContext.encodeURL("/forums/list")}', 'main', true);
-					tree.addNode(99999999, 0, '${I18n.getMessage("ForumBase.recentTopics")}', '${JForumContext.encodeURL("/recentTopics/list")}', 'main', true);
+					tree.addNode(0, -1, '${I18n.getMessage("ForumListing.forumIndex")}', '${JForumContext.encodeURL("/forums/list")}', 'main', true,'${I18n.getMessage("ForumListing.forumIndex")}');
+					<#if logged>
+					tree.addNode(99999998, 0, '${I18n.getMessage("ForumListing.lastVisitMessages")}', '${JForumContext.encodeURL("/forums/newMessages")}', 'main', true,'${I18n.getMessage("ForumListing.readLastVisitMessages")}');
+					</#if>
+					tree.addNode(99999999, 0, '${I18n.getMessage("ForumBase.recentTopics")}', '${JForumContext.encodeURL("/recentTopics/list")}', 'main', true, '${I18n.getMessage("ForumBase.recentTopics")}');
 					<#list allCategories as category>
-						tree.addNode(${category.id}, 0, '${category.name}', '${JForumContext.encodeURL("/forums/list")}?catid=${category.id}', 'main', false);
+						tree.addNode(${category.id}, 0, '${category.name}', '${JForumContext.encodeURL("/forums/list")}?catid=${category.id}', 'main', false,'${category.name}');
 						<#list category.getForums() as forum>
-							tree.addNode(${category.id}*10+${forum.id}, ${category.id}, '${forum.name?html}', '${JForumContext.encodeURL("/forums/show/${forum.id}")}', 'main', false);
+							tree.addNode(${category.id}*10+${forum.id}, ${category.id}, '${forum.name?html}', '${JForumContext.encodeURL("/forums/show/${forum.id}")}', 'main', false,'${forum.description?default("")}');
 						</#list>
 					</#list>
 					tree.show();
 				</script>
 			</div>
-			<h3>
-				${I18n.getMessage("ForumListing.whoIsOnline")}:
-				<a href="http://www.xiaomicheng.com/bbs/member.php?action=online"
-					target="main">
-					<strong style="" id="onlinenum">41</strong>&nbsp;count
-				</a>
-			</h3>
+			<div class="box" id="online">
+				<h3>
+				<strong>${I18n.getMessage("ForumListing.whoIsOnline")}</strong><br/>
+				<#assign adminColor = "class='admin'"/>
+				<#assign moderatorColor = "class='moderator'"/>
+				<#assign color = ""/>
+				${I18n.getMessage("ForumListing.numberOfUsersOnline", [ totalOnlineUsers, totalRegisteredOnlineUsers, totalAnonymousUsers,"<br/>" ])}
+				</h3>
+			</div>
 		</div>
 		<script type="text/javascript">
 			//ajaxget('misc.php?action=getonlines&inajax=1','onlinenum');

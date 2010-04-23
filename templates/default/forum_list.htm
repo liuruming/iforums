@@ -154,7 +154,7 @@ function doSearch() {
 <#assign moderatorColor = "class='moderator'"/>
 <#assign color = ""/>
 
-${I18n.getMessage("ForumListing.numberOfUsersOnline", [ totalOnlineUsers, totalRegisteredOnlineUsers, totalAnonymousUsers ])}&nbsp;&nbsp;
+${I18n.getMessage("ForumListing.numberOfUsersOnline", [ totalOnlineUsers, totalRegisteredOnlineUsers, totalAnonymousUsers,""])}&nbsp;&nbsp;
 ${I18n.getMessage("ForumListing.mostUsersEverOnline", [ mostUsersEverOnline.getTotal(), mostUsersEverOnline.getDate()?string ])}
 </h4>
 </div>
