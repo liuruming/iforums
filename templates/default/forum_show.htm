@@ -32,16 +32,17 @@
 			<input type="submit" value="${I18n.getMessage("ForumBase.search")}" class="liteoption">
 		</form>
 	</div>
-	<#assign moderators = forum.getModeratorList()/>
+	<#assign moderators = forumRepository.getModeratorIdList(forum.id)/>
 	<#if (moderators.size() > 0)>
 			<br/>
-			<div id="nav">${I18n.getMessage("ForumIndex.forumAdmins")}:
-			<b>
+			<div id="nav">
+				${I18n.getMessage("ForumIndex.forumAdmins")}:
 				<#list moderators as m>
-					<a href="${JForumContext.encodeURL("/user/listGroup/${m.id}")}">${m.name?html}</a>
+				  	<a href="${JForumContext.encodeURL("/user/profile/${m.id}")}">${m.username?html}</a>
 				</#list>
-			</b>
 			</div>
+	<#else>
+	<br/><div id="nav">${I18n.getMessage("ForumIndex.moderators")}:${I18n.getMessage("ForumIndex.withoutAdmins")}</div>
 	</#if>  
 </div>
 <div class="pages_btns" valign="center">

@@ -41,7 +41,7 @@ ${breadCrumb}
 	<!-- TOPICS LISTING -->
 	<#list topics as topic>
 	<tr>
-		<td valign="middle"><a class="postdetails" href="${JForumContext.encodeURL("/forums/show/${forums.get(topic_index).getId()}")}">${forums.get(topic_index).getName()}</a></td>
+		<td valign="middle"><b><a class="postdetails" href="${JForumContext.encodeURL("/forums/show/${forums.get(topic_index).getId()}")}">${forums.get(topic_index).getName()}</a></b></td>
 		<td valign="middle"><@presentation.folderImage topic/></td>
 		<td width="50%">
 			<a href="${JForumContext.encodeURL("/posts/list/${topic.id}")}"><#if (topic.title?length == 0)>No Subject<#else>${topic.title?html}</#if></a>
