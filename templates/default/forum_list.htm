@@ -99,13 +99,11 @@ function doSearch() {
 		<br/>${forum.description?default("")}
 		<p class="moderators">
 			<!--${forum.description?default("")}-->
-			<#if forum.isModerated()>
 			${I18n.getMessage("ForumIndex.moderators")}:
-			<#assign moderators = forumRepository.getModeratorList(forum.id)/>
+			<#assign moderators = forumRepository.getModeratorIdList(forum.id)/>
 			<#list moderators as m>
-			  <a href="${JForumContext.encodeURL("/user/listGroup/${m.id}")}">${m.name?html}</a>
+			  <a href="${JForumContext.encodeURL("/user/profile/${m.id}")}">${m.username?html}</a>
 			</#list>
-			</#if>
 		</p>
 	</td>
 	<TD class="nums">${forum.totalTopics}</TD>
