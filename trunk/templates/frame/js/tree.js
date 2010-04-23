@@ -21,7 +21,7 @@ icon.minus		= IMGDIR + '/tree_minus.gif';
 icon.minusMiddle	= IMGDIR + '/tree_minusmiddle.gif';
 icon.minusBottom	= IMGDIR + '/tree_minusbottom.gif';
 
-function treeNode(id, pid, name, url, target, open) {
+function treeNode(id, pid, name, url, target, open,title) {
 	//public
 	var obj = new Object();
 	obj.id = id;
@@ -30,6 +30,7 @@ function treeNode(id, pid, name, url, target, open) {
 	obj.url = url;
 	obj.target = target;
 	obj.open = open;
+	obj.title = title;
 	//private
 	obj._isOpen = open;
 	obj._lastChildId = 0;
@@ -41,8 +42,8 @@ function dzTree(treeName) {
 	this.nodes = new Array();
 	this.openIds = getcookie('discuz_leftmenu_openids');
 	this.pushNodes = new Array();
-	this.addNode = function(id, pid, name, url, target, open) {
-		var theNode = new treeNode(id, pid, name, url, target, open);
+	this.addNode = function(id, pid, name, url, target, open,title) {
+		var theNode = new treeNode(id, pid, name, url, target, open,title);
 		this.pushNodes.push(id);
 		if(!this.nodes[pid]) {
 			this.nodes[pid] = new Array();
@@ -151,7 +152,7 @@ function dzTree(treeName) {
 
 	this.getName = function(theNode) {
 		if(theNode.url) {
-			return '<a href="'+theNode.url+'" target="' + theNode.target + '"> '+theNode.name+'</a>';
+			return '<a href="'+theNode.url+'" target="' + theNode.target+'" title="' + theNode.title + '"> '+theNode.name+'</a>';
 		} else {
 			return theNode.name;
 		}
