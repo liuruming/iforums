@@ -76,16 +76,16 @@ function doSearch() {
 	<TABLE id="section_${category.id}" cellSpacing=0 cellPadding=0>
 	<TBODY>
 	  	<TR>
-		  	<td valign="middle" align="center" width="5%"></td>
-		    <td>${I18n.getMessage("ForumListing.forums")}</td>
+		  	<TD valign="middle" align="center" width="5%">&nbsp;</TD>
+		    <TD>${I18n.getMessage("ForumListing.forums")}</TD>
 		    <TD class="nums">${I18n.getMessage("ForumListing.totalTopics")}</TD>
 		    <TD class="nums">${I18n.getMessage("ForumListing.totalMessages")}</TD>
 		    <TD align="right" width="15%">${I18n.getMessage("ForumListing.lastMessage")}</TD>
 	    </TR>
 		<#if (category.getForums().size()==0)>
 		<TR>
-			<td valign="middle" align="center" width="5%"></td>
-	  		<td colspan="4">${I18n.getMessage("ForumIndex.withoutBroad")}</td>
+			<TD valign="middle" align="center" width="5%">&nbsp;</TD>
+	  		<TD colspan="4">${I18n.getMessage("ForumIndex.withoutBroad")}</TD>
 	  	</TR>
 		</#if>
 	<#list category.getForums() as forum>
