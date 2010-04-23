@@ -40,7 +40,7 @@
 			<td/>
 			<td align="left">
 				<input type="hidden" name="redirect" />
-				<button class="submit" tabindex="100" name="loginsubmit" type="submit" value="true">${I18n.getMessage("Login.enter")}</button>
+				<button class="submit" tabindex="100" name="loginsubmit" type="submit" value="true" onclick="javascript:parent.frames['leftmenu'].location.reload();">${I18n.getMessage("Login.enter")}</button>
 				<#if autoLoginEnabled>
 					<input type="checkbox" id="autologin" name="autologin" /><label for="autologin">${I18n.getMessage("Login.autoLogon")}</label>
 				</#if>
