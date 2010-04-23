@@ -68,7 +68,7 @@
 			<h1>${pageTitle?default("iforums")?html}</h1>
 			<h2>
 			<#if logged>
-				<strong>${session.username},${I18n.getMessage("Admin.welcome")}!<strong>
+				<strong>${session.username},${I18n.getMessage("Admin.welcome")}!</strong>
 			<#else>
 				<strong>
 					<a href="${JForumContext.encodeURL("/user/insert")}" target="main" onclick="parent.frames['main'].location.href='${JForumContext.encodeURL("/user/insert")}';">[${I18n.getMessage("ForumBase.register")}]</a>
