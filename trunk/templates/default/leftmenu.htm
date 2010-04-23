@@ -71,34 +71,37 @@
 			<#if logged>
 				<strong>${session.username}<strong>
 			<#else>
-				<strong>Guest:&nbsp;<strong>
-				<a href="${JForumContext.encodeURL("/user/insert")}" target="main" onclick="parent.frames['main'].location.href='${JForumContext.encodeURL("/user/insert")}';">[${I18n.getMessage("ForumBase.register")}]</a>
-				<a href="${JForumContext.encodeURL("/user/login")}" target="main" onclick="parent.frames['main'].location.href='${JForumContext.encodeURL("/user/login")}';">[${I18n.getMessage("ForumBase.login")}]</a>
+				<strong>
+					<a href="${JForumContext.encodeURL("/user/insert")}" target="main" onclick="parent.frames['main'].location.href='${JForumContext.encodeURL("/user/insert")}';">[${I18n.getMessage("ForumBase.register")}]</a>
+					<a href="${JForumContext.encodeURL("/user/login")}" target="main" onclick="parent.frames['main'].location.href='${JForumContext.encodeURL("/user/login")}';">[${I18n.getMessage("ForumBase.login")}]</a>
+				</strong>
 			</#if>
 			</h2>
+			<div id="root">
+				<script type="text/javascript">
+					var tree = new dzTree('tree');
+					tree.addNode(0, -1, '${I18n.getMessage("ForumListing.forumIndex")}', '${JForumContext.encodeURL("/forums/list")}', 'main', true);
+					tree.addNode(99999999, 0, '${I18n.getMessage("ForumBase.recentTopics")}', '${JForumContext.encodeURL("/recentTopics/list")}', 'main', true);
+					<#list allCategories as category>
+						tree.addNode(${category.id}, 0, '${category.name}', '${JForumContext.encodeURL("/forums/list")}?catid=${category.id}', 'main', false);
+						<#list category.getForums() as forum>
+							tree.addNode(${category.id}*10+${forum.id}, ${category.id}, '${forum.name?html}', '${JForumContext.encodeURL("/forums/show/${forum.id}")}', 'main', false);
+						</#list>
+					</#list>
+					tree.show();
+				</script>
+			</div>
+			<h3>
+				${I18n.getMessage("ForumListing.whoIsOnline")}:
+				<a href="http://www.xiaomicheng.com/bbs/member.php?action=online"
+					target="main">
+					<strong style="" id="onlinenum">41</strong>&nbsp;count
+				</a>
+			</h3>
+		</div>
 		<script type="text/javascript">
-			var tree = new dzTree('tree');
-			tree.addNode(0, -1, '${I18n.getMessage("ForumListing.forumIndex")}', '${JForumContext.encodeURL("/forums/list")}', 'main', true);
-			tree.addNode(99999999, 0, '${I18n.getMessage("ForumBase.recentTopics")}', '${JForumContext.encodeURL("/recentTopics/list")}', 'main', true);
-			<#list allCategories as category>
-				tree.addNode(${category.id}, 0, '${category.name}', '${JForumContext.encodeURL("/forums/list")}?catid=${category.id}', 'main', false);
-				<#list category.getForums() as forum>
-					tree.addNode(${category.id}*10+${forum.id}, ${category.id}, '${forum.name?html}', '${JForumContext.encodeURL("/forums/show/${forum.id}")}', 'main', false);
-				</#list>
-			</#list>
-			tree.show();
+			//ajaxget('misc.php?action=getonlines&inajax=1','onlinenum');
+			//window.setInterval("ajaxget('misc.php?action=getonlines&inajax=1','onlinenum', '')", 180000);
 		</script>
-		<h3>
-			${I18n.getMessage("ForumListing.whoIsOnline")}:
-			<a href="http://www.xiaomicheng.com/bbs/member.php?action=online"
-				target="main">
-				<strong style="" id="onlinenum">41</strong>&nbsp;count
-			</a>
-		</h3>
-	</div>
-	<script type="text/javascript">
-		//ajaxget('misc.php?action=getonlines&inajax=1','onlinenum');
-		//window.setInterval("ajaxget('misc.php?action=getonlines&inajax=1','onlinenum', '')", 180000);
-	</script>
 	</body>
 </html>

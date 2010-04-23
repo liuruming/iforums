@@ -76,12 +76,18 @@ function doSearch() {
 	<TABLE id="section_${category.id}" cellSpacing=0 cellPadding=0>
 	<TBODY>
 	  	<TR>
-	  	<td valign="middle" align="center" width="5%"></td>
-	    <td>${I18n.getMessage("ForumListing.forums")}</td>
-	    <TD class="nums">${I18n.getMessage("ForumListing.totalTopics")}</TD>
-	    <TD class="nums">${I18n.getMessage("ForumListing.totalMessages")}</TD>
-	    <TD align="right" width="15%">${I18n.getMessage("ForumListing.lastMessage")}</TD>
+		  	<td valign="middle" align="center" width="5%"></td>
+		    <td>${I18n.getMessage("ForumListing.forums")}</td>
+		    <TD class="nums">${I18n.getMessage("ForumListing.totalTopics")}</TD>
+		    <TD class="nums">${I18n.getMessage("ForumListing.totalMessages")}</TD>
+		    <TD align="right" width="15%">${I18n.getMessage("ForumListing.lastMessage")}</TD>
 	    </TR>
+		<#if (category.getForums().size()==0)>
+		<TR>
+			<td valign="middle" align="center" width="5%"></td>
+	  		<td colspan="4">${I18n.getMessage("ForumIndex.withoutBroad")}</td>
+	  	</TR>
+		</#if>
 	<#list category.getForums() as forum>
 	<#assign lpi = forumRepository.getLastPostInfo(forum.id)/>
 	<TR>
@@ -101,9 +107,13 @@ function doSearch() {
 			<!--${forum.description?default("")}-->
 			${I18n.getMessage("ForumIndex.moderators")}:
 			<#assign moderators = forumRepository.getModeratorIdList(forum.id)/>
-			<#list moderators as m>
-			  <a href="${JForumContext.encodeURL("/user/profile/${m.id}")}">${m.username?html}</a>
-			</#list>
+			<#if (moderators.size()>0)>
+				<#list moderators as m>
+				  <a href="${JForumContext.encodeURL("/user/profile/${m.id}")}">${m.username?html}</a>
+				</#list>
+			<#else>
+				${I18n.getMessage("ForumIndex.withoutAdmins")}
+			</#if>
 		</p>
 	</td>
 	<TD class="nums">${forum.totalTopics}</TD>
@@ -149,13 +159,15 @@ ${I18n.getMessage("ForumListing.mostUsersEverOnline", [ mostUsersEverOnline.getT
 </h4>
 </div>
 
-<div class="legend" id="footfilter">
-<label><img alt="new" src="${contextPath}/templates/${templateName}/images/forum_new.gif" align="absmiddle">${I18n.getMessage("ForumListing.newMessages")}</label>
-<label><img alt="nonew" src="${contextPath}/templates/${templateName}/images/forum.gif" align="absmiddle">${I18n.getMessage("ForumListing.noNewMessages")}</label>
-<label><img alt="blocked" src="${contextPath}/templates/${templateName}/images/forum_lock.gif" align="absmiddle">${I18n.getMessage("ForumListing.blocked")}</label>
-	<div class="jump_sort">
+<div class="legend" id="footfilter" style="valign:center">
+	<div align="left" style="valign:center">
+		<label><img alt="new" src="${contextPath}/templates/${templateName}/images/forum_new.gif" align="absmiddle">${I18n.getMessage("ForumListing.newMessages")}</label>
+		<label><img alt="nonew" src="${contextPath}/templates/${templateName}/images/forum.gif" align="absmiddle">${I18n.getMessage("ForumListing.noNewMessages")}</label>
+		<label><img alt="blocked" src="${contextPath}/templates/${templateName}/images/forum_lock.gif" align="absmiddle">${I18n.getMessage("ForumListing.blocked")}</label>
+	</div>
+	<div class="jump_sort" style="valign:center">
 			<@presentation.forumsComboTable/>
-		</div> 
+	</div> 
 </div>
 	
 <#include "bottom.htm"/>
