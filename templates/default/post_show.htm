@@ -157,6 +157,7 @@
 </ul>
 </div>
 
+<#assign isShowPoll = 0/>
 <#list posts as post>
 <#assign user = users.get(post.userId)/>
 <#assign canEditCurrentMessage = (post.canEdit && topic.status != STATUS_LOCKED) || moderatorCanEdit/>
@@ -186,34 +187,35 @@
 			  <#assign useSignature = (user.attachSignatureEnabled && user.signature?exists && user.signature?length > 0 && post.isSignatureEnabled())/>
 		      <DIV class="postcontent">
 		      <DIV id="content_0" class=contentmsg>
-		      <table class="mainbox" cellspacing="1" cellpadding="3" width="100%" border="0">
-					<#if poll?exists>
-						<tr>
-							<td colspan="2"><b>${I18n.getMessage("PostShow.pollTitle")}</b>:${poll.label?html}</td>
-						</tr>
-						<tr>
-							<td class="row1" colspan="2" align="center">
-								<#if (poll.open && canVoteOnPoll && !request.getParameter("viewResults")?exists)>
-									<form action="${JForumContext.encodeURL("/jforum")}" method="post">
-										<input type="hidden" name="action" value="vote" />
-										<input type="hidden" name="module" value="${moduleName}" />
-										<input type="hidden" name="poll_id" value="${poll.id}" />
-										<input type="hidden" name="topic_id" value="${topic.id}" />
-										<div class="poll" align="left">
-											<#list poll.options as option>
-												<input type="radio" name="poll_option" value="${option.id}">${option.text?html}</input><br/>
-											</#list>
-											<input type="submit" value="${I18n.getMessage("PostShow.pollVote")}"></input>
-											<span class="gensmall" align="center"><a href="${JForumContext.encodeURL("/jforum${extension}?module=posts&amp;action=list&amp;topic_id=${topic.id}&amp;viewResults=true", "")}">${I18n.getMessage("PostShow.showPollResults")}</a></span>
-										</div>
-									</form>
-								<#else>
-									<@presentation.renderPoll poll/>
-								</#if>
-							</td>
-						</tr>
-					</#if>
-				</table>
+			  <#if ((isShowPoll==0)&&(poll?exists))>
+				  <#assign isShowPoll = 1/>
+			      <table class="mainbox" cellspacing="1" cellpadding="3" width="100%" border="0">
+							<tr>
+								<td colspan="2"><b>${I18n.getMessage("PostShow.pollTitle")}</b>:${poll.label?html}</td>
+							</tr>
+							<tr>
+								<td class="row1" colspan="2" align="center">
+									<#if (poll.open && canVoteOnPoll && !request.getParameter("viewResults")?exists)>
+										<form action="${JForumContext.encodeURL("/jforum")}" method="post">
+											<input type="hidden" name="action" value="vote" />
+											<input type="hidden" name="module" value="${moduleName}" />
+											<input type="hidden" name="poll_id" value="${poll.id}" />
+											<input type="hidden" name="topic_id" value="${topic.id}" />
+											<div class="poll" align="left">
+												<#list poll.options as option>
+													<input type="radio" name="poll_option" value="${option.id}">${option.text?html}</input><br/>
+												</#list>
+												<input type="submit" value="${I18n.getMessage("PostShow.pollVote")}"></input>
+												<span class="gensmall" align="center"><a href="${JForumContext.encodeURL("/jforum${extension}?module=posts&amp;action=list&amp;topic_id=${topic.id}&amp;viewResults=true", "")}">${I18n.getMessage("PostShow.showPollResults")}</a></span>
+											</div>
+										</form>
+									<#else>
+										<@presentation.renderPoll poll/>
+									</#if>
+								</td>
+							</tr>
+					</table>
+				</#if>
 		        <#assign canEditCurrentMessage = (post.canEdit && topic.status != STATUS_LOCKED) || moderatorCanEdit/>
 		        <#if canEditCurrentMessage>
 					<#assign canEditSomeMessage = true/>
@@ -276,40 +278,6 @@
 	  </TABLE>
 </DIV>
 </#list>
-<table class="mainbox" cellspacing="1" cellpadding="3" width="100%" border="0">
-	<#if poll?exists>
-		<tr>
-			<td class="cathead cattitle" align="center" colspan="2" nowrap="nowrap" width="100%">${I18n.getMessage("PostShow.pollTitle")}</td>
-		</tr>
-		<tr>
-			<td class="row1" colspan="2" align="center">
-				<#if (poll.open && canVoteOnPoll && !request.getParameter("viewResults")?exists)>
-					<form action="${JForumContext.encodeURL("/jforum")}" method="post">
-						<input type="hidden" name="action" value="vote" />
-						<input type="hidden" name="module" value="${moduleName}" />
-						<input type="hidden" name="poll_id" value="${poll.id}" />
-						<input type="hidden" name="topic_id" value="${topic.id}" />
-						<div class="poll">
-							<span class="strong">${poll.label?html}</span>
-							<table class="poll">
-							<#list poll.options as option>
-								<tr>
-									<td><input type="radio" name="poll_option" value="${option.id}">${option.text?html}</input></td>
-								</tr>
-							</#list>
-							</table>
-							<input type="submit" value="${I18n.getMessage("PostShow.pollVote")}"></input><br />
-							<span class="gensmall" align="center"><a href="${JForumContext.encodeURL("/jforum${extension}?module=posts&amp;action=list&amp;topic_id=${topic.id}&amp;viewResults=true", "")}">${I18n.getMessage("PostShow.showPollResults")}</a></span>
-						</div>
-					</form>
-				<#else>
-					<@presentation.renderPoll poll/>
-				</#if>
-			</td>
-		</tr>
-	</#if>
-</table>
-
 
 <DIV class=pages_btns>
 	<div class="pages">
