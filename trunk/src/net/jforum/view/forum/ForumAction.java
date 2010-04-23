@@ -223,6 +223,7 @@ public class ForumAction extends Command
 		this.context.put("postsPerPage", new Integer(postsPerPage));
 
 		TopicsCommon.topicListingBase();
+		this.context.put("forumRepository", new ForumRepository());
 		this.context.put("moderator", isLogged && isModerator);
 	}
 
