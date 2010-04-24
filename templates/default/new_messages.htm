@@ -4,16 +4,6 @@
 <#import "../macros/presentation.ftl" as presentation/>
 
 <script type="text/javascript" src="${contextPath}/templates/${templateName}/js/pagination.js?${startupTime}"></script>
-<table cellspacing="2" cellpadding="2" width="100%" align="center" border="0">
-	<tr>
-		<td valign="bottom" align="left" >
-			<span class="maintitle">${I18n.getMessage("Search.searchResults")}:
-				${totalRecords} <#if (totalRecords == 1)>${I18n.getMessage("Search.recordFound")}<#else>${I18n.getMessage("Search.recordsFound")}</#if>
-			</span>
-			<br />
-		</td>
-	</tr>
-</table>
 <div id="nav">
 	<a class="nav" href="${JForumContext.encodeURL("/forums/list")}">${I18n.getMessage("ForumListing.forumIndex")}</a>
 </div>
@@ -28,7 +18,7 @@
 </DIV>
 <div class="mainbox formbox"><span class="headactions">
 	<a class="notabs" href="/forum/help/member.jsp" target="_blank"></a></span> 
-	<h1>${I18n.getMessage("Login.enterUsername")}</h1>
+	<h1>${I18n.getMessage("Search.searchResults")}:${totalRecords} <#if (totalRecords == 1)>${I18n.getMessage("Search.recordFound")}<#else>${I18n.getMessage("Search.recordsFound")}</#if></h1>
 	<table class="mainbox" cellspacing="1" cellpadding="4" border="0">
 		<thead>
 			<tr class="catlogs">
@@ -41,6 +31,13 @@
 				<td align="center" width="10%">&nbsp;${I18n.getMessage("ForumIndex.lastMessage")}&nbsp;</td>
 			</tr>
 		</thead>
+		
+		<#if (results.size()==0)>
+			<tr>
+				<td align="center" width="10%">&nbsp;</td>
+				<td align="left" colspan="6">${I18n.getMessage("ForumListing.noMessages")}</td>
+			</tr>
+		</#if>
 		<!-- TOPICS LISTING -->
 		<#list results as topic>
 			<#assign forum = fr.getForum(topic.forumId)/>
