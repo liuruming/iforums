@@ -1,233 +1,68 @@
-<ol>
-		<li>
-			<a class="wikipage" href="/doc/Introduction">Introduction</a>
-			<ol>
-				<li>
-					<a class="external" href="http://www.jforum.net/features.jsp">Features</a>
-					<img class="outlink" src="/images/out.png" alt="" />
-				</li>
-			</ol>
+<ul class="treeleafcontainer">
+	<li class="treeleaf">
+		<a class="currentpagelink" href="/p/iforums/wiki/iforums_preface">Introduction</a>
+	</li>
+	<ul class="">
+		<li class="treeleaf">
+			<a href="/p/iforums/wiki/committer_svn_project">Features</a>
+		</li>
+	</ul>
+	<li class="treeleaf">
+		<a href="/p/iforums/wiki/iforums_release_notes">Installation and Upgrading</a>
+	</li>
+	<ul class="">
+		<li class="treeleaf">
+			<a href="/p/iforums/wiki/committer_svn_project">New JForum install</a>
+		</li>
+		<li class="treeleaf">
+			<a href="/p/iforums/wiki/committer_svn_project">Manual Installation</a>
+		</li>
+	</ul>
+	<li class="">Search</li>
+	<ul class="">
+		<li class="treeleaf">
+			<a href="/p/iforums/wiki/committer_svn_project">Reindexing messages</a>
+		</li>
+	</ul>
+	<li>Customization and Integration</li>
+	<ul>
+		<li class="treeleaf">
+			<a href="/p/iforums/wiki/dao_hello">Setting up for code integration</a>
+		</li>
+		<li class="treeleaf">
+			<a href="/p/iforums/wiki/dao_annotations">Templates and Styles</a>
+		</li>
+		<li class="treeleaf">
+			<a href="/p/iforums/wiki/dao_basic_operations">Login & Authentication Integration</a>
 		</li>
 		<li>
-			<a class="external" href="http://www.jforum.net/install.jsp">Installation and Upgrading</a>
-			<img class="outlink" src="/images/out.png" alt="" />
-			<ol>
-				<li>
-					<a class="external" href="http://www.jforum.net/install.jsp">New JForum install</a>
-					<img class="outlink" src="/images/out.png" alt="" />
-				</li>
-				<li>
-					<a class="external" href="http://www.jforum.net/install_no_wizard.jsp">Manual Installation</a>
-					<img class="outlink" src="/images/out.png" alt="" />
-				</li>
-				<li>
-					<a class="wikipage" href="/doc/Upgrade">Upgrading from previous versions</a>
-
-					<ol>
-						<li>
-							<a class="wikipage" href="/doc/UpgradingFrom2.1.7To2.1.8">Upgrading from 2.1.7 to 2.1.8</a>
-							<ol>
-								<li>
-									<a class="wikipage" href="/doc/NewFeatures2.1.8">New and changed features in JForum
-										2.1.8</a>
-								</li>
-							</ol>
-						</li>
-						<li>
-							<a class="wikipage" href="/doc/UpgradingFrom2.1.6To2.1.7">Upgrading from 2.1.6 to 2.1.7</a>
-						</li>
-						<li>
-							<a class="wikipage" href="/doc/UpgradingFrom2.1.4To2.1.6">Upgrading from 2.1.4 to 2.1.6</a>
-						</li>
-					</ol>
-				</li>
-				<li>
-					MySQL specific
-					<ol>
-						<li>
-							<a class="wikipage" href="/doc/MySQL4.0To4.1UTF8Converter">Handling MySQL 4.0- to MySQL 4.1+
-								UTF-8 problems</a>
-
-						</li>
-						<li>
-							<a class="wikipage" href="/doc/MySQLSQLFiles">MySQL - Setting up the correct .SQL
-								file for your database version</a>
-						</li>
-					</ol>
-				</li>
-			</ol>
+			<a href="/p/iforums/wiki/dao_links_overview">字段的映射</a>
 		</li>
-		<li>
-			<a class="wikipage" href="/doc/Migration">Migrating from PHPBB or PHPNuke to JForum
-			</a>
+		<ul>
+			<li class="treeleaf">
+				<a href="/p/iforums/wiki/dao_links_one">关于一对一映射</a>
+			</li>
+			<li class="treeleaf">
+				<a href="/p/iforums/wiki/dao_links_many">关于一对多映射</a>
+			</li>
+			<li class="treeleaf">
+				<a href="/p/iforums/wiki/dao_links_many_many">关于多对多映射</a>
+			</li>
+			<li class="treeleaf">
+				<a href="/p/iforums/wiki/dao_links_dao_operations">接口为映射提供的操作</a>
+			</li>
+		</ul>
+	</ul>
+	<li>Administration </li>
+	<ul>
+		<li class="treeleaf">
+			<a href="/p/iforums/wiki/ioc_hello">Hello world</a>
 		</li>
-		<li>
-			<a class="wikipage" href="/doc/ReindexingMessages">Search</a>
-			<ol>
-				<li>
-					<a class="wikipage" href="/doc/ReindexingMessages">Reindexing messages</a>
-				</li>
-			</ol>
+	</ul>
+	<li>How do I...</li>
+	<ul>
+		<li class="treeleaf">
+			<a href="/p/iforums/wiki/mvc_overview">iforums.Mvc 概述</a>
 		</li>
-		<li>
-			Customization and Integration
-			<ol>
-				<li>
-					<a class="wikipage" href="/doc/ExecutionContext">Setting up for code integration</a>
-				</li>
-				<li>
-					<a class="wikipage" href="/doc/TemplatesAndStyles">Templates and Styles</a>
-
-				</li>
-				<li>
-					<a class="wikipage" href="/doc/LoginAuthenticationIntegration">Login & Authentication Integration</a>
-					<ol>
-						<li>
-							<a class="wikipage" href="/doc/SSO">Single SignOn (SSO)</a>
-							<ol>
-								<li>
-									<a class="wikipage" href="/doc/ImplementSSO">Example: Implementing SSO</a>
-								</li>
-								<li>
-									<a class="wikipage" href="/doc/SSOCookies">Example: SSO by Cookies</a>
-								</li>
-								<li>
-									<a class="wikipage" href="/doc/SSORemote">Example: Remote User SSO</a>
-								</li>
-							</ol>
-						</li>
-						<li>
-							<a class="wikipage" href="/doc/Authenticators">Custom LoginAuthenticators</a>
-
-						</li>
-					</ol>
-				</li>
-			</ol>
-		</li>
-		<li>
-			Administration
-			<ol>
-				<li>
-					<a class="wikipage" href="/doc/StatisticsVersionInformationOnlineUsers">Statistics, Version Information & Online
-						Users</a>
-				</li>
-				<li>
-					<a class="wikipage" href="/doc/Groups">Groups</a>
-					<ol>
-						<li>
-							<a class="wikipage" href="/doc/Permissions">Permissions</a>
-						</li>
-					</ol>
-				</li>
-				<li>
-					<a class="wikipage" href="/doc/Users">Users</a>
-					<ol>
-						<li>
-							<a class="wikipage" href="/doc/PendingActivations">Pending Activations</a>
-
-						</li>
-					</ol>
-				</li>
-				<li>
-					<a class="wikipage" href="/doc/Categories">Categories</a>
-				</li>
-				<li>
-					<a class="wikipage" href="/doc/Forums">Forums</a>
-				</li>
-				<li>
-					<a class="wikipage" href="/doc/Rankings">Rankings</a>
-				</li>
-				<li>
-					<a class="wikipage" href="/doc/Karma">Karma</a>
-				</li>
-				<li>
-					<a class="wikipage" href="/doc/Smilies">Smilies</a>
-				</li>
-				<li>
-					Attachments
-
-					<ol>
-						<li>
-							<a class="wikipage" href="/doc/AttachmentConfigurations">Attachment Configurations</a>
-						</li>
-						<li>
-							<a class="wikipage" href="/doc/QuotaLimits">Quota Limits</a>
-						</li>
-						<li>
-							<a class="wikipage" href="/doc/ExtensionsAndExtensionGroups">Extensions and Extension Groups</a>
-						</li>
-					</ol>
-				</li>
-				<li>
-					<a class="wikipage" href="/doc/Cache">Cache</a>
-				</li>
-			</ol>
-		</li>
-		<li>
-			How do I....
-			<ol>
-				<li>
-					<a class="wikipage" href="/doc/RestrictedForumsAndCategories">Make a Forum or Category private for
-						some Groups?</a>
-
-				</li>
-			</ol>
-		</li>
-		<li>
-			Development
-			<ol>
-				<li>
-					JForum3
-					<ol>
-						<li>
-							<a class="wikipage" href="/doc/JForum3HowToHelp">How to Help</a>
-						</li>
-						<li>
-							<a class="wikipage" href="/doc/JForum3SourceCode">Getting the source code</a>
-						</li>
-						<li>
-							<a class="wikipage" href="/doc/JForum3DevelpmentProcess">Development process</a>
-						</li>
-						<li>
-							<a class="wikipage" href="/doc/JForum3DirectoryStructure">Directory structure</a>
-						</li>
-						<li>
-							<a class="wikipage" href="/doc/JForum3Technologies">Technologies</a>
-
-						</li>
-						<li>
-							<a class="wikipage" href="/doc/JForum3Architecture">Architecture</a>
-						</li>
-						<li>
-							<a class="wikipage" href="/doc/JForum3Commiting">Commiting</a>
-						</li>
-						<li>
-							<a class="wikipage" href="/doc/JForum3CodingConventions">Coding Conventions</a>
-						</li>
-						<li>
-							<a class="wikipage" href="/doc/JForum3NewFeatures">New Features</a>
-						</li>
-						<li>
-							<a class="wikipage" href="/doc/VRaptorForJForumDevelopers">VRaptor for JForum Developers</a>
-						</li>
-					</ol>
-				</li>
-				<li>
-					<a class="wikipage" href="/doc/Team">The development team</a>
-
-				</li>
-				<li>
-					<a class="wikipage" href="/doc/JForum3HowToHelp">How To Help and Contribute</a>
-				</li>
-				<li>
-					<a class="wikipage" href="/doc/CVS">CVS</a>
-				</li>
-				<li>
-					<a class="wikipage" href="/doc/Building">Building</a>
-				</li>
-				<li>
-					<a class="wikipage" href="/doc/Jira">Using the Bug Tracker (JIRA)</a>
-				</li>
-			</ol>
-		</li>
-	</ol>
+	</ul>
+</ul>
