@@ -1,1 +1,83 @@
-<ul class="treeleafcontainer"><li class="treeleaf"><a class="currentpagelink" href="/p/nutz/wiki/nutz_preface">写在前面的话</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/nutz_release_notes">1.a.27 发行注记</a> </li><li class="">关于源码 </li><ul class=""><li class="treeleaf"><a href="/p/nutz/wiki/committer_svn_project">从 SVN 编译 - Eclipse</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/committer_compile">运行 JUnit 测试 - Eclipse</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/committer_packages">Nutz 的包结构</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/committer_version_naming">Nutz 的版本命名规范</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/committer_coding">Nutz Java 编码规范 (V1.0)</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/committer_be_committer">成为代码提交者</a> </li></ul><li>Dao 手册 </li><ul><li class="treeleaf"><a href="/p/nutz/wiki/dao_hello">Hello world</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/dao_annotations">注解列表</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/dao_basic_operations">Dao 接口的基本操作</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/dao_primary_key">关于主键</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/dao_condition">复杂的SQL条件</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/dao_pager">分页查询</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/dao_next_prev">如何在插入之前或之后为字段设值</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/dao_view">使用视图</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/dao_field_filter">过滤字段</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/dao_dynamic_table_name">动态表名</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/dao_customized_sql">自定义 SQL</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/dao_transaction">事务模板</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/dao_services">内置的服务类</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/dao_pojo">更快的构建你的POJO</a> </li><li><a href="/p/nutz/wiki/dao_links_overview">字段的映射</a> </li><ul><li class="treeleaf"><a href="/p/nutz/wiki/dao_links_one">关于一对一映射</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/dao_links_many">关于一对多映射</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/dao_links_many_many">关于多对多映射</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/dao_links_dao_operations">接口为映射提供的操作</a> </li></ul></ul><li>Ioc 手册 </li><ul><li class="treeleaf"><a href="/p/nutz/wiki/ioc_hello">Hello world</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/ioc_inner_object">匿名对象</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/ioc_events">事件监听</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/ioc_injecting">你都可以注入什么</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/ioc_ioc_loader">定义自己的配置文件格式</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/ioc_aop">AOP -- 声明式切片</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/ioc_scope">对象生命范围</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/ioc_xml_ioc_loader">使用XML作为配置文件格式</a> </li></ul><li>Mvc 手册 </li><ul><li class="treeleaf"><a href="/p/nutz/wiki/mvc_overview">Nutz.Mvc 概述</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/mvc_http_adaptor">适配器</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/mvc_view">视图</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/mvc_with_ioc">同 Ioc 容器一起工作</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/mvc_localization">本地化字符串</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/mvc_action_filter">过滤器</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/mvc_file_upload">文件上传</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/mvc_module_of_request">请求范围的模块</a> </li></ul><li>Json 手册 </li><ul><li class="treeleaf"><a href="/p/nutz/wiki/json_hello">Nutz.Json 简要说明</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/json_formater">控制输出的格式</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/json_with_castors">利用 Castors 按类型控制字段输出</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/json_customize">高级定制</a> </li></ul><li>甜 Java </li><ul><li class="treeleaf"><a href="/p/nutz/wiki/lang_lang">Java 的函数糖</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/lang_castors">让 Java 类型不那么强</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/lang_mirror">增强反射 -- Mirror</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/lang_segment">代码模板</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/lang_plugin">插件</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/lang_log">日志</a> </li></ul><li>zMole - 快速代码生成工具 </li><ul><li class="treeleaf"><a href="/p/nutz/wiki/zmole_zmole_get_start">zMole 快速入门</a> </li></ul><li>zDoc 手册 </li><ul><li class="treeleaf"><a href="/p/nutz/wiki/zdoc_overview">zDoc 概述</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/zdoc_syntax">zDoc语法</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/zdoc_index_xml">使用 index.xml 作为索引文件</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/zdoc_dir_convert">zDoc 目录转换细则</a> </li></ul><li>版本历史 </li><ul><li class="treeleaf"><a href="/p/nutz/wiki/history_1_a_26">1.a.26</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/history_1_a_25">1.a.25 及 更早版本</a> </li></ul><li>附录 </li><ul><li class="treeleaf"><a href="/p/nutz/wiki/appendix_create_datasource">如何创建 DataSource</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/appendix_resources">推荐文章</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/appendix_plugins">可用的插件</a> </li></ul></ul>
+<div id="pagecontent">
+  
+
+  
+
+  
+
+  <h2 id="section-Main-JForumDocumentation"> JForum Documentation</h2>
+
+<ol><li> <a class="wikipage" href="/doc/Introduction">Introduction</a>
+<ol><li> <a class="external" href="http://www.jforum.net/features.jsp">Features</a><img class="outlink" src="/images/out.png" alt="" />
+</li></ol></li><li> <a class="external" href="http://www.jforum.net/install.jsp">Installation and Upgrading</a><img class="outlink" src="/images/out.png" alt="" />
+<ol><li> <a class="external" href="http://www.jforum.net/install.jsp">New JForum install</a><img class="outlink" src="/images/out.png" alt="" />
+</li><li> <a class="external" href="http://www.jforum.net/install_no_wizard.jsp">Manual Installation</a><img class="outlink" src="/images/out.png" alt="" />
+</li><li> <a class="wikipage" href="/doc/Upgrade">Upgrading from previous versions</a>
+
+<ol><li> <a class="wikipage" href="/doc/UpgradingFrom2.1.7To2.1.8">Upgrading from 2.1.7 to 2.1.8</a>
+<ol><li> <a class="wikipage" href="/doc/NewFeatures2.1.8">New and changed features in JForum 2.1.8</a>
+</li></ol></li><li> <a class="wikipage" href="/doc/UpgradingFrom2.1.6To2.1.7">Upgrading from 2.1.6 to 2.1.7</a>
+</li><li> <a class="wikipage" href="/doc/UpgradingFrom2.1.4To2.1.6">Upgrading from 2.1.4 to 2.1.6</a>
+</li></ol></li><li> MySQL specific
+<ol><li> <a class="wikipage" href="/doc/MySQL4.0To4.1UTF8Converter">Handling MySQL 4.0- to MySQL 4.1+ UTF-8 problems</a>
+
+</li><li> <a class="wikipage" href="/doc/MySQLSQLFiles">MySQL - Setting up the correct .SQL file for your database version</a>
+</li></ol></li></ol></li><li><a class="wikipage" href="/doc/Migration">Migrating from PHPBB or PHPNuke to JForum</a>
+</li><li><a class="wikipage" href="/doc/ReindexingMessages">Search</a>
+<ol><li> <a class="wikipage" href="/doc/ReindexingMessages">Reindexing messages</a>
+</li></ol></li><li> Customization and Integration
+<ol><li> <a class="wikipage" href="/doc/ExecutionContext">Setting up for code integration</a>
+</li><li> <a class="wikipage" href="/doc/TemplatesAndStyles">Templates and Styles</a>
+
+</li><li> <a class="wikipage" href="/doc/LoginAuthenticationIntegration">Login & Authentication Integration</a>
+<ol><li> <a class="wikipage" href="/doc/SSO">Single SignOn (SSO)</a>
+<ol><li> <a class="wikipage" href="/doc/ImplementSSO">Example: Implementing SSO</a>
+</li><li> <a class="wikipage" href="/doc/SSOCookies">Example: SSO by Cookies</a>
+</li><li> <a class="wikipage" href="/doc/SSORemote">Example: Remote User SSO</a>
+</li></ol></li><li> <a class="wikipage" href="/doc/Authenticators">Custom LoginAuthenticators</a>
+
+</li></ol></li></ol></li><li> Administration
+<ol><li> <a class="wikipage" href="/doc/StatisticsVersionInformationOnlineUsers">Statistics, Version Information & Online Users</a>
+</li><li> <a class="wikipage" href="/doc/Groups">Groups</a>
+<ol><li> <a class="wikipage" href="/doc/Permissions">Permissions</a>
+</li></ol></li><li> <a class="wikipage" href="/doc/Users">Users</a>
+<ol><li> <a class="wikipage" href="/doc/PendingActivations">Pending Activations</a>
+
+</li></ol></li><li> <a class="wikipage" href="/doc/Categories">Categories</a>
+</li><li> <a class="wikipage" href="/doc/Forums">Forums</a>
+</li><li> <a class="wikipage" href="/doc/Rankings">Rankings</a>
+</li><li> <a class="wikipage" href="/doc/Karma">Karma</a>
+</li><li> <a class="wikipage" href="/doc/Smilies">Smilies</a>
+</li><li> Attachments
+
+<ol><li> <a class="wikipage" href="/doc/AttachmentConfigurations">Attachment Configurations</a>
+</li><li> <a class="wikipage" href="/doc/QuotaLimits">Quota Limits</a>
+</li><li> <a class="wikipage" href="/doc/ExtensionsAndExtensionGroups">Extensions and Extension Groups</a>
+</li></ol></li><li> <a class="wikipage" href="/doc/Cache">Cache</a>
+</li></ol></li><li>How do I....
+<ol><li> <a class="wikipage" href="/doc/RestrictedForumsAndCategories">Make a Forum or Category private for some Groups?</a>
+
+</li></ol></li><li>Development
+<ol><li> JForum3
+<ol><li> <a class="wikipage" href="/doc/JForum3HowToHelp">How to Help</a>
+</li><li> <a class="wikipage" href="/doc/JForum3SourceCode">Getting the source code</a>
+</li><li> <a class="wikipage" href="/doc/JForum3DevelpmentProcess">Development process</a>
+</li><li> <a class="wikipage" href="/doc/JForum3DirectoryStructure">Directory structure</a>
+</li><li> <a class="wikipage" href="/doc/JForum3Technologies">Technologies</a>
+
+</li><li> <a class="wikipage" href="/doc/JForum3Architecture">Architecture</a>
+</li><li> <a class="wikipage" href="/doc/JForum3Commiting">Commiting</a>
+</li><li> <a class="wikipage" href="/doc/JForum3CodingConventions">Coding Conventions</a>
+</li><li> <a class="wikipage" href="/doc/JForum3NewFeatures">New Features</a>
+</li><li> <a class="wikipage" href="/doc/VRaptorForJForumDevelopers">VRaptor for JForum Developers</a>
+</li></ol></li><li> <a class="wikipage" href="/doc/Team">The development team</a>
+
+</li><li> <a class="wikipage" href="/doc/JForum3HowToHelp">How To Help and Contribute</a>
+</li><li> <a class="wikipage" href="/doc/CVS">CVS</a>
+</li><li> <a class="wikipage" href="/doc/Building">Building</a>
+</li><li> <a class="wikipage" href="/doc/Jira">Using the Bug Tracker (JIRA)</a>
+</li></ol></li></ol>
+
+  
+
+</div>
