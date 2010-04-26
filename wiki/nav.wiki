@@ -1,7 +1,7 @@
 <ul class="treeleafcontainer">
 <li class="treeopen">iforums简介</li>
 <ul class="treeleafcontainer"><li class="treeleaf"><a class="currentpagelink" href="/p/nutz/wiki/committer_svn_project">iforums简介</a> </li>
-<li class="treeleaf">[/p/iforums/wiki/features iforums的特点]</li>
+<li class="treeleaf"><a href="/p/iforums/wiki/features">iforums的特点</a></li>
 </ul>
 <li>安装和升级</li>
 <ul><li class="treeleaf"><a href="/p/nutz/wiki/dao_hello">新安装</a></li>
