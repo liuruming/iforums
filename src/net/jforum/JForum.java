@@ -325,7 +325,7 @@ public class JForum extends JForumBaseServlet
 	 */
 	public void destroy() {
 		super.destroy();
-		System.out.println("Destroying JForum...");
+		System.out.println("Destroying iforums...");
 		
 		try {
 			DBConnection.getImplementation().realReleaseAllConnections();
