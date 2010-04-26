@@ -1,1 +1,30 @@
-<ul class="treeleafcontainer"><li class="treeopen">iforums简介</li><ul class="treeleafcontainer"><li class="treeleaf"><a class="currentpagelink" href="/p/nutz/wiki/committer_svn_project">iforums简介</a> </li><li class="treeleaf"><a class="currentpagelink" href="/p/nutz/wiki/committer_svn_project">iforums的特点</a> </li></ul><li>安装和升级</li><ul><li class="treeleaf"><a href="/p/nutz/wiki/dao_hello">新安装</a> </li></ul></ul><li>搜索</li><ul><li class="treeleaf"><a href="/p/nutz/wiki/ioc_hello">Hello world</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/ioc_inner_object">匿名对象</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/ioc_events">事件监听</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/ioc_injecting">你都可以注入什么</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/ioc_ioc_loader">定义自己的配置文件格式</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/ioc_aop">AOP -- 声明式切片</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/ioc_scope">对象生命范围</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/ioc_xml_ioc_loader">使用XML作为配置文件格式</a> </li></ul><li>Mvc 手册 </li><ul><li class="treeleaf"><a href="/p/nutz/wiki/mvc_overview">Nutz.Mvc 概述</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/mvc_http_adaptor">适配器</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/mvc_view">视图</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/mvc_with_ioc">同 Ioc 容器一起工作</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/mvc_localization">本地化字符串</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/mvc_action_filter">过滤器</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/mvc_file_upload">文件上传</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/mvc_module_of_request">请求范围的模块</a> </li></ul><li>Json 手册 </li><ul><li class="treeleaf"><a href="/p/nutz/wiki/json_hello">Nutz.Json 简要说明</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/json_formater">控制输出的格式</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/json_with_castors">利用 Castors 按类型控制字段输出</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/json_customize">高级定制</a> </li></ul><li>甜 Java </li><ul><li class="treeleaf"><a href="/p/nutz/wiki/lang_lang">Java 的函数糖</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/lang_castors">让 Java 类型不那么强</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/lang_mirror">增强反射 -- Mirror</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/lang_segment">代码模板</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/lang_plugin">插件</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/lang_log">日志</a> </li></ul><li>zMole - 快速代码生成工具 </li><ul><li class="treeleaf"><a href="/p/nutz/wiki/zmole_zmole_get_start">zMole 快速入门</a> </li></ul><li>zDoc 手册 </li><ul><li class="treeleaf"><a href="/p/nutz/wiki/zdoc_overview">zDoc 概述</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/zdoc_syntax">zDoc语法</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/zdoc_index_xml">使用 index.xml 作为索引文件</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/zdoc_dir_convert">zDoc 目录转换细则</a> </li></ul><li>版本历史 </li><ul><li class="treeleaf"><a href="/p/nutz/wiki/history_1_a_26">1.a.26</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/history_1_a_25">1.a.25 及 更早版本</a> </li></ul><li>附录 </li><ul><li class="treeleaf"><a href="/p/nutz/wiki/appendix_create_datasource">如何创建 DataSource</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/appendix_resources">推荐文章</a> </li><li class="treeleaf"><a href="/p/nutz/wiki/appendix_plugins">可用的插件</a> </li></ul></ul>
+<ul class="treeleafcontainer">
+<li class="treeopen">iforums简介</li>
+<ul class="treeleafcontainer"><li class="treeleaf"><a class="currentpagelink" href="/p/nutz/wiki/committer_svn_project">iforums简介</a> </li><li class="treeleaf"><a class="currentpagelink" href="/p/nutz/wiki/committer_svn_project">iforums的特点</a> </li>
+</ul>
+<li>安装和升级</li>
+<ul><li class="treeleaf"><a href="/p/nutz/wiki/dao_hello">新安装</a></li>
+</ul>
+<li>搜索</li>
+<ul>
+<li class="treeleaf"><a href="/p/nutz/wiki/ioc_hello">建立帖子索引</a> </li>
+</ul>
+<li>定制化和集成</li>
+<ul>
+<li class="treeleaf"><a href="/p/nutz/wiki/mvc_overview">设定和代码集成</a> </li>
+<li class="treeleaf"><a href="/p/nutz/wiki/mvc_http_adaptor">模版和风格</a> </li>
+<li class="treeleaf"><a href="/p/nutz/wiki/mvc_view">登陆和授权集成</a> </li>
+</ul>
+<li>后台管理</li>
+<ul>
+<li class="treeleaf"><a href="/p/nutz/wiki/json_hello">统计</a> </li>
+<li class="treeleaf"><a href="/p/nutz/wiki/json_formater">用户组</a> </li>
+<li class="treeleaf"><a href="/p/nutz/wiki/json_with_castors">用户</a> </li>
+<li class="treeleaf"><a href="/p/nutz/wiki/json_customize">分类</a> </li>
+<li class="treeleaf"><a href="/p/nutz/wiki/json_customize">版块</a> </li>
+<li class="treeleaf"><a href="/p/nutz/wiki/json_customize">排名</a> </li>
+<li class="treeleaf"><a href="/p/nutz/wiki/json_customize">表情</a> </li>
+<li class="treeleaf"><a href="/p/nutz/wiki/json_customize">附件</a> </li>
+<li class="treeleaf"><a href="/p/nutz/wiki/json_customize">缓存</a> </li>
+</ul>
+</ul>
