@@ -1,32 +1,33 @@
+=iforums的特点=
 JForum has a growing number of features, with a lot more being asked and developed each day. Here you will find a list of the most useful and common features currently available. Also, take a look <a href="/screenshots.jsp">at some screenshots</a>.
-===Installation===
+===安装===
 <ul class="ul-orange">
-   <li>Easy installation through graphical web interface </li>
+   <li> web图形化界面安装向导，易于安装</li>
 </ul>
-===General===
+===特点===
 <ul class="ul-orange">
-	<li>Unlimited forums, categories, and topics</li>
-	<li>Support for several popular databases, including MySQL, PostgreSQL, Oracle and HSQLDB</li>
-	<li>Karma - Rate messages and users</li>
-	<li>Bookmarks - save your favourite threads and share with other users</li>
-	<li>Easy migration from phpBB </li>
-	<li>Friendly URLs (no more long and hard-to-remember links!)</li>
-	<li>Listing of currently online users</li>
-	<li>Listing of the Most Recent topics from the whole forum</li>
+	<li>支持无限个论坛，分类和主题</li>
+	<li>支持流行的数据库MySQL, PostgreSQL, Oracle和HSQLDB</li>
+	<li>支持级别- 帖子级别和用户级别支持</li>
+	<li>书签 - 支持书签保存功能，并可与其它用户分享</li>
+	<li>易于从phpBB迁移</li>
+	<li>友好的URL链接地址</li>
+	<li>列出当前在线用户</li>
+	<li>列出最新主题</li>
 	<li>Fast and scalable, perfect for busy sites - unlike most message board systems, JForum caches frequently accessed data to avoid excessive querying of the database</li>
 </ul>
-===Posting Messages===
+===发帖===
 <ul class="ul-orange">
 	<li>File Attachments, with fully customizable options</li>
-	<li>HTML and BBCode support</li>
-	<li>Automatic parsing of links in messages</li>
+	<li>支持HTML和BBCode</li>
+	<li>自动转换帖子中的超级链接</li>
 	<li>Integrated private message system</li>
 	<li>Email notifications for topics on private messages</li>
 
 	<li>Unlimited emoticons, easily administered via a configuration panel</li>
-	<li>RSS syndication</li>
+	<li>RSS支持</li>
 	<li>Sticky topics and announcements</li>
-	<li>Post preview</li>
+	<li>发帖预览</li>
 </ul>
 ===Moderation===
 <ul class="ul-orange">
