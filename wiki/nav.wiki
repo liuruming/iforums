@@ -29,12 +29,3 @@
 <li class="treeleaf"><a href="/p/nutz/wiki/json_customize">缓存</a> </li>
 </ul>
 </ul>
-#sidebar TableOfContents
-  * [Articles HOWTO articles]
-    * [ArticlesXSS Web security]
-    * [ArticlesDom DOM manipulation]
-    * [ArticlesStyle CSS and style]
-    * [ArticlesTips Tips and tricks]
-  * [DOMReference DOM reference]
-  * [HTMLElements HTML reference]
-  * [CSSReference CSS reference]
