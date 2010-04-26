@@ -60,7 +60,6 @@ import net.jforum.util.preferences.SystemGlobals;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
-import org.apache.log4j.xml.DOMConfigurator;
 
 import freemarker.cache.FileTemplateLoader;
 import freemarker.cache.MultiTemplateLoader;
@@ -102,9 +101,7 @@ public class JForumBaseServlet extends HttpServlet
 		}
 	}
 
-	private static boolean isInit = false;
 	private void delayInit(){
-		isInit = true;
 		ServletConfig config = getServletConfig();
 		try {
 			String appPath = config.getServletContext().getRealPath("");
@@ -112,7 +109,7 @@ public class JForumBaseServlet extends HttpServlet
 
 			//DOMConfigurator.configure(appPath + "/WEB-INF/log4j.xml");
 
-			logger.info("Starting JForum. Debug mode is " + debug);
+			logger.info("Starting iforums. Debug mode is " + debug);
 
 			ConfigLoader.startSystemglobals(appPath);
 			ConfigLoader.startCacheEngine();
@@ -131,7 +128,7 @@ public class JForumBaseServlet extends HttpServlet
 			
 			if (StringUtils.isNotBlank(extraTemplatePath)) {
 				// An extra template path is configured, we need a MultiTemplateLoader
-				FileTemplateLoader extraLoader = new FileTemplateLoader(new File(extraTemplatePath));
+				FileTemplateLoader extraLoader = new FileTemplateLoader(new File(defaultPath+"/"+extraTemplatePath));
 				TemplateLoader[] loaders = new TemplateLoader[] { extraLoader, defaultLoader };
 				MultiTemplateLoader multiLoader = new MultiTemplateLoader(loaders);
 				templateCfg.setTemplateLoader(multiLoader);
