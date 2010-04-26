@@ -7,7 +7,7 @@
 <li>安装和升级</li>
 <ul>
 <li class="treeleaf"><a href="/p/nutz/wiki/dao_hello">新安装</a></li>
-<li class="treeleaf"><a href="/p/nutz/wiki/dao_hello">安装注意事项</a></li>
+<li class="treeleaf">[http://code.google.com/p/iforums/wiki/installation_tips 安装注意事项]</li>
 </ul>
 <li>搜索</li>
 <ul>
