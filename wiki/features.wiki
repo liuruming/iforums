@@ -1,18 +1,11 @@
-
-	<p>
-		JForum has a growing number of features, with a lot more being asked and developed each day. Here you will find a list of the
+JForum has a growing number of features, with a lot more being asked and developed each day. Here you will find a list of the
 		most useful and common features currently available. Also, take a look <a href="/screenshots.jsp">at some screenshots</a>.
-	</p>
-	
-	<!-- Installation -->
 	===Installation===
 	<ul class="ul-orange">
 		<li>Easy installation through graphical web interface </li>
 	</ul>
-	
-	<!-- General -->
-	===General===
-	<ul class="ul-orange">
+===General===
+<ul class="ul-orange">
 
 		<li>Unlimited forums, categories, and topics</li>
 		<li>Support for several popular databases, including MySQL, PostgreSQL, Oracle and HSQLDB</li>
@@ -25,8 +18,6 @@
 		<li>Listing of the Most Recent topics from the whole forum</li>
 		<li>Fast and scalable, perfect for busy sites - unlike most message board systems, JForum caches frequently accessed data to avoid excessive querying of the database</li>
 	</ul>
-	
-	<!-- Posting Messages -->
 	===Posting Messages===
 	<div><img src="images/hr.gif" width="100%" height="5"></div>
 
@@ -42,8 +33,6 @@
 		<li>Sticky topics and announcements</li>
 		<li>Post preview</li>
 	</ul>
-	
-	<!-- Moderation -->
 	===Moderation===
 	<ul class="ul-orange">
 		<li>Easy to moderate</li>
@@ -51,11 +40,8 @@
 		<li>Topics can be locked/unlocked and moved between forums</li>
 		<li>Topics can be moved between forums</li>
 	</ul>
-
-	
-	<!-- Permissions & Security -->
 	===Permissions &amp; Security===
-	<div><img src="images/hr.gif" width="100%" height="5"></div>
+	<img src="images/hr.gif" width="100%" height="5"></div>
 	<ul class="ul-orange">
 		<li>Read-only forums - Forums where is not possible to post new messages, just reading </li>
 		<li>Reply-only forums - Forums where only reply to existing posts are allowed</li>
@@ -64,8 +50,6 @@
 		<li>Forum moderators can be granted varying levels of control</li>
 		<li>Advanced HTML filter, for increased security</li>
 	</ul>
-	
-	<!-- Customization & Extensiblity -->
 	===Customization &amp; Extensiblity===
 	<ul class="ul-orange">
 		<li>Easy and fast development for any other data source</li>
@@ -77,20 +61,14 @@
 		<li>Supports individual themes/templates for users</li>
 		<li>Support for different languages; easy to add new languages</li>
 	</ul>
-	
-	<!-- Users -->
 	===Users===
-	<div><img src="images/hr.gif" width="100%" height="5"></div>
 	<ul class="ul-orange">
-
 		<li>Member Listing</li>
 		<li>User defined avatars</li>
 		<li>User banning</li>
 		<li>Unlimited users, groups, and groups per user</li>
 		<li>User profile</li>
 		<li>User ranks</li>
-
 		<li>Language preferences may be set on a per user basis</li>
 		<li>Remembers last read messages and tracks new posts</li>
 	</ul>
-</div>
