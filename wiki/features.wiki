@@ -1,22 +1,17 @@
-<div style="padding: 0px 10px;">
-	<img src="images/bt_features.gif">
-	<div><img src="images/hr.gif" width="100%" height="5"></div>
+
 	<p>
 		JForum has a growing number of features, with a lot more being asked and developed each day. Here you will find a list of the
 		most useful and common features currently available. Also, take a look <a href="/screenshots.jsp">at some screenshots</a>.
 	</p>
 	
 	<!-- Installation -->
-	<div class="blue-title">Installation</div>
-
-	<div><img src="images/hr.gif" width="100%" height="5"></div>
+	===Installation===
 	<ul class="ul-orange">
 		<li>Easy installation through graphical web interface </li>
 	</ul>
 	
 	<!-- General -->
-	<div class="blue-title">General</div>
-	<div><img src="images/hr.gif" width="100%" height="5"></div>
+	===General===
 	<ul class="ul-orange">
 
 		<li>Unlimited forums, categories, and topics</li>
@@ -32,7 +27,7 @@
 	</ul>
 	
 	<!-- Posting Messages -->
-	<div class="blue-title">Posting Messages</div>
+	===Posting Messages===
 	<div><img src="images/hr.gif" width="100%" height="5"></div>
 
 	<ul class="ul-orange">
@@ -49,9 +44,7 @@
 	</ul>
 	
 	<!-- Moderation -->
-	<div class="blue-title">Moderation</div>
-
-	<div><img src="images/hr.gif" width="100%" height="5"></div>
+	===Moderation===
 	<ul class="ul-orange">
 		<li>Easy to moderate</li>
 		<li>Moderated Categories and Forums - Administrators may allow new messages be posted only after the approval of some moderator or administrator </li>
@@ -61,7 +54,7 @@
 
 	
 	<!-- Permissions & Security -->
-	<div class="blue-title">Permissions &amp; Security</div>
+	===Permissions &amp; Security===
 	<div><img src="images/hr.gif" width="100%" height="5"></div>
 	<ul class="ul-orange">
 		<li>Read-only forums - Forums where is not possible to post new messages, just reading </li>
@@ -73,9 +66,7 @@
 	</ul>
 	
 	<!-- Customization & Extensiblity -->
-	<div class="blue-title">Customization &amp; Extensiblity</div>
-
-	<div><img src="images/hr.gif" width="100%" height="5"></div>
+	===Customization &amp; Extensiblity===
 	<ul class="ul-orange">
 		<li>Easy and fast development for any other data source</li>
 		<li>Familiar and attractive layout</li>
@@ -88,7 +79,7 @@
 	</ul>
 	
 	<!-- Users -->
-	<div class="blue-title">Users</div>
+	===Users===
 	<div><img src="images/hr.gif" width="100%" height="5"></div>
 	<ul class="ul-orange">
 
