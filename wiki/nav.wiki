@@ -6,7 +6,7 @@
 </ul>
 <li>安装和升级</li>
 <ul>
-<li class="treeleaf">[http://code.google.com/p/iforums/wiki/ 新安装]</li>
+<li class="treeleaf">[http://code.google.com/p/iforums/wiki/installation 新安装]</li>
 <li class="treeleaf">[http://code.google.com/p/iforums/wiki/installation_tips 安装注意事项]</li>
 </ul>
 <li>搜索</li>
