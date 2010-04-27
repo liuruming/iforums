@@ -1,0 +1,16 @@
+=下载=
+下载最新的安装文件压缩包
+=解压=
+下载后加压到webapp目录.解压到其他目录通过修改配置文件的方式部署也可以。
+
+你可以重新命名目录名字(默认iforums)。
+=目录权限=
+iforums希望如下目录对webserver有写入的权限.在开始安装前，请检查如下目录和其子目录有写入权限。
+    * upload
+    * tmp
+    * images
+    * WEB-INF/config
+    * WEB-INF/jforumLuceneIndex
+
+=配置=
+在浏览器中访问http://localhost:8080/iforums/
