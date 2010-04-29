@@ -64,7 +64,7 @@
 			</#if>
 		</a>&nbsp;</li>
 		<#if !sso>
-			<li><a id="logout" class="mainmenu" onclick="javascript:parent.frames['leftmenu'].location.reload();" href="${JForumContext.encodeURL("/user/logout")}">
+			<li><a id="logout" class="mainmenu" href="${JForumContext.encodeURL("/user/logout")}">
 			${I18n.getMessage("ForumBase.logout")} ${session.username} </a></li>
 		</#if>
 	</#if>
