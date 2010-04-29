@@ -31,5 +31,6 @@
 <li class="treeleaf"><a href="/p/nutz/wiki/json_customize">表情</a> </li>
 <li class="treeleaf"><a href="/p/nutz/wiki/json_customize">附件</a> </li>
 <li class="treeleaf"><a href="/p/nutz/wiki/json_customize">缓存</a> </li>
+<li class="treeleaf">[http://code.google.com/p/iforums/wiki/vcode 开启验证码]</li>
 </ul>
 </ul>
