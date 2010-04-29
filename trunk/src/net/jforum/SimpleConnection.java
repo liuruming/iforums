@@ -45,6 +45,8 @@ package net.jforum;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+import org.apache.log4j.Logger;
+
 import net.jforum.exceptions.DatabaseException;
 import net.jforum.util.preferences.ConfigKeys;
 import net.jforum.util.preferences.SystemGlobals;
@@ -62,6 +64,7 @@ import net.jforum.util.preferences.SystemGlobals;
  */
 public class SimpleConnection extends DBConnection 
 {
+	private static Logger logger = Logger.getLogger(SimpleConnection.class);
 	/** 
 	 * @see net.jforum.Connection#init()
 	 */
@@ -94,7 +97,7 @@ public class SimpleConnection extends DBConnection
 			return DriverManager.getConnection(SystemGlobals.getValue(ConfigKeys.DATABASE_CONNECTION_STRING));
 		}
 		catch (Exception e) {
-			e.printStackTrace();
+			logger.error("", e);
 			throw new DatabaseException(e);
 		}
 	}
