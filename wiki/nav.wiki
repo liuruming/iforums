@@ -3,6 +3,7 @@
 <ul class="treeleafcontainer">
 <li class="treeleaf"><a class="currentpagelink" href="http://code.google.com/p/iforums/wiki/introduction">iforums简介</a></li>
 <li class="treeleaf">[http://code.google.com/p/iforums/wiki/features iforums的特点]</li>
+<li class="treeleaf">[http://code.google.com/p/iforums/wiki/version iforums的版本]</li>
 </ul>
 <li>安装和升级</li>
 <ul>
