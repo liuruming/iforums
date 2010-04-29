@@ -508,16 +508,19 @@ public class UserAction extends Command
 
 			if (this.request.getParameter("returnPath") != null) {
 				this.context.put("returnPath",
-						this.request.getParameter("returnPath"));
+						this.request.getParameter("returnPath")+"?refreshMenu=true");
 			}
 		} 
 		else if (this.request.getParameter("returnPath") != null) {
 			if(!request.getParameter("returnPath").contains("module=frame")){
-				JForumExecutionContext.setRedirect(this.request.getParameter("returnPath"));
+				JForumExecutionContext.setRedirect(this.request.getParameter("returnPath")+"?refreshMenu=true");
 			}else{
-				JForumExecutionContext.setRedirect(this.request.getContextPath() + "/forums/list"+ SystemGlobals.getValue(ConfigKeys.SERVLET_EXTENSION));				
+				JForumExecutionContext.setRedirect(this.request.getContextPath() + "/forums/list"+ SystemGlobals.getValue(ConfigKeys.SERVLET_EXTENSION)+"?refreshMenu=true");				
 			}
+		}else{
+			JForumExecutionContext.setRedirect(this.request.getContextPath() + "/forums/list"+ SystemGlobals.getValue(ConfigKeys.SERVLET_EXTENSION)+"?refreshMenu=true");
 		}
+		this.context.put("refreshMenu", "true");
 	}
 
 	private void buildSucessfulLoginRedirect()
@@ -628,7 +631,7 @@ public class UserAction extends Command
 	{
 		JForumExecutionContext.setRedirect(this.request.getContextPath()
 			+ "/forums/list"
-			+ SystemGlobals.getValue(ConfigKeys.SERVLET_EXTENSION));
+			+ SystemGlobals.getValue(ConfigKeys.SERVLET_EXTENSION)+"?refreshMenu=true");
 
 		UserSession userSession = SessionFacade.getUserSession();
 		SessionFacade.storeSessionData(userSession.getSessionId(), JForumExecutionContext.getConnection());
