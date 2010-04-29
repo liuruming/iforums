@@ -563,7 +563,7 @@ public class InstallAction extends Command
 		p.setProperty(ConfigKeys.DATABASE_CONNECTION_STRING, connectionString);
 	}
 	
-	private void configureJDBCConnection()
+	private Properties configureJDBCConnection()
 	{
 		String username = this.getFromSession("dbUser");
 		String password = this.getFromSession("dbPassword");
@@ -603,11 +603,42 @@ public class InstallAction extends Command
 		p.setProperty(ConfigKeys.DATABASE_CONNECTION_PORT, port);
 		p.setProperty(ConfigKeys.DATABASE_DRIVER_NAME, type);
 
+		// Proceed to SystemGlobals / jforum-custom.conf configuration
+		for (Enumeration e = p.keys(); e.hasMoreElements(); ) {
+			String key = (String)e.nextElement();
+			String value = p.getProperty(key);
+			
+			SystemGlobals.setValue(key, value);
+			
+			logger.info("Updating key " + key + " with value " + value);
+		}
+		return p;
+	}
+	
+	private void storeConfiguration(Properties props){
+		storeJDBCConnection(props);
+		SystemGlobals.saveInstallation();
+		this.restartSystemGlobals();
+		
+		int fileChangesDelay = SystemGlobals.getIntValue(ConfigKeys.FILECHANGES_DELAY);
+		
+		if (fileChangesDelay > 0) {
+			FileMonitor.getInstance().addFileChangeListener(new SystemGlobalsListener(),
+				SystemGlobals.getValue(ConfigKeys.INSTALLATION_CONFIG), fileChangesDelay);
+		}
+	}
+	private void storeJDBCConnection(Properties props)
+	{
+		String type = this.getFromSession("database");
+		
+		String dbConfigFilePath = SystemGlobals.getValue(ConfigKeys.CONFIG_DIR) 
+		+ "/database/" + type + "/" + type + ".properties";
+		
 		FileOutputStream fos = null;
 		
 		try {
 			fos = new FileOutputStream(dbConfigFilePath);
-			p.store(fos, null);
+			props.store(fos, null);
 		}
 		catch (Exception e) {
 			logger.warn("Error while trying to write to " + type + ".properties: " + e);
@@ -620,16 +651,6 @@ public class InstallAction extends Command
 				catch (IOException e) { }
 			}
 		}
-		
-		// Proceed to SystemGlobals / jforum-custom.conf configuration
-		for (Enumeration e = p.keys(); e.hasMoreElements(); ) {
-			String key = (String)e.nextElement();
-			String value = p.getProperty(key);
-			
-			SystemGlobals.setValue(key, value);
-			
-			logger.info("Updating key " + key + " with value " + value);
-		}
 	}
 	
 	private Connection configureDatabase()
@@ -640,12 +661,13 @@ public class InstallAction extends Command
 		
 		boolean isDatasource = false;
 		
+		Properties props = null;
 		if ("JDBC".equals(connectionType)) {
 			implementation = "yes".equals(this.getFromSession("usePool")) && !"hsqldb".equals(database) 
 				? POOLED_CONNECTION
                 : SIMPLE_CONNECTION;
 			
-			this.configureJDBCConnection();
+			props = configureJDBCConnection();
 		}
 		else {
 			isDatasource = true;
@@ -655,16 +677,6 @@ public class InstallAction extends Command
 		
 		SystemGlobals.setValue(ConfigKeys.DATABASE_CONNECTION_IMPLEMENTATION, implementation);
 		SystemGlobals.setValue(ConfigKeys.DATABASE_DRIVER_NAME, database);
-		
-		SystemGlobals.saveInstallation();
-		this.restartSystemGlobals();
-		
-		int fileChangesDelay = SystemGlobals.getIntValue(ConfigKeys.FILECHANGES_DELAY);
-		
-		if (fileChangesDelay > 0) {
-			FileMonitor.getInstance().addFileChangeListener(new SystemGlobalsListener(),
-				SystemGlobals.getValue(ConfigKeys.INSTALLATION_CONFIG), fileChangesDelay);
-		}
 		
 		Connection conn;
 		try {
@@ -680,6 +692,8 @@ public class InstallAction extends Command
 			s.init();
 			
 			conn = s.getConnection();
+			
+			if(conn!=null&&props!=null)storeConfiguration(props);
 		}
 		catch (Exception e) {
 			logger.warn("Error while trying to get a connection: " + e);
