@@ -17,7 +17,7 @@
 	<property name="project.title" value="iforums API" />
 	<property name="author" value="iforums" />
 	<property name="copyright" value="(c) iforums Team" />
-	<property name="version" value="1.0" />
+	<property name="version" value="1.0.1" />
 	<property name="filename" value="iforums${version}" />
 	<property name="warfile" value="${filename}.war" />
 	<property name="srcfile" value="${filename}-src.zip"/>
@@ -94,6 +94,13 @@
 				<path refid="base.path" />
 			</classpath>
 		</javac>
+		<delete file="${dist.dir}/iforums${version}.jar"/>
+		<jar destfile="${web.dir}/WEB-INF/lib/iforums${version}.jar">
+			<fileset dir="${classes.dir}">
+				<include name="**/*"/>
+				<exclude name="log4j.xml" />
+			</fileset>
+		</jar>
 	</target>
 
 	<!-- Dist -->
@@ -120,20 +127,25 @@
 				<include name="*.xml" />
 				<include name="config/**/*" />
 				<exclude name="web.xml" />
-				<exclude name="config/jforum-custom.conf" />
+				<exclude name="config/configration.properties" />
 				<exclude name="config/jboss-*.xml" />
 			</webinf>
 			<lib dir="${project.libs}">
 				<exclude name="jboss*.jar" />
 				<exclude name="jgroups*.jar" />
+				<include name="*.jar"/>
 			</lib>
-			<classes dir="${classes.dir}" />
+			<classes dir="${classes.dir}">
+				<include name="log4j.xml"/>
+				<exclude name="net/**/*"/>
+			</classes>
 			<manifest>
 				<attribute name="Implementation-Version" value="${version}" />
 				<attribute name="Built-Date" value="${TODAY}" />
 			</manifest>
 		</war>
-		
+		<copy file="${web.dir}/WEB-INF/lib/iforums${version}.jar" todir="${dist.dir}" />
+		<delete file="${web.dir}/WEB-INF/lib/iforums${version}.jar"/>
 		<!-- src -->
 		<zip destfile="${dist.dir}/${srcfile}" update="false">
 			<fileset dir="${web.dir}">
@@ -146,6 +158,7 @@
 				<exclude name="WEB-INF/config/jforum-custom.conf"/>
 			</fileset>
 		</zip>
+
 	</target>
 
 	<!-- Deploy -->
