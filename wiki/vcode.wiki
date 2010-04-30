@@ -6,23 +6,23 @@ jforum默认验证码功能是关闭掉的(iforums默认是打开的)。通过�
 captcha.registration = true
 captcha.posts = true
 
-以上两项设置为tue就可以了。后面的一些参数是验证码图像的大小，不要设置的太小，字体大于图像的大小，有可能生成不了验证码。
+以上两项设置为tue就可以了。后面的一些参数是验证码图像的大小，不要设置的太小，字体大于图像的大小，有可能生成不了验证码。<br/>
 
-# ########
-# Captcha
-# ########
-captcha.registration = true
-captcha.posts = true
-captcha.ignore.case = true
+# ########<br/>
+# Captcha<br/>
+# ########<br/>
+captcha.registration = true<br/>
+captcha.posts = true<br/>
+captcha.ignore.case = true<br/>
+<br/>
+captcha.width = 150<br/>
+captcha.height = 40<br/>
+<br/>
+captcha.min.words = 5<br/>
+captcha.max.words = 7<br/>
 
-captcha.width = 150
-captcha.height = 40
-
-captcha.min.words = 5
-captcha.max.words = 7
-
-captcha.min.font.size = 15
-captcha.max.font.size = 25
+captcha.min.font.size = 15<br/>
+captcha.max.font.size = 25<br/>
 
 开启后，如下所示。<br/>
 <img src="http://iforums.googlecode.com/files/vcode.png">
