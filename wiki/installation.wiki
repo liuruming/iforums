@@ -23,4 +23,4 @@ iforums希望如下目录对webserver有写入的权限.在开始安装前，请
 ==第三步==
 <img src="http://iforums.googlecode.com/files/install3.PNG">
 ==安装完成==
-<img src="http://iforums.googlecode.com/files/install4.PNG">
+<img src="http://iforums.googlecode.com/files/install5.PNG">
