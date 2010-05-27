@@ -16,3 +16,11 @@ iforums希望如下目录对webserver有写入的权限.在开始安装前，请
 =配置=
 重新启动应用服务器
 在浏览器中访问http://localhost:8080/iforums/
+==第一步==
+<img src="http://iforums.googlecode.com/files/install1.PNG">
+==第二步==
+<img src="http://iforums.googlecode.com/files/install2.PNG">
+==第三步==
+<img src="http://iforums.googlecode.com/files/install3.PNG">
+==安装完成==
+<img src="http://iforums.googlecode.com/files/install4.PNG">
