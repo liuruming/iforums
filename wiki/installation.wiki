@@ -1,7 +1,8 @@
+#labels Featured
 =下载=
 下载最新的程序文件iforums1.0.1.war  
 =解压=
-下载后放到webapp目录.解压到其他目录通过修改配置文件的方式部署也可以。
+下载war包后放到webapp目录。
 
 你可以重新命名文件iforums1.0.1.war名
 (如:iforums.war，以下以iforums.war为例部署，默认iforums1.0.1.war)。
