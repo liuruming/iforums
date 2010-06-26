@@ -52,6 +52,7 @@
 		</tstamp>
 
 		<mkdir dir="${dist.dir}" />
+		<mkdir dir="${dist.dir}/app" />
 		<mkdir dir="${classes.dir}" />
 	</target>
 
@@ -94,7 +95,7 @@
 				<path refid="base.path" />
 			</classpath>
 		</javac>
-		<delete file="${dist.dir}/iforums${version}.jar"/>
+		<delete file="${dist.dir}/app/iforums${version}.jar"/>
 		<jar destfile="${web.dir}/WEB-INF/lib/iforums${version}.jar">
 			<fileset dir="${classes.dir}">
 				<include name="**/*"/>
@@ -105,11 +106,11 @@
 
 	<!-- Dist -->
 	<target name="dist" depends="compile" description="Generates the distribution file">
-		<delete file="${dist.dir}/${warfile}"/>
-		<delete file="${dist.dir}/${srcfile}"/>
+		<delete file="${dist.dir}/app/${warfile}"/>
+		<delete file="${dist.dir}/app/${srcfile}"/>
 		
 		<!-- war -->
-		<war destfile="${dist.dir}/${warfile}" webxml="${web.dir}/WEB-INF/web.xml">
+		<war destfile="${dist.dir}/app/${warfile}" webxml="${web.dir}/WEB-INF/web.xml">
 			<fileset dir="${web.dir}">
 				<include name="images/**/*" />
 				<include name="templates/**/*" />
@@ -144,10 +145,20 @@
 				<attribute name="Built-Date" value="${TODAY}" />
 			</manifest>
 		</war>
-		<copy file="${web.dir}/WEB-INF/lib/iforums${version}.jar" todir="${dist.dir}" />
+		<copy file="${web.dir}/WEB-INF/lib/iforums${version}.jar" todir="${dist.dir}/app" />
+		<copy todir="${dist.dir}/html">
+			<fileset dir="${web.dir}">
+				<include name="images/**/*" />
+				<include name="upgrade/**/*" />
+				<include name="upload/**/*" />
+				<include name="*.htm" />
+				<include name="*.txt" />
+				<exclude name="upload/**/*"/>
+			</fileset>
+		</copy>
 		<delete file="${web.dir}/WEB-INF/lib/iforums${version}.jar"/>
 		<!-- src -->
-		<zip destfile="${dist.dir}/${srcfile}" update="false">
+		<zip destfile="${dist.dir}/app/${srcfile}" update="false">
 			<fileset dir="${web.dir}">
 				<include name="**/*"/>
 				<exclude name="upload/**/*"/>
@@ -163,7 +174,7 @@
 
 	<!-- Deploy -->
 	<target name="deploy" depends="dist" description="Copies WAR File into your Container">
-		<copy file="${dist.dir}/${warfile}" todir="${deploy.dir}" />
+		<copy file="${dist.dir}/app/${warfile}" todir="${deploy.dir}" />
 	</target>
 
 	<!-- Deploy Dev -->
