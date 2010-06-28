@@ -1,1 +1,0 @@
-java -cp bin;lib\mysql-connector-java-3.0.15-ga-bin.jar net.jforum.tools.phpbb2jforum.Main %1 %2 %3
