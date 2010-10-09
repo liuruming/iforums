@@ -1,1 +1,0 @@
-java -Djava.ext.dirs=bin:../../WEB-INF/lib net.jforum.tools.phpbb2jforum.Main $1
