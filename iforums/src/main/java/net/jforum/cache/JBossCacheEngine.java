@@ -45,7 +45,6 @@ package net.jforum.cache;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import net.jforum.exceptions.CacheException;
 import net.jforum.util.preferences.ConfigKeys;
 import net.jforum.util.preferences.SystemGlobals;
 
@@ -77,7 +76,7 @@ public class JBossCacheEngine implements CacheEngine
 			this.cache.startService();
 		}
 		catch (Exception e) {
-			throw new CacheException("Error while trying to configure jboss-cache: " + e);
+			throw new RuntimeException("Error while trying to configure jboss-cache: " + e);
 		}
 	}
 	
@@ -106,7 +105,7 @@ public class JBossCacheEngine implements CacheEngine
 			this.cache.put(Fqn.fromString(fqn), key, value);
 		}
 		catch (Exception e) {
-			throw new CacheException("Error adding a new entry to the cache: " + e);
+			throw new RuntimeException("Error adding a new entry to the cache: " + e);
 		}
 	}
 
@@ -119,7 +118,7 @@ public class JBossCacheEngine implements CacheEngine
 			return this.cache.get(Fqn.fromString(fqn), key);
 		}
 		catch (Exception e) {
-			throw new CacheException("Error while trying to get an entry from the cache: " + e);
+			throw new RuntimeException("Error while trying to get an entry from the cache: " + e);
 		}
 	}
 
@@ -132,7 +131,7 @@ public class JBossCacheEngine implements CacheEngine
 			return this.cache.get(Fqn.fromString(fqn));
 		}
 		catch (Exception e) {
-			throw new CacheException("Error while trying to get an entry from the cache: " + e);
+			throw new RuntimeException("Error while trying to get an entry from the cache: " + e);
 		}
 	}
 	

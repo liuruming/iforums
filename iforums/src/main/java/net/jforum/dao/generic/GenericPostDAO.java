@@ -55,7 +55,6 @@ import java.util.List;
 import net.jforum.JForumExecutionContext;
 import net.jforum.dao.DataAccessDriver;
 import net.jforum.entities.Post;
-import net.jforum.exceptions.DatabaseException;
 import net.jforum.repository.ForumRepository;
 import net.jforum.search.SearchFacade;
 import net.jforum.util.DbUtils;
@@ -91,7 +90,7 @@ public class GenericPostDAO extends AutoKeys implements net.jforum.dao.PostDAO
 			return post;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -180,7 +179,7 @@ public class GenericPostDAO extends AutoKeys implements net.jforum.dao.PostDAO
 			}
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(post);
@@ -215,7 +214,7 @@ public class GenericPostDAO extends AutoKeys implements net.jforum.dao.PostDAO
 			this.removePosts(posts);
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -247,7 +246,7 @@ public class GenericPostDAO extends AutoKeys implements net.jforum.dao.PostDAO
 			p.executeUpdate();
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -274,7 +273,7 @@ public class GenericPostDAO extends AutoKeys implements net.jforum.dao.PostDAO
 			p.executeUpdate();
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -296,7 +295,7 @@ public class GenericPostDAO extends AutoKeys implements net.jforum.dao.PostDAO
 			return post.getId();
 		}
 		catch (Exception e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -338,7 +337,7 @@ public class GenericPostDAO extends AutoKeys implements net.jforum.dao.PostDAO
 			post.setId(postId);
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -380,7 +379,7 @@ public class GenericPostDAO extends AutoKeys implements net.jforum.dao.PostDAO
 			return l;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -414,7 +413,7 @@ public class GenericPostDAO extends AutoKeys implements net.jforum.dao.PostDAO
 			return l;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -442,7 +441,7 @@ public class GenericPostDAO extends AutoKeys implements net.jforum.dao.PostDAO
 			return total;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -473,7 +472,7 @@ public class GenericPostDAO extends AutoKeys implements net.jforum.dao.PostDAO
 			return total;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -502,7 +501,7 @@ public class GenericPostDAO extends AutoKeys implements net.jforum.dao.PostDAO
 			
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -532,7 +531,7 @@ public class GenericPostDAO extends AutoKeys implements net.jforum.dao.PostDAO
 			
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);

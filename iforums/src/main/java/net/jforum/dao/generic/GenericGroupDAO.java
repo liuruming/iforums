@@ -52,7 +52,6 @@ import net.jforum.JForumExecutionContext;
 import net.jforum.dao.DataAccessDriver;
 import net.jforum.dao.GroupSecurityDAO;
 import net.jforum.entities.Group;
-import net.jforum.exceptions.DatabaseException;
 import net.jforum.util.DbUtils;
 import net.jforum.util.preferences.SystemGlobals;
 
@@ -84,7 +83,7 @@ public class GenericGroupDAO implements net.jforum.dao.GroupDAO
 			return g;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -112,7 +111,7 @@ public class GenericGroupDAO implements net.jforum.dao.GroupDAO
 			return status;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -135,7 +134,7 @@ public class GenericGroupDAO implements net.jforum.dao.GroupDAO
 			securityDao.deleteAllRoles(groupId);
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -158,7 +157,7 @@ public class GenericGroupDAO implements net.jforum.dao.GroupDAO
 			p.executeUpdate();
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -180,7 +179,7 @@ public class GenericGroupDAO implements net.jforum.dao.GroupDAO
 			p.executeUpdate();
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -209,7 +208,7 @@ public class GenericGroupDAO implements net.jforum.dao.GroupDAO
 			return l;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -253,7 +252,7 @@ public class GenericGroupDAO implements net.jforum.dao.GroupDAO
 			return this.fillGroups(rs);
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);

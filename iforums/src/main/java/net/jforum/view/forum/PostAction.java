@@ -76,8 +76,6 @@ import net.jforum.entities.QuotaLimit;
 import net.jforum.entities.Topic;
 import net.jforum.entities.User;
 import net.jforum.entities.UserSession;
-import net.jforum.exceptions.AttachmentException;
-import net.jforum.exceptions.ForumException;
 import net.jforum.repository.ForumRepository;
 import net.jforum.repository.PostRepository;
 import net.jforum.repository.RankingRepository;
@@ -472,7 +470,7 @@ public class PostAction extends Command
 				t = DataAccessDriver.getInstance().newTopicDAO().selectRaw(topicId);
 				
 				if (t == null) {
-					throw new ForumException("Could not find a topic with id #" + topicId);
+					throw new RuntimeException("Could not find a topic with id #" + topicId);
 				}
 			}
 			
@@ -505,7 +503,7 @@ public class PostAction extends Command
 		Forum forum = ForumRepository.getForum(forumId);
 		
 		if (forum == null) {
-			throw new ForumException("Could not find a forum with id #" + forumId);
+			throw new RuntimeException("Could not find a forum with id #" + forumId);
 		}
 		
 		if (!TopicsCommon.isTopicAccessible(forumId)) {
@@ -779,7 +777,7 @@ public class PostAction extends Command
 			try {
 				attachments.preProcess();
 			}
-			catch (AttachmentException e) {
+			catch (RuntimeException e) {
 				JForumExecutionContext.enableRollback();
 				post.setText(this.request.getParameter("message"));
 				this.context.put("errorMessage", e.getMessage());
@@ -1073,7 +1071,7 @@ public class PostAction extends Command
 			try {
 				attachments.preProcess();
 			}
-			catch (AttachmentException e) {
+			catch (RuntimeException e) {
 				JForumExecutionContext.enableRollback();
 				p.setText(this.request.getParameter("message"));
 				p.setId(0);
@@ -1462,7 +1460,7 @@ public class PostAction extends Command
 			JForumExecutionContext.enableCustomContent(true);
 		}
 		catch (IOException e) {
-			throw new ForumException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			if (fis != null) {

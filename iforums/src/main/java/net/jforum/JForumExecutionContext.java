@@ -47,10 +47,9 @@ import java.sql.Connection;
 
 import javax.servlet.http.HttpServletResponse;
 
+import net.jforum.context.ForumContext;
 import net.jforum.context.RequestContext;
 import net.jforum.context.ResponseContext;
-import net.jforum.context.ForumContext;
-import net.jforum.exceptions.ForumException;
 import net.jforum.util.preferences.ConfigKeys;
 import net.jforum.util.preferences.SystemGlobals;
 
@@ -286,7 +285,7 @@ public class JForumExecutionContext
 			getResponse().sendError(HttpServletResponse.SC_UNAUTHORIZED);
 		}
 		catch (IOException e) {
-			throw new ForumException(e);
+			throw new RuntimeException(e);
 		}
 		
 		enableCustomContent(true);

@@ -53,8 +53,6 @@ import net.jforum.api.integration.mail.pop.POPJobStarter;
 import net.jforum.cache.CacheEngine;
 import net.jforum.cache.Cacheable;
 import net.jforum.dao.DataAccessDriver;
-import net.jforum.exceptions.CacheEngineStartupException;
-import net.jforum.exceptions.ForumException;
 import net.jforum.search.SearchFacade;
 import net.jforum.sso.LoginAuthenticator;
 import net.jforum.summary.SummaryScheduler;
@@ -114,7 +112,7 @@ public class ConfigLoader
 			return modulesMapping;
 		}
 		catch (IOException e) {
-			throw new ForumException( e);
+			throw new RuntimeException( e);
 		}
 		finally {
 			if (fis != null) {
@@ -132,7 +130,7 @@ public class ConfigLoader
 			SystemGlobals.setObjectValue(ConfigKeys.LOGIN_AUTHENTICATOR_INSTANCE, loginAuthenticator);
 		}
 		catch (Exception e) {
-			throw new ForumException("Error while trying to create a login.authenticator instance ("
+			throw new RuntimeException("Error while trying to create a login.authenticator instance ("
 				+ className + "): " + e, e);
 		}
 	}
@@ -156,7 +154,7 @@ public class ConfigLoader
 			}
 		}
 		catch (IOException e) {
-			throw new ForumException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			if (fis != null) {
@@ -216,7 +214,7 @@ public class ConfigLoader
 			DataAccessDriver.init(d);
 		}
 		catch (Exception e) {
-			throw new ForumException(e);
+			throw new RuntimeException(e);
 		}
     }
 	
@@ -249,7 +247,7 @@ public class ConfigLoader
 			}
 		}
 		catch (Exception e) {
-			throw new CacheEngineStartupException("Error while starting the cache engine", e);
+			throw new RuntimeException("Error while starting the cache engine", e);
 		}
 	}
 	

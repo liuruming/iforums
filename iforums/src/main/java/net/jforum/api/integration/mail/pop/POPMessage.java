@@ -19,8 +19,6 @@ import javax.mail.Multipart;
 import javax.mail.Part;
 import javax.mail.internet.InternetAddress;
 
-import net.jforum.exceptions.MailException;
-
 /**
  * Represents a pop message. 
  * @author Rafael Steil
@@ -126,7 +124,7 @@ public class POPMessage
 				this.messageContents = sb.toString();
 			}
 			catch (IOException e) {
-				throw new MailException(e);
+				e.printStackTrace();
 			}
 			finally {
 				if (reader != null) { try { reader.close(); } catch (Exception e) {} }

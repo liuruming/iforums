@@ -46,7 +46,6 @@ package net.jforum.search;
 import java.io.IOException;
 
 import net.jforum.entities.Post;
-import net.jforum.exceptions.ForumException;
 import net.jforum.util.preferences.ConfigKeys;
 import net.jforum.util.preferences.SystemGlobals;
 
@@ -89,7 +88,7 @@ public class LuceneManager implements SearchManager
 		}
 		
 		catch (Exception e) {
-			throw new ForumException(e);
+			throw new RuntimeException(e);
 		}
 	}
 	
@@ -111,7 +110,7 @@ public class LuceneManager implements SearchManager
 			}
 		}
 		catch (IOException e) {
-			throw new ForumException(e);
+			throw new RuntimeException(e);
 		}
 	}
 	

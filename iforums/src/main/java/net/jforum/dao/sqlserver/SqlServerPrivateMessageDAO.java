@@ -48,7 +48,6 @@ import java.sql.SQLException;
 
 import net.jforum.JForumExecutionContext;
 import net.jforum.entities.PrivateMessage;
-import net.jforum.exceptions.DatabaseException;
 import net.jforum.util.DbUtils;
 import net.jforum.util.preferences.SystemGlobals;
 
@@ -80,7 +79,7 @@ public class SqlServerPrivateMessageDAO extends net.jforum.dao.generic.GenericPr
 			return pm;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);

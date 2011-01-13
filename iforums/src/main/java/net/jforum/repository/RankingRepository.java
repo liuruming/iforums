@@ -50,7 +50,6 @@ import net.jforum.cache.Cacheable;
 import net.jforum.dao.DataAccessDriver;
 import net.jforum.dao.RankingDAO;
 import net.jforum.entities.Ranking;
-import net.jforum.exceptions.RankingLoadException;
 
 /**
  * @author Rafael Steil
@@ -77,7 +76,7 @@ public class RankingRepository implements Cacheable
 			cache.add(FQN, ENTRIES, rm.selectAll());
 		}
 		catch (Exception e) {
-			throw new RankingLoadException("Error while loading the rankings: " + e);
+			throw new RuntimeException("Error while loading the rankings: " + e);
 		}
 	}
 	

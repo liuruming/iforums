@@ -49,7 +49,6 @@ import net.jforum.cache.CacheEngine;
 import net.jforum.cache.Cacheable;
 import net.jforum.dao.DataAccessDriver;
 import net.jforum.entities.Smilie;
-import net.jforum.exceptions.SmiliesLoadException;
 import net.jforum.util.preferences.ConfigKeys;
 import net.jforum.util.preferences.SystemGlobals;
 
@@ -79,7 +78,7 @@ public class SmiliesRepository implements Cacheable
 			contexted = false;
 		}
 		catch (Exception e) {
-			throw new SmiliesLoadException("Error while loading smilies: " + e);
+			throw new RuntimeException("Error while loading smilies: " + e);
 		}
 	}
 	

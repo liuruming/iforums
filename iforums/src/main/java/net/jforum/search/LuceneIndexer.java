@@ -48,8 +48,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.mail.search.SearchException;
+
 import net.jforum.entities.Post;
-import net.jforum.exceptions.SearchException;
 import net.jforum.util.preferences.ConfigKeys;
 import net.jforum.util.preferences.SystemGlobals;
 
@@ -99,7 +100,7 @@ public class LuceneIndexer
 				this.flushRAMDirectoryIfNecessary();
 			}
 			catch (IOException e) {
-				throw new SearchException(e);
+				throw new RuntimeException(e);
 			}
 		}
 	}
@@ -116,7 +117,7 @@ public class LuceneIndexer
 			this.ramNumDocs = SystemGlobals.getIntValue(ConfigKeys.LUCENE_INDEXER_RAM_NUMDOCS);
 		}
 		catch (IOException e) {
-			throw new SearchException(e);
+			throw new RuntimeException(e);
 		}
 	}
 	
@@ -140,7 +141,7 @@ public class LuceneIndexer
 				this.createRAMWriter();
 			}
 			catch (IOException e) {
-				throw new SearchException(e);
+				throw new RuntimeException(e);
 			}
 			finally {
 				if (writer != null) {

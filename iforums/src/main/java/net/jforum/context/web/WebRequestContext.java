@@ -60,7 +60,6 @@ import net.jforum.UrlPattern;
 import net.jforum.UrlPatternCollection;
 import net.jforum.context.RequestContext;
 import net.jforum.context.SessionContext;
-import net.jforum.exceptions.MultipartHandlingException;
 import net.jforum.util.legacy.commons.fileupload.FileItem;
 import net.jforum.util.legacy.commons.fileupload.FileUploadException;
 import net.jforum.util.legacy.commons.fileupload.disk.DiskFileItemFactory;
@@ -269,7 +268,7 @@ public class WebRequestContext extends HttpServletRequestWrapper implements Requ
 			}
 		}
 		catch (FileUploadException e) {
-			throw new MultipartHandlingException("Error while processing multipart content: " + e);
+			throw new RuntimeException("Error while processing multipart content: " + e);
 		}
 	}
 	

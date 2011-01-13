@@ -48,7 +48,6 @@ import java.util.Properties;
 
 import net.jforum.cache.CacheEngine;
 import net.jforum.cache.Cacheable;
-import net.jforum.exceptions.ConfigLoadException;
 
 /**
  * @author Rafael Steil
@@ -92,7 +91,7 @@ public class Tpl implements Cacheable
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			throw new ConfigLoadException("Error while trying to load " + filename + ": " + e);
+			throw new RuntimeException("Error while trying to load " + filename + ": " + e);
 		}
 		finally {
 			if (fis != null) {

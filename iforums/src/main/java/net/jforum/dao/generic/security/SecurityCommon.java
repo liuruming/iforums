@@ -49,7 +49,6 @@ import java.sql.Statement;
 import java.util.Iterator;
 
 import net.jforum.JForumExecutionContext;
-import net.jforum.exceptions.DatabaseException;
 import net.jforum.security.PermissionControl;
 import net.jforum.security.Role;
 import net.jforum.security.RoleCollection;
@@ -139,7 +138,7 @@ public class SecurityCommon
 			}
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -191,7 +190,7 @@ public class SecurityCommon
 			return rc;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 	}
 	

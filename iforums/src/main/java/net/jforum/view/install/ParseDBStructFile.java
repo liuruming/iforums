@@ -47,8 +47,6 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.jforum.exceptions.ForumException;
-
 /**
  * @author Rafael Steil
  * @version $Id: ParseDBStructFile.java,v 1.7 2007/07/28 14:17:13 rafaelsteil Exp $
@@ -117,7 +115,7 @@ public class ParseDBStructFile
 		}
         catch (Exception e)
         {
-            throw new ForumException(e);
+            throw new RuntimeException(e);
         }
         finally {
 			if (reader != null) {

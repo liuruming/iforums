@@ -54,7 +54,6 @@ import java.util.Properties;
 
 import net.jforum.SessionFacade;
 import net.jforum.entities.UserSession;
-import net.jforum.exceptions.ForumException;
 import net.jforum.util.preferences.ConfigKeys;
 import net.jforum.util.preferences.SystemGlobals;
 
@@ -141,7 +140,7 @@ public class I18n
 			localeNames.load(fis);
 		}
 		catch (IOException e) {
-			throw new ForumException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			if (fis != null) {
@@ -189,7 +188,7 @@ public class I18n
 			p.load(fis);
 		}
 		catch (IOException e) {
-			throw new ForumException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			if (fis != null) {
@@ -292,7 +291,7 @@ public class I18n
 			return getMessage(messageName, params.toList().toArray());
 		}
 		catch (Exception e) {
-			throw new ForumException(e);
+			throw new RuntimeException(e);
 		}
 	}
 

@@ -51,7 +51,6 @@ import net.jforum.dao.GroupSecurityDAO;
 import net.jforum.dao.UserDAO;
 import net.jforum.entities.User;
 import net.jforum.entities.UserSession;
-import net.jforum.exceptions.SecurityLoadException;
 import net.jforum.security.PermissionControl;
 
 import org.apache.log4j.Logger;
@@ -206,7 +205,7 @@ public class SecurityRepository implements Cacheable
 		PermissionControl pc = SecurityRepository.get(userId);
 		
 		if (pc == null) {
-			throw new SecurityLoadException("Failed to load security roles for userId " + userId + " (null PermissionControl returned). "
+			throw new RuntimeException("Failed to load security roles for userId " + userId + " (null PermissionControl returned). "
 				+ "roleName=" + roleName + ", roleValue=" + value);
 		}
 		
@@ -233,7 +232,7 @@ public class SecurityRepository implements Cacheable
 				pc = load(userId);
 			}
 			catch (Exception e) {
-				throw new SecurityLoadException(e);
+				throw new RuntimeException(e);
 			}
 		}
 		

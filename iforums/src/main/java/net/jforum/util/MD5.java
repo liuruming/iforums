@@ -45,8 +45,6 @@ package net.jforum.util;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-import net.jforum.exceptions.ForumException;
-
 /**
  * Encodes a string using MD5 hashing 
  * 
@@ -85,7 +83,7 @@ public class MD5
 			}
 		}
 		catch (NoSuchAlgorithmException e) {
-			throw new ForumException("" + e);
+			throw new RuntimeException("" + e);
 		}
 		
 		return hexString.toString();

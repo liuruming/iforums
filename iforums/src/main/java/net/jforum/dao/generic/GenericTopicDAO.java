@@ -65,7 +65,6 @@ import net.jforum.dao.TopicDAO;
 import net.jforum.entities.KarmaStatus;
 import net.jforum.entities.Topic;
 import net.jforum.entities.User;
-import net.jforum.exceptions.DatabaseException;
 import net.jforum.repository.ForumRepository;
 import net.jforum.search.SearchArgs;
 import net.jforum.search.SearchResult;
@@ -112,7 +111,7 @@ public class GenericTopicDAO extends AutoKeys implements TopicDAO
 			result = new SearchResult(this.newMessages(l), counter);
 		}
 		catch (Exception e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -152,7 +151,7 @@ public class GenericTopicDAO extends AutoKeys implements TopicDAO
 			}
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -180,7 +179,7 @@ public class GenericTopicDAO extends AutoKeys implements TopicDAO
 			return t;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -207,7 +206,7 @@ public class GenericTopicDAO extends AutoKeys implements TopicDAO
 			return t;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -258,7 +257,7 @@ public class GenericTopicDAO extends AutoKeys implements TopicDAO
 			}
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -293,7 +292,7 @@ public class GenericTopicDAO extends AutoKeys implements TopicDAO
 			this.deleteTopics(topics, false);
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -319,7 +318,7 @@ public class GenericTopicDAO extends AutoKeys implements TopicDAO
 			p.executeUpdate();
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -355,7 +354,7 @@ public class GenericTopicDAO extends AutoKeys implements TopicDAO
 			return topicId;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -375,7 +374,7 @@ public class GenericTopicDAO extends AutoKeys implements TopicDAO
 			p.executeUpdate();
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -395,7 +394,7 @@ public class GenericTopicDAO extends AutoKeys implements TopicDAO
 			p.executeUpdate();
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -415,7 +414,7 @@ public class GenericTopicDAO extends AutoKeys implements TopicDAO
 			p.executeUpdate();
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -436,7 +435,7 @@ public class GenericTopicDAO extends AutoKeys implements TopicDAO
 			p.executeUpdate();
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -470,7 +469,7 @@ public class GenericTopicDAO extends AutoKeys implements TopicDAO
 			return this.fillTopicsData(p);
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -497,7 +496,7 @@ public class GenericTopicDAO extends AutoKeys implements TopicDAO
 			return list;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -528,7 +527,7 @@ public class GenericTopicDAO extends AutoKeys implements TopicDAO
 			return total;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -583,7 +582,7 @@ public class GenericTopicDAO extends AutoKeys implements TopicDAO
 			return id;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -612,7 +611,7 @@ public class GenericTopicDAO extends AutoKeys implements TopicDAO
 			return total;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -669,7 +668,7 @@ public class GenericTopicDAO extends AutoKeys implements TopicDAO
 			return users;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, stmt);
@@ -697,7 +696,7 @@ public class GenericTopicDAO extends AutoKeys implements TopicDAO
 			}
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -738,7 +737,7 @@ public class GenericTopicDAO extends AutoKeys implements TopicDAO
 			return rs.next() && rs.getInt(1) > 0;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -760,7 +759,7 @@ public class GenericTopicDAO extends AutoKeys implements TopicDAO
 			p.executeUpdate();
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -781,7 +780,7 @@ public class GenericTopicDAO extends AutoKeys implements TopicDAO
 			p.executeUpdate();
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -805,7 +804,7 @@ public class GenericTopicDAO extends AutoKeys implements TopicDAO
 				p.executeUpdate();
 			}
 			catch (SQLException e) {
-				throw new DatabaseException(e);
+				throw new RuntimeException(e);
 			}
 			finally {
 				DbUtils.close(p);
@@ -829,7 +828,7 @@ public class GenericTopicDAO extends AutoKeys implements TopicDAO
 			}
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -862,7 +861,7 @@ public class GenericTopicDAO extends AutoKeys implements TopicDAO
 			return this.fillTopicsData(p);
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -951,7 +950,7 @@ public class GenericTopicDAO extends AutoKeys implements TopicDAO
 			return l;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -973,7 +972,7 @@ public class GenericTopicDAO extends AutoKeys implements TopicDAO
 			return list;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -996,7 +995,7 @@ public class GenericTopicDAO extends AutoKeys implements TopicDAO
 	        return list;
 	    }
 	    catch (SQLException e) {
-	        throw new DatabaseException(e);
+	        throw new RuntimeException(e);
 	    }
 	    finally {
 	        DbUtils.close(p);
@@ -1017,7 +1016,7 @@ public class GenericTopicDAO extends AutoKeys implements TopicDAO
 			p.executeUpdate();
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -1045,7 +1044,7 @@ public class GenericTopicDAO extends AutoKeys implements TopicDAO
 			return id;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -1066,7 +1065,7 @@ public class GenericTopicDAO extends AutoKeys implements TopicDAO
 			p.executeUpdate();
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -1087,7 +1086,7 @@ public class GenericTopicDAO extends AutoKeys implements TopicDAO
 			p.executeUpdate();
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -1125,7 +1124,7 @@ public class GenericTopicDAO extends AutoKeys implements TopicDAO
 			return l;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -1196,7 +1195,7 @@ public class GenericTopicDAO extends AutoKeys implements TopicDAO
 			return m;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);

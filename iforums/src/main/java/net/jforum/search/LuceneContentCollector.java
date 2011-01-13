@@ -50,7 +50,6 @@ import java.util.List;
 
 import net.jforum.dao.DataAccessDriver;
 import net.jforum.entities.Post;
-import net.jforum.exceptions.ForumException;
 
 import org.apache.lucene.analysis.TokenStream;
 import org.apache.lucene.document.Document;
@@ -91,7 +90,7 @@ public class LuceneContentCollector implements LuceneResultCollector
 			return this.retrieveRealPosts(postIds, query);
 		}
 		catch (Exception e) {
-			throw new ForumException(e.toString(), e);
+			throw new RuntimeException(e.toString(), e);
 		}
 	}
 

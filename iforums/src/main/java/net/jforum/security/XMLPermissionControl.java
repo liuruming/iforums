@@ -55,8 +55,6 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
 import net.jforum.JForumExecutionContext;
-import net.jforum.exceptions.DatabaseException;
-import net.jforum.exceptions.ForumException;
 import net.jforum.util.DbUtils;
 import net.jforum.util.FormSelectedData;
 import net.jforum.util.I18n;
@@ -148,7 +146,7 @@ public class XMLPermissionControl extends DefaultHandler
         }
         catch (Exception e)
         {
-            throw new ForumException(e);
+            throw new RuntimeException(e);
         }
     }
 
@@ -223,7 +221,7 @@ public class XMLPermissionControl extends DefaultHandler
 					this.queries.put(refName, l);
 				}
 				catch (Exception e) {
-                    throw new DatabaseException(e);
+                    throw new RuntimeException(e);
 				}
 				finally {
                     DbUtils.close(rs, p);

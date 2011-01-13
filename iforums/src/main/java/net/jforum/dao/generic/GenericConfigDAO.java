@@ -50,7 +50,6 @@ import java.util.List;
 
 import net.jforum.JForumExecutionContext;
 import net.jforum.entities.Config;
-import net.jforum.exceptions.DatabaseException;
 import net.jforum.util.DbUtils;
 import net.jforum.util.preferences.SystemGlobals;
 
@@ -73,7 +72,7 @@ public class GenericConfigDAO implements net.jforum.dao.ConfigDAO
 			p.executeUpdate();
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -93,7 +92,7 @@ public class GenericConfigDAO implements net.jforum.dao.ConfigDAO
 			p.executeUpdate();
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -112,7 +111,7 @@ public class GenericConfigDAO implements net.jforum.dao.ConfigDAO
 			p.executeUpdate();
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -138,7 +137,7 @@ public class GenericConfigDAO implements net.jforum.dao.ConfigDAO
 			return l;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -166,7 +165,7 @@ public class GenericConfigDAO implements net.jforum.dao.ConfigDAO
 			return c;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);

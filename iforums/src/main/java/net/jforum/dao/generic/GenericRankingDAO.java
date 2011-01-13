@@ -50,7 +50,6 @@ import java.util.List;
 
 import net.jforum.JForumExecutionContext;
 import net.jforum.entities.Ranking;
-import net.jforum.exceptions.DatabaseException;
 import net.jforum.util.DbUtils;
 import net.jforum.util.preferences.SystemGlobals;
 
@@ -83,7 +82,7 @@ public class GenericRankingDAO implements net.jforum.dao.RankingDAO
 			return ranking;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -110,7 +109,7 @@ public class GenericRankingDAO implements net.jforum.dao.RankingDAO
 			return l;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -130,7 +129,7 @@ public class GenericRankingDAO implements net.jforum.dao.RankingDAO
 			p.executeUpdate();
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -155,7 +154,7 @@ public class GenericRankingDAO implements net.jforum.dao.RankingDAO
 			p.executeUpdate();
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -178,7 +177,7 @@ public class GenericRankingDAO implements net.jforum.dao.RankingDAO
 			p.executeUpdate();
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -202,7 +201,7 @@ public class GenericRankingDAO implements net.jforum.dao.RankingDAO
 			}
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);

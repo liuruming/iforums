@@ -51,7 +51,6 @@ import net.jforum.JForumExecutionContext;
 import net.jforum.dao.DataAccessDriver;
 import net.jforum.dao.LuceneDAO;
 import net.jforum.entities.Post;
-import net.jforum.exceptions.ForumException;
 import net.jforum.util.preferences.ConfigKeys;
 import net.jforum.util.preferences.SystemGlobals;
 
@@ -101,7 +100,7 @@ public class LuceneReindexer
 			}
 		}
 		catch (IOException e) {
-			throw new ForumException(e);
+			throw new RuntimeException(e);
 		}
 		
 		LuceneDAO dao = DataAccessDriver.getInstance().newLuceneDAO();
@@ -191,7 +190,7 @@ public class LuceneReindexer
 			System.out.println("**** Total: " + (end - processStart) + " ms");
 		}
 		catch (IOException e) {
-			throw new ForumException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			SystemGlobals.setValue(ConfigKeys.LUCENE_CURRENTLY_INDEXING, "0");

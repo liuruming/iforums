@@ -59,7 +59,6 @@ import javax.mail.internet.MimeMessage;
 
 import net.jforum.JForumExecutionContext;
 import net.jforum.entities.User;
-import net.jforum.exceptions.MailException;
 import net.jforum.util.preferences.ConfigKeys;
 import net.jforum.util.preferences.SystemGlobals;
 
@@ -96,7 +95,7 @@ public class Spammer
 	private SimpleHash templateParams;
 	private Template template;
 	
-	protected Spammer() throws MailException
+	protected Spammer() throws RuntimeException
 	{
 		boolean ssl = SystemGlobals.getBoolValue(ConfigKeys.MAIL_SMTP_SSL);
 		
@@ -171,7 +170,7 @@ public class Spammer
 	                    }
                     }
                     catch (Exception e) {
-                    	throw new MailException(e);
+                    	throw new RuntimeException(e);
                     }
                     finally {
                     	try { transport.close(); } catch (Exception e) {}
@@ -218,7 +217,7 @@ public class Spammer
 			this.defineMessageText(text);
 		}
 		catch (Exception e) {
-			throw new MailException(e);
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -227,9 +226,9 @@ public class Spammer
 	 * 
 	 * @param subject the subject of the email
 	 * @param messageFile the path to the mail message template
-	 * @throws MailException
+	 * @throws RuntimeException
 	 */
-	protected void prepareMessage(String subject, String messageFile) throws MailException
+	protected void prepareMessage(String subject, String messageFile) throws RuntimeException
 	{
 		if (this.messageId != null) {
 			this.message = new IdentifiableMimeMessage(session);
@@ -261,7 +260,7 @@ public class Spammer
 			}
 		}
 		catch (Exception e) {
-			throw new MailException(e);
+			throw new RuntimeException(e);
 		}
 	}
 	

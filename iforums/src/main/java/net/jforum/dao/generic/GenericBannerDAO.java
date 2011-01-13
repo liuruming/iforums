@@ -50,7 +50,6 @@ import java.util.List;
 
 import net.jforum.JForumExecutionContext;
 import net.jforum.entities.Banner;
-import net.jforum.exceptions.DatabaseException;
 import net.jforum.util.DbUtils;
 import net.jforum.util.preferences.SystemGlobals;
 
@@ -77,7 +76,7 @@ public class GenericBannerDAO extends AutoKeys implements net.jforum.dao.BannerD
 			}
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -102,7 +101,7 @@ public class GenericBannerDAO extends AutoKeys implements net.jforum.dao.BannerD
 			return l;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -147,7 +146,7 @@ public class GenericBannerDAO extends AutoKeys implements net.jforum.dao.BannerD
 			return result;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -163,7 +162,7 @@ public class GenericBannerDAO extends AutoKeys implements net.jforum.dao.BannerD
 			p.executeUpdate();
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -180,7 +179,7 @@ public class GenericBannerDAO extends AutoKeys implements net.jforum.dao.BannerD
 			p.executeUpdate();
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -199,7 +198,7 @@ public class GenericBannerDAO extends AutoKeys implements net.jforum.dao.BannerD
 			return id;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -241,7 +240,7 @@ public class GenericBannerDAO extends AutoKeys implements net.jforum.dao.BannerD
 			return l;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);

@@ -45,11 +45,10 @@ package net.jforum;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-import org.apache.log4j.Logger;
-
-import net.jforum.exceptions.DatabaseException;
 import net.jforum.util.preferences.ConfigKeys;
 import net.jforum.util.preferences.SystemGlobals;
+
+import org.apache.log4j.Logger;
 
 /**
  * Non-pooled connection implementation.
@@ -98,7 +97,7 @@ public class SimpleConnection extends DBConnection
 		}
 		catch (Exception e) {
 			logger.error("", e);
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 	}
 

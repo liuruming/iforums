@@ -48,7 +48,7 @@ import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.jforum.exceptions.SearchException;
+import javax.mail.search.SearchException;
 
 import org.apache.log4j.Logger;
 import org.apache.lucene.analysis.Token;
@@ -95,7 +95,7 @@ public class LuceneSearch implements NewDocumentAdded
 			this.openSearch();
 		}
 		catch (Exception e) {
-			throw new SearchException(e);
+			throw new RuntimeException(e);
 		}
 	}
 	
@@ -124,7 +124,7 @@ public class LuceneSearch implements NewDocumentAdded
 			}
 		}
 		catch (IOException e) {
-			throw new SearchException(e);
+			throw new RuntimeException(e);
 		}
 		
 		return doc;
@@ -238,7 +238,7 @@ public class LuceneSearch implements NewDocumentAdded
 			return (String[])tokens.toArray(new String[0]);
 		}
 		catch (IOException e) {
-			throw new SearchException(e);
+			throw new RuntimeException(e);
 		}
 	}
 	
@@ -248,7 +248,7 @@ public class LuceneSearch implements NewDocumentAdded
 			this.search = new IndexSearcher(this.settings.directory());
 		}
 		catch (IOException e) {
-			throw new SearchException(e.toString(), e);
+			throw new RuntimeException(e.toString(), e);
 		}
 	}
 }

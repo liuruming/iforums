@@ -50,7 +50,6 @@ import java.util.List;
 
 import net.jforum.JForumExecutionContext;
 import net.jforum.entities.Category;
-import net.jforum.exceptions.DatabaseException;
 import net.jforum.util.DbUtils;
 import net.jforum.util.preferences.SystemGlobals;
 
@@ -82,7 +81,7 @@ public class GenericCategoryDAO extends AutoKeys implements net.jforum.dao.Categ
 			return c;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -108,7 +107,7 @@ public class GenericCategoryDAO extends AutoKeys implements net.jforum.dao.Categ
 			return l;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -144,7 +143,7 @@ public class GenericCategoryDAO extends AutoKeys implements net.jforum.dao.Categ
 
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -163,7 +162,7 @@ public class GenericCategoryDAO extends AutoKeys implements net.jforum.dao.Categ
 			p.executeUpdate();
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -184,7 +183,7 @@ public class GenericCategoryDAO extends AutoKeys implements net.jforum.dao.Categ
 			p.executeUpdate();
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -224,7 +223,7 @@ public class GenericCategoryDAO extends AutoKeys implements net.jforum.dao.Categ
 			return id;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -275,7 +274,7 @@ public class GenericCategoryDAO extends AutoKeys implements net.jforum.dao.Categ
 			p.executeUpdate();
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);

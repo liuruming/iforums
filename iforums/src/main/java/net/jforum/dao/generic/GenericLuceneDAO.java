@@ -54,7 +54,6 @@ import java.util.List;
 import net.jforum.JForumExecutionContext;
 import net.jforum.dao.LuceneDAO;
 import net.jforum.entities.Post;
-import net.jforum.exceptions.DatabaseException;
 import net.jforum.search.LuceneReindexArgs;
 import net.jforum.search.SearchPost;
 import net.jforum.util.DbUtils;
@@ -90,7 +89,7 @@ public class GenericLuceneDAO implements LuceneDAO
 			}
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -134,7 +133,7 @@ public class GenericLuceneDAO implements LuceneDAO
 			}
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -172,7 +171,7 @@ public class GenericLuceneDAO implements LuceneDAO
 			}
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);

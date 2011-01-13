@@ -60,8 +60,6 @@ import net.jforum.context.web.WebRequestContext;
 import net.jforum.context.web.WebResponseContext;
 import net.jforum.dao.MySQLVersionWorkarounder;
 import net.jforum.entities.Banlist;
-import net.jforum.exceptions.ExceptionWriter;
-import net.jforum.exceptions.ForumStartupException;
 import net.jforum.repository.BanlistRepository;
 import net.jforum.repository.ModulesRepository;
 import net.jforum.repository.RankingRepository;
@@ -129,7 +127,7 @@ public class JForum extends JForumBaseServlet
 		}
 		catch (Throwable e) {
             e.printStackTrace();
-            throw new ForumStartupException("Error while starting jforum", e);
+            throw new RuntimeException("Error while starting jforum", e);
 		}
 		finally {
 			JForumExecutionContext.finish();
@@ -297,10 +295,10 @@ public class JForum extends JForumBaseServlet
 		if (e.toString().indexOf("ClientAbortException") == -1) {
 			response.setContentType("text/html; charset=" + encoding);
 			if (out != null) {
-				new ExceptionWriter().handleExceptionData(e, out, request);
+//				new ExceptionWriter().handleExceptionData(e, out, request);
 			}
 			else {
-				new ExceptionWriter().handleExceptionData(e, new BufferedWriter(new OutputStreamWriter(response.getOutputStream(),encoding)), request);
+//				new ExceptionWriter().handleExceptionData(e, new BufferedWriter(new OutputStreamWriter(response.getOutputStream(),encoding)), request);
 			}
 		}
 	}

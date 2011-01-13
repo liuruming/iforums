@@ -50,7 +50,6 @@ import java.util.GregorianCalendar;
 
 import net.jforum.context.RequestContext;
 import net.jforum.context.ResponseContext;
-import net.jforum.exceptions.ForumException;
 import net.jforum.repository.ForumRepository;
 import net.jforum.search.LuceneManager;
 import net.jforum.search.LuceneReindexArgs;
@@ -106,7 +105,7 @@ public class LuceneStatsAction extends AdminCommand
 			}
 		}
 		catch (IOException e) {
-			throw new ForumException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			if (reader != null) {

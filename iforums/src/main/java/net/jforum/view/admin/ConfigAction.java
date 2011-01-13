@@ -55,7 +55,6 @@ import net.jforum.context.RequestContext;
 import net.jforum.context.ResponseContext;
 import net.jforum.entities.Category;
 import net.jforum.entities.Forum;
-import net.jforum.exceptions.ForumException;
 import net.jforum.repository.ForumRepository;
 import net.jforum.repository.TopicRepository;
 import net.jforum.util.I18n;
@@ -101,7 +100,7 @@ public class ConfigAction extends AdminCommand
 			locales.load(fis);
 		}
 		catch (IOException e) {
-			throw new ForumException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			if (fis != null) {

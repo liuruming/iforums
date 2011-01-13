@@ -49,7 +49,6 @@ import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 
-import net.jforum.exceptions.ForumStartupException;
 import net.jforum.repository.BBCodeRepository;
 import net.jforum.repository.ModulesRepository;
 import net.jforum.repository.Tpl;
@@ -97,7 +96,7 @@ public class JForumBaseServlet extends HttpServlet
 			ConfigLoader.startSummaryJob();
 		}
 		catch (Exception e) {
-			throw new ForumStartupException("Error while starting JForum", e);
+			throw new RuntimeException("Error while starting JForum", e);
 		}
 	}
 
@@ -149,7 +148,7 @@ public class JForumBaseServlet extends HttpServlet
 			JForumExecutionContext.setTemplateConfig(templateCfg);
 		}
 		catch (Exception e) {
-			throw new ForumStartupException("Error while starting JForum", e);
+			throw new RuntimeException("Error while starting JForum", e);
 		}
 	}
 	public void init(ServletConfig config) throws ServletException

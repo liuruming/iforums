@@ -50,7 +50,6 @@ import java.util.List;
 import net.jforum.JForumExecutionContext;
 import net.jforum.dao.BanlistDAO;
 import net.jforum.entities.Banlist;
-import net.jforum.exceptions.DatabaseException;
 import net.jforum.util.DbUtils;
 import net.jforum.util.preferences.SystemGlobals;
 
@@ -74,7 +73,7 @@ public class GenericBanlistDAO extends AutoKeys implements BanlistDAO
 			p.executeUpdate();
 		}
 		catch (Exception e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -103,7 +102,7 @@ public class GenericBanlistDAO extends AutoKeys implements BanlistDAO
 			b.setId(id);
 		}
 		catch (Exception e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -137,7 +136,7 @@ public class GenericBanlistDAO extends AutoKeys implements BanlistDAO
 			}
 		}
 		catch (Exception e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);

@@ -56,7 +56,6 @@ import net.jforum.JForumExecutionContext;
 import net.jforum.entities.Karma;
 import net.jforum.entities.KarmaStatus;
 import net.jforum.entities.User;
-import net.jforum.exceptions.DatabaseException;
 import net.jforum.util.DbUtils;
 import net.jforum.util.preferences.SystemGlobals;
 
@@ -85,7 +84,7 @@ public class GenericKarmaDAO implements net.jforum.dao.KarmaDAO
 			this.updateUserKarma(karma.getPostUserId());
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -114,7 +113,7 @@ public class GenericKarmaDAO implements net.jforum.dao.KarmaDAO
 			return status;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -164,7 +163,7 @@ public class GenericKarmaDAO implements net.jforum.dao.KarmaDAO
 			p.executeUpdate();
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -184,7 +183,7 @@ public class GenericKarmaDAO implements net.jforum.dao.KarmaDAO
 			p.executeUpdate();
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -213,7 +212,7 @@ public class GenericKarmaDAO implements net.jforum.dao.KarmaDAO
 			return karma;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -243,7 +242,7 @@ public class GenericKarmaDAO implements net.jforum.dao.KarmaDAO
 			return status;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -273,7 +272,7 @@ public class GenericKarmaDAO implements net.jforum.dao.KarmaDAO
 			return m;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -305,7 +304,7 @@ public class GenericKarmaDAO implements net.jforum.dao.KarmaDAO
 			this.getVotesGiven(user);
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -328,7 +327,7 @@ public class GenericKarmaDAO implements net.jforum.dao.KarmaDAO
 			}
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -357,7 +356,7 @@ public class GenericKarmaDAO implements net.jforum.dao.KarmaDAO
 	protected List getMostRatedUserByPeriod(String sql, Date firstPeriod, Date lastPeriod)
 	{
 		if (firstPeriod.after(lastPeriod)) {
-			throw new DatabaseException("First Date needs to be before the Last Date");
+			throw new RuntimeException("First Date needs to be before the Last Date");
 		}
 
 		PreparedStatement p = null;
@@ -372,7 +371,7 @@ public class GenericKarmaDAO implements net.jforum.dao.KarmaDAO
 			return this.fillUser(rs);
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);

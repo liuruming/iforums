@@ -46,7 +46,6 @@ import java.io.BufferedInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-import net.jforum.exceptions.ForumException;
 import net.jforum.util.legacy.commons.fileupload.FileItem;
 
 /**
@@ -88,7 +87,7 @@ public class UploadUtils
 			}
 		}
 		catch (IOException e) {
-			throw new ForumException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			if (outputStream != null) {

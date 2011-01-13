@@ -52,8 +52,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
-import org.apache.log4j.Logger;
-
 import net.jforum.SessionFacade;
 import net.jforum.cache.CacheEngine;
 import net.jforum.cache.Cacheable;
@@ -71,14 +69,14 @@ import net.jforum.entities.MostUsersEverOnline;
 import net.jforum.entities.Post;
 import net.jforum.entities.Topic;
 import net.jforum.entities.User;
-import net.jforum.exceptions.CategoryNotFoundException;
-import net.jforum.exceptions.DatabaseException;
 import net.jforum.security.PermissionControl;
 import net.jforum.security.SecurityConstants;
 import net.jforum.util.CategoryOrderComparator;
 import net.jforum.util.preferences.ConfigKeys;
 import net.jforum.util.preferences.SystemGlobals;
 import net.jforum.view.forum.common.ViewCommon;
+
+import org.apache.log4j.Logger;
 
 /**
  * Repository for the forums of the System.
@@ -249,13 +247,13 @@ public class ForumRepository implements Cacheable
 						ForumRepository.instance.loadForums(DataAccessDriver.getInstance().newForumDAO());
 					}
 					catch (Exception e) {
-						throw new CategoryNotFoundException("Failed to get the category", e);
+						throw new RuntimeException("Failed to get the category", e);
 					}
 					
 					categoriesSet = (Set)cache.get(FQN, CATEGORIES_SET);
 					
 					if (categoriesSet == null) {
-						throw new CategoryNotFoundException("Could not find all categories. There must be a problem with the cache");
+						throw new RuntimeException("Could not find all categories. There must be a problem with the cache");
 					}
 				}
 			}
@@ -599,7 +597,7 @@ public class ForumRepository implements Cacheable
 					cache.add(FQN_MODERATORS, Integer.toString(forumId), l);
 				}
 				catch (Exception e) {
-					throw new DatabaseException(e);
+					throw new RuntimeException(e);
 				}
 			}
 		}
@@ -790,7 +788,7 @@ public class ForumRepository implements Cacheable
 			}
 			
 			if (c == null) {
-				throw new CategoryNotFoundException("Category for forum #" + f.getId() + " not found");
+				throw new RuntimeException("Category for forum #" + f.getId() + " not found");
 			}
 			
 			String forumId = Integer.toString(f.getId());

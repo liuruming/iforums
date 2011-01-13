@@ -50,7 +50,6 @@ import java.util.List;
 
 import net.jforum.JForumExecutionContext;
 import net.jforum.entities.Smilie;
-import net.jforum.exceptions.DatabaseException;
 import net.jforum.util.DbUtils;
 import net.jforum.util.preferences.SystemGlobals;
 
@@ -78,7 +77,7 @@ public class GenericSmilieDAO extends AutoKeys implements net.jforum.dao.SmilieD
 			return this.executeAutoKeysQuery(p);
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -97,7 +96,7 @@ public class GenericSmilieDAO extends AutoKeys implements net.jforum.dao.SmilieD
 			p.executeUpdate();
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -120,7 +119,7 @@ public class GenericSmilieDAO extends AutoKeys implements net.jforum.dao.SmilieD
 			p.executeUpdate();
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -158,7 +157,7 @@ public class GenericSmilieDAO extends AutoKeys implements net.jforum.dao.SmilieD
 			return l;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -187,7 +186,7 @@ public class GenericSmilieDAO extends AutoKeys implements net.jforum.dao.SmilieD
 			return s;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);

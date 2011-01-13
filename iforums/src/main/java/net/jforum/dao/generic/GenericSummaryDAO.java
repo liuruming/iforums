@@ -53,7 +53,6 @@ import net.jforum.JForumExecutionContext;
 import net.jforum.dao.DataAccessDriver;
 import net.jforum.dao.SummaryDAO;
 import net.jforum.entities.Post;
-import net.jforum.exceptions.DatabaseException;
 import net.jforum.util.DbUtils;
 import net.jforum.util.preferences.ConfigKeys;
 import net.jforum.util.preferences.SystemGlobals;
@@ -87,7 +86,7 @@ public class GenericSummaryDAO extends AutoKeys implements SummaryDAO
 			return posts;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -138,7 +137,7 @@ public class GenericSummaryDAO extends AutoKeys implements SummaryDAO
 			return recipients;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);

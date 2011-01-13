@@ -57,8 +57,6 @@ import net.jforum.dao.UserDAO;
 import net.jforum.entities.Group;
 import net.jforum.entities.KarmaStatus;
 import net.jforum.entities.User;
-import net.jforum.exceptions.DatabaseException;
-import net.jforum.exceptions.ForumException;
 import net.jforum.sso.LoginAuthenticator;
 import net.jforum.util.DbUtils;
 import net.jforum.util.preferences.ConfigKeys;
@@ -78,7 +76,7 @@ public class GenericUserDAO extends AutoKeys implements UserDAO
 			ConfigKeys.LOGIN_AUTHENTICATOR_INSTANCE);
 		
 		if (loginAuthenticator == null) {
-			throw new ForumException("There is no login.authenticator configured. Check your login.authenticator configuration key.");
+			throw new RuntimeException("There is no login.authenticator configured. Check your login.authenticator configuration key.");
 		}
 		
 		loginAuthenticator.setUserModel(this);
@@ -111,7 +109,7 @@ public class GenericUserDAO extends AutoKeys implements UserDAO
 			}
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -161,7 +159,7 @@ public class GenericUserDAO extends AutoKeys implements UserDAO
 			return u;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -187,7 +185,7 @@ public class GenericUserDAO extends AutoKeys implements UserDAO
 			return u;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -254,7 +252,7 @@ public class GenericUserDAO extends AutoKeys implements UserDAO
 			p.executeUpdate();
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -311,7 +309,7 @@ public class GenericUserDAO extends AutoKeys implements UserDAO
 			p.executeUpdate();
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -338,7 +336,7 @@ public class GenericUserDAO extends AutoKeys implements UserDAO
 			return id;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -371,7 +369,7 @@ public class GenericUserDAO extends AutoKeys implements UserDAO
 			this.addToGroup(user.getId(), new int[] { SystemGlobals.getIntValue(ConfigKeys.DEFAULT_USER_GROUP) });
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -392,7 +390,7 @@ public class GenericUserDAO extends AutoKeys implements UserDAO
 			p.executeUpdate();
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -413,7 +411,7 @@ public class GenericUserDAO extends AutoKeys implements UserDAO
 			p.executeUpdate();
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -434,7 +432,7 @@ public class GenericUserDAO extends AutoKeys implements UserDAO
 			p.executeUpdate();
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -455,7 +453,7 @@ public class GenericUserDAO extends AutoKeys implements UserDAO
 			p.executeUpdate();
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -477,7 +475,7 @@ public class GenericUserDAO extends AutoKeys implements UserDAO
 			p.executeUpdate();
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -517,7 +515,7 @@ public class GenericUserDAO extends AutoKeys implements UserDAO
 			return this.processSelectAll(rs);
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -585,7 +583,7 @@ public class GenericUserDAO extends AutoKeys implements UserDAO
 			return this.processSelectAll(rs);
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -613,7 +611,7 @@ public class GenericUserDAO extends AutoKeys implements UserDAO
 			return u;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -632,7 +630,7 @@ public class GenericUserDAO extends AutoKeys implements UserDAO
 			return this.getTotalUsersCommon(preparedStatement);
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(preparedStatement);
@@ -653,7 +651,7 @@ public class GenericUserDAO extends AutoKeys implements UserDAO
 			return this.getTotalUsersCommon(p);
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -694,7 +692,7 @@ public class GenericUserDAO extends AutoKeys implements UserDAO
 			return deleted == 1;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -723,7 +721,7 @@ public class GenericUserDAO extends AutoKeys implements UserDAO
 			return status;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -754,7 +752,7 @@ public class GenericUserDAO extends AutoKeys implements UserDAO
 			}
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -779,7 +777,7 @@ public class GenericUserDAO extends AutoKeys implements UserDAO
 			}
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -800,7 +798,7 @@ public class GenericUserDAO extends AutoKeys implements UserDAO
 			p.executeUpdate();
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -832,7 +830,7 @@ public class GenericUserDAO extends AutoKeys implements UserDAO
 			return status;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -853,7 +851,7 @@ public class GenericUserDAO extends AutoKeys implements UserDAO
 			p.executeUpdate();
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -882,7 +880,7 @@ public class GenericUserDAO extends AutoKeys implements UserDAO
 			return username;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -916,7 +914,7 @@ public class GenericUserDAO extends AutoKeys implements UserDAO
 			return namesList;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -946,7 +944,7 @@ public class GenericUserDAO extends AutoKeys implements UserDAO
 			return status;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -966,7 +964,7 @@ public class GenericUserDAO extends AutoKeys implements UserDAO
 			p.executeUpdate();
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -987,7 +985,7 @@ public class GenericUserDAO extends AutoKeys implements UserDAO
 			p.executeUpdate();
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -1022,7 +1020,7 @@ public class GenericUserDAO extends AutoKeys implements UserDAO
 			return status;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -1066,7 +1064,7 @@ public class GenericUserDAO extends AutoKeys implements UserDAO
 			p.executeUpdate();
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -1095,7 +1093,7 @@ public class GenericUserDAO extends AutoKeys implements UserDAO
 			return hash;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -1124,7 +1122,7 @@ public class GenericUserDAO extends AutoKeys implements UserDAO
 			}
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);

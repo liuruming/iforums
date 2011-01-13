@@ -48,15 +48,15 @@ import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import org.apache.commons.lang.StringUtils;
-
 import net.jforum.JForumExecutionContext;
 import net.jforum.context.RequestContext;
 import net.jforum.entities.User;
-import net.jforum.exceptions.ForumException;
 import net.jforum.util.preferences.ConfigKeys;
 import net.jforum.util.preferences.SystemGlobals;
 import net.jforum.util.preferences.TemplateKeys;
+
+import org.apache.commons.lang.StringUtils;
+
 import freemarker.template.SimpleHash;
 
 /**
@@ -123,7 +123,7 @@ public final class ViewCommon
 				URI redirectUri = URI.create(redirect);
 				
 				if (!redirectUri.isAbsolute()) {
-					throw new ForumException("SSO redirect URL should start with a scheme");
+					throw new RuntimeException("SSO redirect URL should start with a scheme");
 				}
 				
 				try {

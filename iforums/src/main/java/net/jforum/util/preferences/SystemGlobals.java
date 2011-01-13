@@ -58,7 +58,6 @@ import java.util.Properties;
 import java.util.Vector;
 
 import net.jforum.ConfigLoader;
-import net.jforum.exceptions.ForumException;
 
 import org.apache.log4j.Logger;
 
@@ -190,7 +189,7 @@ public class SystemGlobals implements VariableStore
 		}
 		catch (IOException e)
 		{
-			throw new ForumException(e);
+			throw new RuntimeException(e);
 		}
 	}
 	
@@ -214,7 +213,7 @@ public class SystemGlobals implements VariableStore
 		}
 		catch (IOException e)
 		{
-			throw new ForumException(e);
+			throw new RuntimeException(e);
 		}
 
 		if (!additionalDefaultsList.contains(file)) {
@@ -254,7 +253,7 @@ public class SystemGlobals implements VariableStore
 			out.close();
 		}
 		catch (IOException e) {
-			throw new ForumException(e);
+			throw new RuntimeException(e);
 		}
 
 		ConfigLoader.listenInstallationConfig();
@@ -379,7 +378,7 @@ public class SystemGlobals implements VariableStore
 			queries.load(fis);
 		}
 		catch (IOException e) {
-			throw new ForumException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			if (fis != null) {

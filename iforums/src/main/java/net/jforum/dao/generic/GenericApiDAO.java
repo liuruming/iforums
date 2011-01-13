@@ -8,7 +8,6 @@ import java.sql.ResultSet;
 
 import net.jforum.JForumExecutionContext;
 import net.jforum.dao.ApiDAO;
-import net.jforum.exceptions.DatabaseException;
 import net.jforum.util.DbUtils;
 import net.jforum.util.preferences.SystemGlobals;
 
@@ -37,7 +36,7 @@ public class GenericApiDAO implements ApiDAO
 			status = rs.next();
 		}
 		catch (Exception e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);

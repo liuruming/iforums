@@ -46,8 +46,6 @@ import java.io.IOException;
 
 import net.jforum.context.RequestContext;
 import net.jforum.context.ResponseContext;
-import net.jforum.exceptions.ForumException;
-import net.jforum.exceptions.TemplateNotFoundException;
 import net.jforum.repository.Tpl;
 import net.jforum.util.preferences.ConfigKeys;
 import net.jforum.util.preferences.SystemGlobals;
@@ -118,7 +116,7 @@ public abstract class Command
 			}
 			catch (Exception e)
             {
-                throw new ForumException(e);
+                throw new RuntimeException(e);
 			}
 		}
 		
@@ -134,7 +132,7 @@ public abstract class Command
 		}
 		
 		if (this.templateName == null) {
-			throw new TemplateNotFoundException("Template for action " + action + " is not defined");
+			throw new RuntimeException("Template for action " + action + " is not defined");
 		}
 
         try {
@@ -143,7 +141,7 @@ public abstract class Command
                 append('/').append(this.templateName).toString());
         }
         catch (IOException e) {
-            throw new ForumException( e);
+            throw new RuntimeException( e);
         }
     }
 }

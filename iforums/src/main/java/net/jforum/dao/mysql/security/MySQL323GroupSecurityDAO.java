@@ -51,16 +51,15 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.Statement;
-
 import net.jforum.JForumExecutionContext;
 import net.jforum.dao.generic.security.GenericGroupSecurityDAO;
 import net.jforum.dao.generic.security.SecurityCommon;
-import net.jforum.exceptions.DatabaseException;
 import net.jforum.security.RoleCollection;
 import net.jforum.util.DbUtils;
 import net.jforum.util.preferences.SystemGlobals;
+
+import com.mysql.jdbc.Connection;
+import com.mysql.jdbc.Statement;
 
 /**
  * MySQL 3.23 hacks based on Andy's work
@@ -103,7 +102,7 @@ public class MySQL323GroupSecurityDAO extends GenericGroupSecurityDAO
 			roleCollection = SecurityCommon.loadRoles(mergedRs);
 		}
 		catch (Exception e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(roles, rolesP);
@@ -158,7 +157,7 @@ public class MySQL323GroupSecurityDAO extends GenericGroupSecurityDAO
 			p.executeUpdate();
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);

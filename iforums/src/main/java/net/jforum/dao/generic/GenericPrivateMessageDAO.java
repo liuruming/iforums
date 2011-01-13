@@ -59,7 +59,6 @@ import net.jforum.entities.Post;
 import net.jforum.entities.PrivateMessage;
 import net.jforum.entities.PrivateMessageType;
 import net.jforum.entities.User;
-import net.jforum.exceptions.DatabaseException;
 import net.jforum.util.DbUtils;
 import net.jforum.util.preferences.ConfigKeys;
 import net.jforum.util.preferences.SystemGlobals;
@@ -93,7 +92,7 @@ public class GenericPrivateMessageDAO extends AutoKeys implements net.jforum.dao
 			this.addPmText(pm);
 		}
 		catch (Exception e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -171,7 +170,7 @@ public class GenericPrivateMessageDAO extends AutoKeys implements net.jforum.dao
 			}
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(deleteMessage);
@@ -212,7 +211,7 @@ public class GenericPrivateMessageDAO extends AutoKeys implements net.jforum.dao
 			return pmList;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -250,7 +249,7 @@ public class GenericPrivateMessageDAO extends AutoKeys implements net.jforum.dao
 			return pmList;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -317,7 +316,7 @@ public class GenericPrivateMessageDAO extends AutoKeys implements net.jforum.dao
 			return pm;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -338,7 +337,7 @@ public class GenericPrivateMessageDAO extends AutoKeys implements net.jforum.dao
 			p.executeUpdate();
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);

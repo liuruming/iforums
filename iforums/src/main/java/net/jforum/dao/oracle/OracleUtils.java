@@ -51,7 +51,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import net.jforum.JForumExecutionContext;
-import net.jforum.exceptions.DatabaseException;
 import net.jforum.util.DbUtils;
 import oracle.sql.BLOB;
 
@@ -87,7 +86,7 @@ public class OracleUtils
 			return sb.toString();
 		}
 		catch (IOException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -133,7 +132,7 @@ public class OracleUtils
 			blobWriter.close();
 		}
 		catch (IOException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			if (blobWriter != null) {

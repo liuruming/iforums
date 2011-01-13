@@ -49,7 +49,6 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import net.jforum.exceptions.DatabaseException;
 import net.jforum.util.preferences.ConfigKeys;
 import net.jforum.util.preferences.SystemGlobals;
 
@@ -85,7 +84,7 @@ public class DataSourceConnection extends DBConnection
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 	}
 

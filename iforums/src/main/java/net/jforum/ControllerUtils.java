@@ -55,8 +55,6 @@ import net.jforum.dao.UserDAO;
 import net.jforum.dao.UserSessionDAO;
 import net.jforum.entities.User;
 import net.jforum.entities.UserSession;
-import net.jforum.exceptions.DatabaseException;
-import net.jforum.exceptions.ForumException;
 import net.jforum.repository.SecurityRepository;
 import net.jforum.security.SecurityConstants;
 import net.jforum.sso.SSO;
@@ -115,7 +113,7 @@ public class ControllerUtils
 	 * @param userSession The UserSession instance associated to the user's session
 	 * @return <code>true</code> if auto login was enabled and the user was sucessfuly 
 	 * logged in.
-	 * @throws DatabaseException
+	 * @throws RuntimeException
 	 */
 	protected boolean checkAutoLogin(UserSession userSession)
 	{
@@ -160,7 +158,7 @@ public class ControllerUtils
 				}
 			}
 			catch (Exception e) {
-				throw new DatabaseException(e);
+				throw new RuntimeException(e);
 			}
 			
 			userSession.makeAnonymous();
@@ -250,7 +248,7 @@ public class ControllerUtils
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			throw new ForumException("Error while executing SSO actions: " + e);
+			throw new RuntimeException("Error while executing SSO actions: " + e);
 		}
 	}
 
@@ -295,7 +293,7 @@ public class ControllerUtils
 				sso = (SSO) Class.forName(SystemGlobals.getValue(ConfigKeys.SSO_IMPLEMENTATION)).newInstance();
 			}
 			catch (Exception e) {
-				throw new ForumException(e);
+				throw new RuntimeException(e);
 			}
 
 			// If SSO, then check if the session is valid

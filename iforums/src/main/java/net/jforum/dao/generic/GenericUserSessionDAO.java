@@ -49,7 +49,6 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 
 import net.jforum.entities.UserSession;
-import net.jforum.exceptions.DatabaseException;
 import net.jforum.util.DbUtils;
 import net.jforum.util.preferences.SystemGlobals;
 
@@ -83,7 +82,7 @@ public class GenericUserSessionDAO implements net.jforum.dao.UserSessionDAO
 			p.executeUpdate();
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -112,7 +111,7 @@ public class GenericUserSessionDAO implements net.jforum.dao.UserSessionDAO
 			p.executeUpdate();
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -145,7 +144,7 @@ public class GenericUserSessionDAO implements net.jforum.dao.UserSessionDAO
 			return (found ? returnUs : null);
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);

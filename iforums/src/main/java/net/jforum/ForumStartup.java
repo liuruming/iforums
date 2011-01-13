@@ -44,15 +44,13 @@ package net.jforum;
 
 import java.sql.Connection;
 
-import org.apache.log4j.Logger;
-
 import net.jforum.dao.CategoryDAO;
 import net.jforum.dao.ConfigDAO;
 import net.jforum.dao.DataAccessDriver;
 import net.jforum.dao.ForumDAO;
-import net.jforum.exceptions.DatabaseException;
-import net.jforum.exceptions.RepositoryStartupException;
 import net.jforum.repository.ForumRepository;
+
+import org.apache.log4j.Logger;
 
 /**
  * @author Rafael Steil
@@ -66,7 +64,7 @@ public class ForumStartup
 	/**
 	 * Starts the database implementation
 	 * @return <code>true</code> if everthing were ok
-	 * @throws DatabaseException if something were wrong
+	 * @throws RuntimeException if something were wrong
 	 */
 	public static boolean startDatabase()
 	{
@@ -80,7 +78,7 @@ public class ForumStartup
 			}
 		}
 		catch (Exception e) {
-			throw new DatabaseException("Error while trying to start the database: " + e, e);
+			throw new RuntimeException("Error while trying to start the database: " + e, e);
 		}
 		
 		return true;
@@ -101,7 +99,7 @@ public class ForumStartup
 		}
 		catch (Exception e) {
 			log.error("Unable to bootstrap JForum repository.", e);
-			throw new RepositoryStartupException("Error while trying to start ForumRepository: " + e, e);
+			throw new RuntimeException("Error while trying to start ForumRepository: " + e, e);
 		}
 	}
 }

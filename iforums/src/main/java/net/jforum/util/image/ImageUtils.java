@@ -58,8 +58,6 @@ import javax.imageio.ImageWriter;
 import javax.imageio.plugins.jpeg.JPEGImageWriteParam;
 import javax.imageio.stream.ImageOutputStream;
 
-import net.jforum.exceptions.ForumException;
-
 /**
  * Utilities methods for image manipulation. It does not support writting of GIF images, but it can
  * read from. GIF images will be saved as PNG.
@@ -89,7 +87,7 @@ public class ImageUtils
 			return resizeImage(ImageIO.read(new File(imgName)), type, maxWidth, maxHeight);
 		}
 		catch (IOException e) {
-			throw new ForumException(e);
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -146,7 +144,7 @@ public class ImageUtils
 			return ImageIO.write(image, type == IMAGE_JPEG ? "jpg" : "png", new File(toFileName));
 		}
 		catch (IOException e) {
-			throw new ForumException(e);
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -184,7 +182,7 @@ public class ImageUtils
 			ios.close();
 		}
 		catch (IOException e) {
-			throw new ForumException(e);
+			throw new RuntimeException(e);
 		}
 	}
 

@@ -49,7 +49,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.jforum.JForumExecutionContext;
-import net.jforum.exceptions.DatabaseException;
 import net.jforum.util.DbUtils;
 import net.jforum.util.GroupNode;
 import net.jforum.util.preferences.SystemGlobals;
@@ -86,7 +85,7 @@ public class GenericTreeGroupDAO implements net.jforum.dao.TreeGroupDAO
 			return list;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);

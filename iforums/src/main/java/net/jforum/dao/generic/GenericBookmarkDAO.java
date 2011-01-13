@@ -50,8 +50,6 @@ import java.util.List;
 import net.jforum.JForumExecutionContext;
 import net.jforum.entities.Bookmark;
 import net.jforum.entities.BookmarkType;
-import net.jforum.exceptions.DatabaseException;
-import net.jforum.exceptions.InvalidBookmarkTypeException;
 import net.jforum.util.DbUtils;
 import net.jforum.util.preferences.SystemGlobals;
 
@@ -78,7 +76,7 @@ public class GenericBookmarkDAO implements net.jforum.dao.BookmarkDAO
 			p.executeUpdate();
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -100,7 +98,7 @@ public class GenericBookmarkDAO implements net.jforum.dao.BookmarkDAO
 			p.executeUpdate();
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -119,7 +117,7 @@ public class GenericBookmarkDAO implements net.jforum.dao.BookmarkDAO
 			p.executeUpdate();
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -141,7 +139,7 @@ public class GenericBookmarkDAO implements net.jforum.dao.BookmarkDAO
 			return this.getUsers(userId);
 		}
 		else {
-			throw new InvalidBookmarkTypeException("The type " + relationType + " is not a valid bookmark type");
+			throw new RuntimeException("The type " + relationType + " is not a valid bookmark type");
 		}
 	}
 
@@ -167,7 +165,7 @@ public class GenericBookmarkDAO implements net.jforum.dao.BookmarkDAO
 			return l;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -196,7 +194,7 @@ public class GenericBookmarkDAO implements net.jforum.dao.BookmarkDAO
 			return b;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -226,7 +224,7 @@ public class GenericBookmarkDAO implements net.jforum.dao.BookmarkDAO
 			return b;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -257,7 +255,7 @@ public class GenericBookmarkDAO implements net.jforum.dao.BookmarkDAO
 			return l;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -288,7 +286,7 @@ public class GenericBookmarkDAO implements net.jforum.dao.BookmarkDAO
 			return l;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -323,7 +321,7 @@ public class GenericBookmarkDAO implements net.jforum.dao.BookmarkDAO
 			return l;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);

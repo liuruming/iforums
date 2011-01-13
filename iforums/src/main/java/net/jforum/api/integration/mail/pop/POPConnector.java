@@ -12,7 +12,6 @@ import javax.mail.Store;
 import javax.mail.Flags.Flag;
 
 import net.jforum.entities.MailIntegration;
-import net.jforum.exceptions.MailException;
 import net.jforum.util.preferences.ConfigKeys;
 import net.jforum.util.preferences.SystemGlobals;
 
@@ -49,7 +48,8 @@ public class POPConnector
 			return this.messages;
 		}
 		catch (Exception e) {
-			throw new MailException(e);
+			e.printStackTrace();
+			return null;
 		}
 	}
 	
@@ -79,7 +79,7 @@ public class POPConnector
 			this.folder.open(Folder.READ_WRITE);
 		}
 		catch (Exception e) {
-			throw new MailException(e);
+			e.printStackTrace();
 		}
 	}
 	
@@ -121,7 +121,7 @@ public class POPConnector
 			}
 		}
 		catch (Exception e) {
-			throw new MailException(e);
+			e.printStackTrace();
 		}
 	}
 }

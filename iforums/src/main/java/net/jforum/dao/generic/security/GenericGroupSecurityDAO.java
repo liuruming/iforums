@@ -55,7 +55,6 @@ import net.jforum.dao.GroupSecurityDAO;
 import net.jforum.dao.generic.AutoKeys;
 import net.jforum.entities.Group;
 import net.jforum.entities.User;
-import net.jforum.exceptions.DatabaseException;
 import net.jforum.repository.RolesRepository;
 import net.jforum.security.Role;
 import net.jforum.security.RoleCollection;
@@ -91,7 +90,7 @@ public class GenericGroupSecurityDAO extends AutoKeys implements GroupSecurityDA
 			}
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -125,7 +124,7 @@ public class GenericGroupSecurityDAO extends AutoKeys implements GroupSecurityDA
 			p.executeUpdate();
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -152,7 +151,7 @@ public class GenericGroupSecurityDAO extends AutoKeys implements GroupSecurityDA
 			p.executeUpdate();
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -211,7 +210,7 @@ public class GenericGroupSecurityDAO extends AutoKeys implements GroupSecurityDA
 			roles = SecurityCommon.loadRoles(rs);
 		}
 		catch (Exception e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -262,7 +261,7 @@ public class GenericGroupSecurityDAO extends AutoKeys implements GroupSecurityDA
 			}
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);

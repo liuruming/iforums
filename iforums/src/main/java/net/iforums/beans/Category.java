@@ -53,7 +53,6 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import net.jforum.SessionFacade;
-import net.jforum.exceptions.ForumOrderChangedException;
 import net.jforum.repository.SecurityRepository;
 import net.jforum.security.PermissionControl;
 import net.jforum.security.SecurityConstants;
@@ -188,7 +187,7 @@ public class Category  implements Serializable
 		Forum currentForum = this.getForum(forum.getId());
 		
 		if (forum.getOrder() != currentForum.getOrder()) {
-			throw new ForumOrderChangedException("Forum #" + forum.getId() + " cannot be reloaded, since its "
+			throw new RuntimeException("Forum #" + forum.getId() + " cannot be reloaded, since its "
 					+ "display order was changed. You must call Category#changeForumOrder(Forum)"
 					+ "first");
 		}

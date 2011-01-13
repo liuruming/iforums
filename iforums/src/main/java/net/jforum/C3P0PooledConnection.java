@@ -45,7 +45,6 @@ package net.jforum;
 import java.lang.reflect.Method;
 import java.sql.Connection;
 
-import net.jforum.exceptions.DatabaseException;
 import net.jforum.util.preferences.ConfigKeys;
 import net.jforum.util.preferences.SystemGlobals;
 
@@ -137,7 +136,7 @@ public class C3P0PooledConnection extends DBConnection
 			return this.ds.getConnection();
 		}
 		catch (Exception e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 	}
 

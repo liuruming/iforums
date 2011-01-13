@@ -50,10 +50,9 @@ import java.util.List;
 
 import net.jforum.JForumExecutionContext;
 import net.jforum.entities.Post;
-import net.jforum.exceptions.DatabaseException;
+import net.jforum.repository.ForumRepository;
 import net.jforum.util.DbUtils;
 import net.jforum.util.preferences.SystemGlobals;
-import net.jforum.repository.ForumRepository;
 
 import org.apache.log4j.Logger;
 
@@ -97,7 +96,7 @@ public class SqlServerPostDAO extends net.jforum.dao.generic.GenericPostDAO
 		}
 		catch (SQLException e) {
 			logger.error(sqlStmnt, e);
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -137,7 +136,7 @@ public class SqlServerPostDAO extends net.jforum.dao.generic.GenericPostDAO
 		}
 		catch (SQLException e) {
 			logger.error(sqlStmnt, e);
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -175,7 +174,7 @@ public class SqlServerPostDAO extends net.jforum.dao.generic.GenericPostDAO
 			return l;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);

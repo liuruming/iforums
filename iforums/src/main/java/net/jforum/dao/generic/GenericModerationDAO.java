@@ -57,7 +57,6 @@ import net.jforum.dao.ModerationDAO;
 import net.jforum.entities.ModerationPendingInfo;
 import net.jforum.entities.Post;
 import net.jforum.entities.TopicModerationInfo;
-import net.jforum.exceptions.DatabaseException;
 import net.jforum.util.DbUtils;
 import net.jforum.util.preferences.SystemGlobals;
 
@@ -82,7 +81,7 @@ public class GenericModerationDAO implements ModerationDAO
             p.executeUpdate();
         }
         catch (SQLException e) {
-            throw new DatabaseException(e);
+            throw new RuntimeException(e);
         }
         finally {
             DbUtils.close(p);
@@ -137,7 +136,7 @@ public class GenericModerationDAO implements ModerationDAO
 			return m;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -207,7 +206,7 @@ public class GenericModerationDAO implements ModerationDAO
 			return l;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
             DbUtils.close(rs, s);

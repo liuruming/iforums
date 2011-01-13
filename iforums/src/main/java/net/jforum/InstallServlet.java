@@ -51,13 +51,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import net.jforum.context.ForumContext;
 import net.jforum.context.JForumContext;
 import net.jforum.context.RequestContext;
 import net.jforum.context.ResponseContext;
-import net.jforum.context.ForumContext;
 import net.jforum.context.web.WebRequestContext;
 import net.jforum.context.web.WebResponseContext;
-import net.jforum.exceptions.ExceptionWriter;
 import net.jforum.repository.ModulesRepository;
 import net.jforum.util.I18n;
 import net.jforum.util.preferences.ConfigKeys;
@@ -160,11 +159,11 @@ public class InstallServlet extends JForumBaseServlet
 				catch (Exception e) {
 					response.setContentType("text/html; charset=" + encoding);
 					if (out != null) {
-						new ExceptionWriter().handleExceptionData(e, out, request);
+//						new ExceptionWriter().handleExceptionData(e, out, request);
 					}
 					else {
-						new ExceptionWriter().handleExceptionData(e, 
-							new BufferedWriter(new OutputStreamWriter(response.getOutputStream())), request);
+//						new ExceptionWriter().handleExceptionData(e, 
+//							new BufferedWriter(new OutputStreamWriter(response.getOutputStream())), request);
 					}
 				}
 			}

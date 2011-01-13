@@ -64,7 +64,6 @@ import net.jforum.entities.LastPostInfo;
 import net.jforum.entities.ModeratorInfo;
 import net.jforum.entities.Topic;
 import net.jforum.entities.User;
-import net.jforum.exceptions.DatabaseException;
 import net.jforum.util.DbUtils;
 import net.jforum.util.preferences.ConfigKeys;
 import net.jforum.util.preferences.SystemGlobals;
@@ -99,7 +98,7 @@ public class GenericForumDAO extends AutoKeys implements net.jforum.dao.ForumDAO
 			return f;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -140,7 +139,7 @@ public class GenericForumDAO extends AutoKeys implements net.jforum.dao.ForumDAO
 			return 0;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -167,7 +166,7 @@ public class GenericForumDAO extends AutoKeys implements net.jforum.dao.ForumDAO
 			return l;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -215,7 +214,7 @@ public class GenericForumDAO extends AutoKeys implements net.jforum.dao.ForumDAO
 			return this.selectById(forum.getId());
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -238,7 +237,7 @@ public class GenericForumDAO extends AutoKeys implements net.jforum.dao.ForumDAO
 			groupSecurity.deleteForumRoles(forumId);
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -263,7 +262,7 @@ public class GenericForumDAO extends AutoKeys implements net.jforum.dao.ForumDAO
 			p.executeUpdate();
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -307,7 +306,7 @@ public class GenericForumDAO extends AutoKeys implements net.jforum.dao.ForumDAO
 			return forumId;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, pOrder);
@@ -330,7 +329,7 @@ public class GenericForumDAO extends AutoKeys implements net.jforum.dao.ForumDAO
 			p.executeUpdate();
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -351,7 +350,7 @@ public class GenericForumDAO extends AutoKeys implements net.jforum.dao.ForumDAO
 			p.executeUpdate();
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -379,7 +378,7 @@ public class GenericForumDAO extends AutoKeys implements net.jforum.dao.ForumDAO
 			}
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -466,7 +465,7 @@ public class GenericForumDAO extends AutoKeys implements net.jforum.dao.ForumDAO
 			return (tryFix ? this.getLastPostInfo(forumId, false) : lpi);
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -509,7 +508,7 @@ public class GenericForumDAO extends AutoKeys implements net.jforum.dao.ForumDAO
 			return l;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -535,7 +534,7 @@ public class GenericForumDAO extends AutoKeys implements net.jforum.dao.ForumDAO
 			return 0;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -563,7 +562,7 @@ public class GenericForumDAO extends AutoKeys implements net.jforum.dao.ForumDAO
 			return total;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -592,7 +591,7 @@ public class GenericForumDAO extends AutoKeys implements net.jforum.dao.ForumDAO
 			return id;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -638,7 +637,7 @@ public class GenericForumDAO extends AutoKeys implements net.jforum.dao.ForumDAO
 			this.setLastPost(toForumId, this.getMaxPostId(toForumId));
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -673,7 +672,7 @@ public class GenericForumDAO extends AutoKeys implements net.jforum.dao.ForumDAO
 			return l;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -694,7 +693,7 @@ public class GenericForumDAO extends AutoKeys implements net.jforum.dao.ForumDAO
 			p.executeUpdate();
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -791,7 +790,7 @@ public class GenericForumDAO extends AutoKeys implements net.jforum.dao.ForumDAO
 			return fs;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, s);
@@ -844,7 +843,7 @@ public class GenericForumDAO extends AutoKeys implements net.jforum.dao.ForumDAO
 			return users;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -865,7 +864,7 @@ public class GenericForumDAO extends AutoKeys implements net.jforum.dao.ForumDAO
 			p.executeUpdate();
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -889,7 +888,7 @@ public class GenericForumDAO extends AutoKeys implements net.jforum.dao.ForumDAO
 			return rs.next();
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, stmt);
@@ -908,7 +907,7 @@ public class GenericForumDAO extends AutoKeys implements net.jforum.dao.ForumDAO
 			p.executeUpdate();
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -932,7 +931,7 @@ public class GenericForumDAO extends AutoKeys implements net.jforum.dao.ForumDAO
 			p.executeUpdate();
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);

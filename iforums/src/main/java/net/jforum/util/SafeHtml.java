@@ -47,7 +47,6 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.Vector;
 
-import net.jforum.exceptions.ForumException;
 import net.jforum.util.preferences.ConfigKeys;
 import net.jforum.util.preferences.SystemGlobals;
 import net.jforum.view.forum.common.ViewCommon;
@@ -126,7 +125,7 @@ public class SafeHtml
 			}
 		}
 		catch (Exception e) {
-			throw new ForumException("Problems while parsing HTML: " + e, e);
+			throw new RuntimeException("Problems while parsing HTML: " + e, e);
 		}
 		
 		return sb.toString();
@@ -184,7 +183,7 @@ public class SafeHtml
 			}
 		}
 		catch (Exception e) {
-			throw new ForumException("Error while parsing HTML: " + e, e);
+			throw new RuntimeException("Error while parsing HTML: " + e, e);
 		}
 		
 		return sb.toString();

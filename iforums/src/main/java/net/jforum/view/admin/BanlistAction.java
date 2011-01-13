@@ -44,14 +44,13 @@ package net.jforum.view.admin;
 
 import java.util.List;
 
-import org.apache.commons.lang.StringUtils;
-
 import net.jforum.dao.BanlistDAO;
 import net.jforum.dao.DataAccessDriver;
 import net.jforum.entities.Banlist;
-import net.jforum.exceptions.ForumException;
 import net.jforum.repository.BanlistRepository;
 import net.jforum.util.preferences.TemplateKeys;
+
+import org.apache.commons.lang.StringUtils;
 
 /**
  * @author Rafael Steil
@@ -82,7 +81,7 @@ public class BanlistAction extends AdminCommand
 				b.setIp(value);
 			}
 			else {
-				throw new ForumException("Unknown banlist type");
+				throw new RuntimeException("Unknown banlist type");
 			}
 			
 			BanlistDAO dao = DataAccessDriver.getInstance().newBanlistDAO();

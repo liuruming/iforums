@@ -51,7 +51,6 @@ import java.util.Map;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
-import net.jforum.exceptions.ForumException;
 import net.jforum.util.preferences.ConfigKeys;
 import net.jforum.util.preferences.SystemGlobals;
 
@@ -102,7 +101,7 @@ public class BBCodeHandler extends DefaultHandler implements Serializable
 		}
 		catch (Exception e)
 		{
-			throw new ForumException(e);
+			throw new RuntimeException(e);
 		}
 	}
 

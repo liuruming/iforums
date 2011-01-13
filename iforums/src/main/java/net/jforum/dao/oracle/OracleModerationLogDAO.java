@@ -50,7 +50,6 @@ import java.util.List;
 
 import net.jforum.dao.generic.GenericModerationLogDAO;
 import net.jforum.entities.ModerationLog;
-import net.jforum.exceptions.DatabaseException;
 import net.jforum.util.DbUtils;
 import net.jforum.util.preferences.SystemGlobals;
 
@@ -94,7 +93,7 @@ public class OracleModerationLogDAO extends GenericModerationLogDAO
 				log.getId(), log.getOriginalMessage());
 		}
 		catch (Exception e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);

@@ -5,9 +5,6 @@ package net.jforum.api.rest;
 
 import java.util.List;
 
-import freemarker.template.SimpleHash;
-import freemarker.template.Template;
-
 import net.jforum.Command;
 import net.jforum.JForumExecutionContext;
 import net.jforum.context.RequestContext;
@@ -15,11 +12,12 @@ import net.jforum.context.ResponseContext;
 import net.jforum.dao.DataAccessDriver;
 import net.jforum.dao.UserDAO;
 import net.jforum.entities.User;
-import net.jforum.exceptions.APIException;
 import net.jforum.util.I18n;
 import net.jforum.util.preferences.ConfigKeys;
 import net.jforum.util.preferences.SystemGlobals;
 import net.jforum.util.preferences.TemplateKeys;
+import freemarker.template.SimpleHash;
+import freemarker.template.Template;
 
 /**
  * @author Rafael Steil
@@ -61,21 +59,21 @@ public class UserREST extends Command
 			String password = this.requiredRequestParameter("password");
 			
 			if (username.length() > SystemGlobals.getIntValue(ConfigKeys.USERNAME_MAX_LENGTH)) {
-				throw new APIException(I18n.getMessage("User.usernameTooBig"));
+				throw new Exception(I18n.getMessage("User.usernameTooBig"));
 			}
 			
 			if (username.indexOf('<') > -1 || username.indexOf('>') > -1) {
-				throw new APIException(I18n.getMessage("User.usernameInvalidChars"));
+				throw new Exception(I18n.getMessage("User.usernameInvalidChars"));
 			}
 			
 			UserDAO dao = DataAccessDriver.getInstance().newUserDAO();
 
 			if (dao.isUsernameRegistered(username)) {
-				throw new APIException(I18n.getMessage("UsernameExists"));
+				throw new Exception(I18n.getMessage("UsernameExists"));
 			}
 			
 			if (dao.findByEmail(email) != null) {
-				throw new APIException(I18n.getMessage("User.emailExists", new Object[] { email }));
+				throw new Exception(I18n.getMessage("User.emailExists", new Object[] { email }));
 			}
 			
 			// Ok, time to insert the user
@@ -99,14 +97,14 @@ public class UserREST extends Command
 	 * Retrieves a parameter from the request and ensures it exists
 	 * @param paramName the parameter name to retrieve its value
 	 * @return the parameter value
-	 * @throws APIException if the parameter is not found or its value is empty
+	 * @throws Exception if the parameter is not found or its value is empty
 	 */
 	private String requiredRequestParameter(String paramName)
 	{
 		String value = this.request.getParameter(paramName);
 		
 		if (value == null || value.trim().length() == 0) {
-			throw new APIException("The parameter '" + paramName + "' was not found");
+			throw new RuntimeException("The parameter '" + paramName + "' was not found");
 		}
 		
 		return value;
@@ -114,7 +112,7 @@ public class UserREST extends Command
 
 	/**
 	 * Tries to authenticate the user accessing the API
-	 * @throws APIException if the authentication fails
+	 * @throws Exception if the authentication fails
 	 */
 	private void authenticate()
 	{
@@ -123,7 +121,7 @@ public class UserREST extends Command
 		RESTAuthentication auth = new RESTAuthentication();
 		
 		if (!auth.validateApiKey(apiKey)) {
-			throw new APIException("The provided API authentication information is not valid");
+			throw new RuntimeException("The provided API authentication information is not valid");
 		}
 	}
 	

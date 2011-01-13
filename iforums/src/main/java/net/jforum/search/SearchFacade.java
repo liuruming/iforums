@@ -45,7 +45,6 @@ package net.jforum.search;
 import java.util.ArrayList;
 
 import net.jforum.entities.Post;
-import net.jforum.exceptions.SearchInstantiationException;
 import net.jforum.util.preferences.ConfigKeys;
 import net.jforum.util.preferences.SystemGlobals;
 
@@ -78,7 +77,7 @@ public class SearchFacade
 			}
 			catch (Exception e) {
 				logger.warn(e.toString(), e);
-				throw new SearchInstantiationException("Error while tring to start the search manager: " + e);
+				throw new RuntimeException("Error while tring to start the search manager: " + e);
 			}
 			
 			searchManager.init();

@@ -45,7 +45,6 @@ package net.jforum.util.rss;
 import java.io.StringWriter;
 
 import net.jforum.JForumExecutionContext;
-import net.jforum.exceptions.ForumException;
 import net.jforum.util.preferences.ConfigKeys;
 import net.jforum.util.preferences.SystemGlobals;
 import freemarker.template.SimpleHash;
@@ -82,7 +81,7 @@ public class GenericRSS implements RSSAware
 		}
 		catch (Exception e)
 		{
-			throw new ForumException(e);
+			throw new RuntimeException(e);
 		}
 	}
 }

@@ -64,9 +64,6 @@ import net.jforum.entities.Group;
 import net.jforum.entities.Post;
 import net.jforum.entities.QuotaLimit;
 import net.jforum.entities.User;
-import net.jforum.exceptions.AttachmentException;
-import net.jforum.exceptions.AttachmentSizeTooBigException;
-import net.jforum.exceptions.BadExtensionException;
 import net.jforum.repository.SecurityRepository;
 import net.jforum.security.SecurityConstants;
 import net.jforum.util.I18n;
@@ -150,14 +147,14 @@ public class AttachmentCommon
 				|| (containsExtension && extensions.get(uploadUtils.getExtension()).equals(Boolean.TRUE));
 
 			if (!isAllowed) { 
-				throw new BadExtensionException(I18n.getMessage("Attachments.badExtension", 
+				throw new RuntimeException(I18n.getMessage("Attachments.badExtension", 
 					new String[] { uploadUtils.getExtension() }));
 			}
 
 			// Check comment length:
 			String comment = this.request.getParameter("comment_" + i);
 			if (comment.length() > 254) {
-				throw new AttachmentException("Comment too long.");
+				throw new RuntimeException("Comment too long.");
 			}
 			
 			Attachment a = new Attachment();
@@ -193,7 +190,7 @@ public class AttachmentCommon
 		QuotaLimit ql = this.getQuotaLimit(userId);
 		if (ql != null) {
 			if (ql.exceedsQuota(totalSize)) {
-				throw new AttachmentSizeTooBigException(I18n.getMessage("Attachments.tooBig", 
+				throw new RuntimeException(I18n.getMessage("Attachments.tooBig", 
 					new Integer[] { new Integer(ql.getSizeInBytes() / 1024), 
 						new Integer((int)totalSize / 1024) }));
 			}

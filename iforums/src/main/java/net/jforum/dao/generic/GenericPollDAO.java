@@ -54,7 +54,6 @@ import net.jforum.JForumExecutionContext;
 import net.jforum.dao.PollDAO;
 import net.jforum.entities.Poll;
 import net.jforum.entities.PollOption;
-import net.jforum.exceptions.DatabaseException;
 import net.jforum.util.DbUtils;
 import net.jforum.util.preferences.SystemGlobals;
 
@@ -89,7 +88,7 @@ public class GenericPollDAO extends AutoKeys implements PollDAO
 			poll.setId(pollId);
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -128,7 +127,7 @@ public class GenericPollDAO extends AutoKeys implements PollDAO
 			}
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -166,7 +165,7 @@ public class GenericPollDAO extends AutoKeys implements PollDAO
 			return poll;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(prs, p);
@@ -221,7 +220,7 @@ public class GenericPollDAO extends AutoKeys implements PollDAO
 			v.executeUpdate();
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -246,7 +245,7 @@ public class GenericPollDAO extends AutoKeys implements PollDAO
 			return rs.next();
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -277,7 +276,7 @@ public class GenericPollDAO extends AutoKeys implements PollDAO
 			return rs.next();
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -310,7 +309,7 @@ public class GenericPollDAO extends AutoKeys implements PollDAO
 			}
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -337,7 +336,7 @@ public class GenericPollDAO extends AutoKeys implements PollDAO
 			poll.executeUpdate();
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(poll);
@@ -354,7 +353,7 @@ public class GenericPollDAO extends AutoKeys implements PollDAO
 			poll.executeUpdate();
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(poll);
@@ -372,7 +371,7 @@ public class GenericPollDAO extends AutoKeys implements PollDAO
 			poll.executeUpdate();
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(poll);
@@ -438,7 +437,7 @@ public class GenericPollDAO extends AutoKeys implements PollDAO
 			}
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 	}
 

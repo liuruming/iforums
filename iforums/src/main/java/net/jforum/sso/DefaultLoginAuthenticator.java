@@ -50,7 +50,6 @@ import java.util.Map;
 import net.jforum.JForumExecutionContext;
 import net.jforum.dao.UserDAO;
 import net.jforum.entities.User;
-import net.jforum.exceptions.ForumException;
 import net.jforum.util.DbUtils;
 import net.jforum.util.MD5;
 import net.jforum.util.preferences.SystemGlobals;
@@ -98,7 +97,7 @@ public class DefaultLoginAuthenticator implements LoginAuthenticator
 		}
 		catch (SQLException e)
 		{
-			throw new ForumException(e);
+			throw new RuntimeException(e);
 		}
 		finally
 		{

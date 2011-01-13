@@ -48,7 +48,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 import net.jforum.JForumExecutionContext;
-import net.jforum.exceptions.DatabaseException;
 import net.jforum.util.DbUtils;
 import net.jforum.util.preferences.SystemGlobals;
 
@@ -100,7 +99,7 @@ public class SqlServerUserDAO extends net.jforum.dao.generic.GenericUserDAO
 		}
 		catch (SQLException e) {
 			logger.error(sqlStmnt, e);
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -131,7 +130,7 @@ public class SqlServerUserDAO extends net.jforum.dao.generic.GenericUserDAO
 			return this.processSelectAll(rs);
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);

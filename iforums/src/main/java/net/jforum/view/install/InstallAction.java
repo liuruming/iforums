@@ -74,8 +74,6 @@ import net.jforum.entities.Post;
 import net.jforum.entities.Topic;
 import net.jforum.entities.User;
 import net.jforum.entities.UserSession;
-import net.jforum.exceptions.DatabaseException;
-import net.jforum.exceptions.ForumException;
 import net.jforum.util.DbUtils;
 import net.jforum.util.FileMonitor;
 import net.jforum.util.I18n;
@@ -251,7 +249,7 @@ public class InstallAction extends Command
 			conn.setAutoCommit(false);
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 	}
 	
@@ -403,7 +401,7 @@ public class InstallAction extends Command
         }
         catch (Exception e)
         {
-            throw new ForumException(e);
+            throw new RuntimeException(e);
         }
     }
 	
@@ -458,7 +456,7 @@ public class InstallAction extends Command
 		}
 		catch (Exception e)
 		{
-			throw new ForumException(e);
+			throw new RuntimeException(e);
 		}
 	}
 	
@@ -584,7 +582,7 @@ public class InstallAction extends Command
 			p.load(fis);
         }
         catch (IOException e) {
-            throw new ForumException(e);
+            throw new RuntimeException(e);
         }
         finally {
         	if (fis != null) {

@@ -54,7 +54,6 @@ import net.jforum.JForumExecutionContext;
 import net.jforum.dao.ModerationLogDAO;
 import net.jforum.entities.ModerationLog;
 import net.jforum.entities.User;
-import net.jforum.exceptions.DatabaseException;
 import net.jforum.util.DbUtils;
 import net.jforum.util.preferences.SystemGlobals;
 
@@ -82,7 +81,7 @@ public class GenericModerationLogDAO extends AutoKeys implements ModerationLogDA
 			log.setId(logId);
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);
@@ -112,7 +111,7 @@ public class GenericModerationLogDAO extends AutoKeys implements ModerationLogDA
 			return l;
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);
@@ -174,7 +173,7 @@ public class GenericModerationLogDAO extends AutoKeys implements ModerationLogDA
 			}
 		}
 		catch (SQLException e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(rs, p);

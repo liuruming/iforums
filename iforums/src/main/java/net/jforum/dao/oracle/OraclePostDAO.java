@@ -50,7 +50,6 @@ import java.util.List;
 import net.jforum.JForumExecutionContext;
 import net.jforum.dao.generic.GenericPostDAO;
 import net.jforum.entities.Post;
-import net.jforum.exceptions.DatabaseException;
 import net.jforum.util.DbUtils;
 import net.jforum.util.preferences.SystemGlobals;
 
@@ -102,7 +101,7 @@ public class OraclePostDAO extends GenericPostDAO
 				post.getId(), post.getText());
 		}
 		catch (Exception e) {
-			throw new DatabaseException(e);
+			throw new RuntimeException(e);
 		}
 		finally {
 			DbUtils.close(p);

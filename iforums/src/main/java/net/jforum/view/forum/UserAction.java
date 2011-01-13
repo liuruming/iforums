@@ -63,7 +63,6 @@ import net.jforum.dao.UserSessionDAO;
 import net.jforum.entities.Bookmark;
 import net.jforum.entities.User;
 import net.jforum.entities.UserSession;
-import net.jforum.exceptions.ForumException;
 import net.jforum.repository.ForumRepository;
 import net.jforum.repository.RankingRepository;
 import net.jforum.repository.SecurityRepository;
@@ -565,7 +564,7 @@ public class UserAction extends Command
 				decoded = new String(new sun.misc.BASE64Decoder().decodeBuffer(auth.substring(6)));
 			}
 			catch (IOException e) {
-				throw new ForumException(e);
+				throw new RuntimeException(e);
 			}
 			
 			int p = decoded.indexOf(':');

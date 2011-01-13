@@ -5,11 +5,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Resource;
+
 import net.sf.cglib.beans.BeanMap;
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.orm.ibatis.SqlMapClientTemplate;
 import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
+
+import com.ibatis.sqlmap.client.SqlMapClient;
 
 /**
  * 如果要添加新的方法，切忌catch异常，并返回一个缺省值
@@ -19,7 +23,12 @@ import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
 
 @SuppressWarnings("unchecked")
 public class BaseORMDao<T> extends SqlMapClientDaoSupport {
-
+	
+	@Resource
+	public void setSqlMapClientForAutowire(SqlMapClient sqlMapClient) {
+		super.setSqlMapClient(sqlMapClient);
+	}
+	
 	private SqlMapClientTemplate sqlMapClientTemplate = this.getSqlMapClientTemplate();
 	private String namespace;
 
