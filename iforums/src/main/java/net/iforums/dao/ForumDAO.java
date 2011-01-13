@@ -60,22 +60,6 @@ import net.iforums.beans.LastPostInfo;
  */
 public interface ForumDAO extends BaseDao<Forum>
 {
-	/**
-	 * Gets a specific <code>Forum</code>.
-	 * 
-	 * @param forumId The ForumID to search
-	 * @return <code>Forum</code>object containing all the information
-	 * @see #selectAll
-	 */
-	public Forum selectById(int forumId) ;
-	
-	/**
-	 * Selects all forums data from the database.
-	 * 
-	 * @return ArrayList with the forums found 
-	 * @see #selectById
-	 */
-	public List selectAll() ;
 	
 	/**
 	 * Sets the forum's order one level up.
@@ -101,28 +85,6 @@ public interface ForumDAO extends BaseDao<Forum>
 	 * @return The changed forum, with the new order set
 	 */
 	public Forum setOrderDown(Forum forum, Forum related) ;
-	
-	/**
-	 * Delete a forum.
-	 * 
-	 * @param forumId The forum ID to delete
-	 */
-	public void delete(int forumId) ;
-		
-	/**
-	 * Updates a Forum.
-	 * 
-	 * @param forum Reference to a <code>Forum</code> object to update
-	 */
-	public void update(Forum forum) ;
-	
-	/**
-	 * Adds a new Forum.
-	 * 
-	 * @param forum Reference to a valid and configured <code>Forum</code> object
-	 * @return The forum's ID
-	 */
-	public int addNew(Forum forum) ;
 	
 	/**
 	 * Sets the last topic of a forum

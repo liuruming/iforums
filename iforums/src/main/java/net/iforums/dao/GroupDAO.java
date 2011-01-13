@@ -58,23 +58,7 @@ import net.iforums.beans.Group;
  */
 public interface GroupDAO extends BaseDao<Group>
 {
-	/**
-	 * Gets a specific <code>Group</code>.
-	 * 
-	 * @param groupId The Group ID to search
-	 * @return <code>Group</code>object containing all the information
-	 * @see #selectAll
-	 */
-	public Group selectById(int groupId) ;
-	
-	/**
-	 * Get all groups
-	 * 
-	 * @return <code>ArrayList</code> containing the groups. Each entry
-	 * is an <code>Group</code> object.
-	 */
-	public List selectAll() ;
-	
+
 	/**
 	 * Checks if is possible to delete a specific group.
 	 * 
@@ -83,29 +67,6 @@ public interface GroupDAO extends BaseDao<Group>
 	 * @see #delete(int)
 	 */
 	public boolean canDelete(int groupId) ;
-	
-	/**
-	 * Deletes a group.
-	 * 
-	 * @param groupId The group ID to delete
-	 * @see #canDelete(int)
-	 */
-	public void delete(int groupId) ;
-	
-	
-	/**
-	 * Updates a group.
-	 * 
-	 * @param group Reference to a <code>Group</code> object to update
-	 */
-	public void update(Group group) ;
-	
-	/**
-	 * Adds a new group.
-	 * 
-	 * @param group Reference to a valid and configured <code>Group</code> object
-	 */
-	public void addNew(Group group) ;
 
 	/**
 	 * Select the users associated to some group; 
