@@ -45,7 +45,7 @@ package net.iforums.beans;
 import java.io.Serializable;
 import java.util.Date;
 
-import net.jforum.view.forum.common.ViewCommon;
+import net.iforums.view.forum.common.ViewCommon;
 
 /**
  * Represents every message post in the system.

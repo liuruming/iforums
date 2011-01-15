@@ -44,6 +44,8 @@ package net.iforums.security;
 
 import java.io.Serializable;
 
+import net.iforums.dao.GroupSecurityDao;
+
 /**
  * Methods and properties for all classes that need make use of security actions.
  * 

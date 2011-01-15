@@ -46,6 +46,7 @@ import java.sql.Connection;
 
 import net.iforums.dao.CategoryDao;
 import net.iforums.dao.ConfigDao;
+import net.iforums.dao.DataAccessDriver;
 import net.iforums.dao.ForumDao;
 import net.iforums.repository.ForumRepository;
 

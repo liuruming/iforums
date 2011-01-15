@@ -43,9 +43,8 @@
 package net.iforums.sso;
 
 import net.iforums.beans.UserSession;
-import net.jforum.context.RequestContext;
-import net.jforum.util.preferences.ConfigKeys;
-import net.jforum.util.preferences.SystemGlobals;
+import net.iforums.utils.preferences.ConfigKeys;
+import net.iforums.utils.preferences.SystemGlobals;
 
 /**
  * Simple SSO authenticator. This class will try to validate an user by simple checking

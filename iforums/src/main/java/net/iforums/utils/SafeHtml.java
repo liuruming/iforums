@@ -47,9 +47,9 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.Vector;
 
-import net.jforum.util.preferences.ConfigKeys;
-import net.jforum.util.preferences.SystemGlobals;
-import net.jforum.view.forum.common.ViewCommon;
+import net.iforums.utils.preferences.ConfigKeys;
+import net.iforums.utils.preferences.SystemGlobals;
+import net.iforums.view.forum.common.ViewCommon;
 
 import org.htmlparser.Attribute;
 import org.htmlparser.Node;

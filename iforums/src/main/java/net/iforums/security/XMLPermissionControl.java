@@ -56,8 +56,8 @@ import javax.xml.parsers.SAXParserFactory;
 
 import net.iforums.utils.DbUtils;
 import net.iforums.utils.FormSelectedData;
+import net.iforums.utils.preferences.SystemGlobals;
 import net.jforum.JForumExecutionContext;
-import net.jforum.util.preferences.SystemGlobals;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;

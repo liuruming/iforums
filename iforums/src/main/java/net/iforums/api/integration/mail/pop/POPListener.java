@@ -10,7 +10,6 @@ import javax.annotation.Resource;
 
 import net.iforums.beans.MailIntegration;
 import net.iforums.dao.MailIntegrationDao;
-import net.jforum.dao.DataAccessDriver;
 
 import org.apache.log4j.Logger;
 import org.quartz.Job;

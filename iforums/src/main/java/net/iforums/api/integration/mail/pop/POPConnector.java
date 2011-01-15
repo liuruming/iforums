@@ -12,8 +12,8 @@ import javax.mail.Store;
 import javax.mail.Flags.Flag;
 
 import net.iforums.beans.MailIntegration;
-import net.jforum.util.preferences.ConfigKeys;
-import net.jforum.util.preferences.SystemGlobals;
+import net.iforums.utils.preferences.ConfigKeys;
+import net.iforums.utils.preferences.SystemGlobals;
 
 /**
  * Handles the connection to the POP server.

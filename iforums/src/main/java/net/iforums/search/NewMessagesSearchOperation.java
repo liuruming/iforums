@@ -47,10 +47,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.iforums.beans.Topic;
-import net.jforum.dao.DataAccessDriver;
+import net.iforums.dao.DataAccessDriver;
+import net.iforums.utils.preferences.TemplateKeys;
+import net.iforums.view.forum.common.TopicsCommon;
 import net.jforum.dao.TopicDAO;
-import net.jforum.util.preferences.TemplateKeys;
-import net.jforum.view.forum.common.TopicsCommon;
 
 /**
  * @author Rafael Steil

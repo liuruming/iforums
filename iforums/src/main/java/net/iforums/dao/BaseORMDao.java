@@ -13,9 +13,9 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import net.iforums.JForumExecutionContext;
-import net.jforum.util.DbUtils;
-import net.jforum.util.preferences.ConfigKeys;
-import net.jforum.util.preferences.SystemGlobals;
+import net.iforums.utils.DbUtils;
+import net.iforums.utils.preferences.ConfigKeys;
+import net.iforums.utils.preferences.SystemGlobals;
 import net.sf.cglib.beans.BeanMap;
 
 import org.springframework.dao.DataAccessException;

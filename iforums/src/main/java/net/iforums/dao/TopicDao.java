@@ -47,8 +47,7 @@ import java.util.List;
 import java.util.Map;
 
 import net.iforums.beans.Topic;
-import net.jforum.search.SearchArgs;
-import net.jforum.search.SearchResult;
+import net.iforums.search.SearchArgs;
 
 /**
 * Model interface for {@link net.jforum.entities.Topic}.

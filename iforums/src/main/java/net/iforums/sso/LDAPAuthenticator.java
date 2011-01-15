@@ -54,8 +54,8 @@ import javax.naming.directory.InitialDirContext;
 
 import net.iforums.beans.User;
 import net.iforums.dao.UserDao;
-import net.jforum.util.preferences.ConfigKeys;
-import net.jforum.util.preferences.SystemGlobals;
+import net.iforums.utils.preferences.ConfigKeys;
+import net.iforums.utils.preferences.SystemGlobals;
 
 /**
  * Authenticate users against a LDAP server. 

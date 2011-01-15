@@ -48,12 +48,12 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
-import net.jforum.dao.DataAccessDriver;
+import net.iforums.dao.DataAccessDriver;
+import net.iforums.utils.mail.Spammer;
+import net.iforums.utils.preferences.ConfigKeys;
+import net.iforums.utils.preferences.SystemGlobals;
+import net.iforums.view.forum.common.ViewCommon;
 import net.jforum.dao.SummaryDAO;
-import net.jforum.util.mail.Spammer;
-import net.jforum.util.preferences.ConfigKeys;
-import net.jforum.util.preferences.SystemGlobals;
-import net.jforum.view.forum.common.ViewCommon;
 
 import org.apache.log4j.Logger;
 

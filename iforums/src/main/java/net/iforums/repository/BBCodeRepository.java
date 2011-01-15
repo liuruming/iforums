@@ -44,8 +44,8 @@ package net.iforums.repository;
 
 import net.iforums.cache.CacheEngine;
 import net.iforums.cache.Cacheable;
-import net.jforum.util.bbcode.BBCode;
-import net.jforum.util.bbcode.BBCodeHandler;
+import net.iforums.utils.bbcode.BBCode;
+import net.iforums.utils.bbcode.BBCodeHandler;
 
 /**
  * @author Rafael Steil

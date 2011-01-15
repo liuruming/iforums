@@ -45,7 +45,7 @@ package net.iforums.beans;
 import java.io.Serializable;
 import java.util.List;
 
-import net.jforum.repository.ForumRepository;
+import net.iforums.repository.ForumRepository;
 
 /**
  * Represents a specific forum.

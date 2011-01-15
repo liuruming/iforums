@@ -51,8 +51,8 @@ import java.sql.DatabaseMetaData;
 import java.util.Properties;
 
 import net.iforums.ConfigLoader;
-import net.jforum.util.preferences.ConfigKeys;
-import net.jforum.util.preferences.SystemGlobals;
+import net.iforums.utils.preferences.ConfigKeys;
+import net.iforums.utils.preferences.SystemGlobals;
 
 import org.apache.log4j.Logger;
 

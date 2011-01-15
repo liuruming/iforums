@@ -44,8 +44,8 @@ package net.iforums.repository;
 
 import net.iforums.cache.CacheEngine;
 import net.iforums.cache.Cacheable;
-import net.jforum.dao.generic.security.SecurityCommon;
-import net.jforum.security.RoleCollection;
+import net.iforums.dao.generic.security.SecurityCommon;
+import net.iforums.security.RoleCollection;
 
 /**
  * @author Rafael Steil

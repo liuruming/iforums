@@ -51,7 +51,7 @@ import net.iforums.beans.Banlist;
 import net.iforums.cache.CacheEngine;
 import net.iforums.cache.Cacheable;
 import net.iforums.dao.BanlistDao;
-import net.jforum.dao.DataAccessDriver;
+import net.iforums.dao.DataAccessDriver;
 
 /**
  * @author Rafael Steil

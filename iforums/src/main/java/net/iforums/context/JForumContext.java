@@ -42,7 +42,7 @@
  */
 package net.iforums.context;
 
-import net.jforum.util.preferences.ConfigKeys;
+import net.iforums.utils.preferences.ConfigKeys;
 
 /**
  * @author Marc Wick

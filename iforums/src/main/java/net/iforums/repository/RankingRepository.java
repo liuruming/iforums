@@ -48,8 +48,8 @@ import java.util.List;
 import net.iforums.beans.Ranking;
 import net.iforums.cache.CacheEngine;
 import net.iforums.cache.Cacheable;
+import net.iforums.dao.DataAccessDriver;
 import net.iforums.dao.RankingDao;
-import net.jforum.dao.DataAccessDriver;
 
 /**
  * @author Rafael Steil

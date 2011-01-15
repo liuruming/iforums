@@ -65,16 +65,15 @@ import net.iforums.cache.CacheEngine;
 import net.iforums.cache.Cacheable;
 import net.iforums.dao.CategoryDao;
 import net.iforums.dao.ConfigDao;
+import net.iforums.dao.DataAccessDriver;
 import net.iforums.dao.ForumDao;
 import net.iforums.dao.UserDao;
+import net.iforums.security.PermissionControl;
 import net.iforums.utils.CategoryOrderComparator;
+import net.iforums.utils.preferences.ConfigKeys;
+import net.iforums.utils.preferences.SystemGlobals;
+import net.iforums.view.forum.common.ViewCommon;
 import net.jforum.SessionFacade;
-import net.jforum.dao.DataAccessDriver;
-import net.jforum.security.PermissionControl;
-import net.jforum.security.SecurityConstants;
-import net.jforum.util.preferences.ConfigKeys;
-import net.jforum.util.preferences.SystemGlobals;
-import net.jforum.view.forum.common.ViewCommon;
 
 import org.apache.log4j.Logger;
 

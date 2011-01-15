@@ -53,10 +53,9 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import net.iforums.SessionFacade;
-import net.jforum.repository.SecurityRepository;
-import net.jforum.security.PermissionControl;
-import net.jforum.security.SecurityConstants;
-import net.jforum.util.ForumOrderComparator;
+import net.iforums.repository.SecurityRepository;
+import net.iforums.security.PermissionControl;
+import net.iforums.utils.ForumOrderComparator;
 
 /**
  * Represents a category in the System.

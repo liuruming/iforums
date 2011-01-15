@@ -51,6 +51,7 @@ import net.iforums.beans.User;
 import net.iforums.beans.UserSession;
 import net.iforums.context.ForumContext;
 import net.iforums.context.SessionContext;
+import net.iforums.dao.DataAccessDriver;
 import net.iforums.dao.UserDao;
 import net.iforums.dao.UserSessionDao;
 import net.iforums.repository.SecurityRepository;

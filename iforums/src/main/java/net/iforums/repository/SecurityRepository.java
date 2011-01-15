@@ -46,12 +46,12 @@ import net.iforums.beans.User;
 import net.iforums.beans.UserSession;
 import net.iforums.cache.CacheEngine;
 import net.iforums.cache.Cacheable;
+import net.iforums.dao.DataAccessDriver;
 import net.iforums.dao.GroupSecurityDao;
 import net.iforums.dao.UserDao;
+import net.iforums.security.PermissionControl;
 import net.jforum.JForumExecutionContext;
 import net.jforum.SessionFacade;
-import net.jforum.dao.DataAccessDriver;
-import net.jforum.security.PermissionControl;
 
 import org.apache.log4j.Logger;
 

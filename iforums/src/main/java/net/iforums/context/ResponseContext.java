@@ -41,10 +41,11 @@
  */
 package net.iforums.context;
 
-import javax.servlet.ServletOutputStream;
-import javax.servlet.http.Cookie;
 import java.io.IOException;
 import java.io.PrintWriter;
+
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.Cookie;
 
 /**
  * User: SergeMaslyukov Date: 20.08.2006 Time: 18:48:56 <p/> $Id: WebContextResponse.java,v 1.1

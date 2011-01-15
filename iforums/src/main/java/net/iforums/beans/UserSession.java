@@ -49,13 +49,10 @@ import java.util.Date;
 import net.iforums.ControllerUtils;
 import net.iforums.JForumExecutionContext;
 import net.iforums.SessionFacade;
-import net.jforum.repository.SecurityRepository;
-import net.jforum.security.PermissionControl;
-import net.jforum.security.SecurityConstants;
-import net.jforum.util.Captcha;
-import net.jforum.util.I18n;
-import net.jforum.util.preferences.ConfigKeys;
-import net.jforum.util.preferences.SystemGlobals;
+import net.iforums.repository.SecurityRepository;
+import net.iforums.security.PermissionControl;
+import net.iforums.utils.preferences.ConfigKeys;
+import net.iforums.utils.preferences.SystemGlobals;
 
 import com.octo.captcha.image.ImageCaptcha;
 

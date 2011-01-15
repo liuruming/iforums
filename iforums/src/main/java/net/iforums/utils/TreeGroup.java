@@ -46,7 +46,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import net.jforum.dao.DataAccessDriver;
+import net.iforums.dao.DataAccessDriver;
 import net.jforum.dao.TreeGroupDAO;
 
 /** 

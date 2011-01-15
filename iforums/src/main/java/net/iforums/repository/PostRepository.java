@@ -52,11 +52,11 @@ import java.util.Map;
 import net.iforums.beans.Post;
 import net.iforums.cache.CacheEngine;
 import net.iforums.cache.Cacheable;
+import net.iforums.dao.DataAccessDriver;
 import net.iforums.dao.PostDao;
-import net.jforum.dao.DataAccessDriver;
-import net.jforum.util.preferences.ConfigKeys;
-import net.jforum.util.preferences.SystemGlobals;
-import net.jforum.view.forum.common.PostCommon;
+import net.iforums.utils.preferences.ConfigKeys;
+import net.iforums.utils.preferences.SystemGlobals;
+import net.iforums.view.forum.common.PostCommon;
 
 /**
  * Repository for the post in the top n topics for each forum.

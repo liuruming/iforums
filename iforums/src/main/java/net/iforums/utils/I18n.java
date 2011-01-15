@@ -53,9 +53,9 @@ import java.util.Map;
 import java.util.Properties;
 
 import net.iforums.beans.UserSession;
+import net.iforums.utils.preferences.ConfigKeys;
+import net.iforums.utils.preferences.SystemGlobals;
 import net.jforum.SessionFacade;
-import net.jforum.util.preferences.ConfigKeys;
-import net.jforum.util.preferences.SystemGlobals;
 
 import org.apache.log4j.Logger;
 

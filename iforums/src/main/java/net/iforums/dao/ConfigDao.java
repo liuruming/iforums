@@ -42,8 +42,6 @@
  */
 package net.iforums.dao;
 
-import java.util.List;
-
 import net.iforums.beans.Config;
 
 

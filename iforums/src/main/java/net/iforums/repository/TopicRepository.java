@@ -55,10 +55,10 @@ import net.iforums.beans.Topic;
 import net.iforums.beans.TopicTypeComparator;
 import net.iforums.cache.CacheEngine;
 import net.iforums.cache.Cacheable;
+import net.iforums.dao.DataAccessDriver;
 import net.iforums.dao.TopicDao;
-import net.jforum.dao.DataAccessDriver;
-import net.jforum.util.preferences.ConfigKeys;
-import net.jforum.util.preferences.SystemGlobals;
+import net.iforums.utils.preferences.ConfigKeys;
+import net.iforums.utils.preferences.SystemGlobals;
 
 /**
  * Repository for the last n topics for each forum.

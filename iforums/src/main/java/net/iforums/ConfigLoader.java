@@ -52,6 +52,7 @@ import java.util.Properties;
 import net.iforums.api.integration.mail.pop.POPJobStarter;
 import net.iforums.cache.CacheEngine;
 import net.iforums.cache.Cacheable;
+import net.iforums.dao.DataAccessDriver;
 import net.iforums.search.SearchFacade;
 import net.iforums.sso.LoginAuthenticator;
 import net.iforums.summary.SummaryScheduler;

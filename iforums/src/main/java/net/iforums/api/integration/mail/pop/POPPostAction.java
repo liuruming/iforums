@@ -11,17 +11,15 @@ import javax.annotation.Resource;
 import net.iforums.beans.Topic;
 import net.iforums.beans.User;
 import net.iforums.beans.UserSession;
+import net.iforums.context.JForumContext;
+import net.iforums.context.standard.StandardRequestContext;
+import net.iforums.context.standard.StandardSessionContext;
 import net.iforums.dao.ForumDao;
 import net.iforums.dao.UserDao;
+import net.iforums.utils.preferences.ConfigKeys;
+import net.iforums.view.forum.PostAction;
 import net.jforum.JForumExecutionContext;
 import net.jforum.SessionFacade;
-import net.jforum.context.JForumContext;
-import net.jforum.context.RequestContext;
-import net.jforum.context.standard.StandardRequestContext;
-import net.jforum.context.standard.StandardSessionContext;
-import net.jforum.dao.DataAccessDriver;
-import net.jforum.util.preferences.ConfigKeys;
-import net.jforum.view.forum.PostAction;
 
 import org.apache.log4j.Logger;
 

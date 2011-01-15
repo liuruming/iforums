@@ -49,10 +49,9 @@ import java.util.Map;
 
 import net.iforums.beans.User;
 import net.iforums.dao.UserDao;
+import net.iforums.utils.DbUtils;
+import net.iforums.utils.preferences.SystemGlobals;
 import net.jforum.JForumExecutionContext;
-import net.jforum.util.DbUtils;
-import net.jforum.util.MD5;
-import net.jforum.util.preferences.SystemGlobals;
 
 /**
  * Default login authenticator for JForum.

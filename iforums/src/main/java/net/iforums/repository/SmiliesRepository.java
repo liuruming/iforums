@@ -48,9 +48,9 @@ import java.util.List;
 import net.iforums.beans.Smilie;
 import net.iforums.cache.CacheEngine;
 import net.iforums.cache.Cacheable;
-import net.jforum.dao.DataAccessDriver;
-import net.jforum.util.preferences.ConfigKeys;
-import net.jforum.util.preferences.SystemGlobals;
+import net.iforums.dao.DataAccessDriver;
+import net.iforums.utils.preferences.ConfigKeys;
+import net.iforums.utils.preferences.SystemGlobals;
 
 /**
  * @author Rafael Steil

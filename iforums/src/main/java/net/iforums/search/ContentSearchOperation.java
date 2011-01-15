@@ -48,8 +48,8 @@ import java.util.Iterator;
 import java.util.List;
 
 import net.iforums.beans.Post;
-import net.jforum.util.preferences.TemplateKeys;
-import net.jforum.view.forum.common.PostCommon;
+import net.iforums.utils.preferences.TemplateKeys;
+import net.iforums.view.forum.common.PostCommon;
 
 /**
  * @author Rafael Steil

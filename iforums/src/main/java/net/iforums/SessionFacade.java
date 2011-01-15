@@ -52,6 +52,7 @@ import java.util.Map;
 import net.iforums.beans.UserSession;
 import net.iforums.cache.CacheEngine;
 import net.iforums.cache.Cacheable;
+import net.iforums.dao.DataAccessDriver;
 import net.iforums.repository.SecurityRepository;
 import net.iforums.utils.preferences.ConfigKeys;
 import net.iforums.utils.preferences.SystemGlobals;

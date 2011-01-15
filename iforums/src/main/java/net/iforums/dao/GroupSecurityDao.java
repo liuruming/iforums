@@ -44,9 +44,8 @@ package net.iforums.dao;
 
 import net.iforums.beans.Group;
 import net.iforums.beans.User;
-import net.jforum.security.Role;
-import net.jforum.security.RoleCollection;
-import net.jforum.security.RoleValueCollection;
+import net.iforums.security.RoleCollection;
+import net.iforums.security.RoleValueCollection;
 
 
 /**

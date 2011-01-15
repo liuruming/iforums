@@ -49,7 +49,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import net.iforums.beans.Post;
-import net.jforum.dao.DataAccessDriver;
+import net.iforums.dao.DataAccessDriver;
 
 import org.apache.lucene.analysis.TokenStream;
 import org.apache.lucene.document.Document;

@@ -45,8 +45,8 @@ package net.iforums.search;
 import java.util.ArrayList;
 
 import net.iforums.beans.Post;
-import net.jforum.util.preferences.ConfigKeys;
-import net.jforum.util.preferences.SystemGlobals;
+import net.iforums.utils.preferences.ConfigKeys;
+import net.iforums.utils.preferences.SystemGlobals;
 
 import org.apache.log4j.Logger;
 

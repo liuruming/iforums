@@ -5,8 +5,8 @@ package net.iforums.api.integration.mail.pop;
 
 import java.text.ParseException;
 
-import net.jforum.util.preferences.ConfigKeys;
-import net.jforum.util.preferences.SystemGlobals;
+import net.iforums.utils.preferences.ConfigKeys;
+import net.iforums.utils.preferences.SystemGlobals;
 
 import org.apache.log4j.Logger;
 import org.quartz.CronTrigger;

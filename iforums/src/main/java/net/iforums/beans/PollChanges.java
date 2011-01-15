@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import net.jforum.view.forum.common.PostCommon;
+import net.iforums.view.forum.common.PostCommon;
 
 /**
  * An helper class that holds changes made to the pool.
