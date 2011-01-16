@@ -42,6 +42,8 @@
  */
 package net.iforums.dao.oracle;
 
+import javax.annotation.Resource;
+
 import net.iforums.dao.LuceneDao;
 import net.iforums.dao.ModerationDao;
 import net.iforums.dao.ModerationLogDao;
@@ -57,12 +59,19 @@ import net.iforums.dao.generic.GenericDataAccessDriver;
  */
 public class OracleDataAccessDriver extends GenericDataAccessDriver
 {
+	@Resource
 	private static PostDao postDao ;
+	@Resource(name="")
 	private static TopicDao topicDao;
+	@Resource(name="")
 	private static UserDao userDao;
+	@Resource(name="")
 	private static PrivateMessageDao pmDao ;
+	@Resource(name="")
 	private static ModerationDao moderationDao ;
+	@Resource(name="")
 	private static ModerationLogDao moderationLogDao ;
+	@Resource(name="oracleLuceneDao")
 	private static LuceneDao luceneDao;
 	
 	/**

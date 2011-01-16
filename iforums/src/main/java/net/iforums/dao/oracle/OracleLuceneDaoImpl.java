@@ -45,12 +45,17 @@ package net.iforums.dao.oracle;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Repository;
+
 import net.iforums.dao.impl.LuceneDaoImpl;
 
 /**
  * @author Rafael Steil
  * @version $Id: OracleLuceneDao.java,v 1.1 2007/09/10 22:34:21 rafaelsteil Exp $
  */
+@Repository(value="oracleLuceneDao")
 public class OracleLuceneDaoImpl extends LuceneDaoImpl 
 {
 	/**
