@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="Attachment">
+	<select id="isValid" resultClass="java.lang.Integer" parameterClass="java.lang.String">
+		<![CDATA[SELECT 1 FROM JFORUM_API WHERE API_KEY = #key#]]>
+	</select>
+	<insert id="addQuotaLimit">
+		<![CDATA[INSERT INTO jforum_quota_limit (quota_desc, quota_limit, quota_type) VALUES (?, ?, ?)]]>
+	</insert>
+	<update id="updateQuotaLimit">
+		<![CDATA[UPDATE jforum_quota_limit SET quota_desc = ?, quota_limit = ?, quota_type = ? WHERE quota_limit_id = ?]]>
+	</update>
+	<delete id="removeQuotaLimit">
+		<![CDATA[DELETE FROM jforum_quota_limit WHERE quota_limit_id = ?]]>
+	</delete>
+	<select id="selectQuotaLimit">
+		<![CDATA[SELECT quota_limit_id, quota_desc, quota_limit, quota_type FROM jforum_quota_limit ORDER BY quota_type, quota_limit]]>
+	</select>
+	<insert id="">
+		<![CDATA[INSERT INTO jforum_extension_groups (name, allow, upload_icon, download_mode) VALUES (?, ?, ?, ?)]]>
+	</insert>
+	<update id="updateExtensionGroups">
+		<![CDATA[UPDATE jforum_extension_groups SET name = ?, allow = ?, upload_icon = ?, download_mode = ? WHERE extension_group_id = ?]]>
+	</update>
+	<delete id="removeExtensionGroups">
+		<![CDATA[DELETE FROM jforum_extension_groups WHERE extension_group_id = ?]]>
+	</delete>
+	<select id="selectExtensionGroups">
+		<![CDATA[SELECT extension_group_id, name, allow, upload_icon, download_mode FROM jforum_extension_groups ORDER BY name]]>
+	</select>
+	<insert id="addExtension">
+		<![CDATA[INSERT INTO jforum_extensions (extension_group_id, description, upload_icon, extension, allow) VALUES (?, ?, ?, ?, ?)]]>
+	</insert>
+
+	<update id="updateExtension">
+		<![CDATA[UPDATE jforum_extensions SET extension_group_id = ?, description = ?, upload_icon = ?, extension = ?, allow = ? 
+		WHERE extension_id = ?]]>
+	</update>
+	<delete id="removeExtension"><![CDATA[DELETE FROM jforum_extensions WHERE extension_id = ?]]></delete>
+	<insert id="addAttachment"><![CDATA[INSERT INTO jforum_attach (post_id, privmsgs_id, user_id) VALUES (?, ?, ?)]]></insert>
+	<insert id="addAttachmentInfo">
+		<![CDATA[INSERT INTO jforum_attach_desc (attach_id, physical_filename, real_filename, description, 
+		mimetype, filesize, upload_time, thumb, extension_id ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)]]>
+	</insert>
+	<update id="updatePost"><![CDATA[UPDATE jforum_posts SET attach = ? WHERE post_id = ?]]></update>
+	<select id="selectExtensions"><![CDATA[SELECT extension_id, extension_group_id, extension, description, upload_icon, allow, '' AS group_icon FROM jforum_extensions ORDER BY extension]]></select>
+	<select id="selectExtension">
+		<![CDATA[SELECT e.extension_id, e.extension_group_id, e.extension, e.description, e.upload_icon, e.allow, g.upload_icon AS group_icon 
+		FROM jforum_extensions e, jforum_extension_groups g 
+		WHERE e.$field = ? 
+		AND e.extension_group_id = g.extension_group_id]]>
+	</select>
+	<select id="extensionsForSecurity">
+		<![CDATA[SELECT e.extension, e.allow, eg.allow AS group_allow 
+		FROM jforum_extensions e, jforum_extension_groups eg 
+		WHERE e.extension_group_id = eg.extension_group_id]]>
+	</select>
+	<select id="isPhysicalDownloadMode"><![CDATA[SELECT download_mode FROM jforum_extension_groups WHERE extension_group_id = ?]]></select>
+	<select id="selectAttachments">
+		<![CDATA[SELECT a.attach_id, a.user_id, a.post_id, a.privmsgs_id, d.mimetype, d.physical_filename, d.real_filename, 
+		d.download_count, d.description, d.filesize, d.upload_time, d.extension_id 
+		FROM jforum_attach a, jforum_attach_desc d 
+		WHERE a.post_id = ? 
+		AND a.attach_id = d.attach_id]]>
+	</select>
+	<select id="selectAttachmentById">
+		<![CDATA[SELECT a.attach_id, a.user_id, a.post_id, a.privmsgs_id, d.mimetype, d.physical_filename, d.real_filename, 
+		d.download_count, d.description, d.filesize, d.upload_time, d.extension_id 
+		FROM jforum_attach a, jforum_attach_desc d 
+		WHERE a.attach_id = ? 
+		AND a.attach_id = d.attach_id]]>
+	</select>
+	<update id="updateAttachment"><![CDATA[UPDATE jforum_attach_desc SET description = ?, download_count = ? WHERE attach_id = ?]]></update>
+	<delete id="removeAttachment"><![CDATA[DELETE FROM jforum_attach WHERE attach_id = ?]]></delete>
+	<delete id="removeAttachmentInfo"><![CDATA[DELETE FROM jforum_attach_desc WHERE attach_id = ?]]></delete>
+	<insert id="countPostAttachments"><![CDATA[SELECT COUNT(1) FROM jforum_attach WHERE post_id = ?]]></insert>
+	<delete id="deleteGroupQuota"><![CDATA[DELETE FROM jforum_attach_quota]]></delete>
+	<insert id="setGroupQuota"><![CDATA[INSERT INTO jforum_attach_quota (group_id, quota_limit_id) VALUES (?, ?)]]></insert>
+	<select id="selectGroupsQuotaLimits"><![CDATA[SELECT group_id, quota_limit_id FROM jforum_attach_quota]]></select>
+	<select id="selectQuotaLimitByGroup">
+		<![CDATA[SELECT ql.quota_limit_id, ql.quota_desc, ql.quota_limit, ql.quota_type 
+		FROM jforum_quota_limit ql, jforum_attach_quota at 
+		WHERE ql.quota_limit_id = at.quota_limit_id 
+		AND at.group_id = ?]]>
+	</select>
+</sqlMap>

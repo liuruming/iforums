@@ -9,7 +9,7 @@
 		<property name="locations">
 			<list>
 				<value>classpath:/jdbc.properties</value>
-				<value>classpath:/cache.properties</value>
+				<value>classpath:/velocity.properties</value>
 			</list>
 		</property>
 	</bean>

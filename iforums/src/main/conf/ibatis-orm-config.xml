@@ -3,4 +3,27 @@
 <sqlMapConfig>
 	<settings useStatementNamespaces="true" />
     <sqlMap resource="ibatis/Api_SQL.xml" />
+    <sqlMap resource="ibatis/Attachment_SQL.xml" />
+    <sqlMap resource="ibatis/Banlist_SQL.xml" />
+    <sqlMap resource="ibatis/Banner_SQL.xml" />
+    <sqlMap resource="ibatis/Bookmark_SQL.xml" />
+    <sqlMap resource="ibatis/Category_SQL.xml" />
+    <sqlMap resource="ibatis/Config_SQL.xml" />
+    <sqlMap resource="ibatis/Forum_SQL.xml" />
+    <sqlMap resource="ibatis/Group_SQL.xml" />
+    <sqlMap resource="ibatis/GroupSecurity_SQL.xml" />
+    <sqlMap resource="ibatis/Karma_SQL.xml" />
+    <sqlMap resource="ibatis/Lucene_SQL.xml" />
+    <sqlMap resource="ibatis/MailIntegration_SQL.xml" />
+    <sqlMap resource="ibatis/Moderation_SQL.xml" />
+    <sqlMap resource="ibatis/ModerationLog_SQL.xml" />
+    <sqlMap resource="ibatis/PrivateMessage_SQL.xml" />
+    <sqlMap resource="ibatis/Post_SQL.xml" />
+    <sqlMap resource="ibatis/Ranking_SQL.xml" />
+    <sqlMap resource="ibatis/Smilie_SQL.xml" />
+    <sqlMap resource="ibatis/Summary_SQL.xml" />
+    <sqlMap resource="ibatis/Topic_SQL.xml" />
+    <sqlMap resource="ibatis/TreeGroup_SQL.xml" />
+    <sqlMap resource="ibatis/User_SQL.xml" />
+    <sqlMap resource="ibatis/UserSession_SQL.xml" />
 </sqlMapConfig>
