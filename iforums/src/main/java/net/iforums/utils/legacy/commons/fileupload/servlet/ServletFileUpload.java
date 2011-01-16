@@ -13,15 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.jforum.util.legacy.commons.fileupload.servlet;
+package net.iforums.utils.legacy.commons.fileupload.servlet;
 
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import net.jforum.util.legacy.commons.fileupload.FileItemFactory;
-import net.jforum.util.legacy.commons.fileupload.FileUpload;
-import net.jforum.util.legacy.commons.fileupload.FileUploadException;
+import net.iforums.utils.legacy.commons.fileupload.FileItemFactory;
+import net.iforums.utils.legacy.commons.fileupload.FileUpload;
+import net.iforums.utils.legacy.commons.fileupload.FileUploadException;
 
 /**
  * <p>High level API for processing file uploads.</p>

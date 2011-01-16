@@ -13,11 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.jforum.util.legacy.commons.fileupload;
+package net.iforums.utils.legacy.commons.fileupload;
 
 import java.io.File;
 
-import net.jforum.util.legacy.commons.fileupload.disk.DiskFileItemFactory;
+import net.iforums.utils.legacy.commons.fileupload.disk.DiskFileItemFactory;
 
 /**
  * <p>The default {@link org.apache.commons.fileupload.FileItemFactory}

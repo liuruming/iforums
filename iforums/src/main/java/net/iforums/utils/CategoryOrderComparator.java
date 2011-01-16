@@ -45,6 +45,8 @@ package net.iforums.utils;
 import java.io.Serializable;
 import java.util.Comparator;
 
+import net.iforums.beans.Category;
+
 /**
  * @author Rafael Steil
  * @version $Id: CategoryOrderComparator.java,v 1.5 2006/08/23 02:13:44 rafaelsteil Exp $

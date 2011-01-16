@@ -40,7 +40,7 @@
  * The JForum Project
  * http://www.jforum.net
  */
-package net.jforum.util.bbcode;
+package net.iforums.utils.bbcode;
 
 import java.io.Serializable;
 

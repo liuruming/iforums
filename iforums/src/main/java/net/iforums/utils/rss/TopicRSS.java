@@ -40,16 +40,16 @@
  * The JForum Project
  * http://www.jforum.net
  */
-package net.jforum.util.rss;
+package net.iforums.utils.rss;
 
 import java.util.Iterator;
 import java.util.List;
 
-import net.jforum.entities.Post;
-import net.jforum.util.preferences.ConfigKeys;
-import net.jforum.util.preferences.SystemGlobals;
-import net.jforum.view.forum.common.PostCommon;
-import net.jforum.view.forum.common.ViewCommon;
+import net.iforums.beans.Post;
+import net.iforums.utils.preferences.ConfigKeys;
+import net.iforums.utils.preferences.SystemGlobals;
+import net.iforums.view.forum.common.PostCommon;
+import net.iforums.view.forum.common.ViewCommon;
 
 /**
  * @author Rafael Steil

@@ -40,10 +40,10 @@
  * The JForum Project
  * http://www.jforum.net
  */
-package net.jforum.util.preferences;
+package net.iforums.utils.preferences;
 
-import net.jforum.ConfigLoader;
-import net.jforum.util.FileChangeListener;
+import net.iforums.ConfigLoader;
+import net.iforums.utils.FileChangeListener;
 
 import org.apache.log4j.Logger;
 

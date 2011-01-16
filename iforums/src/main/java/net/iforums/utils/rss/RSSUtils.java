@@ -40,15 +40,15 @@
  * The JForum Project
  * http://www.jforum.net
  */
-package net.jforum.util.rss;
+package net.iforums.utils.rss;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import net.jforum.util.preferences.ConfigKeys;
-import net.jforum.util.preferences.SystemGlobals;
+import net.iforums.utils.preferences.ConfigKeys;
+import net.iforums.utils.preferences.SystemGlobals;
 
 /**
  * General utilities for RSS manipulation.

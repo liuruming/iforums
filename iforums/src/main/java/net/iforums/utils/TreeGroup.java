@@ -47,7 +47,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import net.iforums.dao.DataAccessDriver;
-import net.jforum.dao.TreeGroupDAO;
+import net.iforums.dao.TreeGroupDao;
 
 /** 
  * Implements a tree hierarchy of groups.
@@ -145,7 +145,7 @@ public class TreeGroup
 	{
 		List nodes = new ArrayList();
 		
-		TreeGroupDAO tgm = DataAccessDriver.getInstance().newTreeGroupDAO();
+		TreeGroupDao tgm = DataAccessDriver.getInstance().newTreeGroupDao();
 
 		List rootGroups = tgm.selectGroups(0);	
 				
@@ -167,7 +167,7 @@ public class TreeGroup
      */
 	private void checkExtraNodes(GroupNode n)
 	{
-		TreeGroupDAO tgm = DataAccessDriver.getInstance().newTreeGroupDAO();
+		TreeGroupDao tgm = DataAccessDriver.getInstance().newTreeGroupDao();
 
 		List childGroups = tgm.selectGroups(n.getId());	
 				

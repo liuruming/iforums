@@ -40,13 +40,13 @@
  * The JForum Project
  * http://www.jforum.net
  */
-package net.jforum.util.rss;
+package net.iforums.utils.rss;
 
 import java.io.StringWriter;
 
-import net.jforum.JForumExecutionContext;
-import net.jforum.util.preferences.ConfigKeys;
-import net.jforum.util.preferences.SystemGlobals;
+import net.iforums.JForumExecutionContext;
+import net.iforums.utils.preferences.ConfigKeys;
+import net.iforums.utils.preferences.SystemGlobals;
 import freemarker.template.SimpleHash;
 import freemarker.template.Template;
 

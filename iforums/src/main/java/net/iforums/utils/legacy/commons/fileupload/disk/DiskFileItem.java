@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.jforum.util.legacy.commons.fileupload.disk;
+package net.iforums.utils.legacy.commons.fileupload.disk;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -27,9 +27,9 @@ import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.Map;
 
-import net.jforum.util.legacy.commons.fileupload.FileItem;
-import net.jforum.util.legacy.commons.fileupload.FileUploadException;
-import net.jforum.util.legacy.commons.fileupload.ParameterParser;
+import net.iforums.utils.legacy.commons.fileupload.FileItem;
+import net.iforums.utils.legacy.commons.fileupload.FileUploadException;
+import net.iforums.utils.legacy.commons.fileupload.ParameterParser;
 
 import org.apache.commons.io.FileCleaner;
 import org.apache.commons.io.output.DeferredFileOutputStream;

@@ -40,7 +40,7 @@
  * The JForum Project
  * http://www.jforum.net
  */
-package net.jforum.util.preferences;
+package net.iforums.utils.preferences;
 
 public interface VariableStore {
 	public String getVariableValue(String variableName);

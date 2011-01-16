@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.jforum.util.legacy.commons.fileupload;
+package net.iforums.utils.legacy.commons.fileupload;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -25,8 +25,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-
-import net.jforum.util.legacy.commons.fileupload.servlet.ServletRequestContext;
 
 /**
  * <p>High level API for processing file uploads.</p>
@@ -264,7 +262,8 @@ public abstract class FileUploadBase {
      */
     public List /* FileItem */ parseRequest(HttpServletRequest req)
             throws FileUploadException {
-        return parseRequest(new ServletRequestContext(req));
+    	return null;
+//        return parseRequest(new ServletRequestContext(req));
     }
 
     /**

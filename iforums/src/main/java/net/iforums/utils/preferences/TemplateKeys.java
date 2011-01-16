@@ -40,7 +40,7 @@
  * The JForum Project
  * http://www.jforum.net
  */
-package net.jforum.util.preferences;
+package net.iforums.utils.preferences;
 
 /**
  * @author Rafael Steil

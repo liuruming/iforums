@@ -53,10 +53,10 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 
+import net.iforums.JForumExecutionContext;
+import net.iforums.SessionFacade;
 import net.iforums.utils.preferences.ConfigKeys;
 import net.iforums.utils.preferences.SystemGlobals;
-import net.jforum.JForumExecutionContext;
-import net.jforum.SessionFacade;
 
 import org.apache.log4j.Logger;
 

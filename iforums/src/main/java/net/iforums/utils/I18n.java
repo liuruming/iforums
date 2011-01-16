@@ -52,10 +52,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
+import net.iforums.SessionFacade;
 import net.iforums.beans.UserSession;
 import net.iforums.utils.preferences.ConfigKeys;
 import net.iforums.utils.preferences.SystemGlobals;
-import net.jforum.SessionFacade;
 
 import org.apache.log4j.Logger;
 

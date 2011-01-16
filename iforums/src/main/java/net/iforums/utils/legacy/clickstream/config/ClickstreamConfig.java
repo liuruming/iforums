@@ -1,4 +1,4 @@
-package net.jforum.util.legacy.clickstream.config;
+package net.iforums.utils.legacy.clickstream.config;
 
 import java.util.ArrayList;
 import java.util.List;

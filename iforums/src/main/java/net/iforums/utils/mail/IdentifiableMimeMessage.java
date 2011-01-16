@@ -40,7 +40,7 @@
  * The JForum Project
  * http://www.jforum.net
  */
-package net.jforum.util.mail;
+package net.iforums.utils.mail;
 
 import javax.mail.MessagingException;
 import javax.mail.Session;

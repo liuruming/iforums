@@ -1,4 +1,4 @@
-package net.jforum.util.legacy.clickstream;
+package net.iforums.utils.legacy.clickstream;
 
 import java.io.IOException;
 
@@ -10,7 +10,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 
-import net.jforum.util.preferences.ConfigKeys;
+import net.iforums.utils.preferences.ConfigKeys;
 
 import org.apache.log4j.Logger;
 

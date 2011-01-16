@@ -40,7 +40,7 @@
  * The JForum Project
  * http://www.jforum.net
  */
-package net.jforum.util.image;
+package net.iforums.utils.image;
 
 import java.awt.Dimension;
 import java.awt.Image;

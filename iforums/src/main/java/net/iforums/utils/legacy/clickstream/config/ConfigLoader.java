@@ -1,4 +1,4 @@
-package net.jforum.util.legacy.clickstream.config;
+package net.iforums.utils.legacy.clickstream.config;
 
 import java.io.File;
 import java.io.IOException;
@@ -7,8 +7,8 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
-import net.jforum.util.preferences.ConfigKeys;
-import net.jforum.util.preferences.SystemGlobals;
+import net.iforums.utils.preferences.ConfigKeys;
+import net.iforums.utils.preferences.SystemGlobals;
 
 import org.apache.log4j.Logger;
 import org.xml.sax.Attributes;

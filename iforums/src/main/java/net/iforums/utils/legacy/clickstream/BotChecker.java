@@ -1,12 +1,12 @@
-package net.jforum.util.legacy.clickstream;
+package net.iforums.utils.legacy.clickstream;
 
 import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import net.jforum.util.legacy.clickstream.config.ClickstreamConfig;
-import net.jforum.util.legacy.clickstream.config.ConfigLoader;
+import net.iforums.utils.legacy.clickstream.config.ClickstreamConfig;
+import net.iforums.utils.legacy.clickstream.config.ConfigLoader;
 
 /**
  * Determines if a request is actually a bot or spider.

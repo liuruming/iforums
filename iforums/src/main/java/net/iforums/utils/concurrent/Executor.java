@@ -40,7 +40,7 @@
  * The JForum Project
  * http://www.jforum.net
  */
-package net.jforum.util.concurrent;
+package net.iforums.utils.concurrent;
 
 import org.apache.log4j.Logger;
 

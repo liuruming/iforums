@@ -40,7 +40,7 @@
  * The JForum Project
  * http://www.jforum.net
  */
-package net.jforum.util.mail;
+package net.iforums.utils.mail;
 
 import java.io.StringWriter;
 import java.util.ArrayList;
@@ -57,9 +57,10 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-import net.jforum.JForumExecutionContext;
-import net.jforum.util.preferences.ConfigKeys;
-import net.jforum.util.preferences.SystemGlobals;
+import net.iforums.JForumExecutionContext;
+import net.iforums.beans.User;
+import net.iforums.utils.preferences.ConfigKeys;
+import net.iforums.utils.preferences.SystemGlobals;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;

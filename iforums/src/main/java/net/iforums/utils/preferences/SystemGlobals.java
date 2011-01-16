@@ -40,7 +40,7 @@
  * The JForum Project
  * http://www.jforum.net
  */
-package net.jforum.util.preferences;
+package net.iforums.utils.preferences;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -57,7 +57,7 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Vector;
 
-import net.jforum.ConfigLoader;
+import net.iforums.ConfigLoader;
 
 import org.apache.log4j.Logger;
 

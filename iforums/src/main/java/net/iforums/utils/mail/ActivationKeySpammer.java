@@ -39,14 +39,15 @@
  * The JForum Project
  * http://www.jforum.net
  */
-package net.jforum.util.mail;
+package net.iforums.utils.mail;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import net.jforum.util.preferences.ConfigKeys;
-import net.jforum.util.preferences.SystemGlobals;
-import net.jforum.view.forum.common.ViewCommon;
+import net.iforums.beans.User;
+import net.iforums.utils.preferences.ConfigKeys;
+import net.iforums.utils.preferences.SystemGlobals;
+import net.iforums.view.forum.common.ViewCommon;
 import freemarker.template.SimpleHash;
 
 /**

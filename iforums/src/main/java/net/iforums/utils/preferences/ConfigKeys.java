@@ -40,7 +40,7 @@
  * The JForum Project
  * http://www.jforum.net
  */
-package net.jforum.util.preferences;
+package net.iforums.utils.preferences;
 
 /**
 * Encapsulate all configuration keys in constants. This is more typesafe and provides
@@ -141,7 +141,7 @@ public class ConfigKeys
 	public static final String TMP_DIR = "tmp.dir";
 	public static final String CACHE_DIR = "cache.dir";
 
-	public static final String DAO_DRIVER = "dao.driver";
+	public static final String Dao_DRIVER = "dao.driver";
 
 	public static final String DATE_TIME_FORMAT = "dateTime.format";
 	public static final String RSS_DATE_TIME_FORMAT = "rss.datetime.format";

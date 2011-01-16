@@ -13,14 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.jforum.util.legacy.commons.fileupload.servlet;
+package net.iforums.utils.legacy.commons.fileupload.servlet;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
+import java.util.Enumeration;
+import java.util.Locale;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
-import net.jforum.util.legacy.commons.fileupload.RequestContext;
+import net.iforums.context.SessionContext;
+import net.iforums.utils.legacy.commons.fileupload.RequestContext;
+
 
 /**
  * <p>Provides access to the request information needed for a request made to

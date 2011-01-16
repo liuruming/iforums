@@ -40,7 +40,7 @@
  * The JForum Project
  * http://www.jforum.net
  */
-package net.jforum.util.rss;
+package net.iforums.utils.rss;
 
 /**
  * A RSS representation of some content.
