@@ -51,23 +51,26 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import net.iforums.JForumExecutionContext;
 import net.iforums.beans.Post;
 import net.iforums.dao.BaseORMDao;
 import net.iforums.dao.LuceneDao;
-import net.jforum.search.LuceneReindexArgs;
-import net.jforum.search.SearchPost;
-import net.jforum.util.DbUtils;
-import net.jforum.util.preferences.SystemGlobals;
+import net.iforums.search.LuceneReindexArgs;
+import net.iforums.search.SearchPost;
+import net.iforums.utils.DbUtils;
+import net.iforums.utils.preferences.SystemGlobals;
 
 /**
  * @author Rafael Steil
- * @version $Id: GenericLuceneDAO.java,v 1.12 2007/10/13 13:46:21 rafaelsteil Exp $
+ * @version $Id: GenericLuceneDao.java,v 1.12 2007/10/13 13:46:21 rafaelsteil Exp $
  */
+@Repository
 public class LuceneDaoImpl extends BaseORMDao<Post> implements LuceneDao
 {
 	/**
-	 * @see net.jforum.dao.LuceneDAO#getPostsToIndex(LuceneReindexArgs, int, int)
+	 * @see net.iforums.dao.LuceneDao#getPostsToIndex(LuceneReindexArgs, int, int)
 	 */
 	public List getPostsToIndex(int fromPostId, int toPostId)
 	{
@@ -100,7 +103,7 @@ public class LuceneDaoImpl extends BaseORMDao<Post> implements LuceneDao
 	}
 	
 	/**
-	 * @see net.jforum.dao.LuceneDAO#firstPostIdByDate(java.util.Date)
+	 * @see net.iforums.dao.LuceneDao#firstPostIdByDate(java.util.Date)
 	 */
 	public int firstPostIdByDate(Date date) 
 	{
@@ -108,7 +111,7 @@ public class LuceneDaoImpl extends BaseORMDao<Post> implements LuceneDao
 	}
 	
 	/**
-	 * @see net.jforum.dao.LuceneDAO#lastPostIdByDate(java.util.Date)
+	 * @see net.iforums.dao.LuceneDao#lastPostIdByDate(java.util.Date)
 	 */
 	public int lastPostIdByDate(Date date) 
 	{
@@ -144,7 +147,7 @@ public class LuceneDaoImpl extends BaseORMDao<Post> implements LuceneDao
 	}
 	
 	/**
-	 * @see net.jforum.dao.LuceneDAO#getPostsData(int[])
+	 * @see net.iforums.dao.LuceneDao#getPostsData(int[])
 	 */
 	public List getPostsData(int[] postIds)
 	{

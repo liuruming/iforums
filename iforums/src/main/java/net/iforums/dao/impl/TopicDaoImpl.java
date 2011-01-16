@@ -57,6 +57,8 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.springframework.stereotype.Repository;
+
 import net.iforums.JForumExecutionContext;
 import net.iforums.SessionFacade;
 import net.iforums.beans.KarmaStatus;
@@ -67,17 +69,18 @@ import net.iforums.dao.ForumDao;
 import net.iforums.dao.PollDao;
 import net.iforums.dao.PostDao;
 import net.iforums.dao.TopicDao;
-import net.jforum.repository.ForumRepository;
-import net.jforum.search.SearchArgs;
-import net.jforum.search.SearchResult;
-import net.jforum.util.DbUtils;
-import net.jforum.util.preferences.ConfigKeys;
-import net.jforum.util.preferences.SystemGlobals;
+import net.iforums.repository.ForumRepository;
+import net.iforums.search.SearchArgs;
+import net.iforums.search.SearchResult;
+import net.iforums.utils.DbUtils;
+import net.iforums.utils.preferences.ConfigKeys;
+import net.iforums.utils.preferences.SystemGlobals;
 
 /**
  * @author Rafael Steil
- * @version $Id: GenericTopicDAO.java,v 1.33 2007/09/12 14:43:15 rafaelsteil Exp $
+ * @version $Id: GenericTopicDao.java,v 1.33 2007/09/12 14:43:15 rafaelsteil Exp $
  */
+@Repository
 public class TopicDaoImpl extends BaseORMDao<Topic> implements TopicDao
 {
 	@Resource
@@ -88,7 +91,7 @@ public class TopicDaoImpl extends BaseORMDao<Topic> implements TopicDao
 	@Resource
 	private PollDao pollDao;
 	/**
-	 * @see net.jforum.dao.TopicDAO#findTopicsByDateRange(net.jforum.search.SearchArgs)
+	 * @see net.iforums.dao.TopicDao#findTopicsByDateRange(net.jforum.search.SearchArgs)
 	 */
 	public SearchResult findTopicsByDateRange(SearchArgs args) 
 	{
@@ -130,7 +133,7 @@ public class TopicDaoImpl extends BaseORMDao<Topic> implements TopicDao
 	}
 	
 	/**
-	 * @see net.jforum.dao.TopicDAO#fixFirstLastPostId(int)
+	 * @see net.iforums.dao.TopicDao#fixFirstLastPostId(int)
 	 */
 	public void fixFirstLastPostId(int topicId)
 	{
@@ -168,7 +171,7 @@ public class TopicDaoImpl extends BaseORMDao<Topic> implements TopicDao
 	}
 
 	/**
-	 * @see net.jforum.dao.TopicDAO#selectById(int)
+	 * @see net.iforums.dao.TopicDao#selectById(int)
 	 */
 	public Topic selectById(int topicId)
 	{
@@ -196,7 +199,7 @@ public class TopicDaoImpl extends BaseORMDao<Topic> implements TopicDao
 	}
 
 	/**
-	 * @see net.jforum.dao.TopicDAO#selectRaw(int)
+	 * @see net.iforums.dao.TopicDao#selectRaw(int)
 	 */
 	public Topic selectRaw(int topicId)
 	{
@@ -223,7 +226,7 @@ public class TopicDaoImpl extends BaseORMDao<Topic> implements TopicDao
 	}
 
 	/**
-	 * @see net.jforum.dao.TopicDAO#delete(net.jforum.entities.Topic)
+	 * @see net.iforums.dao.TopicDao#delete(net.jforum.entities.Topic)
 	 */
 	public void delete(Topic topic, boolean fromModeration)
 	{
@@ -270,7 +273,7 @@ public class TopicDaoImpl extends BaseORMDao<Topic> implements TopicDao
 	}
 
 	/**
-	 * @see net.jforum.dao.TopicDAO#deleteByForum(int)
+	 * @see net.iforums.dao.TopicDao#deleteByForum(int)
 	 */
 	public void deleteByForum(int forumId)
 	{
@@ -304,7 +307,7 @@ public class TopicDaoImpl extends BaseORMDao<Topic> implements TopicDao
 	}
 
 	/**
-	 * @see net.jforum.dao.TopicDAO#update(net.jforum.entities.Topic)
+	 * @see net.iforums.dao.TopicDao#update(net.jforum.entities.Topic)
 	 */
 	public void update(Topic topic)
 	{
@@ -331,7 +334,7 @@ public class TopicDaoImpl extends BaseORMDao<Topic> implements TopicDao
 	}
 
 	/**
-	 * @see net.jforum.dao.TopicDAO#addNew(net.jforum.entities.Topic)
+	 * @see net.iforums.dao.TopicDao#addNew(net.jforum.entities.Topic)
 	 */
 	public int addNew(Topic topic)
 	{
@@ -366,7 +369,7 @@ public class TopicDaoImpl extends BaseORMDao<Topic> implements TopicDao
 	}
 
 	/**
-	 * @see net.jforum.dao.TopicDAO#incrementTotalViews(int)
+	 * @see net.iforums.dao.TopicDao#incrementTotalViews(int)
 	 */
 	public void incrementTotalViews(int topicId)
 	{
@@ -386,7 +389,7 @@ public class TopicDaoImpl extends BaseORMDao<Topic> implements TopicDao
 	}
 
 	/**
-	 * @see net.jforum.dao.TopicDAO#incrementTotalReplies(int)
+	 * @see net.iforums.dao.TopicDao#incrementTotalReplies(int)
 	 */
 	public void incrementTotalReplies(int topicId)
 	{
@@ -406,7 +409,7 @@ public class TopicDaoImpl extends BaseORMDao<Topic> implements TopicDao
 	}
 
 	/**
-	 * @see net.jforum.dao.TopicDAO#decrementTotalReplies(int)
+	 * @see net.iforums.dao.TopicDao#decrementTotalReplies(int)
 	 */
 	public void decrementTotalReplies(int topicId)
 	{
@@ -426,7 +429,7 @@ public class TopicDaoImpl extends BaseORMDao<Topic> implements TopicDao
 	}
 
 	/**
-	 * @see net.jforum.dao.TopicDAO#setLastPostId(int, int)
+	 * @see net.iforums.dao.TopicDao#setLastPostId(int, int)
 	 */
 	public void setLastPostId(int topicId, int postId)
 	{
@@ -447,7 +450,7 @@ public class TopicDaoImpl extends BaseORMDao<Topic> implements TopicDao
 	}
 
 	/**
-	 * @see net.jforum.dao.TopicDAO#selectAllByForum(int)
+	 * @see net.iforums.dao.TopicDao#selectAllByForum(int)
 	 */
 	public List selectAllByForum(int forumId)
 	{
@@ -455,7 +458,7 @@ public class TopicDaoImpl extends BaseORMDao<Topic> implements TopicDao
 	}
 
 	/**
-	 * @see net.jforum.dao.TopicDAO#selectAllByForumByLimit(int, int, int)
+	 * @see net.iforums.dao.TopicDao#selectAllByForumByLimit(int, int, int)
 	 */
 	public List selectAllByForumByLimit(int forumId, int startFrom, int count)
 	{
@@ -481,7 +484,7 @@ public class TopicDaoImpl extends BaseORMDao<Topic> implements TopicDao
 	}
 
 	/**
-	 * @see net.jforum.dao.TopicDAO#selectByUserByLimit(int, int, int)
+	 * @see net.iforums.dao.TopicDao#selectByUserByLimit(int, int, int)
 	 */
 	public List selectByUserByLimit(int userId, int startFrom, int count)
 	{
@@ -508,7 +511,7 @@ public class TopicDaoImpl extends BaseORMDao<Topic> implements TopicDao
 	}
 
 	/**
-	 * @see net.jforum.dao.TopicDAO#countUserTopics(int)
+	 * @see net.iforums.dao.TopicDao#countUserTopics(int)
 	 */
 	public int countUserTopics(int userId)
 	{
@@ -565,7 +568,7 @@ public class TopicDaoImpl extends BaseORMDao<Topic> implements TopicDao
 	}
 
 	/**
-	 * @see net.jforum.dao.TopicDAO#autoSetLastPostId(int)
+	 * @see net.iforums.dao.TopicDao#autoSetLastPostId(int)
 	 */
 	public int getMaxPostId(int topicId)
 	{
@@ -594,7 +597,7 @@ public class TopicDaoImpl extends BaseORMDao<Topic> implements TopicDao
 	}
 
 	/**
-	 * @see net.jforum.dao.TopicDAO#getTotalPosts(int)
+	 * @see net.iforums.dao.TopicDao#getTotalPosts(int)
 	 */
 	public int getTotalPosts(int topicId)
 	{
@@ -623,7 +626,7 @@ public class TopicDaoImpl extends BaseORMDao<Topic> implements TopicDao
 	}
 
 	/**
-	 * @see net.jforum.dao.TopicDAO#notifyUsers(net.jforum.entities.Topic)
+	 * @see net.iforums.dao.TopicDao#notifyUsers(net.jforum.entities.Topic)
 	 */
 	public List notifyUsers(Topic topic)
 	{
@@ -680,7 +683,7 @@ public class TopicDaoImpl extends BaseORMDao<Topic> implements TopicDao
 	}
 	
 	/**
-	 * @see net.jforum.dao.TopicDAO#subscribeUsers(int, java.util.List)
+	 * @see net.iforums.dao.TopicDao#subscribeUsers(int, java.util.List)
 	 */
 	public void subscribeUsers(int topicId, List users)
 	{
@@ -708,7 +711,7 @@ public class TopicDaoImpl extends BaseORMDao<Topic> implements TopicDao
 	}
 
 	/**
-	 * @see net.jforum.dao.TopicDAO#subscribeUser(int, int)
+	 * @see net.iforums.dao.TopicDao#subscribeUser(int, int)
 	 */
 	public void subscribeUser(int topicId, int userId)
 	{
@@ -722,7 +725,7 @@ public class TopicDaoImpl extends BaseORMDao<Topic> implements TopicDao
 	}
 
 	/**
-	 * @see net.jforum.dao.TopicDAO#isUserSubscribing(int, int)
+	 * @see net.iforums.dao.TopicDao#isUserSubscribing(int, int)
 	 */
 	public boolean isUserSubscribed(int topicId, int userId)
 	{
@@ -749,7 +752,7 @@ public class TopicDaoImpl extends BaseORMDao<Topic> implements TopicDao
 	}
 
 	/**
-	 * @see net.jforum.dao.TopicDAO#removeSubscription(int, int)
+	 * @see net.iforums.dao.TopicDao#removeSubscription(int, int)
 	 */
 	public void removeSubscription(int topicId, int userId)
 	{
@@ -771,7 +774,7 @@ public class TopicDaoImpl extends BaseORMDao<Topic> implements TopicDao
 	}
 
 	/**
-	 * @see net.jforum.dao.TopicDAO#removeSubscriptionByTopic(int)
+	 * @see net.iforums.dao.TopicDao#removeSubscriptionByTopic(int)
 	 */
 	public void removeSubscriptionByTopic(int topicId)
 	{
@@ -792,7 +795,7 @@ public class TopicDaoImpl extends BaseORMDao<Topic> implements TopicDao
 	}
 
 	/**
-	 * @see net.jforum.dao.TopicDAO#updateReadStatus(int, int, boolean)
+	 * @see net.iforums.dao.TopicDao#updateReadStatus(int, int, boolean)
 	 */
 	public void updateReadStatus(int topicId, int userId, boolean read)
 	{
@@ -817,7 +820,7 @@ public class TopicDaoImpl extends BaseORMDao<Topic> implements TopicDao
 	}
 
 	/**
-	 * @see net.jforum.dao.TopicDAO#lockUnlock(int[], int)
+	 * @see net.iforums.dao.TopicDao#lockUnlock(int[], int)
 	 */
 	public void lockUnlock(int[] topicId, int status)
 	{
@@ -962,7 +965,7 @@ public class TopicDaoImpl extends BaseORMDao<Topic> implements TopicDao
 	}
 
 	/**
-	 * @see net.jforum.dao.TopicDAO#selectRecentTopics(int)
+	 * @see net.iforums.dao.TopicDao#selectRecentTopics(int)
 	 */
 	public List selectRecentTopics(int limit)
 	{
@@ -984,7 +987,7 @@ public class TopicDaoImpl extends BaseORMDao<Topic> implements TopicDao
 	}
 
 	/**
-	 * @see net.jforum.dao.TopicDAO#selectHottestTopics(int)
+	 * @see net.iforums.dao.TopicDao#selectHottestTopics(int)
 	 */
 	public List selectHottestTopics(int limit)
 	{
@@ -1007,7 +1010,7 @@ public class TopicDaoImpl extends BaseORMDao<Topic> implements TopicDao
 	}
 	
 	/**
-	 * @see net.jforum.dao.TopicDAO#setFirstPostId(int, int)
+	 * @see net.iforums.dao.TopicDao#setFirstPostId(int, int)
 	 */
 	public void setFirstPostId(int topicId, int postId)
 	{
@@ -1028,7 +1031,7 @@ public class TopicDaoImpl extends BaseORMDao<Topic> implements TopicDao
 	}
 
 	/**
-	 * @see net.jforum.dao.TopicDAO#getMinPostId(int)
+	 * @see net.iforums.dao.TopicDao#getMinPostId(int)
 	 */
 	public int getMinPostId(int topicId)
 	{
@@ -1056,7 +1059,7 @@ public class TopicDaoImpl extends BaseORMDao<Topic> implements TopicDao
 	}
 
 	/**
-	 * @see net.jforum.dao.TopicDAO#setModerationStatus(int, boolean)
+	 * @see net.iforums.dao.TopicDao#setModerationStatus(int, boolean)
 	 */
 	public void setModerationStatus(int forumId, boolean status)
 	{
@@ -1077,7 +1080,7 @@ public class TopicDaoImpl extends BaseORMDao<Topic> implements TopicDao
 	}
 
 	/**
-	 * @see net.jforum.dao.TopicDAO#setModerationStatusByTopic(int, boolean)
+	 * @see net.iforums.dao.TopicDao#setModerationStatusByTopic(int, boolean)
 	 */
 	public void setModerationStatusByTopic(int topicId, boolean status)
 	{
@@ -1098,7 +1101,7 @@ public class TopicDaoImpl extends BaseORMDao<Topic> implements TopicDao
 	}
 
 	/**
-	 * @see net.jforum.dao.TopicDAO#selectTopicTitlesByIds(java.util.Collection)
+	 * @see net.iforums.dao.TopicDao#selectTopicTitlesByIds(java.util.Collection)
 	 */
 	public List selectTopicTitlesByIds(Collection idList)
 	{

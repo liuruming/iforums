@@ -50,22 +50,25 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import net.iforums.JForumExecutionContext;
 import net.iforums.beans.Poll;
 import net.iforums.beans.PollOption;
 import net.iforums.dao.BaseORMDao;
 import net.iforums.dao.PollDao;
-import net.jforum.util.DbUtils;
-import net.jforum.util.preferences.SystemGlobals;
+import net.iforums.utils.DbUtils;
+import net.iforums.utils.preferences.SystemGlobals;
 
 /**
  * @author David Almilli
- * @version $Id: GenericPollDAO.java,v 1.9 2007/08/01 22:30:03 rafaelsteil Exp $
+ * @version $Id: GenericPollDao.java,v 1.9 2007/08/01 22:30:03 rafaelsteil Exp $
  */
+@Repository
 public class PollDaoImpl extends BaseORMDao<Poll> implements PollDao
 {
 	/**
-	 * @see net.jforum.dao.PollDAO#addNew(net.jforum.entities.Poll)
+	 * @see net.iforums.dao.PollDao#addNew(net.jforum.entities.Poll)
 	 */
 	public int addNew(Poll poll)
 	{
@@ -136,7 +139,7 @@ public class PollDaoImpl extends BaseORMDao<Poll> implements PollDao
 	}
 
 	/**
-	 * @see net.jforum.dao.PollDAO#selectById(int)
+	 * @see net.iforums.dao.PollDao#selectById(int)
 	 */
 	public Poll selectById(int pollId)
 	{
@@ -198,7 +201,7 @@ public class PollDaoImpl extends BaseORMDao<Poll> implements PollDao
 	}
 
 	/**
-	 * @see net.jforum.dao.PollDAO#voteOnPoll(int, int, int, java.lang.String)
+	 * @see net.iforums.dao.PollDao#voteOnPoll(int, int, int, java.lang.String)
 	 */
 	public void voteOnPoll(int pollId, int optionId, int userId, String ipAddress)
 	{
@@ -230,7 +233,7 @@ public class PollDaoImpl extends BaseORMDao<Poll> implements PollDao
 	}
 
 	/**
-	 * @see net.jforum.dao.PollDAO#hasVotedOnPoll(int, int)
+	 * @see net.iforums.dao.PollDao#hasVotedOnPoll(int, int)
 	 */
 	public boolean hasUserVotedOnPoll(int pollId, int userId)
 	{
@@ -285,7 +288,7 @@ public class PollDaoImpl extends BaseORMDao<Poll> implements PollDao
 	}
 
 	/**
-	 * @see net.jforum.dao.PollDAO#delete(int)
+	 * @see net.iforums.dao.PollDao#delete(int)
 	 */
 	public void deleteByTopicId(int topicId)
 	{
@@ -318,7 +321,7 @@ public class PollDaoImpl extends BaseORMDao<Poll> implements PollDao
 	}
 
 	/**
-	 * @see net.jforum.dao.PollDAO#delete(int)
+	 * @see net.iforums.dao.PollDao#delete(int)
 	 */
 	public void delete(int pollId)
 	{
@@ -424,7 +427,7 @@ public class PollDaoImpl extends BaseORMDao<Poll> implements PollDao
 	}
 
 	/**
-	 * @see net.jforum.dao.PollDAO#update(net.jforum.entities.Poll)
+	 * @see net.iforums.dao.PollDao#update(net.jforum.entities.Poll)
 	 */
 	public void update(Poll poll)
 	{

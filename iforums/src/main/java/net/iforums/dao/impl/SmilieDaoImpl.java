@@ -48,21 +48,24 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import net.iforums.JForumExecutionContext;
 import net.iforums.beans.Smilie;
 import net.iforums.dao.BaseORMDao;
 import net.iforums.dao.SmilieDao;
-import net.jforum.util.DbUtils;
-import net.jforum.util.preferences.SystemGlobals;
+import net.iforums.utils.DbUtils;
+import net.iforums.utils.preferences.SystemGlobals;
 
 /**
  * @author Rafael Steil
- * @version $Id: GenericSmilieDAO.java,v 1.9 2007/02/25 13:48:33 rafaelsteil Exp $
+ * @version $Id: GenericSmilieDao.java,v 1.9 2007/02/25 13:48:33 rafaelsteil Exp $
  */
+@Repository
 public class SmilieDaoImpl extends BaseORMDao<Smilie> implements SmilieDao
 {
 	/**
-	 * @see net.jforum.repository.SmilieDAO#addNew(net.jforum.entities.Smilie)
+	 * @see net.jforum.repository.SmilieDao#addNew(net.jforum.entities.Smilie)
 	 */
 	public int addNew(Smilie smilie)
 	{
@@ -87,7 +90,7 @@ public class SmilieDaoImpl extends BaseORMDao<Smilie> implements SmilieDao
 	}
 
 	/**
-	 * @see net.jforum.repository.SmilieDAO#delete(int, int)
+	 * @see net.jforum.repository.SmilieDao#delete(int, int)
 	 */
 	public void delete(int id)
 	{
@@ -106,7 +109,7 @@ public class SmilieDaoImpl extends BaseORMDao<Smilie> implements SmilieDao
 	}
 
 	/**
-	 * @see net.jforum.repository.SmilieDAO#update(net.jforum.entities.Smilie)
+	 * @see net.jforum.repository.SmilieDao#update(net.jforum.entities.Smilie)
 	 */
 	public void update(Smilie smilie)
 	{
@@ -141,7 +144,7 @@ public class SmilieDaoImpl extends BaseORMDao<Smilie> implements SmilieDao
 	}
 
 	/**
-	 * @see net.jforum.repository.SmilieDAO#selectAll()
+	 * @see net.jforum.repository.SmilieDao#selectAll()
 	 */
 	public List selectAll()
 	{
@@ -167,7 +170,7 @@ public class SmilieDaoImpl extends BaseORMDao<Smilie> implements SmilieDao
 	}
 
 	/**
-	 * @see net.jforum.dao.SmilieDAO#selectById(int)
+	 * @see net.iforums.dao.SmilieDao#selectById(int)
 	 */
 	public Smilie selectById(int id)
 	{

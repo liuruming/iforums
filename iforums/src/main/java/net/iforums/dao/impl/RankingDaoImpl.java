@@ -48,21 +48,24 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import net.iforums.JForumExecutionContext;
 import net.iforums.beans.Ranking;
 import net.iforums.dao.BaseORMDao;
 import net.iforums.dao.RankingDao;
-import net.jforum.util.DbUtils;
-import net.jforum.util.preferences.SystemGlobals;
+import net.iforums.utils.DbUtils;
+import net.iforums.utils.preferences.SystemGlobals;
 
 /**
  * @author Rafael Steil
- * @version $Id: GenericRankingDAO.java,v 1.9 2006/12/02 03:19:44 rafaelsteil Exp $
+ * @version $Id: GenericRankingDao.java,v 1.9 2006/12/02 03:19:44 rafaelsteil Exp $
  */
+@Repository
 public class RankingDaoImpl extends BaseORMDao<Ranking> implements RankingDao
 {
 	/**
-	 * @see net.jforum.dao.RankingDAO#selectById(int)
+	 * @see net.iforums.dao.RankingDao#selectById(int)
 	 */
 	public Ranking selectById(int rankingId)
 	{
@@ -92,7 +95,7 @@ public class RankingDaoImpl extends BaseORMDao<Ranking> implements RankingDao
 	}
 
 	/**
-	 * @see net.jforum.dao.RankingDAO#selectAll()
+	 * @see net.iforums.dao.RankingDao#selectAll()
 	 */
 	public List selectAll()
 	{
@@ -119,7 +122,7 @@ public class RankingDaoImpl extends BaseORMDao<Ranking> implements RankingDao
 	}
 
 	/**
-	 * @see net.jforum.dao.RankingDAO#delete(int)
+	 * @see net.iforums.dao.RankingDao#delete(int)
 	 */
 	public void delete(int rankingId)
 	{
@@ -139,7 +142,7 @@ public class RankingDaoImpl extends BaseORMDao<Ranking> implements RankingDao
 	}
 
 	/**
-	 * @see net.jforum.dao.RankingDAO#update(net.jforum.entities.Ranking)
+	 * @see net.iforums.dao.RankingDao#update(net.jforum.entities.Ranking)
 	 */
 	public void update(Ranking ranking)
 	{
@@ -164,7 +167,7 @@ public class RankingDaoImpl extends BaseORMDao<Ranking> implements RankingDao
 	}
 
 	/**
-	 * @see net.jforum.dao.RankingDAO#addNew(net.jforum.entities.Ranking)
+	 * @see net.iforums.dao.RankingDao#addNew(net.jforum.entities.Ranking)
 	 */
 	public void addNew(Ranking ranking)
 	{

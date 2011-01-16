@@ -25,9 +25,9 @@ import net.iforums.dao.BaseORMDao;
 import net.iforums.dao.ForumDao;
 import net.iforums.dao.GroupSecurityDao;
 import net.iforums.dao.TopicDao;
-import net.jforum.util.DbUtils;
-import net.jforum.util.preferences.ConfigKeys;
-import net.jforum.util.preferences.SystemGlobals;
+import net.iforums.utils.DbUtils;
+import net.iforums.utils.preferences.ConfigKeys;
+import net.iforums.utils.preferences.SystemGlobals;
 
 import org.springframework.stereotype.Repository;
 
@@ -38,7 +38,7 @@ public class ForumDaoImpl extends BaseORMDao<Forum> implements ForumDao{
 	@Resource
 	private TopicDao topicDao;
 	/**
-	 * @see net.jforum.dao.ForumDAO#selectById(int)
+	 * @see net.iforums.dao.ForumDao#selectById(int)
 	 */
 	public Forum selectById(int forumId)
 	{
@@ -107,7 +107,7 @@ public class ForumDaoImpl extends BaseORMDao<Forum> implements ForumDao{
 	}
 
 	/**
-	 * @see net.jforum.dao.ForumDAO#selectAll()
+	 * @see net.iforums.dao.ForumDao#selectAll()
 	 */
 	public List selectAll()
 	{
@@ -134,7 +134,7 @@ public class ForumDaoImpl extends BaseORMDao<Forum> implements ForumDao{
 	}
 
 	/**
-	 * @see net.jforum.dao.ForumDAO#setOrderUp(Forum, Forum)
+	 * @see net.iforums.dao.ForumDao#setOrderUp(Forum, Forum)
 	 */
 	public Forum setOrderUp(Forum forum, Forum related)
 	{
@@ -142,7 +142,7 @@ public class ForumDaoImpl extends BaseORMDao<Forum> implements ForumDao{
 	}
 
 	/**
-	 * @see net.jforum.dao.ForumDAO#setOrderDown(Forum, Forum)
+	 * @see net.iforums.dao.ForumDao#setOrderDown(Forum, Forum)
 	 */
 	public Forum setOrderDown(Forum forum, Forum related)
 	{
@@ -182,7 +182,7 @@ public class ForumDaoImpl extends BaseORMDao<Forum> implements ForumDao{
 	}
 
 	/**
-	 * @see net.jforum.dao.ForumDAO#delete(int)
+	 * @see net.iforums.dao.ForumDao#delete(int)
 	 */
 	public void delete(int forumId)
 	{
@@ -204,7 +204,7 @@ public class ForumDaoImpl extends BaseORMDao<Forum> implements ForumDao{
 	}
 
 	/**
-	 * @see net.jforum.dao.ForumDAO#update(net.jforum.entities.Forum)
+	 * @see net.iforums.dao.ForumDao#update(net.jforum.entities.Forum)
 	 */
 	public void update(Forum forum)
 	{
@@ -229,7 +229,7 @@ public class ForumDaoImpl extends BaseORMDao<Forum> implements ForumDao{
 	}
 
 	/**
-	 * @see net.jforum.dao.ForumDAO#addNew(net.jforum.entities.Forum)
+	 * @see net.iforums.dao.ForumDao#addNew(net.jforum.entities.Forum)
 	 */
 	public int addNew(Forum forum)
 	{
@@ -273,7 +273,7 @@ public class ForumDaoImpl extends BaseORMDao<Forum> implements ForumDao{
 	}
 
 	/**
-	 * @see net.jforum.dao.ForumDAO#setLastPost(int, int)
+	 * @see net.iforums.dao.ForumDao#setLastPost(int, int)
 	 */
 	public void setLastPost(int forumId, int postId)
 	{
@@ -296,7 +296,7 @@ public class ForumDaoImpl extends BaseORMDao<Forum> implements ForumDao{
 	}
 
 	/**
-	 * @see net.jforum.dao.ForumDAO#setTotalTopics(int)
+	 * @see net.iforums.dao.ForumDao#setTotalTopics(int)
 	 */
 	public void incrementTotalTopics(int forumId, int count)
 	{
@@ -317,7 +317,7 @@ public class ForumDaoImpl extends BaseORMDao<Forum> implements ForumDao{
 	}
 
 	/**
-	 * @see net.jforum.dao.ForumDAO#setTotalTopics(int)
+	 * @see net.iforums.dao.ForumDao#setTotalTopics(int)
 	 */
 	public void decrementTotalTopics(int forumId, int count)
 	{
@@ -431,7 +431,7 @@ public class ForumDaoImpl extends BaseORMDao<Forum> implements ForumDao{
 	}
 
 	/**
-	 * @see net.jforum.dao.ForumDAO#getLastPostInfo(int)
+	 * @see net.iforums.dao.ForumDao#getLastPostInfo(int)
 	 */
 	public LastPostInfo getLastPostInfo(int forumId)
 	{
@@ -439,7 +439,7 @@ public class ForumDaoImpl extends BaseORMDao<Forum> implements ForumDao{
 	}
 
 	/**
-	 * @see net.jforum.dao.ForumDAO#getModeratorList(int)
+	 * @see net.iforums.dao.ForumDao#getModeratorList(int)
 	 */
 	public List getModeratorList(int forumId)
 	{
@@ -474,7 +474,7 @@ public class ForumDaoImpl extends BaseORMDao<Forum> implements ForumDao{
 	}
 
 	/**
-	 * @see net.jforum.dao.ForumDAO#getTotalMessages()
+	 * @see net.iforums.dao.ForumDao#getTotalMessages()
 	 */
 	public int getTotalMessages()
 	{
@@ -500,7 +500,7 @@ public class ForumDaoImpl extends BaseORMDao<Forum> implements ForumDao{
 	}
 
 	/**
-	 * @see net.jforum.dao.ForumDAO#getTotalTopics(int)
+	 * @see net.iforums.dao.ForumDao#getTotalTopics(int)
 	 */
 	public int getTotalTopics(int forumId)
 	{
@@ -528,7 +528,7 @@ public class ForumDaoImpl extends BaseORMDao<Forum> implements ForumDao{
 	}
 
 	/**
-	 * @see net.jforum.dao.ForumDAO#getMaxPostId(int)
+	 * @see net.iforums.dao.ForumDao#getMaxPostId(int)
 	 */
 	public int getMaxPostId(int forumId)
 	{
@@ -557,7 +557,7 @@ public class ForumDaoImpl extends BaseORMDao<Forum> implements ForumDao{
 	}
 
 	/**
-	 * @see net.jforum.dao.ForumDAO#moveTopics(java.lang.String[], int, int)
+	 * @see net.iforums.dao.ForumDao#moveTopics(java.lang.String[], int, int)
 	 */
 	public void moveTopics(String[] topics, int fromForumId, int toForumId)
 	{
@@ -602,7 +602,7 @@ public class ForumDaoImpl extends BaseORMDao<Forum> implements ForumDao{
 	}
 
 	/**
-	 * @see net.jforum.dao.ForumDAO#hasUnreadTopics(int, long)
+	 * @see net.iforums.dao.ForumDao#hasUnreadTopics(int, long)
 	 */
 	public List checkUnreadTopics(int forumId, long lastVisit)
 	{
@@ -636,16 +636,16 @@ public class ForumDaoImpl extends BaseORMDao<Forum> implements ForumDao{
 	}
 
 	/**
-	 * @see net.jforum.dao.ForumDAO#setModerated(int, boolean)
+	 * @see net.iforums.dao.ForumDao#setModerated(int, boolean)
 	 */
-	public void setModerated(int categoryId, boolean status)
+	public void setModerated(long categoryId, boolean status)
 	{
 		PreparedStatement p = null;
 		try {
 			p = JForumExecutionContext.getConnection()
 					.prepareStatement(SystemGlobals.getSql("ForumModel.setModerated"));
 			p.setInt(1, status ? 1 : 0);
-			p.setInt(2, categoryId);
+			p.setLong(2, categoryId);
 			p.executeUpdate();
 		}
 		catch (SQLException e) {
@@ -657,7 +657,7 @@ public class ForumDaoImpl extends BaseORMDao<Forum> implements ForumDao{
 	}
 
 	/**
-	 * @see net.jforum.dao.ForumDAO#getBoardStatus()
+	 * @see net.iforums.dao.ForumDao#getBoardStatus()
 	 */
 	public ForumStats getBoardStatus()
 	{
@@ -760,7 +760,7 @@ public class ForumDaoImpl extends BaseORMDao<Forum> implements ForumDao{
 	}
 
 	/**
-	 * This code is writen by looking at GenericTopicDAO.java
+	 * This code is writen by looking at GenericTopicDao.java
 	 * 
 	 * @see
 	 */
@@ -896,7 +896,7 @@ public class ForumDaoImpl extends BaseORMDao<Forum> implements ForumDao{
 	}
 	
 	/**
-	 * @see net.jforum.dao.ForumDAO#discoverForumId(java.lang.String)
+	 * @see net.iforums.dao.ForumDao#discoverForumId(java.lang.String)
 	 */
 	public int discoverForumId(String listEmail)
 	{

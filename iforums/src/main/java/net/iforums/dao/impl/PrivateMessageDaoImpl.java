@@ -62,15 +62,15 @@ import net.iforums.beans.User;
 import net.iforums.dao.BaseORMDao;
 import net.iforums.dao.PrivateMessageDao;
 import net.iforums.dao.UserDao;
-import net.jforum.util.DbUtils;
-import net.jforum.util.preferences.ConfigKeys;
-import net.jforum.util.preferences.SystemGlobals;
+import net.iforums.utils.DbUtils;
+import net.iforums.utils.preferences.ConfigKeys;
+import net.iforums.utils.preferences.SystemGlobals;
 
 import org.springframework.stereotype.Repository;
 
 /**
  * @author Rafael Steil
- * @version $Id: GenericPrivateMessageDAO.java,v 1.12 2007/08/31 22:56:40 rafaelsteil Exp $
+ * @version $Id: GenericPrivateMessageDao.java,v 1.12 2007/08/31 22:56:40 rafaelsteil Exp $
  */
 @Repository
 public class PrivateMessageDaoImpl extends BaseORMDao<PrivateMessage> implements PrivateMessageDao
@@ -78,7 +78,7 @@ public class PrivateMessageDaoImpl extends BaseORMDao<PrivateMessage> implements
 	@Resource
 	private UserDao userDao;
 	/**
-	 * @see net.jforum.dao.PrivateMessageDAO#send(net.jforum.entities.PrivateMessage)
+	 * @see net.iforums.dao.PrivateMessageDao#send(net.jforum.entities.PrivateMessage)
 	 */
 	public void send(PrivateMessage pm)
 	{
@@ -136,7 +136,7 @@ public class PrivateMessageDaoImpl extends BaseORMDao<PrivateMessage> implements
 	}
 
 	/**
-	 * @see net.jforum.dao.PrivateMessageDAO#delete(net.jforum.entities.PrivateMessage[], int)
+	 * @see net.iforums.dao.PrivateMessageDao#delete(net.jforum.entities.PrivateMessage[], int)
 	 */
 	public void delete(PrivateMessage[] pm, int userId)
 	{
@@ -188,7 +188,7 @@ public class PrivateMessageDaoImpl extends BaseORMDao<PrivateMessage> implements
 	}
 
 	/**
-	 * @see net.jforum.dao.PrivateMessageDAO#selectFromInbox(net.jforum.entities.User)
+	 * @see net.iforums.dao.PrivateMessageDao#selectFromInbox(net.jforum.entities.User)
 	 */
 	public List selectFromInbox(User user)
 	{
@@ -227,7 +227,7 @@ public class PrivateMessageDaoImpl extends BaseORMDao<PrivateMessage> implements
 	}
 
 	/**
-	 * @see net.jforum.dao.PrivateMessageDAO#selectFromSent(net.jforum.entities.User)
+	 * @see net.iforums.dao.PrivateMessageDao#selectFromSent(net.jforum.entities.User)
 	 */
 	public List selectFromSent(User user)
 	{
@@ -304,7 +304,7 @@ public class PrivateMessageDaoImpl extends BaseORMDao<PrivateMessage> implements
 	}
 
 	/**
-	 * @see net.jforum.dao.PrivateMessageDAO#selectById(net.jforum.entities.PrivateMessage)
+	 * @see net.iforums.dao.PrivateMessageDao#selectById(net.jforum.entities.PrivateMessage)
 	 */
 	public PrivateMessage selectById(PrivateMessage pm)
 	{
@@ -331,7 +331,7 @@ public class PrivateMessageDaoImpl extends BaseORMDao<PrivateMessage> implements
 	}
 
 	/**
-	 * @see net.jforum.dao.PrivateMessageDAO#updateType(net.jforum.entities.PrivateMessage)
+	 * @see net.iforums.dao.PrivateMessageDao#updateType(net.jforum.entities.PrivateMessage)
 	 */
 	public void updateType(PrivateMessage pm)
 	{

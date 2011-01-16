@@ -52,23 +52,26 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.stereotype.Repository;
+
 import net.iforums.JForumExecutionContext;
 import net.iforums.beans.ModerationPendingInfo;
 import net.iforums.beans.Post;
 import net.iforums.beans.TopicModerationInfo;
 import net.iforums.dao.BaseORMDao;
 import net.iforums.dao.ModerationDao;
-import net.jforum.util.DbUtils;
-import net.jforum.util.preferences.SystemGlobals;
+import net.iforums.utils.DbUtils;
+import net.iforums.utils.preferences.SystemGlobals;
 
 /**
  * @author Rafael Steil
- * @version $Id: GenericModerationDAO.java,v 1.9 2007/07/30 16:31:29 rafaelsteil Exp $
+ * @version $Id: GenericModerationDao.java,v 1.9 2007/07/30 16:31:29 rafaelsteil Exp $
  */
+@Repository
 public class ModerationDaoImpl extends BaseORMDao<Post> implements ModerationDao
 {
     /**
-	 * @see net.jforum.dao.ModerationDAO#aprovePost(int)
+	 * @see net.iforums.dao.ModerationDao#aprovePost(int)
 	 */
 	public void aprovePost(int postId)
 	{
@@ -90,7 +93,7 @@ public class ModerationDaoImpl extends BaseORMDao<Post> implements ModerationDao
     }
 	
 	/**
-	 * @see net.jforum.dao.ModerationDAO#topicsByForum(int)
+	 * @see net.iforums.dao.ModerationDao#topicsByForum(int)
 	 */
 	public Map topicsByForum(int forumId)
 	{
@@ -166,7 +169,7 @@ public class ModerationDaoImpl extends BaseORMDao<Post> implements ModerationDao
 	}
 	
 	/**
-	 * @see net.jforum.dao.ModerationDAO#categoryPendingModeration()
+	 * @see net.iforums.dao.ModerationDao#categoryPendingModeration()
 	 */
 	public List categoryPendingModeration()
 	{

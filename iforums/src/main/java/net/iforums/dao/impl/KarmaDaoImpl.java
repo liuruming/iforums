@@ -52,23 +52,26 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.stereotype.Repository;
+
 import net.iforums.JForumExecutionContext;
 import net.iforums.beans.Karma;
 import net.iforums.beans.KarmaStatus;
 import net.iforums.beans.User;
 import net.iforums.dao.BaseORMDao;
 import net.iforums.dao.KarmaDao;
-import net.jforum.util.DbUtils;
-import net.jforum.util.preferences.SystemGlobals;
+import net.iforums.utils.DbUtils;
+import net.iforums.utils.preferences.SystemGlobals;
 
 /**
  * @author Rafael Steil
- * @version $Id: GenericKarmaDAO.java,v 1.12 2007/08/01 22:30:03 rafaelsteil Exp $
+ * @version $Id: GenericKarmaDao.java,v 1.12 2007/08/01 22:30:03 rafaelsteil Exp $
  */
+@Repository
 public class KarmaDaoImpl extends BaseORMDao<Karma> implements KarmaDao
 {
 	/**
-	 * @see net.jforum.dao.KarmaDAO#addKarma(net.jforum.entities.Karma)
+	 * @see net.iforums.dao.KarmaDao#addKarma(net.jforum.entities.Karma)
 	 */
 	public void addKarma(Karma karma)
 	{
@@ -94,7 +97,7 @@ public class KarmaDaoImpl extends BaseORMDao<Karma> implements KarmaDao
 	}
 
 	/**
-	 * @see net.jforum.dao.KarmaDAO#selectKarmaStatus(int)
+	 * @see net.iforums.dao.KarmaDao#selectKarmaStatus(int)
 	 */
 	public KarmaStatus getUserKarma(int userId)
 	{
@@ -123,7 +126,7 @@ public class KarmaDaoImpl extends BaseORMDao<Karma> implements KarmaDao
 	}
 
 	/**
-	 * @see net.jforum.dao.KarmaDAO#updateUserKarma(int)
+	 * @see net.iforums.dao.KarmaDao#updateUserKarma(int)
 	 */
 	public void updateUserKarma(int userId)
 	{
@@ -173,7 +176,7 @@ public class KarmaDaoImpl extends BaseORMDao<Karma> implements KarmaDao
 	}
 
 	/**
-	 * @see net.jforum.dao.KarmaDAO#update(net.jforum.entities.Karma)
+	 * @see net.iforums.dao.KarmaDao#update(net.jforum.entities.Karma)
 	 */
 	public void update(Karma karma)
 	{
@@ -193,7 +196,7 @@ public class KarmaDaoImpl extends BaseORMDao<Karma> implements KarmaDao
 	}
 
 	/**
-	 * @see net.jforum.dao.KarmaDAO#getPostKarma(int)
+	 * @see net.iforums.dao.KarmaDao#getPostKarma(int)
 	 */
 	public KarmaStatus getPostKarma(int postId)
 	{
@@ -222,7 +225,7 @@ public class KarmaDaoImpl extends BaseORMDao<Karma> implements KarmaDao
 	}
 
 	/**
-	 * @see net.jforum.dao.KarmaDAO#userCanAddKarma(int, int)
+	 * @see net.iforums.dao.KarmaDao#userCanAddKarma(int, int)
 	 */
 	public boolean userCanAddKarma(int userId, int postId)
 	{
@@ -252,7 +255,7 @@ public class KarmaDaoImpl extends BaseORMDao<Karma> implements KarmaDao
 	}
 
 	/**
-	 * @see net.jforum.dao.KarmaDAO#getUserVotes(int, int)
+	 * @see net.iforums.dao.KarmaDao#getUserVotes(int, int)
 	 */
 	public Map getUserVotes(int topicId, int userId)
 	{
@@ -337,7 +340,7 @@ public class KarmaDaoImpl extends BaseORMDao<Karma> implements KarmaDao
 	}
 
 	/**
-	 * @see net.jforum.dao.KarmaDAO#getMostRatedUserByPeriod(int, java.util.Date, java.util.Date,
+	 * @see net.iforums.dao.KarmaDao#getMostRatedUserByPeriod(int, java.util.Date, java.util.Date,
 	 *      String)
 	 */
 	public List getMostRatedUserByPeriod(int start, Date firstPeriod, Date lastPeriod, String orderField)

@@ -13,18 +13,18 @@ import net.iforums.beans.Group;
 import net.iforums.beans.User;
 import net.iforums.dao.BaseORMDao;
 import net.iforums.dao.GroupSecurityDao;
-import net.jforum.dao.generic.security.SecurityCommon;
-import net.jforum.repository.RolesRepository;
-import net.jforum.security.Role;
-import net.jforum.security.RoleCollection;
-import net.jforum.security.RoleValue;
-import net.jforum.security.RoleValueCollection;
-import net.jforum.util.DbUtils;
-import net.jforum.util.preferences.SystemGlobals;
+import net.iforums.dao.generic.security.SecurityCommon;
+import net.iforums.repository.RolesRepository;
+import net.iforums.security.Role;
+import net.iforums.security.RoleCollection;
+import net.iforums.security.RoleValue;
+import net.iforums.security.RoleValueCollection;
+import net.iforums.utils.DbUtils;
+import net.iforums.utils.preferences.SystemGlobals;
 
 import org.apache.commons.lang.StringUtils;
 
-public class GroupSecurityDAOImpl extends BaseORMDao<Group> implements GroupSecurityDao {
+public class GroupSecurityDaoImpl extends BaseORMDao<Group> implements GroupSecurityDao {
 	private List selectForumRoles(int forumId) 
 	{
 		List l = new ArrayList();

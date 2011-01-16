@@ -6,13 +6,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import net.iforums.JForumExecutionContext;
 import net.iforums.beans.Banner;
 import net.iforums.dao.BannerDao;
 import net.iforums.dao.BaseORMDao;
-import net.jforum.util.DbUtils;
-import net.jforum.util.preferences.SystemGlobals;
-
+import net.iforums.utils.DbUtils;
+import net.iforums.utils.preferences.SystemGlobals;
+@Repository
 public class BannerDaoImpl extends BaseORMDao<Banner> implements BannerDao{
 
 	public Banner selectById(int bannerId)
@@ -21,7 +23,7 @@ public class BannerDaoImpl extends BaseORMDao<Banner> implements BannerDao{
 		ResultSet rs = null;
 		Banner b = null;
 		try {
-			p = JForumExecutionContext.getConnection().prepareStatement(SystemGlobals.getSql("BannerDAO.selectById"));
+			p = JForumExecutionContext.getConnection().prepareStatement(SystemGlobals.getSql("BannerDao.selectById"));
 			p.setInt(1, bannerId);
 
 			rs = p.executeQuery();
@@ -46,7 +48,7 @@ public class BannerDaoImpl extends BaseORMDao<Banner> implements BannerDao{
 		PreparedStatement p = null;
 		ResultSet rs = null;
 		try {
-			p = JForumExecutionContext.getConnection().prepareStatement(SystemGlobals.getSql("BannerDAO.selectAll"));
+			p = JForumExecutionContext.getConnection().prepareStatement(SystemGlobals.getSql("BannerDao.selectAll"));
 			List l = new ArrayList();
 
 			rs = p.executeQuery();
@@ -91,7 +93,7 @@ public class BannerDaoImpl extends BaseORMDao<Banner> implements BannerDao{
 		PreparedStatement p = null;
 		ResultSet rs = null;
 		try {
-			p = JForumExecutionContext.getConnection().prepareStatement(SystemGlobals.getSql("BannerDAO.canDelete"));
+			p = JForumExecutionContext.getConnection().prepareStatement(SystemGlobals.getSql("BannerDao.canDelete"));
 			p.setInt(1, bannerId);
 
 			rs = p.executeQuery();
@@ -113,7 +115,7 @@ public class BannerDaoImpl extends BaseORMDao<Banner> implements BannerDao{
 	{
 		PreparedStatement p = null;
 		try {
-			p = JForumExecutionContext.getConnection().prepareStatement(SystemGlobals.getSql("BannerDAO.delete"));
+			p = JForumExecutionContext.getConnection().prepareStatement(SystemGlobals.getSql("BannerDao.delete"));
 			p.setInt(1, bannerId);
 			p.executeUpdate();
 		}
@@ -129,7 +131,7 @@ public class BannerDaoImpl extends BaseORMDao<Banner> implements BannerDao{
 	{
 		PreparedStatement p = null;
 		try {
-			p = JForumExecutionContext.getConnection().prepareStatement(SystemGlobals.getSql("BannerDAO.update"));
+			p = JForumExecutionContext.getConnection().prepareStatement(SystemGlobals.getSql("BannerDao.update"));
 			setBannerParam(p, banner);
 			p.setInt(13, banner.getId());
 			p.executeUpdate();
@@ -146,7 +148,7 @@ public class BannerDaoImpl extends BaseORMDao<Banner> implements BannerDao{
 	{
 		PreparedStatement p = null;
 		try {
-			p = this.getStatementForAutoKeys("BannerDAO.addNew");
+			p = this.getStatementForAutoKeys("BannerDao.addNew");
 			setBannerParam(p, banner);
 			int id = this.executeAutoKeysQuery(p);
 
@@ -183,7 +185,7 @@ public class BannerDaoImpl extends BaseORMDao<Banner> implements BannerDao{
 		ResultSet rs = null;
 		try {
 			p = JForumExecutionContext.getConnection().prepareStatement(
-					SystemGlobals.getSql("BannerDAO.selectActiveBannerByPlacement"));
+					SystemGlobals.getSql("BannerDao.selectActiveBannerByPlacement"));
 			p.setInt(1, placement);
 
 			List l = new ArrayList();

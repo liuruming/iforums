@@ -9,21 +9,24 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import net.iforums.JForumExecutionContext;
 import net.iforums.beans.MailIntegration;
 import net.iforums.dao.BaseORMDao;
 import net.iforums.dao.MailIntegrationDao;
-import net.jforum.util.DbUtils;
-import net.jforum.util.preferences.SystemGlobals;
+import net.iforums.utils.DbUtils;
+import net.iforums.utils.preferences.SystemGlobals;
 
 /**
  * @author Rafael Steil
- * @version $Id: GenericMailIntegrationDAO.java,v 1.3 2006/10/10 00:19:09 rafaelsteil Exp $
+ * @version $Id: GenericMailIntegrationDao.java,v 1.3 2006/10/10 00:19:09 rafaelsteil Exp $
  */
+@Repository
 public class MailIntegrationDaoImpl extends BaseORMDao<MailIntegration> implements MailIntegrationDao
 {
 	/**
-	 * @see net.jforum.dao.MailIntegrationDAO#add(net.jforum.entities.MailIntegration)
+	 * @see net.iforums.dao.MailIntegrationDao#add(net.jforum.entities.MailIntegration)
 	 */
 	public void add(MailIntegration integration)
 	{
@@ -44,7 +47,7 @@ public class MailIntegrationDaoImpl extends BaseORMDao<MailIntegration> implemen
 	}
 	
 	/**
-	 * @see net.jforum.dao.MailIntegrationDAO#delete(int)
+	 * @see net.iforums.dao.MailIntegrationDao#delete(int)
 	 */
 	public void delete(int forumId)
 	{
@@ -65,7 +68,7 @@ public class MailIntegrationDaoImpl extends BaseORMDao<MailIntegration> implemen
 	}
 
 	/**
-	 * @see net.jforum.dao.MailIntegrationDAO#find(int)
+	 * @see net.iforums.dao.MailIntegrationDao#find(int)
 	 */
 	public MailIntegration find(int forumId)
 	{
@@ -95,7 +98,7 @@ public class MailIntegrationDaoImpl extends BaseORMDao<MailIntegration> implemen
 	}
 
 	/**
-	 * @see net.jforum.dao.MailIntegrationDAO#findAll()
+	 * @see net.iforums.dao.MailIntegrationDao#findAll()
 	 */
 	public List findAll()
 	{
@@ -124,7 +127,7 @@ public class MailIntegrationDaoImpl extends BaseORMDao<MailIntegration> implemen
 	}
 
 	/**
-	 * @see net.jforum.dao.MailIntegrationDAO#update(net.jforum.entities.MailIntegration)
+	 * @see net.iforums.dao.MailIntegrationDao#update(net.jforum.entities.MailIntegration)
 	 */
 	public void update(MailIntegration integration)
 	{

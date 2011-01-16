@@ -13,8 +13,8 @@ import net.iforums.beans.Group;
 import net.iforums.dao.BaseORMDao;
 import net.iforums.dao.GroupDao;
 import net.iforums.dao.GroupSecurityDao;
-import net.jforum.util.DbUtils;
-import net.jforum.util.preferences.SystemGlobals;
+import net.iforums.utils.DbUtils;
+import net.iforums.utils.preferences.SystemGlobals;
 
 import org.springframework.stereotype.Repository;
 
@@ -23,7 +23,7 @@ public class GroupDaoImpl extends BaseORMDao<Group> implements GroupDao{
 	@Resource
 	private GroupSecurityDao groupSecurityDao;
 	/**
-	 * @see net.jforum.dao.GroupDAO#selectById(int)
+	 * @see net.iforums.dao.GroupDao#selectById(int)
 	 */
 	public Group selectById(int groupId)
 	{
@@ -52,7 +52,7 @@ public class GroupDaoImpl extends BaseORMDao<Group> implements GroupDao{
 	}
 
 	/**
-	 * @see net.jforum.dao.GroupDAO#canDelete(int)
+	 * @see net.iforums.dao.GroupDao#canDelete(int)
 	 */
 	public boolean canDelete(int groupId)
 	{
@@ -80,7 +80,7 @@ public class GroupDaoImpl extends BaseORMDao<Group> implements GroupDao{
 	}
 
 	/**
-	 * @see net.jforum.dao.GroupDAO#delete(int)
+	 * @see net.iforums.dao.GroupDao#delete(int)
 	 */
 	public void delete(int groupId)
 	{
@@ -102,7 +102,7 @@ public class GroupDaoImpl extends BaseORMDao<Group> implements GroupDao{
 	}
 
 	/**
-	 * @see net.jforum.dao.GroupDAO#update(net.jforum.entities.Group)
+	 * @see net.iforums.dao.GroupDao#update(net.jforum.entities.Group)
 	 */
 	public void update(Group group)
 	{
@@ -125,7 +125,7 @@ public class GroupDaoImpl extends BaseORMDao<Group> implements GroupDao{
 	}
 
 	/**
-	 * @see net.jforum.dao.GroupDAO#addNew(net.jforum.entities.Group)
+	 * @see net.iforums.dao.GroupDao#addNew(net.jforum.entities.Group)
 	 */
 	public void addNew(Group group)
 	{
@@ -147,7 +147,7 @@ public class GroupDaoImpl extends BaseORMDao<Group> implements GroupDao{
 	}
 
 	/**
-	 * @see net.jforum.dao.GroupDAO#selectUsersIds(int)
+	 * @see net.iforums.dao.GroupDao#selectUsersIds(int)
 	 */
 	public List selectUsersIds(int groupId)
 	{
@@ -199,7 +199,7 @@ public class GroupDaoImpl extends BaseORMDao<Group> implements GroupDao{
 	}
 
 	/**
-	 * @see net.jforum.dao.GroupDAO#selectAll()
+	 * @see net.iforums.dao.GroupDao#selectAll()
 	 */
 	public List selectAll()
 	{

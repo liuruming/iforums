@@ -18,16 +18,16 @@ import net.iforums.beans.AttachmentInfo;
 import net.iforums.beans.QuotaLimit;
 import net.iforums.dao.AttachmentDao;
 import net.iforums.dao.BaseORMDao;
-import net.jforum.util.DbUtils;
-import net.jforum.util.preferences.ConfigKeys;
-import net.jforum.util.preferences.SystemGlobals;
+import net.iforums.utils.DbUtils;
+import net.iforums.utils.preferences.ConfigKeys;
+import net.iforums.utils.preferences.SystemGlobals;
 
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class AttachmentDaoImpl extends BaseORMDao<Attachment> implements AttachmentDao{
 	/**
-	 * @see net.jforum.dao.AttachmentDAO#addQuotaLimit(net.jforum.entities.QuotaLimit)
+	 * @see net.iforums.dao.AttachmentDao#addQuotaLimit(net.jforum.entities.QuotaLimit)
 	 */
 	public void addQuotaLimit(QuotaLimit limit)
 	{
@@ -49,7 +49,7 @@ public class AttachmentDaoImpl extends BaseORMDao<Attachment> implements Attachm
 	}
 
 	/**
-	 * @see net.jforum.dao.AttachmentDAO#updateQuotaLimit(net.jforum.entities.QuotaLimit)
+	 * @see net.iforums.dao.AttachmentDao#updateQuotaLimit(net.jforum.entities.QuotaLimit)
 	 */
 	public void updateQuotaLimit(QuotaLimit limit)
 	{
@@ -72,7 +72,7 @@ public class AttachmentDaoImpl extends BaseORMDao<Attachment> implements Attachm
 	}
 
 	/**
-	 * @see net.jforum.dao.AttachmentDAO#cleanGroupQuota()
+	 * @see net.iforums.dao.AttachmentDao#cleanGroupQuota()
 	 */
 	public void cleanGroupQuota()
 	{
@@ -91,7 +91,7 @@ public class AttachmentDaoImpl extends BaseORMDao<Attachment> implements Attachm
 	}
 
 	/**
-	 * @see net.jforum.dao.AttachmentDAO#setGroupQuota(int, int)
+	 * @see net.iforums.dao.AttachmentDao#setGroupQuota(int, int)
 	 */
 	public void setGroupQuota(int groupId, int quotaId)
 	{
@@ -112,7 +112,7 @@ public class AttachmentDaoImpl extends BaseORMDao<Attachment> implements Attachm
 	}
 
 	/**
-	 * @see net.jforum.dao.AttachmentDAO#removeQuotaLimit(int)
+	 * @see net.iforums.dao.AttachmentDao#removeQuotaLimit(int)
 	 */
 	public void removeQuotaLimit(int id)
 	{
@@ -120,7 +120,7 @@ public class AttachmentDaoImpl extends BaseORMDao<Attachment> implements Attachm
 	}
 
 	/**
-	 * @see net.jforum.dao.AttachmentDAO#removeQuotaLimit(java.lang.String[])
+	 * @see net.iforums.dao.AttachmentDao#removeQuotaLimit(java.lang.String[])
 	 */
 	public void removeQuotaLimit(String[] ids)
 	{
@@ -143,7 +143,7 @@ public class AttachmentDaoImpl extends BaseORMDao<Attachment> implements Attachm
 	}
 
 	/**
-	 * @see net.jforum.dao.AttachmentDAO#selectQuotaLimit()
+	 * @see net.iforums.dao.AttachmentDao#selectQuotaLimit()
 	 */
 	public List selectQuotaLimit()
 	{
@@ -170,7 +170,7 @@ public class AttachmentDaoImpl extends BaseORMDao<Attachment> implements Attachm
 	}
 
 	/**
-	 * @see net.jforum.dao.AttachmentDAO#selectQuotaLimit()
+	 * @see net.iforums.dao.AttachmentDao#selectQuotaLimit()
 	 */
 	public QuotaLimit selectQuotaLimitByGroup(int groupId)
 	{
@@ -198,7 +198,7 @@ public class AttachmentDaoImpl extends BaseORMDao<Attachment> implements Attachm
 	}
 
 	/**
-	 * @see net.jforum.dao.AttachmentDAO#selectGroupsQuotaLimits()
+	 * @see net.iforums.dao.AttachmentDao#selectGroupsQuotaLimits()
 	 */
 	public Map selectGroupsQuotaLimits()
 	{
@@ -236,7 +236,7 @@ public class AttachmentDaoImpl extends BaseORMDao<Attachment> implements Attachm
 	}
 
 	/**
-	 * @see net.jforum.dao.AttachmentDAO#addExtensionGroup(net.jforum.entities.AttachmentExtensionGroup)
+	 * @see net.iforums.dao.AttachmentDao#addExtensionGroup(net.jforum.entities.AttachmentExtensionGroup)
 	 */
 	public void addExtensionGroup(AttachmentExtensionGroup g)
 	{
@@ -259,7 +259,7 @@ public class AttachmentDaoImpl extends BaseORMDao<Attachment> implements Attachm
 	}
 
 	/**
-	 * @see net.jforum.dao.AttachmentDAO#removeExtensionGroups(java.lang.String[])
+	 * @see net.iforums.dao.AttachmentDao#removeExtensionGroups(java.lang.String[])
 	 */
 	public void removeExtensionGroups(String[] ids)
 	{
@@ -282,7 +282,7 @@ public class AttachmentDaoImpl extends BaseORMDao<Attachment> implements Attachm
 	}
 
 	/**
-	 * @see net.jforum.dao.AttachmentDAO#selectExtensionGroups()
+	 * @see net.iforums.dao.AttachmentDao#selectExtensionGroups()
 	 */
 	public List selectExtensionGroups()
 	{
@@ -310,7 +310,7 @@ public class AttachmentDaoImpl extends BaseORMDao<Attachment> implements Attachm
 	}
 
 	/**
-	 * @see net.jforum.dao.AttachmentDAO#extensionsForSecurity()
+	 * @see net.iforums.dao.AttachmentDao#extensionsForSecurity()
 	 */
 	public Map extensionsForSecurity()
 	{
@@ -343,7 +343,7 @@ public class AttachmentDaoImpl extends BaseORMDao<Attachment> implements Attachm
 	}
 
 	/**
-	 * @see net.jforum.dao.AttachmentDAO#updateExtensionGroup(net.jforum.entities.AttachmentExtensionGroup)
+	 * @see net.iforums.dao.AttachmentDao#updateExtensionGroup(net.jforum.entities.AttachmentExtensionGroup)
 	 */
 	public void updateExtensionGroup(AttachmentExtensionGroup g)
 	{
@@ -379,7 +379,7 @@ public class AttachmentDaoImpl extends BaseORMDao<Attachment> implements Attachm
 	}
 
 	/**
-	 * @see net.jforum.dao.AttachmentDAO#addExtension(net.jforum.entities.AttachmentExtension)
+	 * @see net.iforums.dao.AttachmentDao#addExtension(net.jforum.entities.AttachmentExtension)
 	 */
 	public void addExtension(AttachmentExtension extension)
 	{
@@ -403,7 +403,7 @@ public class AttachmentDaoImpl extends BaseORMDao<Attachment> implements Attachm
 	}
 
 	/**
-	 * @see net.jforum.dao.AttachmentDAO#removeExtensions(java.lang.String[])
+	 * @see net.iforums.dao.AttachmentDao#removeExtensions(java.lang.String[])
 	 */
 	public void removeExtensions(String[] ids)
 	{
@@ -425,7 +425,7 @@ public class AttachmentDaoImpl extends BaseORMDao<Attachment> implements Attachm
 	}
 
 	/**
-	 * @see net.jforum.dao.AttachmentDAO#selectExtensions()
+	 * @see net.iforums.dao.AttachmentDao#selectExtensions()
 	 */
 	public List selectExtensions()
 	{
@@ -453,7 +453,7 @@ public class AttachmentDaoImpl extends BaseORMDao<Attachment> implements Attachm
 	}
 
 	/**
-	 * @see net.jforum.dao.AttachmentDAO#updateExtension(net.jforum.entities.AttachmentExtension)
+	 * @see net.iforums.dao.AttachmentDao#updateExtension(net.jforum.entities.AttachmentExtension)
 	 */
 	public void updateExtension(AttachmentExtension extension)
 	{
@@ -478,7 +478,7 @@ public class AttachmentDaoImpl extends BaseORMDao<Attachment> implements Attachm
 	}
 
 	/**
-	 * @see net.jforum.dao.AttachmentDAO#selectExtension(java.lang.String)
+	 * @see net.iforums.dao.AttachmentDao#selectExtension(java.lang.String)
 	 */
 	public AttachmentExtension selectExtension(String extension)
 	{
@@ -541,7 +541,7 @@ public class AttachmentDaoImpl extends BaseORMDao<Attachment> implements Attachm
 	}
 
 	/**
-	 * @see net.jforum.dao.AttachmentDAO#addAttachment(net.jforum.entities.Attachment)
+	 * @see net.iforums.dao.AttachmentDao#addAttachment(net.jforum.entities.Attachment)
 	 */
 	public void addAttachment(Attachment a)
 	{
@@ -599,7 +599,7 @@ public class AttachmentDaoImpl extends BaseORMDao<Attachment> implements Attachm
 	}
 
 	/**
-	 * @see net.jforum.dao.AttachmentDAO#removeAttachment(int, int)
+	 * @see net.iforums.dao.AttachmentDao#removeAttachment(int, int)
 	 */
 	public void removeAttachment(int id, int postId)
 	{
@@ -638,7 +638,7 @@ public class AttachmentDaoImpl extends BaseORMDao<Attachment> implements Attachm
 	}
 
 	/**
-	 * @see net.jforum.dao.AttachmentDAO#updateAttachment(net.jforum.entities.Attachment)
+	 * @see net.iforums.dao.AttachmentDao#updateAttachment(net.jforum.entities.Attachment)
 	 */
 	public void updateAttachment(Attachment a)
 	{
@@ -660,7 +660,7 @@ public class AttachmentDaoImpl extends BaseORMDao<Attachment> implements Attachm
 	}
 
 	/**
-	 * @see net.jforum.dao.AttachmentDAO#selectAttachments(int)
+	 * @see net.iforums.dao.AttachmentDao#selectAttachments(int)
 	 */
 	public List selectAttachments(int postId)
 	{
@@ -711,7 +711,7 @@ public class AttachmentDaoImpl extends BaseORMDao<Attachment> implements Attachm
 	}
 
 	/**
-	 * @see net.jforum.dao.AttachmentDAO#selectAttachmentById(int)
+	 * @see net.iforums.dao.AttachmentDao#selectAttachmentById(int)
 	 */
 	public Attachment selectAttachmentById(int attachId)
 	{

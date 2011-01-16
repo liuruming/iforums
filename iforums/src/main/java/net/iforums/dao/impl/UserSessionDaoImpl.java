@@ -48,20 +48,23 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 
+import org.springframework.stereotype.Repository;
+
 import net.iforums.beans.UserSession;
 import net.iforums.dao.BaseORMDao;
 import net.iforums.dao.UserSessionDao;
-import net.jforum.util.DbUtils;
-import net.jforum.util.preferences.SystemGlobals;
+import net.iforums.utils.DbUtils;
+import net.iforums.utils.preferences.SystemGlobals;
 
 /**
  * @author Rafael Steil
- * @version $Id: GenericUserSessionDAO.java,v 1.7 2006/08/23 02:13:43 rafaelsteil Exp $
+ * @version $Id: GenericUserSessionDao.java,v 1.7 2006/08/23 02:13:43 rafaelsteil Exp $
  */
+@Repository
 public class UserSessionDaoImpl extends BaseORMDao<UserSession> implements UserSessionDao
 {
 	/**
-	 * @see net.jforum.dao.UserSessionDAO#add(net.jforum.entities.UserSession, java.sql.Connection)
+	 * @see net.iforums.dao.UserSessionDao#add(net.jforum.entities.UserSession, java.sql.Connection)
 	 */
 	public void add(UserSession us, Connection conn)
 	{
@@ -92,7 +95,7 @@ public class UserSessionDaoImpl extends BaseORMDao<UserSession> implements UserS
 	}
 
 	/**
-	 * @see net.jforum.dao.UserSessionDAO#update(net.jforum.entities.UserSession,
+	 * @see net.iforums.dao.UserSessionDao#update(net.jforum.entities.UserSession,
 	 *      java.sql.Connection)
 	 */
 	public void update(UserSession us, Connection conn)
@@ -121,7 +124,7 @@ public class UserSessionDaoImpl extends BaseORMDao<UserSession> implements UserS
 	}
 
 	/**
-	 * @see net.jforum.dao.UserSessionDAO#selectById(net.jforum.entities.UserSession,
+	 * @see net.iforums.dao.UserSessionDao#selectById(net.jforum.entities.UserSession,
 	 *      java.sql.Connection)
 	 */
 	public UserSession selectById(UserSession us, Connection conn)

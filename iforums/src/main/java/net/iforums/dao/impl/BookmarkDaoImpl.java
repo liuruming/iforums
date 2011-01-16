@@ -6,17 +6,19 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import net.iforums.JForumExecutionContext;
 import net.iforums.beans.Bookmark;
 import net.iforums.beans.BookmarkType;
 import net.iforums.dao.BaseORMDao;
 import net.iforums.dao.BookmarkDao;
-import net.jforum.util.DbUtils;
-import net.jforum.util.preferences.SystemGlobals;
-
+import net.iforums.utils.DbUtils;
+import net.iforums.utils.preferences.SystemGlobals;
+@Repository
 public class BookmarkDaoImpl extends BaseORMDao<Bookmark> implements BookmarkDao{
 	/**
-	 * @see net.jforum.dao.BookmarkDAO#add(net.jforum.entities.Bookmark)
+	 * @see net.iforums.dao.BookmarkDao#add(net.jforum.entities.Bookmark)
 	 */
 	public void add(Bookmark b)
 	{
@@ -40,7 +42,7 @@ public class BookmarkDaoImpl extends BaseORMDao<Bookmark> implements BookmarkDao
 	}
 
 	/**
-	 * @see net.jforum.dao.BookmarkDAO#update(net.jforum.entities.Bookmark)
+	 * @see net.iforums.dao.BookmarkDao#update(net.jforum.entities.Bookmark)
 	 */
 	public void update(Bookmark b)
 	{
@@ -62,7 +64,7 @@ public class BookmarkDaoImpl extends BaseORMDao<Bookmark> implements BookmarkDao
 	}
 
 	/**
-	 * @see net.jforum.dao.BookmarkDAO#remove(int)
+	 * @see net.iforums.dao.BookmarkDao#remove(int)
 	 */
 	public void remove(int bookmarkId)
 	{
@@ -81,7 +83,7 @@ public class BookmarkDaoImpl extends BaseORMDao<Bookmark> implements BookmarkDao
 	}
 
 	/**
-	 * @see net.jforum.dao.BookmarkDAO#selectByUser(int, int)
+	 * @see net.iforums.dao.BookmarkDao#selectByUser(int, int)
 	 */
 	public List selectByUser(int userId, int relationType)
 	{
@@ -100,7 +102,7 @@ public class BookmarkDaoImpl extends BaseORMDao<Bookmark> implements BookmarkDao
 	}
 
 	/**
-	 * @see net.jforum.dao.BookmarkDAO#selectByUser(int)
+	 * @see net.iforums.dao.BookmarkDao#selectByUser(int)
 	 */
 	public List selectByUser(int userId)
 	{
@@ -129,7 +131,7 @@ public class BookmarkDaoImpl extends BaseORMDao<Bookmark> implements BookmarkDao
 	}
 
 	/**
-	 * @see net.jforum.dao.BookmarkDAO#selectById(int)
+	 * @see net.iforums.dao.BookmarkDao#selectById(int)
 	 */
 	public Bookmark selectById(int bookmarkId)
 	{
@@ -158,7 +160,7 @@ public class BookmarkDaoImpl extends BaseORMDao<Bookmark> implements BookmarkDao
 	}
 
 	/**
-	 * @see net.jforum.dao.BookmarkDAO#selectForUpdate(int, int, int)
+	 * @see net.iforums.dao.BookmarkDao#selectForUpdate(int, int, int)
 	 */
 	public Bookmark selectForUpdate(int relationId, int relationType, int userId)
 	{

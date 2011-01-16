@@ -48,22 +48,25 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import net.iforums.JForumExecutionContext;
 import net.iforums.beans.Post;
 import net.iforums.dao.BaseORMDao;
 import net.iforums.dao.TreeGroupDao;
-import net.jforum.util.DbUtils;
-import net.jforum.util.GroupNode;
-import net.jforum.util.preferences.SystemGlobals;
+import net.iforums.utils.DbUtils;
+import net.iforums.utils.GroupNode;
+import net.iforums.utils.preferences.SystemGlobals;
 
 /**
  * @author Rafael Steil
- * @version $Id: GenericTreeGroupDAO.java,v 1.8 2006/08/23 02:13:42 rafaelsteil Exp $
+ * @version $Id: GenericTreeGroupDao.java,v 1.8 2006/08/23 02:13:42 rafaelsteil Exp $
  */
+@Repository
 public class TreeGroupDaoImpl extends BaseORMDao<Post> implements TreeGroupDao
 {
 	/**
-	 * @see net.jforum.dao.TreeGroupDAO#selectGroups(int)
+	 * @see net.iforums.dao.TreeGroupDao#selectGroups(int)
 	 */
 	public List selectGroups(int parentId)
 	{

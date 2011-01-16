@@ -49,28 +49,31 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import net.iforums.JForumExecutionContext;
 import net.iforums.beans.Post;
 import net.iforums.dao.BaseORMDao;
 import net.iforums.dao.KarmaDao;
 import net.iforums.dao.SummaryDao;
-import net.jforum.util.DbUtils;
-import net.jforum.util.preferences.ConfigKeys;
-import net.jforum.util.preferences.SystemGlobals;
+import net.iforums.utils.DbUtils;
+import net.iforums.utils.preferences.ConfigKeys;
+import net.iforums.utils.preferences.SystemGlobals;
 
 /**
  * @author Franklin Samir (franklin (at) portaljava [dot] com)
- * @version $Id: GenericSummaryDAO.java,v 1.11 2006/08/23 02:13:41 rafaelsteil Exp $
+ * @version $Id: GenericSummaryDao.java,v 1.11 2006/08/23 02:13:41 rafaelsteil Exp $
  */
+@Repository
 public class SummaryDaoImpl extends BaseORMDao<Post> implements SummaryDao
 {
 	private KarmaDao karmaDao;
 	/**
-	 * @see net.jforum.dao.SummaryDAO#selectById(Date, Date)
+	 * @see net.iforums.dao.SummaryDao#selectById(Date, Date)
 	 */
 	public List selectLastPosts(Date firstDate, Date lastDate)
 	{
-		String query = SystemGlobals.getSql("SummaryDAO.selectPosts");
+		String query = SystemGlobals.getSql("SummaryDao.selectPosts");
 		PreparedStatement p = null;
 		ResultSet rs = null;
 		try {
@@ -119,7 +122,7 @@ public class SummaryDaoImpl extends BaseORMDao<Post> implements SummaryDao
 
 	public List listRecipients()
 	{
-		String query = SystemGlobals.getSql("SummaryDAO.selectAllRecipients");
+		String query = SystemGlobals.getSql("SummaryDao.selectAllRecipients");
 		PreparedStatement p = null;
 		ResultSet rs = null;
 		try {

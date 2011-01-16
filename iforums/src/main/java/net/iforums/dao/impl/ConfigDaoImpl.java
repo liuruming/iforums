@@ -6,36 +6,38 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import net.iforums.JForumExecutionContext;
 import net.iforums.beans.Config;
 import net.iforums.dao.BaseORMDao;
 import net.iforums.dao.ConfigDao;
-import net.jforum.util.DbUtils;
-import net.jforum.util.preferences.SystemGlobals;
-
+import net.iforums.utils.DbUtils;
+import net.iforums.utils.preferences.SystemGlobals;
+@Repository
 public class ConfigDaoImpl extends BaseORMDao<Config> implements ConfigDao{
-	/**
-	 * @see net.jforum.dao.ConfigDAO#insert(net.jforum.entities.Config)
-	 */
-	public void insert(Config config)
-	{
-		PreparedStatement p = null;
-		try {
-			p = JForumExecutionContext.getConnection().prepareStatement(SystemGlobals.getSql("ConfigModel.insert"));
-			p.setString(1, config.getName());
-			p.setString(2, config.getValue());
-			p.executeUpdate();
-		}
-		catch (SQLException e) {
-			throw new RuntimeException(e);
-		}
-		finally {
-			DbUtils.close(p);
-		}
-	}
+//	/**
+//	 * @see net.iforums.dao.ConfigDao#insert(net.jforum.entities.Config)
+//	 */
+//	public void insert(Config config)
+//	{
+//		PreparedStatement p = null;
+//		try {
+//			p = JForumExecutionContext.getConnection().prepareStatement(SystemGlobals.getSql("ConfigModel.insert"));
+//			p.setString(1, config.getName());
+//			p.setString(2, config.getValue());
+//			p.executeUpdate();
+//		}
+//		catch (SQLException e) {
+//			throw new RuntimeException(e);
+//		}
+//		finally {
+//			DbUtils.close(p);
+//		}
+//	}
 
 	/**
-	 * @see net.jforum.dao.ConfigDAO#update(net.jforum.entities.Config)
+	 * @see net.iforums.dao.ConfigDao#update(net.jforum.entities.Config)
 	 */
 	public void update(Config config)
 	{
@@ -55,7 +57,7 @@ public class ConfigDaoImpl extends BaseORMDao<Config> implements ConfigDao{
 	}
 
 	/**
-	 * @see net.jforum.dao.ConfigDAO#delete(net.jforum.entities.Config)
+	 * @see net.iforums.dao.ConfigDao#delete(net.jforum.entities.Config)
 	 */
 	public void delete(Config config)
 	{
@@ -74,7 +76,7 @@ public class ConfigDaoImpl extends BaseORMDao<Config> implements ConfigDao{
 	}
 
 	/**
-	 * @see net.jforum.dao.ConfigDAO#selectAll()
+	 * @see net.iforums.dao.ConfigDao#selectAll()
 	 */
 	public List selectAll()
 	{
@@ -100,7 +102,7 @@ public class ConfigDaoImpl extends BaseORMDao<Config> implements ConfigDao{
 	}
 
 	/**
-	 * @see net.jforum.dao.ConfigDAO#selectByName(java.lang.String)
+	 * @see net.iforums.dao.ConfigDao#selectByName(java.lang.String)
 	 */
 	public Config selectByName(String name)
 	{

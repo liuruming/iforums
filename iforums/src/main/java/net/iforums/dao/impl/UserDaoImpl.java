@@ -53,6 +53,8 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.stereotype.Repository;
+
 import net.iforums.JForumExecutionContext;
 import net.iforums.beans.Group;
 import net.iforums.beans.KarmaStatus;
@@ -60,34 +62,36 @@ import net.iforums.beans.User;
 import net.iforums.dao.BaseORMDao;
 import net.iforums.dao.KarmaDao;
 import net.iforums.dao.UserDao;
-import net.jforum.sso.LoginAuthenticator;
-import net.jforum.util.DbUtils;
-import net.jforum.util.preferences.ConfigKeys;
-import net.jforum.util.preferences.SystemGlobals;
+import net.iforums.sso.LoginAuthenticator;
+import net.iforums.utils.DbUtils;
+import net.iforums.utils.preferences.ConfigKeys;
+import net.iforums.utils.preferences.SystemGlobals;
 
 /**
  * @author Rafael Steil
- * @version $Id: GenericUserDAO.java,v 1.29 2007/09/21 17:26:09 rafaelsteil Exp $
+ * @version $Id: GenericUserDao.java,v 1.29 2007/09/21 17:26:09 rafaelsteil Exp $
  */
+@Repository
 public class UserDaoImpl extends BaseORMDao<User> implements UserDao
 {
-	private static LoginAuthenticator loginAuthenticator;
+	@Resource
+	private LoginAuthenticator loginAuthenticator;
 	@Resource
 	private KarmaDao karmaDao;
 	public UserDaoImpl()
 	{
-		loginAuthenticator = (LoginAuthenticator)SystemGlobals.getObjectValue(
-			ConfigKeys.LOGIN_AUTHENTICATOR_INSTANCE);
+//		loginAuthenticator = (LoginAuthenticator)SystemGlobals.getObjectValue(
+//			ConfigKeys.LOGIN_AUTHENTICATOR_INSTANCE);
 		
 		if (loginAuthenticator == null) {
-			throw new RuntimeException("There is no login.authenticator configured. Check your login.authenticator configuration key.");
+			//throw new RuntimeException("There is no login.authenticator configured. Check your login.authenticator configuration key.");
 		}
 		
-		loginAuthenticator.setUserModel(this);
+		//loginAuthenticator.setUserModel(this);
 	}
 	
 	/**
-	 * @see net.jforum.dao.UserDAO#pendingActivations()
+	 * @see net.iforums.dao.UserDao#pendingActivations()
 	 */
 	public List pendingActivations() 
 	{
@@ -123,7 +127,7 @@ public class UserDaoImpl extends BaseORMDao<User> implements UserDao
 	}
 
 	/**
-	 * @see net.jforum.dao.UserDAO#selectById(int)
+	 * @see net.iforums.dao.UserDao#selectById(int)
 	 */
 	public User selectById(int userId)
 	{
@@ -242,7 +246,7 @@ public class UserDaoImpl extends BaseORMDao<User> implements UserDao
 	}
 
 	/**
-	 * @see net.jforum.dao.UserDAO#delete(int)
+	 * @see net.iforums.dao.UserDao#delete(int)
 	 */
 	public void delete(int userId)
 	{
@@ -264,7 +268,7 @@ public class UserDaoImpl extends BaseORMDao<User> implements UserDao
 	}
 
 	/**
-	 * @see net.jforum.dao.UserDAO#update(net.jforum.entities.User)
+	 * @see net.iforums.dao.UserDao#update(net.jforum.entities.User)
 	 */
 	public void update(User user)
 	{
@@ -321,7 +325,7 @@ public class UserDaoImpl extends BaseORMDao<User> implements UserDao
 	}
 
 	/**
-	 * @see net.jforum.dao.UserDAO#addNew(net.jforum.entities.User)
+	 * @see net.iforums.dao.UserDao#addNew(net.jforum.entities.User)
 	 */
 	public int addNew(User user)
 	{
@@ -357,7 +361,7 @@ public class UserDaoImpl extends BaseORMDao<User> implements UserDao
 	}
 
 	/**
-	 * @see net.jforum.dao.UserDAO#addNewWithId(net.jforum.entities.User)
+	 * @see net.iforums.dao.UserDao#addNewWithId(net.jforum.entities.User)
 	 */
 	public void addNewWithId(User user)
 	{
@@ -381,7 +385,7 @@ public class UserDaoImpl extends BaseORMDao<User> implements UserDao
 	}
 
 	/**
-	 * @see net.jforum.dao.UserDAO#decrementPosts(int)
+	 * @see net.iforums.dao.UserDao#decrementPosts(int)
 	 */
 	public void decrementPosts(int userId)
 	{
@@ -402,7 +406,7 @@ public class UserDaoImpl extends BaseORMDao<User> implements UserDao
 	}
 
 	/**
-	 * @see net.jforum.dao.UserDAO#incrementPosts(int)
+	 * @see net.iforums.dao.UserDao#incrementPosts(int)
 	 */
 	public void incrementPosts(int userId)
 	{
@@ -423,7 +427,7 @@ public class UserDaoImpl extends BaseORMDao<User> implements UserDao
 	}
 
 	/**
-	 * @see net.jforum.dao.UserDAO#incrementRanking(int)
+	 * @see net.iforums.dao.UserDao#incrementRanking(int)
 	 */
 	public void setRanking(int userId, int rankingId)
 	{
@@ -444,7 +448,7 @@ public class UserDaoImpl extends BaseORMDao<User> implements UserDao
 	}
 
 	/**
-	 * @see net.jforum.dao.UserDAO#setActive(int, boolean)
+	 * @see net.iforums.dao.UserDao#setActive(int, boolean)
 	 */
 	public void setActive(int userId, boolean active)
 	{
@@ -465,7 +469,7 @@ public class UserDaoImpl extends BaseORMDao<User> implements UserDao
 	}
 
 	/**
-	 * @see net.jforum.dao.UserDAO#undelete(int)
+	 * @see net.iforums.dao.UserDao#undelete(int)
 	 */
 	public void undelete(int userId)
 	{
@@ -487,7 +491,7 @@ public class UserDaoImpl extends BaseORMDao<User> implements UserDao
 	}
 
 	/**
-	 * @see net.jforum.dao.UserDAO#selectAll()
+	 * @see net.iforums.dao.UserDao#selectAll()
 	 */
 	public List selectAll()
 	{
@@ -495,7 +499,7 @@ public class UserDaoImpl extends BaseORMDao<User> implements UserDao
 	}
 
 	/**
-	 * @see net.jforum.dao.UserDAO#selectAll(int, int)
+	 * @see net.iforums.dao.UserDao#selectAll(int, int)
 	 */
 	public List selectAll(int startFrom, int count)
 	{
@@ -527,7 +531,7 @@ public class UserDaoImpl extends BaseORMDao<User> implements UserDao
 	}
 
 	/**
-	 * @see net.jforum.dao.UserDAO#selectAllWithKarma()
+	 * @see net.iforums.dao.UserDao#selectAllWithKarma()
 	 */
 	public List selectAllWithKarma()
 	{
@@ -535,7 +539,7 @@ public class UserDaoImpl extends BaseORMDao<User> implements UserDao
 	}
 
 	/**
-	 * @see net.jforum.dao.UserDAO#selectAllWithKarma(int, int)
+	 * @see net.iforums.dao.UserDao#selectAllWithKarma(int, int)
 	 */
 	public List selectAllWithKarma(int startFrom, int count)
 	{
@@ -569,7 +573,7 @@ public class UserDaoImpl extends BaseORMDao<User> implements UserDao
 	}
 
 	/**
-	 * @see net.jforum.dao.UserDAO#selectAllByGroup(int, int, int)
+	 * @see net.iforums.dao.UserDao#selectAllByGroup(int, int, int)
 	 */
 	public List selectAllByGroup(int groupId, int start, int count)
 	{
@@ -595,7 +599,7 @@ public class UserDaoImpl extends BaseORMDao<User> implements UserDao
 	}
 
 	/**
-	 * @see net.jforum.dao.UserDAO#getLastUserInfo()
+	 * @see net.iforums.dao.UserDao#getLastUserInfo()
 	 */
 	public User getLastUserInfo()
 	{
@@ -623,7 +627,7 @@ public class UserDaoImpl extends BaseORMDao<User> implements UserDao
 	}
 
 	/**
-	 * @see net.jforum.dao.UserDAO#getTotalUsers()
+	 * @see net.iforums.dao.UserDao#getTotalUsers()
 	 */
 	public int getTotalUsers()
 	{
@@ -642,7 +646,7 @@ public class UserDaoImpl extends BaseORMDao<User> implements UserDao
 	}
 
 	/**
-	 * @see net.jforum.dao.UserDAO#getTotalUsersByGroup(int)
+	 * @see net.iforums.dao.UserDao#getTotalUsersByGroup(int)
 	 */
 	public int getTotalUsersByGroup(int groupId)
 	{
@@ -676,7 +680,7 @@ public class UserDaoImpl extends BaseORMDao<User> implements UserDao
 	}
 
 	/**
-	 * @see net.jforum.dao.UserDAO#isDeleted(int user_id)
+	 * @see net.iforums.dao.UserDao#isDeleted(int user_id)
 	 */
 	public boolean isDeleted(int userId)
 	{
@@ -704,7 +708,7 @@ public class UserDaoImpl extends BaseORMDao<User> implements UserDao
 	}
 
 	/**
-	 * @see net.jforum.dao.UserDAO#isUsernameRegistered(java.lang.String)
+	 * @see net.iforums.dao.UserDao#isUsernameRegistered(java.lang.String)
 	 */
 	public boolean isUsernameRegistered(String username)
 	{
@@ -733,7 +737,7 @@ public class UserDaoImpl extends BaseORMDao<User> implements UserDao
 	}
 
 	/**
-	 * @see net.jforum.dao.UserDAO#validateLogin(java.lang.String, java.lang.String)
+	 * @see net.iforums.dao.UserDao#validateLogin(java.lang.String, java.lang.String)
 	 */
 	public User validateLogin(String username, String password)
 	{
@@ -741,7 +745,7 @@ public class UserDaoImpl extends BaseORMDao<User> implements UserDao
 	}
 
 	/**
-	 * @see net.jforum.dao.UserDAO#addToGroup(int, int[])
+	 * @see net.iforums.dao.UserDao#addToGroup(int, int[])
 	 */
 	public void addToGroup(int userId, int[] groupId)
 	{
@@ -765,7 +769,7 @@ public class UserDaoImpl extends BaseORMDao<User> implements UserDao
 	}
 
 	/**
-	 * @see net.jforum.dao.UserDAO#removeFromGroup(int, int[])
+	 * @see net.iforums.dao.UserDao#removeFromGroup(int, int[])
 	 */
 	public void removeFromGroup(int userId, int[] groupId)
 	{
@@ -789,7 +793,7 @@ public class UserDaoImpl extends BaseORMDao<User> implements UserDao
 	}
 
 	/**
-	 * @see net.jforum.dao.UserDAO#saveNewPassword(java.lang.String, java.lang.String)
+	 * @see net.iforums.dao.UserDao#saveNewPassword(java.lang.String, java.lang.String)
 	 */
 	public void saveNewPassword(String password, String email)
 	{
@@ -810,7 +814,7 @@ public class UserDaoImpl extends BaseORMDao<User> implements UserDao
 	}
 
 	/**
-	 * @see net.jforum.dao.UserDAO#validateLostPasswordHash(java.lang.String, java.lang.String)
+	 * @see net.iforums.dao.UserDao#validateLostPasswordHash(java.lang.String, java.lang.String)
 	 */
 	public boolean validateLostPasswordHash(String email, String hash)
 	{
@@ -842,7 +846,7 @@ public class UserDaoImpl extends BaseORMDao<User> implements UserDao
 	}
 
 	/**
-	 * @see net.jforum.dao.UserDAO#writeLostPasswordHash(java.lang.String, java.lang.String)
+	 * @see net.iforums.dao.UserDao#writeLostPasswordHash(java.lang.String, java.lang.String)
 	 */
 	public void writeLostPasswordHash(String email, String hash)
 	{
@@ -863,7 +867,7 @@ public class UserDaoImpl extends BaseORMDao<User> implements UserDao
 	}
 
 	/**
-	 * @see net.jforum.dao.UserDAO#getUsernameByEmail(java.lang.String)
+	 * @see net.iforums.dao.UserDao#getUsernameByEmail(java.lang.String)
 	 */
 	public String getUsernameByEmail(String email)
 	{
@@ -892,7 +896,7 @@ public class UserDaoImpl extends BaseORMDao<User> implements UserDao
 	}
 
 	/**
-	 * @see net.jforum.dao.UserDAO#findByName(java.lang.String, boolean)
+	 * @see net.iforums.dao.UserDao#findByName(java.lang.String, boolean)
 	 */
 	public List findByName(String input, boolean exactMatch)
 	{
@@ -926,7 +930,7 @@ public class UserDaoImpl extends BaseORMDao<User> implements UserDao
 	}
 
 	/**
-	 * @see net.jforum.dao.UserDAO#validateActivationKeyHash(int, java.lang.String)
+	 * @see net.iforums.dao.UserDao#validateActivationKeyHash(int, java.lang.String)
 	 */
 	public boolean validateActivationKeyHash(int userId, String hash)
 	{
@@ -956,7 +960,7 @@ public class UserDaoImpl extends BaseORMDao<User> implements UserDao
 	}
 
 	/**
-	 * @see net.jforum.dao.UserDAO#writeUserActive(int)
+	 * @see net.iforums.dao.UserDao#writeUserActive(int)
 	 */
 	public void writeUserActive(int userId)
 	{
@@ -976,7 +980,7 @@ public class UserDaoImpl extends BaseORMDao<User> implements UserDao
 	}
 
 	/**
-	 * @see net.jforum.dao.UserDAO#updateUsername(int, String)
+	 * @see net.iforums.dao.UserDao#updateUsername(int, String)
 	 */
 	public void updateUsername(int userId, String username)
 	{
@@ -997,7 +1001,7 @@ public class UserDaoImpl extends BaseORMDao<User> implements UserDao
 	}
 
 	/**
-	 * @see net.jforum.dao.UserDAO#hasUsernameChanged(int, java.lang.String)
+	 * @see net.iforums.dao.UserDao#hasUsernameChanged(int, java.lang.String)
 	 */
 	public boolean hasUsernameChanged(int userId, String usernameToCheck)
 	{
@@ -1055,7 +1059,7 @@ public class UserDaoImpl extends BaseORMDao<User> implements UserDao
 	}
 
 	/**
-	 * @see net.jforum.dao.UserDAO#saveUserAuthHash(int, java.lang.String)
+	 * @see net.iforums.dao.UserDao#saveUserAuthHash(int, java.lang.String)
 	 */
 	public void saveUserAuthHash(int userId, String hash)
 	{
@@ -1076,7 +1080,7 @@ public class UserDaoImpl extends BaseORMDao<User> implements UserDao
 	}
 
 	/**
-	 * @see net.jforum.dao.UserDAO#getUserAuthHash(int)
+	 * @see net.iforums.dao.UserDao#getUserAuthHash(int)
 	 */
 	public String getUserAuthHash(int userId)
 	{
@@ -1105,7 +1109,7 @@ public class UserDaoImpl extends BaseORMDao<User> implements UserDao
 	}
 	
 	/**
-	 * @see net.jforum.dao.UserDAO#findByEmail(java.lang.String)
+	 * @see net.iforums.dao.UserDao#findByEmail(java.lang.String)
 	 */
 	public User findByEmail(String email)
 	{

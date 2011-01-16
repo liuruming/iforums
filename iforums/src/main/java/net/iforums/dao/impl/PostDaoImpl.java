@@ -54,28 +54,31 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.stereotype.Repository;
+
 import net.iforums.JForumExecutionContext;
 import net.iforums.beans.Post;
 import net.iforums.dao.BaseORMDao;
 import net.iforums.dao.KarmaDao;
 import net.iforums.dao.PostDao;
-import net.jforum.repository.ForumRepository;
-import net.jforum.search.SearchFacade;
-import net.jforum.util.DbUtils;
-import net.jforum.util.preferences.ConfigKeys;
-import net.jforum.util.preferences.SystemGlobals;
+import net.iforums.repository.ForumRepository;
+import net.iforums.search.SearchFacade;
+import net.iforums.utils.DbUtils;
+import net.iforums.utils.preferences.ConfigKeys;
+import net.iforums.utils.preferences.SystemGlobals;
 
 /**
  * @author Rafael Steil
  * @author Vanessa Sabino
- * @version $Id: GenericPostDAO.java,v 1.29 2007/09/12 14:43:15 rafaelsteil Exp $
+ * @version $Id: GenericPostDao.java,v 1.29 2007/09/12 14:43:15 rafaelsteil Exp $
  */
+@Repository
 public class PostDaoImpl extends BaseORMDao<Post> implements PostDao
 {
 	@Resource
 	private KarmaDao KarmaDao;
 	/**
-	 * @see net.jforum.dao.PostDAO#selectById(int)
+	 * @see net.iforums.dao.PostDao#selectById(int)
 	 */
 	public Post selectById(int postId)
 	{
@@ -151,7 +154,7 @@ public class PostDaoImpl extends BaseORMDao<Post> implements PostDao
 	}
 
 	/**
-	 * @see net.jforum.dao.PostDAO#delete(Post)
+	 * @see net.iforums.dao.PostDao#delete(Post)
 	 */
 	public void delete(Post post)
 	{
@@ -228,7 +231,7 @@ public class PostDaoImpl extends BaseORMDao<Post> implements PostDao
 	}
 
 	/**
-	 * @see net.jforum.dao.PostDAO#update(net.jforum.entities.Post)
+	 * @see net.iforums.dao.PostDao#update(net.jforum.entities.Post)
 	 */
 	public void update(Post post)
 	{
@@ -287,7 +290,7 @@ public class PostDaoImpl extends BaseORMDao<Post> implements PostDao
 	}
 
 	/**
-	 * @see net.jforum.dao.PostDAO#addNew(net.jforum.entities.Post)
+	 * @see net.iforums.dao.PostDao#addNew(net.jforum.entities.Post)
 	 */
 	public int addNew(Post post)
 	{
@@ -351,7 +354,7 @@ public class PostDaoImpl extends BaseORMDao<Post> implements PostDao
 	}
 
 	/**
-	 * @see net.jforum.dao.PostDAO#selectAllBytTopic(int)
+	 * @see net.iforums.dao.PostDao#selectAllBytTopic(int)
 	 */
 	public List selectAllByTopic(int topicId)
 	{
@@ -359,7 +362,7 @@ public class PostDaoImpl extends BaseORMDao<Post> implements PostDao
 	}
 
 	/**
-	 * @see net.jforum.dao.PostDAO#selectAllBytTopicByLimit(int, int, int)
+	 * @see net.iforums.dao.PostDao#selectAllBytTopicByLimit(int, int, int)
 	 */
 	public List selectAllByTopicByLimit(int topicId, int startFrom, int count)
 	{
@@ -393,7 +396,7 @@ public class PostDaoImpl extends BaseORMDao<Post> implements PostDao
 	}
 
 	/**
-	 * @see net.jforum.dao.PostDAO#selectByUserByLimit(int, int, int)
+	 * @see net.iforums.dao.PostDao#selectByUserByLimit(int, int, int)
 	 */
 	public List selectByUserByLimit(int userId, int startFrom, int count)
 	{

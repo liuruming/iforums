@@ -50,14 +50,16 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import net.iforums.JForumExecutionContext;
 import net.iforums.beans.ModerationLog;
 import net.iforums.beans.User;
 import net.iforums.dao.BaseORMDao;
 import net.iforums.dao.ModerationLogDao;
-import net.jforum.util.DbUtils;
-import net.jforum.util.preferences.SystemGlobals;
-
+import net.iforums.utils.DbUtils;
+import net.iforums.utils.preferences.SystemGlobals;
+@Repository
 public class ModerationLogDaoImpl extends BaseORMDao<ModerationLog> implements ModerationLogDao
 {
 	public void add(ModerationLog log)

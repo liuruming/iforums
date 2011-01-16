@@ -6,16 +6,18 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import net.iforums.JForumExecutionContext;
 import net.iforums.beans.Category;
 import net.iforums.dao.BaseORMDao;
 import net.iforums.dao.CategoryDao;
-import net.jforum.util.DbUtils;
-import net.jforum.util.preferences.SystemGlobals;
-
+import net.iforums.utils.DbUtils;
+import net.iforums.utils.preferences.SystemGlobals;
+@Repository
 public class CategoryDaoImpl extends BaseORMDao<Category> implements CategoryDao{
 	/**
-	 * @see net.jforum.dao.CategoryDAO#selectById(int)
+	 * @see net.iforums.dao.CategoryDao#selectById(int)
 	 */
 	public Category selectById(int categoryId)
 	{
@@ -44,7 +46,7 @@ public class CategoryDaoImpl extends BaseORMDao<Category> implements CategoryDao
 	}
 
 	/**
-	 * @see net.jforum.dao.CategoryDAO#selectAll()
+	 * @see net.iforums.dao.CategoryDao#selectAll()
 	 */
 	public List selectAll()
 	{
@@ -82,7 +84,7 @@ public class CategoryDaoImpl extends BaseORMDao<Category> implements CategoryDao
 	}
 
 	/**
-	 * @see net.jforum.dao.CategoryDAO#canDelete(int)
+	 * @see net.iforums.dao.CategoryDao#canDelete(int)
 	 */
 	public boolean canDelete(int categoryId)
 	{
@@ -106,7 +108,7 @@ public class CategoryDaoImpl extends BaseORMDao<Category> implements CategoryDao
 	}
 
 	/**
-	 * @see net.jforum.dao.CategoryDAO#delete(int)
+	 * @see net.iforums.dao.CategoryDao#delete(int)
 	 */
 	public void delete(int categoryId)
 	{
@@ -125,7 +127,7 @@ public class CategoryDaoImpl extends BaseORMDao<Category> implements CategoryDao
 	}
 
 	/**
-	 * @see net.jforum.dao.CategoryDAO#update(net.jforum.entities.Category)
+	 * @see net.iforums.dao.CategoryDao#update(net.jforum.entities.Category)
 	 */
 	public void update(Category category)
 	{
@@ -134,7 +136,7 @@ public class CategoryDaoImpl extends BaseORMDao<Category> implements CategoryDao
 			p = JForumExecutionContext.getConnection().prepareStatement(SystemGlobals.getSql("CategoryModel.update"));
 			p.setString(1, category.getName());
 			p.setInt(2, category.isModerated() ? 1 : 0);
-			p.setInt(3, category.getId());
+			p.setLong(3, category.getId());
 			p.executeUpdate();
 		}
 		catch (SQLException e) {
@@ -146,7 +148,7 @@ public class CategoryDaoImpl extends BaseORMDao<Category> implements CategoryDao
 	}
 
 	/**
-	 * @see net.jforum.dao.CategoryDAO#addNew(net.jforum.entities.Category)
+	 * @see net.iforums.dao.CategoryDao#addNew(net.jforum.entities.Category)
 	 */
 	public int addNew(Category category)
 	{
@@ -186,7 +188,7 @@ public class CategoryDaoImpl extends BaseORMDao<Category> implements CategoryDao
 	}
 
 	/**
-	 * @see net.jforum.dao.CategoryDAO#setOrderUp(Category, Category)
+	 * @see net.iforums.dao.CategoryDao#setOrderUp(Category, Category)
 	 */
 	public void setOrderUp(Category category, Category relatedCategory)
 	{
@@ -194,7 +196,7 @@ public class CategoryDaoImpl extends BaseORMDao<Category> implements CategoryDao
 	}
 
 	/**
-	 * @see net.jforum.dao.CategoryDAO#setOrderDown(Category, Category)
+	 * @see net.iforums.dao.CategoryDao#setOrderDown(Category, Category)
 	 */
 	public void setOrderDown(Category category, Category relatedCategory)
 	{
@@ -217,7 +219,7 @@ public class CategoryDaoImpl extends BaseORMDao<Category> implements CategoryDao
 			p = JForumExecutionContext.getConnection().prepareStatement(
 					SystemGlobals.getSql("CategoryModel.setOrderById"));
 			p.setInt(1, otherCategory.getOrder());
-			p.setInt(2, otherCategory.getId());
+			p.setLong(2, otherCategory.getId());
 			p.executeUpdate();
 			p.close();
 			p = null;
@@ -225,7 +227,7 @@ public class CategoryDaoImpl extends BaseORMDao<Category> implements CategoryDao
 			p = JForumExecutionContext.getConnection().prepareStatement(
 					SystemGlobals.getSql("CategoryModel.setOrderById"));
 			p.setInt(1, category.getOrder());
-			p.setInt(2, category.getId());
+			p.setLong(2, category.getId());
 			p.executeUpdate();
 		}
 		catch (SQLException e) {
