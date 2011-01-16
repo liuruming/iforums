@@ -40,7 +40,7 @@
  * The JForum Project
  * http://www.jforum.net
  */
-package net.jforum.dao.generic.security;
+package net.iforums.dao.generic.security;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -48,14 +48,14 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Iterator;
 
-import net.jforum.JForumExecutionContext;
-import net.jforum.security.PermissionControl;
-import net.jforum.security.Role;
-import net.jforum.security.RoleCollection;
-import net.jforum.security.RoleValue;
-import net.jforum.security.RoleValueCollection;
-import net.jforum.util.DbUtils;
-import net.jforum.util.preferences.SystemGlobals;
+import net.iforums.JForumExecutionContext;
+import net.iforums.security.PermissionControl;
+import net.iforums.security.Role;
+import net.iforums.security.RoleCollection;
+import net.iforums.security.RoleValue;
+import net.iforums.security.RoleValueCollection;
+import net.iforums.utils.DbUtils;
+import net.iforums.utils.preferences.SystemGlobals;
 
 import org.apache.commons.lang.StringUtils;
 

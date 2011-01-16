@@ -40,7 +40,7 @@
  * The JForum Project
  * http://www.jforum.net
  */
-package net.jforum.dao.generic;
+package net.iforums.dao.generic;
 
 import net.iforums.dao.ApiDao;
 import net.iforums.dao.AttachmentDao;
@@ -102,7 +102,7 @@ public class GenericDataAccessDriver extends DataAccessDriver
     private static LuceneDao luceneDao;
     
 	/**
-	 * @see net.jforum.dao.DataAccessDriver#getForumModel()
+	 * @see net.iforums.dao.DataAccessDriver#getForumModel()
 	 */
 	public ForumDao newForumDao() 
 	{
@@ -110,7 +110,7 @@ public class GenericDataAccessDriver extends DataAccessDriver
 	}
 
 	/**
-	 * @see net.jforum.dao.DataAccessDriver#getGroupModel()
+	 * @see net.iforums.dao.DataAccessDriver#getGroupModel()
 	 */
 	public GroupDao newGroupDao() 
 	{
@@ -118,7 +118,7 @@ public class GenericDataAccessDriver extends DataAccessDriver
 	}
 
 	/**
-	 * @see net.jforum.dao.DataAccessDriver#getPostModel()
+	 * @see net.iforums.dao.DataAccessDriver#getPostModel()
 	 */
 	public PostDao newPostDao() 
 	{
@@ -126,7 +126,7 @@ public class GenericDataAccessDriver extends DataAccessDriver
 	}
 
 	/**
-	 * @see net.jforum.dao.DataAccessDriver#getPollModel()
+	 * @see net.iforums.dao.DataAccessDriver#getPollModel()
 	 */
 	public PollDao newPollDao() 
 	{
@@ -134,7 +134,7 @@ public class GenericDataAccessDriver extends DataAccessDriver
 	}
 
 	/**
-	 * @see net.jforum.dao.DataAccessDriver#getRankingModel()
+	 * @see net.iforums.dao.DataAccessDriver#getRankingModel()
 	 */
 	public RankingDao newRankingDao() 
 	{	
@@ -142,7 +142,7 @@ public class GenericDataAccessDriver extends DataAccessDriver
 	}
 
 	/**
-	 * @see net.jforum.dao.DataAccessDriver#getTopicModel()
+	 * @see net.iforums.dao.DataAccessDriver#getTopicModel()
 	 */
 	public TopicDao newTopicDao() 
 	{
@@ -150,7 +150,7 @@ public class GenericDataAccessDriver extends DataAccessDriver
 	}
 
 	/**
-	 * @see net.jforum.dao.DataAccessDriver#getUserModel()
+	 * @see net.iforums.dao.DataAccessDriver#getUserModel()
 	 */
 	public UserDao newUserDao() 
 	{
@@ -158,7 +158,7 @@ public class GenericDataAccessDriver extends DataAccessDriver
 	}
 
 	/**
-	 * @see net.jforum.dao.DataAccessDriver#newCategoryDao()
+	 * @see net.iforums.dao.DataAccessDriver#newCategoryDao()
 	 */
 	public CategoryDao newCategoryDao() 
 	{
@@ -166,7 +166,7 @@ public class GenericDataAccessDriver extends DataAccessDriver
 	}
 
 	/**
-	 * @see net.jforum.dao.DataAccessDriver#newTreeGroupDao()
+	 * @see net.iforums.dao.DataAccessDriver#newTreeGroupDao()
 	 */
 	public TreeGroupDao newTreeGroupDao() 
 	{
@@ -174,7 +174,7 @@ public class GenericDataAccessDriver extends DataAccessDriver
 	}
 	
 	/** 
-	 * @see net.jforum.dao.DataAccessDriver#newSmilieDao()
+	 * @see net.iforums.dao.DataAccessDriver#newSmilieDao()
 	 */
 	public SmilieDao newSmilieDao() 
 	{
@@ -182,7 +182,7 @@ public class GenericDataAccessDriver extends DataAccessDriver
 	}
 	
 	/** 
-	 * @see net.jforum.dao.DataAccessDriver#newGroupSecurityDao()
+	 * @see net.iforums.dao.DataAccessDriver#newGroupSecurityDao()
 	 */
 	public GroupSecurityDao newGroupSecurityDao() 
 	{
@@ -190,7 +190,7 @@ public class GenericDataAccessDriver extends DataAccessDriver
 	}
 
 	/** 
-	 * @see net.jforum.dao.DataAccessDriver#newPrivateMessageDao()
+	 * @see net.iforums.dao.DataAccessDriver#newPrivateMessageDao()
 	 */
 	public PrivateMessageDao newPrivateMessageDao() 
 	{
@@ -198,7 +198,7 @@ public class GenericDataAccessDriver extends DataAccessDriver
 	}
 	
 	/** 
-	 * @see net.jforum.dao.DataAccessDriver#newUserSessionDao()
+	 * @see net.iforums.dao.DataAccessDriver#newUserSessionDao()
 	 */
 	public UserSessionDao newUserSessionDao()
 	{
@@ -206,7 +206,7 @@ public class GenericDataAccessDriver extends DataAccessDriver
 	}
 	
 	/** 
-	 * @see net.jforum.dao.DataAccessDriver#newConfigDao()
+	 * @see net.iforums.dao.DataAccessDriver#newConfigDao()
 	 */
 	public ConfigDao newConfigDao()
 	{
@@ -214,7 +214,7 @@ public class GenericDataAccessDriver extends DataAccessDriver
 	}
 	
 	/** 
-	 * @see net.jforum.dao.DataAccessDriver#newKarmaDao()
+	 * @see net.iforums.dao.DataAccessDriver#newKarmaDao()
 	 */
 	public KarmaDao newKarmaDao()
 	{
@@ -222,7 +222,7 @@ public class GenericDataAccessDriver extends DataAccessDriver
 	}
 	
 	/** 
-	 * @see net.jforum.dao.DataAccessDriver#newBookmarkDao()
+	 * @see net.iforums.dao.DataAccessDriver#newBookmarkDao()
 	 */
 	public BookmarkDao newBookmarkDao()
 	{
@@ -230,7 +230,7 @@ public class GenericDataAccessDriver extends DataAccessDriver
 	}
 	
 	/** 
-	 * @see net.jforum.dao.DataAccessDriver#newAttachmentDao()
+	 * @see net.iforums.dao.DataAccessDriver#newAttachmentDao()
 	 */
 	public AttachmentDao newAttachmentDao()
 	{
@@ -238,7 +238,7 @@ public class GenericDataAccessDriver extends DataAccessDriver
 	}
 	
 	/** 
-	 * @see net.jforum.dao.DataAccessDriver#newModerationDao()
+	 * @see net.iforums.dao.DataAccessDriver#newModerationDao()
 	 */
 	public ModerationDao newModerationDao()
 	{
@@ -246,7 +246,7 @@ public class GenericDataAccessDriver extends DataAccessDriver
 	}
 
     /**
-     * @see net.jforum.dao.DataAccessDriver#newBannerDao()
+     * @see net.iforums.dao.DataAccessDriver#newBannerDao()
      */
 	public BannerDao newBannerDao()
 	{
@@ -254,7 +254,7 @@ public class GenericDataAccessDriver extends DataAccessDriver
 	}
     
     /**
-     * @see net.jforum.dao.DataAccessDriver#newSummaryDao()
+     * @see net.iforums.dao.DataAccessDriver#newSummaryDao()
      */
     public SummaryDao newSummaryDao()
     {
@@ -262,7 +262,7 @@ public class GenericDataAccessDriver extends DataAccessDriver
     }
     
     /**
-     * @see net.jforum.dao.DataAccessDriver#newMailIntegrationDao()
+     * @see net.iforums.dao.DataAccessDriver#newMailIntegrationDao()
      */
     public MailIntegrationDao newMailIntegrationDao()
     {
@@ -270,7 +270,7 @@ public class GenericDataAccessDriver extends DataAccessDriver
     }
     
     /**
-     * @see net.jforum.dao.DataAccessDriver#newApiDao()
+     * @see net.iforums.dao.DataAccessDriver#newApiDao()
      */
     public ApiDao newApiDao()
     {
@@ -278,7 +278,7 @@ public class GenericDataAccessDriver extends DataAccessDriver
     }
     
     /**
-     * @see net.jforum.dao.DataAccessDriver#newBanlistDao()
+     * @see net.iforums.dao.DataAccessDriver#newBanlistDao()
      */
     public BanlistDao newBanlistDao()
     {
@@ -286,7 +286,7 @@ public class GenericDataAccessDriver extends DataAccessDriver
     }
     
     /**
-     * @see net.jforum.dao.DataAccessDriver#newModerationLogDao()
+     * @see net.iforums.dao.DataAccessDriver#newModerationLogDao()
      */
     public ModerationLogDao newModerationLogDao()
     {
@@ -294,7 +294,7 @@ public class GenericDataAccessDriver extends DataAccessDriver
     }
     
     /**
-     * @see net.jforum.dao.DataAccessDriver#newLuceneDao()
+     * @see net.iforums.dao.DataAccessDriver#newLuceneDao()
      */
     public LuceneDao newLuceneDao()
     {
