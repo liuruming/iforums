@@ -101,7 +101,7 @@ function doSearch() {
 		<label><img alt="blocked" src="$!{contextPath}/templates/$!{templateName}/images/forum_lock.gif" align="absmiddle">$!{I18n.getMessage("ForumListing.blocked")}</label>
 	</div>
 	<div class="jump_sort" style="valign:center">
-			<@presentation.forumsComboTable/>
+#forumsComboTable();
 	</div> 
 </div>
 	

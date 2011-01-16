@@ -1,0 +1,29 @@
+## -----------------------------------------------------
+## 页面头部调用函数
+## -----------------------------------------------------
+#macro(header, $menu, $title, $ad)
+#end
+
+#macro(forumsComboTable,$num)
+	<table cellspacing="0" cellpadding="0" border="0">
+		<tr>			  
+			<td nowrap="nowrap">
+				<form action="" name="f" id="f" accept-charset="${encoding}">
+					<span class="gensmall">${I18n.getMessage("ForumIndex.goTo")}:&nbsp;</span>
+					<select onchange="if(this.options[this.selectedIndex].value != -1){ document.location = '${contextPath}/forums/show/'+ this.options[this.selectedIndex].value +'${extension}'; }" name="select">
+						<option value="-1" selected="selected">${I18n.getMessage("ForumIndex.goToSelectAForum")}</option>				
+						
+#foreach($category in $categoryList)
+                            <optgroup label="${category.name}">
+#foreach($forum in $category.getForumList())
+								<option value="${forum.id}">${forum.name}</option>
+#end						
+                            </optgroup>
+#end
+					</select>
+					&nbsp;
+				</form>
+			</td>
+		</tr>
+	</table>
+#end
