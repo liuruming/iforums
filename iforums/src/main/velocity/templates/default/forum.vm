@@ -1,5 +1,4 @@
 #parse("/templates/$!{templateName}/inc/header.vm")
-<#import "../macros/presentation.ftl" as presentation/>
 <link rel="alternate" type="application/rss+xml" title="RSS" href="${contextPath}/rss/forums${extension}" />
 <div id="foruminfo">
 <div id="nav">
