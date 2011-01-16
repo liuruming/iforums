@@ -48,12 +48,13 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
+import net.iforums.beans.User;
 import net.iforums.dao.DataAccessDriver;
+import net.iforums.dao.SummaryDao;
 import net.iforums.utils.mail.Spammer;
 import net.iforums.utils.preferences.ConfigKeys;
 import net.iforums.utils.preferences.SystemGlobals;
 import net.iforums.view.forum.common.ViewCommon;
-import net.jforum.dao.SummaryDAO;
 
 import org.apache.log4j.Logger;
 
@@ -70,13 +71,13 @@ import freemarker.template.SimpleHash;
  */
 public class SummaryModel extends Spammer
 {
-	private SummaryDAO dao;
+	private SummaryDao dao;
 
 	private static Logger logger = Logger.getLogger(SummaryModel.class);
 
 	public SummaryModel()
 	{
-		this.dao = DataAccessDriver.getInstance().newSummaryDAO();
+		this.dao = DataAccessDriver.getInstance().newSummaryDao();
 	}
 
 	public void sendPostsSummary(List recipients)
