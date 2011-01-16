@@ -40,12 +40,12 @@
  * The JForum Project
  * http://www.jforum.net
  */
-package net.jforum.view.forum;
+package net.iforums.view.forum;
 
-import net.jforum.Command;
-import net.jforum.JForumExecutionContext;
-import net.jforum.SessionFacade;
-import net.jforum.util.Captcha;
+import net.iforums.Command;
+import net.iforums.JForumExecutionContext;
+import net.iforums.SessionFacade;
+import net.iforums.utils.Captcha;
 
 /**
  * @author Rafael Steil

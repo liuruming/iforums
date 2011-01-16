@@ -40,31 +40,31 @@
  * The JForum Project
  * http://www.jforum.net
  */
-package net.jforum.view.admin;
+package net.iforums.view.admin;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import net.jforum.dao.CategoryDAO;
-import net.jforum.dao.DataAccessDriver;
-import net.jforum.dao.ForumDAO;
-import net.jforum.dao.GroupSecurityDAO;
-import net.jforum.dao.MailIntegrationDAO;
-import net.jforum.dao.TopicDAO;
-import net.jforum.entities.Category;
-import net.jforum.entities.Forum;
-import net.jforum.entities.MailIntegration;
-import net.jforum.repository.ForumRepository;
-import net.jforum.repository.RolesRepository;
-import net.jforum.repository.SecurityRepository;
-import net.jforum.security.PermissionControl;
-import net.jforum.security.Role;
-import net.jforum.security.RoleValue;
-import net.jforum.security.RoleValueCollection;
-import net.jforum.security.SecurityConstants;
-import net.jforum.util.TreeGroup;
-import net.jforum.util.preferences.TemplateKeys;
-import net.jforum.view.admin.common.ModerationCommon;
+import net.iforums.beans.Category;
+import net.iforums.beans.Forum;
+import net.iforums.beans.MailIntegration;
+import net.iforums.dao.CategoryDao;
+import net.iforums.dao.DataAccessDriver;
+import net.iforums.dao.ForumDao;
+import net.iforums.dao.GroupSecurityDao;
+import net.iforums.dao.MailIntegrationDao;
+import net.iforums.dao.TopicDao;
+import net.iforums.repository.ForumRepository;
+import net.iforums.repository.RolesRepository;
+import net.iforums.repository.SecurityRepository;
+import net.iforums.security.PermissionControl;
+import net.iforums.security.Role;
+import net.iforums.security.RoleValue;
+import net.iforums.security.RoleValueCollection;
+import net.iforums.security.SecurityConstants;
+import net.iforums.utils.TreeGroup;
+import net.iforums.utils.preferences.TemplateKeys;
+import net.iforums.view.admin.common.ModerationCommon;
 
 /**
  * @author Rafael Steil
@@ -75,7 +75,7 @@ public class ForumAction extends AdminCommand
 	// Listing
 	public void list()
 	{
-		this.context.put("categories", DataAccessDriver.getInstance().newCategoryDAO().selectAll());
+		this.context.put("categories", DataAccessDriver.getInstance().newCategoryDao().select(0,Integer.MAX_VALUE));
 		this.context.put("repository", new ForumRepository());
 		this.setTemplateName(TemplateKeys.FORUM_ADMIN_LIST);
 	}
@@ -83,12 +83,12 @@ public class ForumAction extends AdminCommand
 	// One more, one more
 	public void insert()
 	{
-		CategoryDAO cm = DataAccessDriver.getInstance().newCategoryDAO();
+		CategoryDao cm = DataAccessDriver.getInstance().newCategoryDao();
 		
 		this.context.put("groups", new TreeGroup().getNodes());
 		this.context.put("selectedList", new ArrayList());
 		this.setTemplateName(TemplateKeys.FORUM_ADMIN_INSERT);
-		this.context.put("categories",cm.selectAll());
+		this.context.put("categories",cm.select(0,Integer.MAX_VALUE));
 		this.context.put("action", "insertSave");		
 	}
 	
@@ -96,24 +96,24 @@ public class ForumAction extends AdminCommand
 	public void edit()
 	{
 		int forumId = this.request.getIntParameter("forum_id");
-		ForumDAO forumDao = DataAccessDriver.getInstance().newForumDAO();
+		ForumDao forumDao = DataAccessDriver.getInstance().newForumDao();
 		
-		CategoryDAO cm = DataAccessDriver.getInstance().newCategoryDAO();
+		CategoryDao cm = DataAccessDriver.getInstance().newCategoryDao();
 		
 		this.setTemplateName(TemplateKeys.FORUM_ADMIN_EDIT);
-		this.context.put("categories", cm.selectAll());
+		this.context.put("categories", cm.select(0,Integer.MAX_VALUE));
 		this.context.put("action", "editSave");
-		this.context.put("forum", forumDao.selectById(forumId));
+		this.context.put("forum", forumDao.getObjectById(forumId));
 		
 		// Mail Integration
-		// MailIntegrationDAO integrationDao = DataAccessDriver.getInstance().newMailIntegrationDAO();
+		// MailIntegrationDao integrationDao = DataAccessDriver.getInstance().newMailIntegrationDao();
 		// this.context.put("mailIntegration", integrationDao.find(forumId));
 	}
 	
 	public void editSave()
 	{
-		ForumDAO forumDao = DataAccessDriver.getInstance().newForumDAO();
-		Forum f = forumDao.selectById(this.request.getIntParameter("forum_id"));
+		ForumDao forumDao = DataAccessDriver.getInstance().newForumDao();
+		Forum f = forumDao.getObjectById(this.request.getIntParameter("forum_id"));
 		
 		boolean moderated = f.isModerated();
 		int categoryId = f.getCategoryId();
@@ -148,7 +148,7 @@ public class ForumAction extends AdminCommand
 	private void handleMailIntegration()
 	{
 		int forumId = this.request.getIntParameter("forum_id");
-		MailIntegrationDAO dao = DataAccessDriver.getInstance().newMailIntegrationDAO();
+		MailIntegrationDao dao = DataAccessDriver.getInstance().newMailIntegrationDao();
 		
 		if (!"1".equals(this.request.getParameter("mail_integration"))) {
 			dao.delete(forumId);
@@ -206,7 +206,7 @@ public class ForumAction extends AdminCommand
 			return;
 		}
 		
-		ForumDAO fm = DataAccessDriver.getInstance().newForumDAO();
+		ForumDao fm = DataAccessDriver.getInstance().newForumDao();
 		
 		if (up) {
 			// Get the forum which comes *before* the forum we're changing
@@ -230,15 +230,15 @@ public class ForumAction extends AdminCommand
 	{
 		String ids[] = this.request.getParameterValues("forum_id");
 		
-		ForumDAO forumDao = DataAccessDriver.getInstance().newForumDAO();
-		TopicDAO topicDao = DataAccessDriver.getInstance().newTopicDAO();
+		ForumDao forumDao = DataAccessDriver.getInstance().newForumDao();
+		TopicDao topicDao = DataAccessDriver.getInstance().newTopicDao();
 		
 		if (ids != null) {
 			for (int i = 0; i < ids.length; i++) {
 				int forumId = Integer.parseInt(ids[i]);
 
 				topicDao.deleteByForum(forumId);
-				forumDao.delete(forumId);
+				forumDao.deleteObjectById(forumId);
 				
 				Forum f = new Forum(ForumRepository.getForum(forumId));
 				ForumRepository.removeForum(f);
@@ -260,12 +260,12 @@ public class ForumAction extends AdminCommand
 		f.setName(this.request.getParameter("forum_name"));	
 		f.setModerated("1".equals(this.request.getParameter("moderate")));
 			
-		int forumId = DataAccessDriver.getInstance().newForumDAO().addNew(f);
+		int forumId = 0;//DataAccessDriver.getInstance().newForumDao().insert(f);
 		f.setId(forumId);
 		
 		ForumRepository.addForum(f);
 		
-		GroupSecurityDAO gmodel = DataAccessDriver.getInstance().newGroupSecurityDAO();
+		GroupSecurityDao gmodel = DataAccessDriver.getInstance().newGroupSecurityDao();
 		PermissionControl pc = new PermissionControl();
 		pc.setSecurityModel(gmodel);
 		

@@ -1,19 +1,19 @@
-package net.jforum.view.forum;
+package net.iforums.view.forum;
 
 import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-import net.jforum.Command;
-import net.jforum.SessionFacade;
-import net.jforum.entities.MostUsersEverOnline;
-import net.jforum.entities.UserSession;
-import net.jforum.repository.ForumRepository;
-import net.jforum.util.I18n;
-import net.jforum.util.preferences.ConfigKeys;
-import net.jforum.util.preferences.SystemGlobals;
-import net.jforum.util.preferences.TemplateKeys;
-import net.jforum.view.forum.common.ForumCommon;
+import net.iforums.Command;
+import net.iforums.SessionFacade;
+import net.iforums.beans.MostUsersEverOnline;
+import net.iforums.beans.UserSession;
+import net.iforums.repository.ForumRepository;
+import net.iforums.utils.I18n;
+import net.iforums.utils.preferences.ConfigKeys;
+import net.iforums.utils.preferences.SystemGlobals;
+import net.iforums.utils.preferences.TemplateKeys;
+import net.iforums.view.forum.common.ForumCommon;
 
 public class FrameAction extends Command {
 

@@ -40,15 +40,15 @@
  * The JForum Project
  * http://www.jforum.net
  */
-package net.jforum.view.admin;
+package net.iforums.view.admin;
 
 import java.util.List;
 
-import net.jforum.dao.BanlistDAO;
-import net.jforum.dao.DataAccessDriver;
-import net.jforum.entities.Banlist;
-import net.jforum.repository.BanlistRepository;
-import net.jforum.util.preferences.TemplateKeys;
+import net.iforums.beans.Banlist;
+import net.iforums.dao.BanlistDao;
+import net.iforums.dao.DataAccessDriver;
+import net.iforums.repository.BanlistRepository;
+import net.iforums.utils.preferences.TemplateKeys;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -84,7 +84,7 @@ public class BanlistAction extends AdminCommand
 				throw new RuntimeException("Unknown banlist type");
 			}
 			
-			BanlistDAO dao = DataAccessDriver.getInstance().newBanlistDAO();
+			BanlistDao dao = DataAccessDriver.getInstance().newBanlistDao();
 			dao.insert(b);
 			
 			BanlistRepository.add(b);
@@ -98,11 +98,11 @@ public class BanlistAction extends AdminCommand
 		String[] banlist = this.request.getParameterValues("banlist_id");
 		
 		if (banlist != null && banlist.length > 0) {
-			BanlistDAO dao = DataAccessDriver.getInstance().newBanlistDAO();
+			BanlistDao dao = DataAccessDriver.getInstance().newBanlistDao();
 			
 			for (int i = 0; i < banlist.length; i++) {
 				int current = Integer.parseInt(banlist[i]);
-				dao.delete(current);
+				dao.deleteObjectById(current);
 				
 				BanlistRepository.remove(current);
 			}
@@ -118,7 +118,7 @@ public class BanlistAction extends AdminCommand
 	{
 		this.setTemplateName(TemplateKeys.BANLIST_LIST);
 		
-		List l = DataAccessDriver.getInstance().newBanlistDAO().selectAll();
+		List l = DataAccessDriver.getInstance().newBanlistDao().select(0,Integer.MAX_VALUE);
 		this.context.put("banlist", l);
 	}
 }

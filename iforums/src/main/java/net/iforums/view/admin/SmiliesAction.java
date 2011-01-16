@@ -40,20 +40,20 @@
  * The JForum Project
  * http://www.jforum.net
  */
-package net.jforum.view.admin;
+package net.iforums.view.admin;
 
 import java.io.File;
 
-import net.jforum.dao.DataAccessDriver;
-import net.jforum.dao.SmilieDAO;
-import net.jforum.entities.Smilie;
-import net.jforum.repository.SmiliesRepository;
-import net.jforum.util.MD5;
-import net.jforum.util.legacy.commons.fileupload.FileItem;
-import net.jforum.util.preferences.ConfigKeys;
-import net.jforum.util.preferences.SystemGlobals;
-import net.jforum.util.preferences.TemplateKeys;
-import net.jforum.view.forum.common.UploadUtils;
+import net.iforums.beans.Smilie;
+import net.iforums.dao.DataAccessDriver;
+import net.iforums.dao.SmilieDao;
+import net.iforums.repository.SmiliesRepository;
+import net.iforums.utils.MD5;
+import net.iforums.utils.legacy.commons.fileupload.FileItem;
+import net.iforums.utils.preferences.ConfigKeys;
+import net.iforums.utils.preferences.SystemGlobals;
+import net.iforums.utils.preferences.TemplateKeys;
+import net.iforums.view.forum.common.UploadUtils;
 
 /**
  * @author Rafael Steil
@@ -99,7 +99,7 @@ public class SmiliesAction extends AdminCommand
 		
 		s.setDiskName(imgName);
 		
-		DataAccessDriver.getInstance().newSmilieDAO().addNew(s);
+		DataAccessDriver.getInstance().newSmilieDao().addNew(s);
 		
 		SmiliesRepository.loadSmilies();
 		this.list();
@@ -114,13 +114,13 @@ public class SmiliesAction extends AdminCommand
 		}
 		
 		this.setTemplateName(TemplateKeys.SMILIES_EDIT);
-		this.context.put("smilie", DataAccessDriver.getInstance().newSmilieDAO().selectById(id));
+		this.context.put("smilie", DataAccessDriver.getInstance().newSmilieDao().selectById(id));
 		this.context.put("action", "editSave");
 	}
 	
 	public void editSave()
 	{
-		Smilie s = DataAccessDriver.getInstance().newSmilieDAO().selectById(this.request.getIntParameter("id"));
+		Smilie s = DataAccessDriver.getInstance().newSmilieDao().selectById(this.request.getIntParameter("id"));
 		s.setCode(this.request.getParameter("code"));
 		
 		if (this.request.getObjectParameter("smilie_img") != null) {
@@ -129,7 +129,7 @@ public class SmiliesAction extends AdminCommand
 			s.setDiskName(imgName);
 		}
 
-		DataAccessDriver.getInstance().newSmilieDAO().update(s);
+		DataAccessDriver.getInstance().newSmilieDao().update(s);
 		
 		SmiliesRepository.loadSmilies();
 		this.list();
@@ -140,7 +140,7 @@ public class SmiliesAction extends AdminCommand
 		String[] ids = this.request.getParameterValues("id");
 		
 		if (ids != null) {
-			SmilieDAO dao = DataAccessDriver.getInstance().newSmilieDAO();
+			SmilieDao dao = DataAccessDriver.getInstance().newSmilieDao();
 			
 			for (int i = 0; i < ids.length; i++) {
 				int id = Integer.parseInt(ids[i]);

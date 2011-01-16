@@ -40,27 +40,27 @@
  * The JForum Project
  * http://www.jforum.net
  */
-package net.jforum.view.forum;
+package net.iforums.view.forum;
 
-import net.jforum.Command;
-import net.jforum.JForumExecutionContext;
-import net.jforum.SessionFacade;
-import net.jforum.context.RequestContext;
-import net.jforum.context.ResponseContext;
-import net.jforum.dao.BookmarkDAO;
-import net.jforum.dao.DataAccessDriver;
-import net.jforum.entities.Bookmark;
-import net.jforum.entities.BookmarkType;
-import net.jforum.entities.Forum;
-import net.jforum.entities.Topic;
-import net.jforum.entities.User;
-import net.jforum.repository.ForumRepository;
-import net.jforum.repository.SecurityRepository;
-import net.jforum.security.SecurityConstants;
-import net.jforum.util.I18n;
-import net.jforum.util.preferences.ConfigKeys;
-import net.jforum.util.preferences.SystemGlobals;
-import net.jforum.util.preferences.TemplateKeys;
+import net.iforums.Command;
+import net.iforums.JForumExecutionContext;
+import net.iforums.SessionFacade;
+import net.iforums.beans.Bookmark;
+import net.iforums.beans.BookmarkType;
+import net.iforums.beans.Forum;
+import net.iforums.beans.Topic;
+import net.iforums.beans.User;
+import net.iforums.context.RequestContext;
+import net.iforums.context.ResponseContext;
+import net.iforums.dao.BookmarkDao;
+import net.iforums.dao.DataAccessDriver;
+import net.iforums.repository.ForumRepository;
+import net.iforums.repository.SecurityRepository;
+import net.iforums.security.SecurityConstants;
+import net.iforums.utils.I18n;
+import net.iforums.utils.preferences.ConfigKeys;
+import net.iforums.utils.preferences.SystemGlobals;
+import net.iforums.utils.preferences.TemplateKeys;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -96,7 +96,7 @@ public class BookmarkAction extends Command
 		String title = f.getName();
 		String description = f.getDescription();
 		
-		Bookmark b = DataAccessDriver.getInstance().newBookmarkDAO().selectForUpdate(
+		Bookmark b = DataAccessDriver.getInstance().newBookmarkDao().selectForUpdate(
 				f.getId(), BookmarkType.FORUM, SessionFacade.getUserSession().getUserId());
 		if (b != null) {
 			if (b.getTitle() != null) {
@@ -119,11 +119,11 @@ public class BookmarkAction extends Command
 	
 	private void addTopic()
 	{
-		Topic t = DataAccessDriver.getInstance().newTopicDAO().selectById(
+		Topic t = DataAccessDriver.getInstance().newTopicDao().selectById(
 				this.request.getIntParameter("relation_id"));
 		String title = t.getTitle();
 		
-		Bookmark b = DataAccessDriver.getInstance().newBookmarkDAO().selectForUpdate(
+		Bookmark b = DataAccessDriver.getInstance().newBookmarkDao().selectForUpdate(
 				t.getId(), BookmarkType.TOPIC, SessionFacade.getUserSession().getUserId());
 		if (b != null) {
 			if (b.getTitle() != null) {
@@ -142,11 +142,11 @@ public class BookmarkAction extends Command
 	
 	private void addUser()
 	{
-		User u = DataAccessDriver.getInstance().newUserDAO().selectById(
+		User u = DataAccessDriver.getInstance().newUserDao().selectById(
 				this.request.getIntParameter("relation_id"));
 		String title = u.getUsername();
 		
-		Bookmark b = DataAccessDriver.getInstance().newBookmarkDAO().selectForUpdate(
+		Bookmark b = DataAccessDriver.getInstance().newBookmarkDao().selectForUpdate(
 				u.getId(), BookmarkType.USER, SessionFacade.getUserSession().getUserId());
 		if (b != null) {
 			if (b.getTitle() != null) {
@@ -176,15 +176,15 @@ public class BookmarkAction extends Command
 		b.setRelationType(this.request.getIntParameter("relation_type"));
 		b.setUserId(SessionFacade.getUserSession().getUserId());
 		
-		DataAccessDriver.getInstance().newBookmarkDAO().add(b);
+		DataAccessDriver.getInstance().newBookmarkDao().insert(b);
 		this.setTemplateName(TemplateKeys.BOOKMARKS_INSERT_SAVE);
 	}
 	
 	public void updateSave()
 	{
 		int id = this.request.getIntParameter("bookmark_id");
-		BookmarkDAO bm = DataAccessDriver.getInstance().newBookmarkDAO();
-		Bookmark b = bm.selectById(id);
+		BookmarkDao bm = DataAccessDriver.getInstance().newBookmarkDao();
+		Bookmark b = bm.getObjectById(id);
 		
 		if (!this.sanityCheck(b)) {
 			return;
@@ -203,8 +203,8 @@ public class BookmarkAction extends Command
 	public void edit()
 	{
 		int id = this.request.getIntParameter("bookmark_id");
-		BookmarkDAO bm = DataAccessDriver.getInstance().newBookmarkDAO();
-		Bookmark b = bm.selectById(id);
+		BookmarkDao bm = DataAccessDriver.getInstance().newBookmarkDao();
+		Bookmark b = bm.getObjectById(id);
 		
 		if (!this.sanityCheck(b)) {
 			return;
@@ -217,14 +217,14 @@ public class BookmarkAction extends Command
 	public void delete()
 	{
 		int id = this.request.getIntParameter("bookmark_id");
-		BookmarkDAO bm = DataAccessDriver.getInstance().newBookmarkDAO();
-		Bookmark b = bm.selectById(id);
+		BookmarkDao bm = DataAccessDriver.getInstance().newBookmarkDao();
+		Bookmark b = bm.getObjectById(id);
 		
 		if (!this.sanityCheck(b)) {
 			return;
 		}
 		
-		bm.remove(id);
+		bm.deleteObjectById(id);
 		
 		JForumExecutionContext.setRedirect(this.request.getContextPath() + "/bookmarks/list/" + b.getUserId()
 				+ SystemGlobals.getValue(ConfigKeys.SERVLET_EXTENSION));
@@ -269,11 +269,11 @@ public class BookmarkAction extends Command
 		int userId = this.request.getIntParameter("user_id");
 		
 		this.setTemplateName(TemplateKeys.BOOKMARKS_LIST);
-		this.context.put("bookmarks", DataAccessDriver.getInstance().newBookmarkDAO().selectByUser(userId));
+		this.context.put("bookmarks", DataAccessDriver.getInstance().newBookmarkDao().selectByUser(userId));
 		this.context.put("forumType", new Integer(BookmarkType.FORUM));
 		this.context.put("userType", new Integer(BookmarkType.USER));
 		this.context.put("topicType", new Integer(BookmarkType.TOPIC));
-		User u=DataAccessDriver.getInstance().newUserDAO().selectById(userId);
+		User u=DataAccessDriver.getInstance().newUserDao().selectById(userId);
 		this.context.put("user", u);
 		this.context.put("loggedUserId", new Integer(SessionFacade.getUserSession().getUserId()));
 		this.context.put("pageTitle", u.getUsername()+" "+I18n.getMessage("Bookmarks.for"));				

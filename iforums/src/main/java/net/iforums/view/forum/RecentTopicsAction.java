@@ -40,7 +40,7 @@
  * The JForum Project
  * http://www.jforum.net
  */
-package net.jforum.view.forum;
+package net.iforums.view.forum;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -48,21 +48,21 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import net.jforum.Command;
-import net.jforum.JForumExecutionContext;
-import net.jforum.dao.DataAccessDriver;
-import net.jforum.dao.UserDAO;
-import net.jforum.entities.Forum;
-import net.jforum.entities.Topic;
-import net.jforum.entities.User;
-import net.jforum.repository.ForumRepository;
-import net.jforum.repository.TopicRepository;
-import net.jforum.util.I18n;
-import net.jforum.util.preferences.ConfigKeys;
-import net.jforum.util.preferences.SystemGlobals;
-import net.jforum.util.preferences.TemplateKeys;
-import net.jforum.view.forum.common.TopicsCommon;
-import net.jforum.view.forum.common.ViewCommon;
+import net.iforums.Command;
+import net.iforums.JForumExecutionContext;
+import net.iforums.beans.Forum;
+import net.iforums.beans.Topic;
+import net.iforums.beans.User;
+import net.iforums.dao.DataAccessDriver;
+import net.iforums.dao.UserDao;
+import net.iforums.repository.ForumRepository;
+import net.iforums.repository.TopicRepository;
+import net.iforums.utils.I18n;
+import net.iforums.utils.preferences.ConfigKeys;
+import net.iforums.utils.preferences.SystemGlobals;
+import net.iforums.utils.preferences.TemplateKeys;
+import net.iforums.view.forum.common.TopicsCommon;
+import net.iforums.view.forum.common.ViewCommon;
 
 /**
  * Display a list of recent Topics
@@ -118,7 +118,7 @@ public class RecentTopicsAction extends Command
 	{
 		DataAccessDriver da = DataAccessDriver.getInstance();
 		
-		UserDAO udao = da.newUserDAO();
+		UserDao udao = da.newUserDao();
 		User u = udao.selectById(this.request.getIntParameter("user_id"));
 		
 		if (u.getId() == 0) {
@@ -135,14 +135,14 @@ public class RecentTopicsAction extends Command
 		
 		this.setTemplateName(TemplateKeys.RECENT_USER_TOPICS_SHOW);
 		
-		int totalTopics = da.newTopicDAO().countUserTopics(u.getId());
+		int totalTopics = da.newTopicDao().countUserTopics(u.getId());
 		
 		this.context.put("u", u);
 		this.context.put("pageTitle", I18n.getMessage("ForumListing.userTopics") + " " + u.getUsername());
 		
 		this.context.put("postsPerPage", new Integer(postsPerPage));
 		
-		List topics = da.newTopicDAO().selectByUserByLimit(u.getId(),start,topicsPerPage);
+		List topics = da.newTopicDao().selectByUserByLimit(u.getId(),start,topicsPerPage);
 		
 		List l = TopicsCommon.prepareTopics(topics);
 		Map forums = new HashMap();

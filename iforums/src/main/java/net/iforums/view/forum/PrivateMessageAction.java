@@ -40,30 +40,30 @@
  * The JForum Project
  * http://www.jforum.net
  */
-package net.jforum.view.forum;
+package net.iforums.view.forum;
 
 import java.util.List;
 
-import net.jforum.Command;
-import net.jforum.SessionFacade;
-import net.jforum.dao.DataAccessDriver;
-import net.jforum.dao.PrivateMessageDAO;
-import net.jforum.dao.UserDAO;
-import net.jforum.entities.Post;
-import net.jforum.entities.PrivateMessage;
-import net.jforum.entities.PrivateMessageType;
-import net.jforum.entities.User;
-import net.jforum.entities.UserSession;
-import net.jforum.repository.SmiliesRepository;
-import net.jforum.util.I18n;
-import net.jforum.util.concurrent.Executor;
-import net.jforum.util.mail.EmailSenderTask;
-import net.jforum.util.mail.PrivateMessageSpammer;
-import net.jforum.util.preferences.ConfigKeys;
-import net.jforum.util.preferences.SystemGlobals;
-import net.jforum.util.preferences.TemplateKeys;
-import net.jforum.view.forum.common.PostCommon;
-import net.jforum.view.forum.common.ViewCommon;
+import net.iforums.Command;
+import net.iforums.SessionFacade;
+import net.iforums.beans.Post;
+import net.iforums.beans.PrivateMessage;
+import net.iforums.beans.PrivateMessageType;
+import net.iforums.beans.User;
+import net.iforums.beans.UserSession;
+import net.iforums.dao.DataAccessDriver;
+import net.iforums.dao.PrivateMessageDao;
+import net.iforums.dao.UserDao;
+import net.iforums.repository.SmiliesRepository;
+import net.iforums.utils.I18n;
+import net.iforums.utils.concurrent.Executor;
+import net.iforums.utils.mail.EmailSenderTask;
+import net.iforums.utils.mail.PrivateMessageSpammer;
+import net.iforums.utils.preferences.ConfigKeys;
+import net.iforums.utils.preferences.SystemGlobals;
+import net.iforums.utils.preferences.TemplateKeys;
+import net.iforums.view.forum.common.PostCommon;
+import net.iforums.view.forum.common.ViewCommon;
 
 /**
  * @author Rafael Steil
@@ -81,7 +81,7 @@ public class PrivateMessageAction extends Command
 		User user = new User();
 		user.setId(SessionFacade.getUserSession().getUserId());
 		
-		List pmList = DataAccessDriver.getInstance().newPrivateMessageDAO().selectFromInbox(user);
+		List pmList = DataAccessDriver.getInstance().newPrivateMessageDao().selectFromInbox(user);
 
 		this.setTemplateName(TemplateKeys.PM_INBOX);
 		this.context.put("inbox", true);
@@ -100,7 +100,7 @@ public class PrivateMessageAction extends Command
 		User user = new User();
 		user.setId(SessionFacade.getUserSession().getUserId());
 		
-		List pmList = DataAccessDriver.getInstance().newPrivateMessageDAO().selectFromSent(user);
+		List pmList = DataAccessDriver.getInstance().newPrivateMessageDao().selectFromSent(user);
 
 		this.context.put("sentbox", true);
 		this.context.put("pmList", pmList);
@@ -123,7 +123,7 @@ public class PrivateMessageAction extends Command
 			return;
 		}
 		
-		User user = DataAccessDriver.getInstance().newUserDAO().selectById(
+		User user = DataAccessDriver.getInstance().newUserDao().selectById(
 			SessionFacade.getUserSession().getUserId());
 		
 		ViewCommon.prepareUserSignature(user);
@@ -138,13 +138,13 @@ public class PrivateMessageAction extends Command
 			return;
 		}
 		
-		User user = DataAccessDriver.getInstance().newUserDAO().selectById(
+		User user = DataAccessDriver.getInstance().newUserDao().selectById(
 				SessionFacade.getUserSession().getUserId());
 
 		int userId = this.request.getIntParameter("user_id");
 		
 		if (userId > 0){
-			User recipient = DataAccessDriver.getInstance().newUserDAO().selectById(userId);
+			User recipient = DataAccessDriver.getInstance().newUserDao().selectById(userId);
 			
 			this.context.put("pmRecipient", recipient);
 			this.context.put("toUserId", new Integer(recipient.getId()));
@@ -180,7 +180,7 @@ public class PrivateMessageAction extends Command
 			return;
 		}
 		
-		UserDAO userDao = DataAccessDriver.getInstance().newUserDAO();
+		UserDao userDao = DataAccessDriver.getInstance().newUserDao();
 		
 		String toUserIdStr = this.request.getParameter("toUserId");
 		String toUsername = this.request.getParameter("toUsername");
@@ -223,7 +223,7 @@ public class PrivateMessageAction extends Command
 		boolean preview = ("1".equals(this.request.getParameter("preview")));
 
 		if (!preview) {
-			DataAccessDriver.getInstance().newPrivateMessageDAO().send(pm);
+			DataAccessDriver.getInstance().newPrivateMessageDao().send(pm);
 			
 			this.setTemplateName(TemplateKeys.PM_SENDSAVE);
 			this.context.put("message", I18n.getMessage("PrivateMessage.messageSent", 
@@ -263,7 +263,7 @@ public class PrivateMessageAction extends Command
 		String username = this.request.getParameter("username");
 
 		if (username != null && !username.equals("")) {
-			List namesList = DataAccessDriver.getInstance().newUserDAO().findByName(username, false);
+			List namesList = DataAccessDriver.getInstance().newUserDao().findByName(username, false);
 			this.context.put("namesList", namesList);
 			showResult = true;
 		}
@@ -286,7 +286,7 @@ public class PrivateMessageAction extends Command
 		PrivateMessage pm = new PrivateMessage();
 		pm.setId(id);
 		
-		pm = DataAccessDriver.getInstance().newPrivateMessageDAO().selectById(pm);
+		pm = DataAccessDriver.getInstance().newPrivateMessageDao().selectById(pm);
 		
 		// Don't allow the read of messages that don't belongs
 		// to the current user
@@ -299,7 +299,7 @@ public class PrivateMessageAction extends Command
 			// Update the message status, if needed
 			if (pm.getType() == PrivateMessageType.NEW) {
 				pm.setType(PrivateMessageType.READ);
-				DataAccessDriver.getInstance().newPrivateMessageDAO().updateType(pm);
+				DataAccessDriver.getInstance().newPrivateMessageDao().updateType(pm);
 				
 				int totalMessages = us.getPrivateMessages();
 
@@ -339,7 +339,7 @@ public class PrivateMessageAction extends Command
 			PrivateMessage[] deleteList = new PrivateMessage[ids.length];
 			
 			int unreadCount = 0;
-			PrivateMessageDAO dao = DataAccessDriver.getInstance().newPrivateMessageDAO();
+			PrivateMessageDao dao = DataAccessDriver.getInstance().newPrivateMessageDao();
 			
 			for (int i = 0; i < ids.length; i++) {
 				PrivateMessage pm = dao.selectById(new PrivateMessage(Integer.parseInt(ids[i])));
@@ -383,7 +383,7 @@ public class PrivateMessageAction extends Command
 		
 		PrivateMessage pm = new PrivateMessage();
 		pm.setId(id);
-		pm = DataAccessDriver.getInstance().newPrivateMessageDAO().selectById(pm);
+		pm = DataAccessDriver.getInstance().newPrivateMessageDao().selectById(pm);
 		
 		int userId = SessionFacade.getUserSession().getUserId();
 		
@@ -398,7 +398,7 @@ public class PrivateMessageAction extends Command
 		this.context.put("pm", pm);
 		this.context.put("pmReply", true);
 		
-		this.sendFormCommon(DataAccessDriver.getInstance().newUserDAO().selectById(
+		this.sendFormCommon(DataAccessDriver.getInstance().newUserDao().selectById(
 				SessionFacade.getUserSession().getUserId()));
 	}
 	
@@ -413,7 +413,7 @@ public class PrivateMessageAction extends Command
 		
 		PrivateMessage pm = new PrivateMessage();
 		pm.setId(id);
-		pm = DataAccessDriver.getInstance().newPrivateMessageDAO().selectById(pm);
+		pm = DataAccessDriver.getInstance().newPrivateMessageDao().selectById(pm);
 
 		int userId = SessionFacade.getUserSession().getUserId();
 		
@@ -425,7 +425,7 @@ public class PrivateMessageAction extends Command
 		
 		pm.getPost().setSubject(I18n.getMessage("PrivateMessage.replyPrefix") + pm.getPost().getSubject());
 		
-		this.sendFormCommon(DataAccessDriver.getInstance().newUserDAO().selectById(userId));
+		this.sendFormCommon(DataAccessDriver.getInstance().newUserDao().selectById(userId));
 		
 		this.context.put("quote", "true");
 		this.context.put("quoteUser", pm.getFromUser().getUsername());

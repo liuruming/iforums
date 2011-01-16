@@ -40,14 +40,14 @@
  * The JForum Project
  * http://www.jforum.net
  */
-package net.jforum.view.forum.common;
+package net.iforums.view.forum.common;
 
 import java.util.Date;
 
+import net.iforums.JForumExecutionContext;
 import net.iforums.beans.Poll;
 import net.iforums.beans.PollOption;
-import net.jforum.JForumExecutionContext;
-import net.jforum.context.RequestContext;
+import net.iforums.context.RequestContext;
 
 /**
  * @author David Almilli

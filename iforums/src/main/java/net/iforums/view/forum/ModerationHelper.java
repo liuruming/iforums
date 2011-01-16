@@ -40,30 +40,30 @@
  * The JForum Project
  * http://www.jforum.net
  */
-package net.jforum.view.forum;
+package net.iforums.view.forum;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import net.jforum.JForumExecutionContext;
-import net.jforum.SessionFacade;
-import net.jforum.context.RequestContext;
-import net.jforum.dao.DataAccessDriver;
-import net.jforum.dao.ForumDAO;
-import net.jforum.dao.ModerationLogDAO;
-import net.jforum.dao.TopicDAO;
-import net.jforum.entities.ModerationLog;
-import net.jforum.entities.Topic;
-import net.jforum.entities.User;
-import net.jforum.repository.ForumRepository;
-import net.jforum.repository.PostRepository;
-import net.jforum.repository.SecurityRepository;
-import net.jforum.repository.TopicRepository;
-import net.jforum.security.SecurityConstants;
-import net.jforum.util.I18n;
-import net.jforum.util.preferences.TemplateKeys;
-import net.jforum.view.forum.common.ForumCommon;
+import net.iforums.JForumExecutionContext;
+import net.iforums.SessionFacade;
+import net.iforums.beans.ModerationLog;
+import net.iforums.beans.Topic;
+import net.iforums.beans.User;
+import net.iforums.context.RequestContext;
+import net.iforums.dao.DataAccessDriver;
+import net.iforums.dao.ForumDao;
+import net.iforums.dao.ModerationLogDao;
+import net.iforums.dao.TopicDao;
+import net.iforums.repository.ForumRepository;
+import net.iforums.repository.PostRepository;
+import net.iforums.repository.SecurityRepository;
+import net.iforums.repository.TopicRepository;
+import net.iforums.security.SecurityConstants;
+import net.iforums.utils.I18n;
+import net.iforums.utils.preferences.TemplateKeys;
+import net.iforums.view.forum.common.ForumCommon;
 
 import org.apache.log4j.Logger;
 
@@ -131,7 +131,7 @@ public class ModerationHelper
 	
 	public void saveModerationLog(ModerationLog log)
 	{
-		ModerationLogDAO dao = DataAccessDriver.getInstance().newModerationLogDAO();
+		ModerationLogDao dao = DataAccessDriver.getInstance().newModerationLogDao();
 		dao.add(log);
 	}
 	
@@ -172,7 +172,7 @@ public class ModerationHelper
 		String[] topics = JForumExecutionContext.getRequest().getParameterValues("topic_id");
 		
 		List forumsList = new ArrayList();
-		TopicDAO tm = DataAccessDriver.getInstance().newTopicDAO();
+		TopicDao tm = DataAccessDriver.getInstance().newTopicDao();
 		
 		List topicsToDelete = new ArrayList();
 		
@@ -197,7 +197,7 @@ public class ModerationHelper
 			
 			tm.deleteTopics(topicsToDelete, false);
 			
-			ForumDAO fm = DataAccessDriver.getInstance().newForumDAO();
+			ForumDao fm = DataAccessDriver.getInstance().newForumDao();
 			TopicRepository.loadMostRecentTopics();
 			
 			// Reload changed forums
@@ -235,10 +235,10 @@ public class ModerationHelper
 				this.saveModerationLog(log);
 			}
 			
-			DataAccessDriver.getInstance().newTopicDAO().lockUnlock(ids, status);
+			DataAccessDriver.getInstance().newTopicDao().lockUnlock(ids, status);
 			
 			// Clear the cache
-			Topic t = DataAccessDriver.getInstance().newTopicDAO().selectById(ids[0]);
+			Topic t = DataAccessDriver.getInstance().newTopicDao().selectById(ids[0]);
 			TopicRepository.clearCache(t.getForumId());
 		}
 	}
@@ -262,7 +262,7 @@ public class ModerationHelper
 				Topic topic = TopicRepository.getTopic(new Topic(topicId));
 				
 				if (topic == null) {
-					topic = DataAccessDriver.getInstance().newTopicDAO().selectRaw(topicId);
+					topic = DataAccessDriver.getInstance().newTopicDao().selectRaw(topicId);
 				}
 				
 				forumId = Integer.toString(topic.getForumId());
@@ -299,7 +299,7 @@ public class ModerationHelper
 				
 				String[] topicList = topics.split(",");
 				
-				DataAccessDriver.getInstance().newForumDAO().moveTopics(topicList, fromForumId, toForumId);
+				DataAccessDriver.getInstance().newForumDao().moveTopics(topicList, fromForumId, toForumId);
 				
 				ModerationLog log = this.buildModerationLogFromRequest();
 				

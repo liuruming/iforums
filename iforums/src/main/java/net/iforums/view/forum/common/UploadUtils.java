@@ -40,13 +40,13 @@
  * The JForum Project
  * http://www.jforum.net
  */
-package net.jforum.view.forum.common;
+package net.iforums.view.forum.common;
 
 import java.io.BufferedInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-import net.jforum.util.legacy.commons.fileupload.FileItem;
+import net.iforums.utils.legacy.commons.fileupload.FileItem;
 
 /**
  * @author Rafael Steil

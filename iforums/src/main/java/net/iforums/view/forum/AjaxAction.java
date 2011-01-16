@@ -41,30 +41,30 @@
  * The JForum Project
  * http://www.jforum.net
  */
-package net.jforum.view.forum;
+package net.iforums.view.forum;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import net.jforum.Command;
-import net.jforum.SessionFacade;
-import net.jforum.dao.DataAccessDriver;
-import net.jforum.dao.PostDAO;
-import net.jforum.entities.ModerationLog;
-import net.jforum.entities.Post;
-import net.jforum.entities.User;
-import net.jforum.repository.PostRepository;
-import net.jforum.repository.SecurityRepository;
-import net.jforum.search.LuceneManager;
-import net.jforum.search.SearchFacade;
-import net.jforum.security.SecurityConstants;
-import net.jforum.util.SafeHtml;
-import net.jforum.util.mail.Spammer;
-import net.jforum.util.preferences.ConfigKeys;
-import net.jforum.util.preferences.SystemGlobals;
-import net.jforum.util.preferences.TemplateKeys;
-import net.jforum.view.forum.common.PostCommon;
+import net.iforums.Command;
+import net.iforums.SessionFacade;
+import net.iforums.beans.ModerationLog;
+import net.iforums.beans.Post;
+import net.iforums.beans.User;
+import net.iforums.dao.DataAccessDriver;
+import net.iforums.dao.PostDao;
+import net.iforums.repository.PostRepository;
+import net.iforums.repository.SecurityRepository;
+import net.iforums.search.LuceneManager;
+import net.iforums.search.SearchFacade;
+import net.iforums.security.SecurityConstants;
+import net.iforums.utils.SafeHtml;
+import net.iforums.utils.mail.Spammer;
+import net.iforums.utils.preferences.ConfigKeys;
+import net.iforums.utils.preferences.SystemGlobals;
+import net.iforums.utils.preferences.TemplateKeys;
+import net.iforums.view.forum.common.PostCommon;
 
 import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.log4j.Logger;
@@ -183,7 +183,7 @@ public class AjaxAction extends Command
 	public void loadPostContents()
 	{
 		int postId = this.request.getIntParameter("id");
-		PostDAO dao = DataAccessDriver.getInstance().newPostDAO();
+		PostDao dao = DataAccessDriver.getInstance().newPostDao();
 		Post post = dao.selectById(postId);
 		this.setTemplateName(TemplateKeys.AJAX_LOAD_POST);
 		this.context.put("post", post);
@@ -191,7 +191,7 @@ public class AjaxAction extends Command
 	
 	public void savePost()
 	{
-		PostDAO postDao = DataAccessDriver.getInstance().newPostDAO();
+		PostDao postDao = DataAccessDriver.getInstance().newPostDao();
 		Post post = postDao.selectById(this.request.getIntParameter("id"));
 		
 		String originalMessage = post.getText();

@@ -40,29 +40,32 @@
  * The JForum Project
  * http://www.jforum.net
  */
-package net.jforum.view.forum;
+package net.iforums.view.forum;
 
 import java.util.Iterator;
 import java.util.List;
 
-import net.jforum.Command;
-import net.jforum.JForumExecutionContext;
-import net.jforum.dao.DataAccessDriver;
-import net.jforum.dao.ModerationLogDAO;
-import net.jforum.dao.PostDAO;
-import net.jforum.dao.TopicDAO;
-import net.jforum.entities.ModerationLog;
-import net.jforum.entities.Post;
-import net.jforum.entities.Topic;
-import net.jforum.repository.ForumRepository;
-import net.jforum.repository.SecurityRepository;
-import net.jforum.security.SecurityConstants;
-import net.jforum.util.I18n;
-import net.jforum.util.preferences.ConfigKeys;
-import net.jforum.util.preferences.SystemGlobals;
-import net.jforum.util.preferences.TemplateKeys;
-import net.jforum.view.forum.common.PostCommon;
-import net.jforum.view.forum.common.ViewCommon;
+import freemarker.template.SimpleHash;
+
+import net.iforums.Command;
+import net.iforums.JForumExecutionContext;
+import net.iforums.beans.ModerationLog;
+import net.iforums.beans.Post;
+import net.iforums.beans.Topic;
+import net.iforums.context.RequestContext;
+import net.iforums.dao.DataAccessDriver;
+import net.iforums.dao.ModerationLogDao;
+import net.iforums.dao.PostDao;
+import net.iforums.dao.TopicDao;
+import net.iforums.repository.ForumRepository;
+import net.iforums.repository.SecurityRepository;
+import net.iforums.security.SecurityConstants;
+import net.iforums.utils.I18n;
+import net.iforums.utils.preferences.ConfigKeys;
+import net.iforums.utils.preferences.SystemGlobals;
+import net.iforums.utils.preferences.TemplateKeys;
+import net.iforums.view.forum.common.PostCommon;
+import net.iforums.view.forum.common.ViewCommon;
 
 /**
  * @author Rafael Steil
@@ -70,6 +73,7 @@ import net.jforum.view.forum.common.ViewCommon;
  */
 public class ModerationAction extends Command
 {
+
 	/**
 	 * @throws UnsupportedOperationException always
 	 * @see net.jforum.Command#list()
@@ -86,7 +90,7 @@ public class ModerationAction extends Command
 			return;
 		}
 		
-		ModerationLogDAO dao = DataAccessDriver.getInstance().newModerationLogDAO();
+		ModerationLogDao dao = DataAccessDriver.getInstance().newModerationLogDao();
 		
 		int start = ViewCommon.getStartPage();
 		int recordsPerPage = SystemGlobals.getIntValue(ConfigKeys.TOPICS_PER_PAGE);
@@ -94,8 +98,8 @@ public class ModerationAction extends Command
 		List list = dao.selectAll(start, recordsPerPage);
 		boolean canAccessFullModerationLog = SecurityRepository.canAccess(SecurityConstants.PERM_FULL_MODERATION_LOG);
 		
-		PostDAO postDao = DataAccessDriver.getInstance().newPostDAO();
-		TopicDAO topicDao = DataAccessDriver.getInstance().newTopicDAO();
+		PostDao postDao = DataAccessDriver.getInstance().newPostDao();
+		TopicDao topicDao = DataAccessDriver.getInstance().newTopicDao();
 		
 		for (Iterator iter = list.iterator(); iter.hasNext();) {
 			ModerationLog log = (ModerationLog)iter.next();

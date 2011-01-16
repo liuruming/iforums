@@ -40,25 +40,25 @@
  * The JForum Project
  * http://www.jforum.net
  */
-package net.jforum.view.admin;
+package net.iforums.view.admin;
 
-import net.jforum.context.RequestContext;
-import net.jforum.dao.DataAccessDriver;
-import net.jforum.dao.PostDAO;
-import net.jforum.dao.TopicDAO;
-import net.jforum.dao.UserDAO;
-import net.jforum.entities.Post;
-import net.jforum.entities.Topic;
-import net.jforum.entities.User;
-import net.jforum.repository.ForumRepository;
-import net.jforum.repository.PostRepository;
-import net.jforum.repository.TopicRepository;
-import net.jforum.util.preferences.ConfigKeys;
-import net.jforum.util.preferences.SystemGlobals;
-import net.jforum.util.preferences.TemplateKeys;
-import net.jforum.view.forum.common.AttachmentCommon;
-import net.jforum.view.forum.common.PostCommon;
-import net.jforum.view.forum.common.TopicsCommon;
+import net.iforums.beans.Post;
+import net.iforums.beans.Topic;
+import net.iforums.beans.User;
+import net.iforums.context.RequestContext;
+import net.iforums.dao.DataAccessDriver;
+import net.iforums.dao.PostDao;
+import net.iforums.dao.TopicDao;
+import net.iforums.dao.UserDao;
+import net.iforums.repository.ForumRepository;
+import net.iforums.repository.PostRepository;
+import net.iforums.repository.TopicRepository;
+import net.iforums.utils.preferences.ConfigKeys;
+import net.iforums.utils.preferences.SystemGlobals;
+import net.iforums.utils.preferences.TemplateKeys;
+import net.iforums.view.forum.common.AttachmentCommon;
+import net.iforums.view.forum.common.PostCommon;
+import net.iforums.view.forum.common.TopicsCommon;
 import freemarker.template.SimpleHash;
 
 /**
@@ -81,7 +81,7 @@ public class ModerationAction extends AdminCommand
 	public void list()
 	{
 		this.setTemplateName(TemplateKeys.MODERATION_ADMIN_LIST);
-		this.context.put("infoList", DataAccessDriver.getInstance().newModerationDAO().categoryPendingModeration());
+		this.context.put("infoList", DataAccessDriver.getInstance().newModerationDao().categoryPendingModeration());
 	}
 	
 	public void view()
@@ -90,7 +90,7 @@ public class ModerationAction extends AdminCommand
 		
 		this.setTemplateName(TemplateKeys.MODERATION_ADMIN_VIEW);
 		this.context.put("forum", ForumRepository.getForum(forumId));
-		this.context.put("topics", DataAccessDriver.getInstance().newModerationDAO().topicsByForum(
+		this.context.put("topics", DataAccessDriver.getInstance().newModerationDao().topicsByForum(
 				forumId));
 	}
 	
@@ -99,7 +99,7 @@ public class ModerationAction extends AdminCommand
 		String[] posts = this.request.getParameterValues("post_id");
 
 		if (posts != null) {
-			TopicDAO topicDao = DataAccessDriver.getInstance().newTopicDAO();
+			TopicDao topicDao = DataAccessDriver.getInstance().newTopicDao();
 			
 			for (int i = 0; i < posts.length; i++) {
 				int postId = Integer.parseInt(posts[i]);
@@ -111,14 +111,14 @@ public class ModerationAction extends AdminCommand
 				}
 				
 				if ("aprove".startsWith(status)) {
-					Post p = DataAccessDriver.getInstance().newPostDAO().selectById(postId);
+					Post p = DataAccessDriver.getInstance().newPostDao().selectById(postId);
 					
 					// Check is the post is in fact waiting for moderation
 					if (!p.isModerationNeeded()) {
 						continue;
 					}
 					
-					UserDAO userDao = DataAccessDriver.getInstance().newUserDAO();
+					UserDao userDao = DataAccessDriver.getInstance().newUserDao();
 					User u = userDao.selectById(p.getUserId());
 					
 					boolean first = false;
@@ -133,7 +133,7 @@ public class ModerationAction extends AdminCommand
 						}
 					}
 					
-					DataAccessDriver.getInstance().newModerationDAO().aprovePost(postId);
+					DataAccessDriver.getInstance().newModerationDao().aprovePost(postId);
 					
 					boolean firstPost = (t.getFirstPostId() == postId);
 					
@@ -153,7 +153,7 @@ public class ModerationAction extends AdminCommand
 					}
 
 					TopicsCommon.updateBoardStatus(t, postId, firstPost,
-						topicDao, DataAccessDriver.getInstance().newForumDAO());
+						topicDao, DataAccessDriver.getInstance().newForumDao());
 					
 					ForumRepository.updateForumStats(t, u, p);
 					TopicsCommon.notifyUsers(t, p);
@@ -165,7 +165,7 @@ public class ModerationAction extends AdminCommand
 					}
 				}
 				else {
-					PostDAO pm = DataAccessDriver.getInstance().newPostDAO();
+					PostDao pm = DataAccessDriver.getInstance().newPostDao();
 					Post post = pm.selectById(postId);
 					
 					if (post == null || !post.isModerationNeeded()) {

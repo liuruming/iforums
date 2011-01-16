@@ -40,26 +40,26 @@
  * The JForum Project
  * http://www.jforum.net
  */
-package net.jforum.view.forum;
+package net.iforums.view.forum;
 
-import net.jforum.Command;
-import net.jforum.JForumExecutionContext;
-import net.jforum.SessionFacade;
-import net.jforum.dao.DataAccessDriver;
-import net.jforum.dao.KarmaDAO;
-import net.jforum.dao.PostDAO;
-import net.jforum.entities.Karma;
-import net.jforum.entities.KarmaStatus;
-import net.jforum.entities.Post;
-import net.jforum.repository.PostRepository;
-import net.jforum.repository.SecurityRepository;
-import net.jforum.security.SecurityConstants;
-import net.jforum.util.I18n;
-import net.jforum.util.preferences.ConfigKeys;
-import net.jforum.util.preferences.SystemGlobals;
-import net.jforum.util.preferences.TemplateKeys;
-import net.jforum.view.forum.common.PostCommon;
-import net.jforum.view.forum.common.ViewCommon;
+import net.iforums.Command;
+import net.iforums.JForumExecutionContext;
+import net.iforums.SessionFacade;
+import net.iforums.beans.Karma;
+import net.iforums.beans.KarmaStatus;
+import net.iforums.beans.Post;
+import net.iforums.dao.DataAccessDriver;
+import net.iforums.dao.KarmaDao;
+import net.iforums.dao.PostDao;
+import net.iforums.repository.PostRepository;
+import net.iforums.repository.SecurityRepository;
+import net.iforums.security.SecurityConstants;
+import net.iforums.utils.I18n;
+import net.iforums.utils.preferences.ConfigKeys;
+import net.iforums.utils.preferences.SystemGlobals;
+import net.iforums.utils.preferences.TemplateKeys;
+import net.iforums.view.forum.common.PostCommon;
+import net.iforums.view.forum.common.ViewCommon;
 
 /**
  * @author Rafael Steil
@@ -77,7 +77,7 @@ public class KarmaAction extends Command
 		int postId = this.request.getIntParameter("post_id");
 		int fromUserId = SessionFacade.getUserSession().getUserId();
 
-		PostDAO pm = DataAccessDriver.getInstance().newPostDAO();
+		PostDao pm = DataAccessDriver.getInstance().newPostDao();
 		Post p = pm.selectById(postId);
 
 		if (fromUserId == SystemGlobals.getIntValue(ConfigKeys.ANONYMOUS_USER_ID)) {
@@ -90,7 +90,7 @@ public class KarmaAction extends Command
 			return;
 		}
 
-		KarmaDAO km = DataAccessDriver.getInstance().newKarmaDAO();
+		KarmaDao km = DataAccessDriver.getInstance().newKarmaDao();
 		
 		if (!km.userCanAddKarma(fromUserId, postId)) {
 			this.error("Karma.alreadyVoted", p);

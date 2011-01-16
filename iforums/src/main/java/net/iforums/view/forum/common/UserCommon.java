@@ -40,24 +40,26 @@
  * The JForum Project
  * http://www.jforum.net
  */
-package net.jforum.view.forum.common;
+package net.iforums.view.forum.common;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.jforum.JForumExecutionContext;
-import net.jforum.SessionFacade;
-import net.jforum.context.RequestContext;
-import net.jforum.dao.DataAccessDriver;
-import net.jforum.util.I18n;
-import net.jforum.util.MD5;
-import net.jforum.util.SafeHtml;
-import net.jforum.util.image.ImageUtils;
-import net.jforum.util.legacy.commons.fileupload.FileItem;
-import net.jforum.util.preferences.ConfigKeys;
-import net.jforum.util.preferences.SystemGlobals;
+import net.iforums.JForumExecutionContext;
+import net.iforums.SessionFacade;
+import net.iforums.beans.User;
+import net.iforums.context.RequestContext;
+import net.iforums.dao.DataAccessDriver;
+import net.iforums.dao.UserDao;
+import net.iforums.utils.I18n;
+import net.iforums.utils.MD5;
+import net.iforums.utils.SafeHtml;
+import net.iforums.utils.image.ImageUtils;
+import net.iforums.utils.legacy.commons.fileupload.FileItem;
+import net.iforums.utils.preferences.ConfigKeys;
+import net.iforums.utils.preferences.SystemGlobals;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
@@ -80,7 +82,7 @@ public class UserCommon
 	{
 		List errors = new ArrayList();
 		
-		UserDAO um = DataAccessDriver.getInstance().newUserDAO();
+		UserDao um = DataAccessDriver.getInstance().newUserDao();
 		User u = um.selectById(userId);
 		
 		RequestContext request = JForumExecutionContext.getRequest();

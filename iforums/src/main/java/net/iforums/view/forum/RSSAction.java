@@ -40,30 +40,30 @@
  * The JForum Project
  * http://www.jforum.net
  */
-package net.jforum.view.forum;
+package net.iforums.view.forum;
 
 import java.util.List;
 
-import net.jforum.Command;
-import net.jforum.JForumExecutionContext;
-import net.jforum.SessionFacade;
-import net.jforum.context.RequestContext;
-import net.jforum.context.ResponseContext;
-import net.jforum.dao.DataAccessDriver;
-import net.jforum.dao.PostDAO;
-import net.jforum.dao.TopicDAO;
-import net.jforum.entities.Forum;
-import net.jforum.entities.Topic;
-import net.jforum.repository.ForumRepository;
-import net.jforum.util.I18n;
-import net.jforum.util.preferences.ConfigKeys;
-import net.jforum.util.preferences.SystemGlobals;
-import net.jforum.util.preferences.TemplateKeys;
-import net.jforum.util.rss.RSSAware;
-import net.jforum.util.rss.RecentTopicsRSS;
-import net.jforum.util.rss.TopicPostsRSS;
-import net.jforum.util.rss.TopicRSS;
-import net.jforum.view.forum.common.TopicsCommon;
+import net.iforums.Command;
+import net.iforums.JForumExecutionContext;
+import net.iforums.SessionFacade;
+import net.iforums.beans.Forum;
+import net.iforums.beans.Topic;
+import net.iforums.context.RequestContext;
+import net.iforums.context.ResponseContext;
+import net.iforums.dao.DataAccessDriver;
+import net.iforums.dao.PostDao;
+import net.iforums.dao.TopicDao;
+import net.iforums.repository.ForumRepository;
+import net.iforums.utils.I18n;
+import net.iforums.utils.preferences.ConfigKeys;
+import net.iforums.utils.preferences.SystemGlobals;
+import net.iforums.utils.preferences.TemplateKeys;
+import net.iforums.utils.rss.RSSAware;
+import net.iforums.utils.rss.RecentTopicsRSS;
+import net.iforums.utils.rss.TopicPostsRSS;
+import net.iforums.utils.rss.TopicRSS;
+import net.iforums.view.forum.common.TopicsCommon;
 import freemarker.template.SimpleHash;
 import freemarker.template.Template;
 
@@ -85,7 +85,7 @@ public class RSSAction extends Command
             return;
 		}
 		
-		List posts = DataAccessDriver.getInstance().newPostDAO().selectLatestByForumForRSS(
+		List posts = DataAccessDriver.getInstance().newPostDao().selectLatestByForumForRSS(
 			forumId, SystemGlobals.getIntValue(ConfigKeys.TOPICS_PER_PAGE));
 		
 		Forum forum = ForumRepository.getForum(forumId);
@@ -106,8 +106,8 @@ public class RSSAction extends Command
 	{
 		int topicId = this.request.getIntParameter("topic_id");
 
-		PostDAO pm = DataAccessDriver.getInstance().newPostDAO();
-		TopicDAO tm = DataAccessDriver.getInstance().newTopicDAO();
+		PostDao pm = DataAccessDriver.getInstance().newPostDao();
+		TopicDao tm = DataAccessDriver.getInstance().newTopicDao();
 		
 		Topic topic = tm.selectById(topicId);
 		
@@ -135,7 +135,7 @@ public class RSSAction extends Command
 			new Object[] { SystemGlobals.getValue(ConfigKeys.FORUM_NAME) });
 		String description = I18n.getMessage("RSS.RecentTopics.description");
 		
-		List posts = DataAccessDriver.getInstance().newPostDAO().selectHotForRSS(
+		List posts = DataAccessDriver.getInstance().newPostDao().selectHotForRSS(
 			SystemGlobals.getIntValue(ConfigKeys.POSTS_PER_PAGE));
 
 		RSSAware rss = new RecentTopicsRSS(title, description, posts);

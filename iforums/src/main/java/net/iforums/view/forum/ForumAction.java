@@ -40,7 +40,7 @@
  * The JForum Project
  * http://www.jforum.net
  */
-package net.jforum.view.forum;
+package net.iforums.view.forum;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -49,27 +49,26 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import net.jforum.Command;
-import net.jforum.JForumExecutionContext;
-import net.jforum.SessionFacade;
-import net.jforum.dao.DataAccessDriver;
-import net.jforum.dao.ForumDAO;
-import net.jforum.dao.ModerationDAO;
-import net.jforum.entities.Forum;
-import net.jforum.entities.MostUsersEverOnline;
-import net.jforum.entities.UserSession;
-import net.jforum.repository.ForumRepository;
-import net.jforum.repository.SecurityRepository;
-import net.jforum.security.SecurityConstants;
-import net.jforum.util.I18n;
-import net.jforum.util.preferences.ConfigKeys;
-import net.jforum.util.preferences.SystemGlobals;
-import net.jforum.util.preferences.TemplateKeys;
-import net.jforum.view.admin.ModerationAction;
-import net.jforum.view.forum.common.ForumCommon;
-import net.jforum.view.forum.common.PostCommon;
-import net.jforum.view.forum.common.TopicsCommon;
-import net.jforum.view.forum.common.ViewCommon;
+import net.iforums.Command;
+import net.iforums.JForumExecutionContext;
+import net.iforums.SessionFacade;
+import net.iforums.beans.Forum;
+import net.iforums.beans.MostUsersEverOnline;
+import net.iforums.beans.UserSession;
+import net.iforums.dao.DataAccessDriver;
+import net.iforums.dao.ForumDao;
+import net.iforums.dao.ModerationDao;
+import net.iforums.repository.ForumRepository;
+import net.iforums.repository.SecurityRepository;
+import net.iforums.security.SecurityConstants;
+import net.iforums.utils.I18n;
+import net.iforums.utils.preferences.ConfigKeys;
+import net.iforums.utils.preferences.SystemGlobals;
+import net.iforums.utils.preferences.TemplateKeys;
+import net.iforums.view.forum.common.ForumCommon;
+import net.iforums.view.forum.common.PostCommon;
+import net.iforums.view.forum.common.TopicsCommon;
+import net.iforums.view.forum.common.ViewCommon;
 
 /**
  * @author Rafael Steil
@@ -162,7 +161,7 @@ public class ForumAction extends Command
 	public void show()
 	{
 		int forumId = this.request.getIntParameter("forum_id");
-		ForumDAO fm = DataAccessDriver.getInstance().newForumDAO();
+		ForumDao fm = DataAccessDriver.getInstance().newForumDao();
 
 		// The user can access this forum?
 		Forum forum = ForumRepository.getForum(forumId);
@@ -189,7 +188,7 @@ public class ForumAction extends Command
 		Map topicsToApprove = new HashMap();
 
 		if (canApproveMessages) {
-			ModerationDAO mdao = DataAccessDriver.getInstance().newModerationDAO();
+			ModerationDao mdao = DataAccessDriver.getInstance().newModerationDao();
 			topicsToApprove = mdao.topicsByForum(forumId);
 			this.context.put("postFormatter", new PostCommon());
 		}
@@ -288,7 +287,7 @@ public class ForumAction extends Command
 	public void approveMessages()
 	{
 		if (SessionFacade.getUserSession().isModerator(this.request.getIntParameter("forum_id"))) {
-			new ModerationAction(this.context, this.request).doSave();
+			new net.iforums.view.admin.ModerationAction(this.context, this.request).doSave();
 		}
 
 		JForumExecutionContext.setRedirect(this.request.getContextPath() + "/forums/show/"
@@ -304,7 +303,7 @@ public class ForumAction extends Command
 		int forumId = this.request.getIntParameter("forum_id");
 		int userId = SessionFacade.getUserSession().getUserId();
 
-		this.watchForum(DataAccessDriver.getInstance().newForumDAO(), forumId, userId);
+		this.watchForum(DataAccessDriver.getInstance().newForumDao(), forumId, userId);
 
 		JForumExecutionContext.setRedirect(this.redirectLinkToShowAction(forumId));
 	}
@@ -325,11 +324,11 @@ public class ForumAction extends Command
 
 	/**
 	 * 
-	 * @param dao ForumDAO
+	 * @param dao ForumDao
 	 * @param forumId int
 	 * @param userId int
 	 */
-	private void watchForum(ForumDAO dao, int forumId, int userId)
+	private void watchForum(ForumDao dao, int forumId, int userId)
 	{
 		if (SessionFacade.isLogged() && !dao.isUserSubscribed(forumId, userId)) {
 			dao.subscribeUser(forumId, userId);
@@ -345,7 +344,7 @@ public class ForumAction extends Command
 			int forumId = this.request.getIntParameter("forum_id");
 			int userId = SessionFacade.getUserSession().getUserId();
 
-			DataAccessDriver.getInstance().newForumDAO().removeSubscription(forumId, userId);
+			DataAccessDriver.getInstance().newForumDao().removeSubscription(forumId, userId);
 
 			String returnPath = this.redirectLinkToShowAction(forumId);
 

@@ -40,26 +40,26 @@
  * The JForum Project
  * http://www.jforum.net
  */
-package net.jforum.view.admin;
+package net.iforums.view.admin;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import net.jforum.SessionFacade;
-import net.jforum.dao.DataAccessDriver;
-import net.jforum.dao.GroupDAO;
-import net.jforum.dao.UserDAO;
-import net.jforum.entities.Group;
-import net.jforum.entities.User;
-import net.jforum.repository.SecurityRepository;
-import net.jforum.util.I18n;
-import net.jforum.util.TreeGroup;
-import net.jforum.util.preferences.ConfigKeys;
-import net.jforum.util.preferences.SystemGlobals;
-import net.jforum.util.preferences.TemplateKeys;
-import net.jforum.view.forum.common.UserCommon;
-import net.jforum.view.forum.common.ViewCommon;
+import net.iforums.SessionFacade;
+import net.iforums.beans.Group;
+import net.iforums.beans.User;
+import net.iforums.dao.DataAccessDriver;
+import net.iforums.dao.GroupDao;
+import net.iforums.dao.UserDao;
+import net.iforums.repository.SecurityRepository;
+import net.iforums.utils.I18n;
+import net.iforums.utils.TreeGroup;
+import net.iforums.utils.preferences.ConfigKeys;
+import net.iforums.utils.preferences.SystemGlobals;
+import net.iforums.utils.preferences.TemplateKeys;
+import net.iforums.view.forum.common.UserCommon;
+import net.iforums.view.forum.common.ViewCommon;
 
 /**
  * @author Rafael Steil
@@ -69,16 +69,16 @@ public class UserAction extends AdminCommand
 {
 	public void list()
 	{
-		int start = this.preparePagination(DataAccessDriver.getInstance().newUserDAO().getTotalUsers());
+		int start = this.preparePagination(DataAccessDriver.getInstance().newUserDao().getTotalUsers());
 		int usersPerPage = SystemGlobals.getIntValue(ConfigKeys.USERS_PER_PAGE);
 		
-		this.context.put("users", DataAccessDriver.getInstance().newUserDAO().selectAll(start ,usersPerPage));
+		this.context.put("users", DataAccessDriver.getInstance().newUserDao().selectAll(start ,usersPerPage));
 		this.commonData();
 	}
 	
 	public void pendingActivations()
 	{
-		UserDAO dao = DataAccessDriver.getInstance().newUserDAO();
+		UserDao dao = DataAccessDriver.getInstance().newUserDao();
 		List users = dao.pendingActivations();
 		
 		this.setTemplateName(TemplateKeys.USER_ADMIN_PENDING_ACTIVATIONS);
@@ -90,7 +90,7 @@ public class UserAction extends AdminCommand
 		String[] ids = this.request.getParameterValues("user_id");
 		
 		if (ids != null) {
-			UserDAO dao = DataAccessDriver.getInstance().newUserDAO();
+			UserDao dao = DataAccessDriver.getInstance().newUserDao();
 			
 			for (int i = 0; i < ids.length; i++) {
 				int userId = Integer.parseInt(ids[i]);
@@ -128,7 +128,7 @@ public class UserAction extends AdminCommand
 			return;
 		}
 		
-		UserDAO um = DataAccessDriver.getInstance().newUserDAO();
+		UserDao um = DataAccessDriver.getInstance().newUserDao();
 		
 		int start = this.preparePagination(um.getTotalUsersByGroup(groupId));
 		int usersPerPage = SystemGlobals.getIntValue(ConfigKeys.USERS_PER_PAGE);
@@ -151,7 +151,7 @@ public class UserAction extends AdminCommand
 		
 		if (search != null && !"".equals(search)) {
             List users;
-			users = DataAccessDriver.getInstance().newUserDAO().findByName(search, false);
+			users = DataAccessDriver.getInstance().newUserDao().findByName(search, false);
 			
 			this.commonData();
 			
@@ -170,13 +170,13 @@ public class UserAction extends AdminCommand
 	public void edit()
 	{
 		int userId = this.request.getIntParameter("id");	
-		UserDAO um = DataAccessDriver.getInstance().newUserDAO();
+		UserDao um = DataAccessDriver.getInstance().newUserDao();
 		User u = um.selectById(userId);
 		
 		this.setTemplateName(TemplateKeys.USER_ADMIN_EDIT);
 		this.context.put("u", u);
 		this.context.put("action", "editSave");		
-		this.context.put("specialRanks", DataAccessDriver.getInstance().newRankingDAO().selectSpecials());
+		this.context.put("specialRanks", DataAccessDriver.getInstance().newRankingDao().selectSpecials());
 		this.context.put("avatarAllowExternalUrl", SystemGlobals.getBoolValue(ConfigKeys.AVATAR_ALLOW_EXTERNAL_URL));
 		this.context.put("admin", true);
 	}
@@ -193,7 +193,7 @@ public class UserAction extends AdminCommand
 	public void delete()
 	{
 		String ids[] = this.request.getParameterValues("user_id");
-		UserDAO um = DataAccessDriver.getInstance().newUserDAO();
+		UserDao um = DataAccessDriver.getInstance().newUserDao();
 		
 		if (ids != null) {
 			for (int i = 0; i < ids.length; i++) {
@@ -223,7 +223,7 @@ public class UserAction extends AdminCommand
 	{
 		int userId = this.request.getIntParameter("id");
 		
-		UserDAO um = DataAccessDriver.getInstance().newUserDAO();
+		UserDao um = DataAccessDriver.getInstance().newUserDao();
 		User u = um.selectById(userId);
 		
 		List selectedList = new ArrayList();
@@ -244,11 +244,11 @@ public class UserAction extends AdminCommand
 	{
 		int userId = this.request.getIntParameter("user_id");
 		
-		UserDAO um = DataAccessDriver.getInstance().newUserDAO();
-		GroupDAO gm = DataAccessDriver.getInstance().newGroupDAO();
+		UserDao um = DataAccessDriver.getInstance().newUserDao();
+		GroupDao gm = DataAccessDriver.getInstance().newGroupDao();
 		
 		// Remove the old groups
-		List allGroupsList = gm.selectAll();
+		List allGroupsList = gm.select(0,Integer.MAX_VALUE);
 		int[] allGroups = new int[allGroupsList.size()];
 		
 		int counter = 0;

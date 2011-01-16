@@ -40,13 +40,13 @@
  * The JForum Project
  * http://www.jforum.net
  */
-package net.jforum.view.admin.common;
+package net.iforums.view.admin.common;
 
 import java.util.Iterator;
 
-import net.jforum.dao.DataAccessDriver;
-import net.jforum.entities.Category;
-import net.jforum.entities.Forum;
+import net.iforums.beans.Category;
+import net.iforums.beans.Forum;
+import net.iforums.dao.DataAccessDriver;
 
 /**
  * @author Rafael Steil
@@ -64,11 +64,11 @@ public class ModerationCommon
 			}
 		}
 		
-		DataAccessDriver.getInstance().newForumDAO().setModerated(c.getId(), status);
+		DataAccessDriver.getInstance().newForumDao().setModerated(c.getId(), status);
 	}
 	
 	public void setTopicModerationStatus(int forumId, boolean status) 
 	{
-		DataAccessDriver.getInstance().newTopicDAO().setModerationStatus(forumId, status);
+		DataAccessDriver.getInstance().newTopicDao().setModerationStatus(forumId, status);
 	}
 }

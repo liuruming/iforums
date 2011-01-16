@@ -40,7 +40,7 @@
  * The JForum Project
  * http://www.jforum.net
  */
-package net.jforum.view.forum;
+package net.iforums.view.forum;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -54,46 +54,46 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import net.jforum.Command;
-import net.jforum.JForumExecutionContext;
-import net.jforum.SessionFacade;
-import net.jforum.context.RequestContext;
-import net.jforum.dao.AttachmentDAO;
-import net.jforum.dao.DataAccessDriver;
-import net.jforum.dao.ForumDAO;
-import net.jforum.dao.KarmaDAO;
-import net.jforum.dao.PollDAO;
-import net.jforum.dao.PostDAO;
-import net.jforum.dao.TopicDAO;
-import net.jforum.dao.UserDAO;
-import net.jforum.entities.Attachment;
-import net.jforum.entities.Forum;
-import net.jforum.entities.ModerationLog;
-import net.jforum.entities.Poll;
-import net.jforum.entities.PollChanges;
-import net.jforum.entities.Post;
-import net.jforum.entities.QuotaLimit;
-import net.jforum.entities.Topic;
-import net.jforum.entities.User;
-import net.jforum.entities.UserSession;
-import net.jforum.repository.ForumRepository;
-import net.jforum.repository.PostRepository;
-import net.jforum.repository.RankingRepository;
-import net.jforum.repository.SecurityRepository;
-import net.jforum.repository.SmiliesRepository;
-import net.jforum.repository.TopicRepository;
-import net.jforum.security.PermissionControl;
-import net.jforum.security.SecurityConstants;
-import net.jforum.util.I18n;
-import net.jforum.util.preferences.ConfigKeys;
-import net.jforum.util.preferences.SystemGlobals;
-import net.jforum.util.preferences.TemplateKeys;
-import net.jforum.view.forum.common.AttachmentCommon;
-import net.jforum.view.forum.common.ForumCommon;
-import net.jforum.view.forum.common.PollCommon;
-import net.jforum.view.forum.common.PostCommon;
-import net.jforum.view.forum.common.TopicsCommon;
-import net.jforum.view.forum.common.ViewCommon;
+import net.iforums.Command;
+import net.iforums.JForumExecutionContext;
+import net.iforums.SessionFacade;
+import net.iforums.beans.Attachment;
+import net.iforums.beans.Forum;
+import net.iforums.beans.ModerationLog;
+import net.iforums.beans.Poll;
+import net.iforums.beans.PollChanges;
+import net.iforums.beans.Post;
+import net.iforums.beans.QuotaLimit;
+import net.iforums.beans.Topic;
+import net.iforums.beans.User;
+import net.iforums.beans.UserSession;
+import net.iforums.context.RequestContext;
+import net.iforums.dao.AttachmentDao;
+import net.iforums.dao.DataAccessDriver;
+import net.iforums.dao.ForumDao;
+import net.iforums.dao.KarmaDao;
+import net.iforums.dao.PollDao;
+import net.iforums.dao.PostDao;
+import net.iforums.dao.TopicDao;
+import net.iforums.dao.UserDao;
+import net.iforums.repository.ForumRepository;
+import net.iforums.repository.PostRepository;
+import net.iforums.repository.RankingRepository;
+import net.iforums.repository.SecurityRepository;
+import net.iforums.repository.SmiliesRepository;
+import net.iforums.repository.TopicRepository;
+import net.iforums.security.PermissionControl;
+import net.iforums.security.SecurityConstants;
+import net.iforums.utils.I18n;
+import net.iforums.utils.preferences.ConfigKeys;
+import net.iforums.utils.preferences.SystemGlobals;
+import net.iforums.utils.preferences.TemplateKeys;
+import net.iforums.view.forum.common.AttachmentCommon;
+import net.iforums.view.forum.common.ForumCommon;
+import net.iforums.view.forum.common.PollCommon;
+import net.iforums.view.forum.common.PostCommon;
+import net.iforums.view.forum.common.TopicsCommon;
+import net.iforums.view.forum.common.ViewCommon;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -115,10 +115,10 @@ public class PostAction extends Command
 
 	public void list()
 	{
-		PostDAO postDao = DataAccessDriver.getInstance().newPostDAO();
-		PollDAO pollDao = DataAccessDriver.getInstance().newPollDAO();
+		PostDao postDao = DataAccessDriver.getInstance().newPostDao();
+		PollDao pollDao = DataAccessDriver.getInstance().newPollDao();
 
-		TopicDAO topicDao = DataAccessDriver.getInstance().newTopicDAO();
+		TopicDao topicDao = DataAccessDriver.getInstance().newTopicDao();
 
 		UserSession us = SessionFacade.getUserSession();
 		int anonymousUser = SystemGlobals.getIntValue(ConfigKeys.ANONYMOUS_USER_ID);
@@ -199,7 +199,7 @@ public class PostAction extends Command
 		Map userVotes = new HashMap();
 		
 		if (logged && karmaEnabled) {
-			userVotes = DataAccessDriver.getInstance().newKarmaDAO().getUserVotes(topic.getId(), us.getUserId());
+			userVotes = DataAccessDriver.getInstance().newKarmaDao().getUserVotes(topic.getId(), us.getUserId());
 		}
 		
 		this.setTemplateName(TemplateKeys.POSTS_LIST);
@@ -258,7 +258,7 @@ public class PostAction extends Command
 	{
 		int postId = this.request.getIntParameter("post_id");
 		
-		PostDAO dao = DataAccessDriver.getInstance().newPostDAO();
+		PostDao dao = DataAccessDriver.getInstance().newPostDao();
 		
 		int count = dao.countPreviousPosts(postId);
 		int postsPerPage = SystemGlobals.getIntValue(ConfigKeys.POSTS_PER_PAGE);
@@ -298,7 +298,7 @@ public class PostAction extends Command
 			Topic topic = TopicRepository.getTopic(new Topic(topicId));
 			
 			if (topic == null) {
-				topic = DataAccessDriver.getInstance().newTopicDAO().selectRaw(topicId);
+				topic = DataAccessDriver.getInstance().newTopicDao().selectRaw(topicId);
 			}
 			
 			if (topic.getStatus() == Topic.STATUS_LOCKED) {
@@ -309,7 +309,7 @@ public class PostAction extends Command
 			// They voted, save the value
 			int optionId = this.request.getIntParameter("poll_option");
 			
-			PollDAO dao = DataAccessDriver.getInstance().newPollDAO();
+			PollDao dao = DataAccessDriver.getInstance().newPollDao();
 			
 			//vote on the poll
 			UserSession user = SessionFacade.getUserSession();
@@ -324,9 +324,9 @@ public class PostAction extends Command
 
 	public void listByUser()
 	{
-		PostDAO pm = DataAccessDriver.getInstance().newPostDAO();
-		UserDAO um = DataAccessDriver.getInstance().newUserDAO();
-		TopicDAO tm = DataAccessDriver.getInstance().newTopicDAO();
+		PostDao pm = DataAccessDriver.getInstance().newPostDao();
+		UserDao um = DataAccessDriver.getInstance().newUserDao();
+		TopicDao tm = DataAccessDriver.getInstance().newTopicDao();
 
 		User u = um.selectById(this.request.getIntParameter("user_id"));
 		
@@ -399,8 +399,8 @@ public class PostAction extends Command
 
 	public void review()
 	{
-		PostDAO postDao = DataAccessDriver.getInstance().newPostDAO();
-		TopicDAO topicDao = DataAccessDriver.getInstance().newTopicDAO();
+		PostDao postDao = DataAccessDriver.getInstance().newPostDao();
+		TopicDao topicDao = DataAccessDriver.getInstance().newTopicDao();
 
 		int userId = SessionFacade.getUserSession().getUserId();
 		int topicId = this.request.getIntParameter("topic_id");
@@ -467,7 +467,7 @@ public class PostAction extends Command
 			Topic t = TopicRepository.getTopic(new Topic(topicId));
 			
 			if (t == null) {
-				t = DataAccessDriver.getInstance().newTopicDAO().selectRaw(topicId);
+				t = DataAccessDriver.getInstance().newTopicDao().selectRaw(topicId);
 				
 				if (t == null) {
 					throw new RuntimeException("Could not find a topic with id #" + topicId);
@@ -552,7 +552,7 @@ public class PostAction extends Command
 		this.context.put("canCreatePolls",
 			SecurityRepository.canAccess(SecurityConstants.PERM_CREATE_POLL));
 
-		User user = DataAccessDriver.getInstance().newUserDAO().selectById(userId);
+		User user = DataAccessDriver.getInstance().newUserDao().selectById(userId);
 		
 		ViewCommon.prepareUserSignature(user);
 		
@@ -572,7 +572,7 @@ public class PostAction extends Command
 		int userId = SessionFacade.getUserSession().getUserId();
 
 		if (!preview) {
-			PostDAO pm = DataAccessDriver.getInstance().newPostDAO();
+			PostDao pm = DataAccessDriver.getInstance().newPostDao();
 			p = pm.selectById(this.request.getIntParameter("post_id"));
 
 			// The post exist?
@@ -593,7 +593,7 @@ public class PostAction extends Command
 			Topic topic = TopicRepository.getTopic(new Topic(p.getTopicId()));
 				
 			if (topic == null) {
-				topic = DataAccessDriver.getInstance().newTopicDAO().selectRaw(p.getTopicId());
+				topic = DataAccessDriver.getInstance().newTopicDao().selectRaw(p.getTopicId());
 			}
 
 			if (!TopicsCommon.isTopicAccessible(topic.getForumId())) {
@@ -611,14 +611,14 @@ public class PostAction extends Command
 			
 			if (p.hasAttachments()) {
 				this.context.put("attachments", 
-						DataAccessDriver.getInstance().newAttachmentDAO().selectAttachments(p.getId()));
+						DataAccessDriver.getInstance().newAttachmentDao().selectAttachments(p.getId()));
 			}
 
 			Poll poll = null;
 			
 			if (topic.isVote() && topic.getFirstPostId() == p.getId()) {
 				// It has a poll associated with the topic
-				PollDAO poolDao = DataAccessDriver.getInstance().newPollDAO();
+				PollDao poolDao = DataAccessDriver.getInstance().newPollDao();
 				poll = poolDao.selectById(topic.getVoteId());
 			}
 			
@@ -651,7 +651,7 @@ public class PostAction extends Command
 					SecurityRepository.canAccess(SecurityConstants.PERM_CREATE_POLL));
 		}
 
-		UserDAO udao = DataAccessDriver.getInstance().newUserDAO();
+		UserDao udao = DataAccessDriver.getInstance().newUserDao();
 		User u = udao.selectById(userId);
 		ViewCommon.prepareUserSignature(u);
 
@@ -671,7 +671,7 @@ public class PostAction extends Command
 	
 	public void quote()
 	{
-		PostDAO pm = DataAccessDriver.getInstance().newPostDAO();
+		PostDao pm = DataAccessDriver.getInstance().newPostDao();
 		Post p = pm.selectById(this.request.getIntParameter("post_id"));
 		
 		if (p.getId() == 0) {
@@ -691,7 +691,7 @@ public class PostAction extends Command
 		Topic topic = TopicRepository.getTopic(new Topic(p.getTopicId()));
 		
 		if (topic == null) {
-			topic = DataAccessDriver.getInstance().newTopicDAO().selectRaw(p.getTopicId());
+			topic = DataAccessDriver.getInstance().newTopicDao().selectRaw(p.getTopicId());
 		}
 
 		if (!TopicsCommon.isTopicAccessible(topic.getForumId())) {
@@ -709,7 +709,7 @@ public class PostAction extends Command
 		this.context.put("action", "insertSave");
 		this.context.put("post", p);
 
-		UserDAO um = DataAccessDriver.getInstance().newUserDAO();
+		UserDao um = DataAccessDriver.getInstance().newUserDao();
 		User u = um.selectById(p.getUserId());
 
 		int userId = SessionFacade.getUserSession().getUserId();
@@ -730,7 +730,7 @@ public class PostAction extends Command
 		this.context.put("htmlAllowed", SecurityRepository.canAccess(SecurityConstants.PERM_HTML_DISABLED, 
 			Integer.toString(topic.getForumId())));
 		this.context.put("start", this.request.getParameter("start"));
-		this.context.put("user", DataAccessDriver.getInstance().newUserDAO().selectById(userId));
+		this.context.put("user", DataAccessDriver.getInstance().newUserDao().selectById(userId));
 		this.context.put("pageTitle", I18n.getMessage("PostForm.reply") + " " + topic.getTitle());
 		this.context.put("smilies", SmiliesRepository.getSmilies());
 		
@@ -745,9 +745,9 @@ public class PostAction extends Command
 
 	public void editSave()
 	{
-		PostDAO postDao = DataAccessDriver.getInstance().newPostDAO();
-		PollDAO pollDao = DataAccessDriver.getInstance().newPollDAO();
-		TopicDAO topicDao = DataAccessDriver.getInstance().newTopicDAO();
+		PostDao postDao = DataAccessDriver.getInstance().newPostDao();
+		PollDao pollDao = DataAccessDriver.getInstance().newPollDao();
+		TopicDao topicDao = DataAccessDriver.getInstance().newTopicDao();
 		
 		Post post = postDao.selectById(this.request.getIntParameter("post_id"));
 		
@@ -956,10 +956,10 @@ public class PostAction extends Command
 			return;
 		}
 
-		TopicDAO topicDao = DataAccessDriver.getInstance().newTopicDAO();
-		PostDAO postDao = DataAccessDriver.getInstance().newPostDAO();
-		PollDAO poolDao = DataAccessDriver.getInstance().newPollDAO();
-		ForumDAO forumDao = DataAccessDriver.getInstance().newForumDAO();
+		TopicDao topicDao = DataAccessDriver.getInstance().newTopicDao();
+		PostDao postDao = DataAccessDriver.getInstance().newPostDao();
+		PollDao poolDao = DataAccessDriver.getInstance().newPollDao();
+		ForumDao forumDao = DataAccessDriver.getInstance().newForumDao();
 
 		if (!newTopic) {
 			int topicId = this.request.getIntParameter("topic_id");
@@ -1006,7 +1006,7 @@ public class PostAction extends Command
 		}
 		
 		UserSession us = SessionFacade.getUserSession();
-		User u = DataAccessDriver.getInstance().newUserDAO().selectById(us.getUserId());
+		User u = DataAccessDriver.getInstance().newUserDao().selectById(us.getUserId());
 		
 		if ("1".equals(this.request.getParameter("quick")) && SessionFacade.isLogged()) {
 			this.request.addParameter("notify", u.isNotifyOnMessagesEnabled() ? "1" : null);
@@ -1178,7 +1178,7 @@ public class PostAction extends Command
 				// Update forum stats, cache and etc
 				t.setTotalViews(t.getTotalViews() + 1);
 				
-				DataAccessDriver.getInstance().newUserDAO().incrementPosts(p.getUserId());
+				DataAccessDriver.getInstance().newUserDao().incrementPosts(p.getUserId());
 				
 				TopicsCommon.updateBoardStatus(t, postId, firstPost, topicDao, forumDao);
 				ForumRepository.updateForumStats(t, u, p);
@@ -1239,7 +1239,7 @@ public class PostAction extends Command
 		}
 
 		// Post
-		PostDAO postDao = DataAccessDriver.getInstance().newPostDAO();
+		PostDao postDao = DataAccessDriver.getInstance().newPostDao();
 		Post p = postDao.selectById(this.request.getIntParameter("post_id"));
 		
 		if (p.getId() == 0) {
@@ -1247,7 +1247,7 @@ public class PostAction extends Command
 			return;
 		}
 
-		TopicDAO topicDao = DataAccessDriver.getInstance().newTopicDAO();
+		TopicDao topicDao = DataAccessDriver.getInstance().newTopicDao();
 		Topic t = topicDao.selectRaw(p.getTopicId());
 
 		if (!TopicsCommon.isTopicAccessible(t.getForumId())) {
@@ -1255,10 +1255,10 @@ public class PostAction extends Command
 		}
 
 		postDao.delete(p);
-		DataAccessDriver.getInstance().newUserDAO().decrementPosts(p.getUserId());
+		DataAccessDriver.getInstance().newUserDao().decrementPosts(p.getUserId());
 		
 		// Karma
-		KarmaDAO karmaDao = DataAccessDriver.getInstance().newKarmaDAO();
+		KarmaDao karmaDao = DataAccessDriver.getInstance().newKarmaDao();
 		karmaDao.updateUserKarma(p.getUserId());
 		
 		// Attachments
@@ -1282,7 +1282,7 @@ public class PostAction extends Command
 			}
 	        
 			// Forum
-			ForumDAO fm = DataAccessDriver.getInstance().newForumDAO();
+			ForumDao fm = DataAccessDriver.getInstance().newForumDao();
 
 			maxPostId = fm.getMaxPostId(p.getForumId());
 			if (maxPostId > -1) {
@@ -1335,7 +1335,7 @@ public class PostAction extends Command
 		ForumRepository.reloadForum(p.getForumId());
 	}
 
-	private void watch(TopicDAO tm, int topicId, int userId)  
+	private void watch(TopicDao tm, int topicId, int userId)  
 	{
 		if (!tm.isUserSubscribed(topicId, userId)) {
 			tm.subscribeUser(topicId, userId);
@@ -1347,7 +1347,7 @@ public class PostAction extends Command
 		int topicId = this.request.getIntParameter("topic_id");
 		int userId = SessionFacade.getUserSession().getUserId();
 
-		this.watch(DataAccessDriver.getInstance().newTopicDAO(), topicId, userId);
+		this.watch(DataAccessDriver.getInstance().newTopicDao(), topicId, userId);
 		this.list();
 	}
 
@@ -1361,7 +1361,7 @@ public class PostAction extends Command
 			int userId = SessionFacade.getUserSession().getUserId();
 			int start = ViewCommon.getStartPage();
 
-			DataAccessDriver.getInstance().newTopicDAO().removeSubscription(topicId, userId);
+			DataAccessDriver.getInstance().newTopicDao().removeSubscription(topicId, userId);
 
 			String returnPath = this.request.getContextPath() + "/posts/list/";
 			
@@ -1394,10 +1394,10 @@ public class PostAction extends Command
 			return;
 		}
 		
-		AttachmentDAO am = DataAccessDriver.getInstance().newAttachmentDAO();
-		Attachment a = am.selectAttachmentById(id);
+		AttachmentDao am = DataAccessDriver.getInstance().newAttachmentDao();
+		Attachment a = am.getObjectById(id);
 		
-		PostDAO postDao = DataAccessDriver.getInstance().newPostDAO();
+		PostDao postDao = DataAccessDriver.getInstance().newPostDao();
 		Post post = postDao.selectById(a.getPostId());
 		
 		String forumId = Integer.toString(post.getForumId());
@@ -1426,7 +1426,7 @@ public class PostAction extends Command
 
 		try {
 			a.getInfo().setDownloadCount(a.getInfo().getDownloadCount() + 1);
-			am.updateAttachment(a);
+			am.update(a);
 
 			fis = new FileInputStream(filename);
 			os = response.getOutputStream();

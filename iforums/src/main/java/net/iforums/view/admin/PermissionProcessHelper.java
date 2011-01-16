@@ -40,19 +40,19 @@
  * The JForum Project
  * http://www.jforum.net
  */
-package net.jforum.view.admin;
+package net.iforums.view.admin;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.List;
 
-import net.jforum.JForumExecutionContext;
-import net.jforum.context.RequestContext;
-import net.jforum.security.PermissionControl;
-import net.jforum.security.Role;
-import net.jforum.security.RoleValue;
-import net.jforum.security.RoleValueCollection;
+import net.iforums.JForumExecutionContext;
+import net.iforums.context.RequestContext;
+import net.iforums.security.PermissionControl;
+import net.iforums.security.Role;
+import net.iforums.security.RoleValue;
+import net.iforums.security.RoleValueCollection;
 
 /**
  * @author Rafael Steil

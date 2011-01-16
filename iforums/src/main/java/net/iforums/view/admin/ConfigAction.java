@@ -40,7 +40,7 @@
  * The JForum Project
  * http://www.jforum.net
  */
-package net.jforum.view.admin;
+package net.iforums.view.admin;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -51,16 +51,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
-import net.jforum.context.RequestContext;
-import net.jforum.context.ResponseContext;
-import net.jforum.entities.Category;
-import net.jforum.entities.Forum;
-import net.jforum.repository.ForumRepository;
-import net.jforum.repository.TopicRepository;
-import net.jforum.util.I18n;
-import net.jforum.util.preferences.ConfigKeys;
-import net.jforum.util.preferences.SystemGlobals;
-import net.jforum.util.preferences.TemplateKeys;
+import net.iforums.beans.Category;
+import net.iforums.beans.Forum;
+import net.iforums.context.RequestContext;
+import net.iforums.context.ResponseContext;
+import net.iforums.repository.ForumRepository;
+import net.iforums.repository.TopicRepository;
+import net.iforums.utils.I18n;
+import net.iforums.utils.preferences.ConfigKeys;
+import net.iforums.utils.preferences.SystemGlobals;
+import net.iforums.utils.preferences.TemplateKeys;
 import freemarker.template.SimpleHash;
 
 /**

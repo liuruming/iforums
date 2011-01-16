@@ -40,13 +40,14 @@
  * The JForum Project
  * http://www.jforum.net
  */
-package net.jforum.view.forum.common;
+package net.iforums.view.forum.common;
 
 import java.util.List;
 import java.util.Random;
 
 import net.iforums.beans.Banner;
-import net.jforum.dao.DataAccessDriver;
+import net.iforums.dao.BannerDao;
+import net.iforums.dao.DataAccessDriver;
 
 /**
  * @author Samuel Yung
@@ -54,12 +55,12 @@ import net.jforum.dao.DataAccessDriver;
  */
 public class BannerCommon
 {
-	private BannerDAO dao;
+	private BannerDao dao;
 	private List banners;
 
 	public BannerCommon()
 	{
-		this.dao = DataAccessDriver.getInstance().newBannerDAO();
+		this.dao = DataAccessDriver.getInstance().newBannerDao();
 	}
 
     /**

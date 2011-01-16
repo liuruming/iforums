@@ -40,25 +40,25 @@
  * The JForum Project
  * http://www.jforum.net
  */
-package net.jforum.view.admin;
+package net.iforums.view.admin;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import net.jforum.dao.DataAccessDriver;
-import net.jforum.dao.GroupDAO;
-import net.jforum.dao.GroupSecurityDAO;
-import net.jforum.entities.Group;
-import net.jforum.repository.ForumRepository;
-import net.jforum.repository.RolesRepository;
-import net.jforum.repository.SecurityRepository;
-import net.jforum.security.PermissionControl;
-import net.jforum.security.XMLPermissionControl;
-import net.jforum.util.I18n;
-import net.jforum.util.TreeGroup;
-import net.jforum.util.preferences.ConfigKeys;
-import net.jforum.util.preferences.SystemGlobals;
-import net.jforum.util.preferences.TemplateKeys;
+import net.iforums.beans.Group;
+import net.iforums.dao.DataAccessDriver;
+import net.iforums.dao.GroupDao;
+import net.iforums.dao.GroupSecurityDao;
+import net.iforums.repository.ForumRepository;
+import net.iforums.repository.RolesRepository;
+import net.iforums.repository.SecurityRepository;
+import net.iforums.security.PermissionControl;
+import net.iforums.security.XMLPermissionControl;
+import net.iforums.utils.I18n;
+import net.iforums.utils.TreeGroup;
+import net.iforums.utils.preferences.ConfigKeys;
+import net.iforums.utils.preferences.SystemGlobals;
+import net.iforums.utils.preferences.TemplateKeys;
 
 /**
  * ViewHelper class for group administration.
@@ -102,7 +102,7 @@ public class GroupAction extends AdminCommand
 		g.setParentId(parentId);
 		g.setName(this.request.getParameter("group_name"));
 
-		DataAccessDriver.getInstance().newGroupDAO().update(g);
+		DataAccessDriver.getInstance().newGroupDao().update(g);
 			
 		this.list();
 	}
@@ -111,11 +111,11 @@ public class GroupAction extends AdminCommand
 	public void edit()
 	{
 		int groupId = this.request.getIntParameter("group_id");
-		GroupDAO gm = DataAccessDriver.getInstance().newGroupDAO();
+		GroupDao gm = DataAccessDriver.getInstance().newGroupDao();
 		
 		this.setTemplateName(TemplateKeys.GROUP_EDIT);
 					
-		this.context.put("group", gm.selectById(groupId));
+		this.context.put("group", gm.getObjectById(groupId));
 		this.context.put("groups", new TreeGroup().getNodes());
 		this.context.put("selectedList", new ArrayList());
 		this.context.put("action", "editSave");	
@@ -133,13 +133,13 @@ public class GroupAction extends AdminCommand
 		}
 		
 		List errors = new ArrayList();
-		GroupDAO gm = DataAccessDriver.getInstance().newGroupDAO();
+		GroupDao gm = DataAccessDriver.getInstance().newGroupDao();
 			
 		for (int i = 0; i < groupId.length; i++) {
 			int id = Integer.parseInt(groupId[i]);
 			
 			if (gm.canDelete(id)) {
-				gm.delete(id);
+				gm.deleteObjectById(id);
 			}
 			else {
 				errors.add(I18n.getMessage(I18n.CANNOT_DELETE_GROUP, new Object[] { new Integer(id) }));
@@ -156,14 +156,14 @@ public class GroupAction extends AdminCommand
 	// Saves a new group
 	public void insertSave()
 	{
-		GroupDAO gm = DataAccessDriver.getInstance().newGroupDAO();
+		GroupDao gm = DataAccessDriver.getInstance().newGroupDao();
 		
 		Group g = new Group();
 		g.setDescription(this.request.getParameter("group_description"));
 		g.setParentId(this.request.getIntParameter("parent_id"));
 		g.setName(this.request.getParameter("group_name"));
 			
-		gm.addNew(g);			
+		gm.insert(g);			
 			
 		this.list();
 	}
@@ -174,15 +174,15 @@ public class GroupAction extends AdminCommand
 		int id = this.request.getIntParameter("group_id");
 		
 		PermissionControl pc = new PermissionControl();
-		pc.setRoles(DataAccessDriver.getInstance().newGroupSecurityDAO().loadRoles(id));
+		pc.setRoles(DataAccessDriver.getInstance().newGroupSecurityDao().loadRoles(id));
 		
 		String xmlconfig = SystemGlobals.getValue(ConfigKeys.CONFIG_DIR) + "/permissions.xml"; 
 		List sections = new XMLPermissionControl(pc).loadConfigurations(xmlconfig); 
 		
-		GroupDAO gm = DataAccessDriver.getInstance().newGroupDAO();
+		GroupDao gm = DataAccessDriver.getInstance().newGroupDao();
 
 		this.context.put("sections", sections);
-		this.context.put("group", gm.selectById(id));
+		this.context.put("group", gm.getObjectById(id));
 		this.setTemplateName(TemplateKeys.GROUP_PERMISSIONS);
 	}
 	
@@ -190,7 +190,7 @@ public class GroupAction extends AdminCommand
 	{
 		int id = this.request.getIntParameter("id");
 		
-		GroupSecurityDAO gmodel = DataAccessDriver.getInstance().newGroupSecurityDAO();
+		GroupSecurityDao gmodel = DataAccessDriver.getInstance().newGroupSecurityDao();
 		
 		PermissionControl pc = new PermissionControl();
 		pc.setSecurityModel(gmodel);

@@ -40,7 +40,7 @@
  * The JForum Project
  * http://www.jforum.net
  */
-package net.jforum.view.install;
+package net.iforums.view.install;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -57,31 +57,32 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Properties;
 
-import net.jforum.Command;
-import net.jforum.ConfigLoader;
-import net.jforum.DBConnection;
-import net.jforum.DataSourceConnection;
-import net.jforum.JForumExecutionContext;
-import net.jforum.SessionFacade;
-import net.jforum.SimpleConnection;
-import net.jforum.context.RequestContext;
-import net.jforum.context.ResponseContext;
-import net.jforum.dao.DataAccessDriver;
-import net.jforum.dao.ForumDAO;
-import net.jforum.dao.PostDAO;
-import net.jforum.dao.TopicDAO;
-import net.jforum.entities.Post;
-import net.jforum.entities.Topic;
-import net.jforum.entities.User;
-import net.jforum.entities.UserSession;
-import net.jforum.util.DbUtils;
-import net.jforum.util.FileMonitor;
-import net.jforum.util.I18n;
-import net.jforum.util.MD5;
-import net.jforum.util.preferences.ConfigKeys;
-import net.jforum.util.preferences.SystemGlobals;
-import net.jforum.util.preferences.SystemGlobalsListener;
-import net.jforum.util.preferences.TemplateKeys;
+import net.iforums.Command;
+import net.iforums.ConfigLoader;
+import net.iforums.DBConnection;
+import net.iforums.DataSourceConnection;
+import net.iforums.JForumExecutionContext;
+import net.iforums.PooledConnection;
+import net.iforums.SessionFacade;
+import net.iforums.SimpleConnection;
+import net.iforums.beans.Post;
+import net.iforums.beans.Topic;
+import net.iforums.beans.User;
+import net.iforums.beans.UserSession;
+import net.iforums.context.RequestContext;
+import net.iforums.context.ResponseContext;
+import net.iforums.dao.DataAccessDriver;
+import net.iforums.dao.ForumDao;
+import net.iforums.dao.PostDao;
+import net.iforums.dao.TopicDao;
+import net.iforums.utils.DbUtils;
+import net.iforums.utils.FileMonitor;
+import net.iforums.utils.I18n;
+import net.iforums.utils.MD5;
+import net.iforums.utils.preferences.ConfigKeys;
+import net.iforums.utils.preferences.SystemGlobals;
+import net.iforums.utils.preferences.SystemGlobalsListener;
+import net.iforums.utils.preferences.TemplateKeys;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
@@ -99,9 +100,9 @@ public class InstallAction extends Command
 {
 	private static Logger logger = Logger.getLogger(InstallAction.class);
 
-    private static final String POOLED_CONNECTION = net.jforum.PooledConnection.class.getName();
-    private static final String SIMPLE_CONNECTION = net.jforum.SimpleConnection.class.getName();
-    private static final String DATASOURCE_CONNECTION = net.jforum.DataSourceConnection.class.getName();
+    private static final String POOLED_CONNECTION = PooledConnection.class.getName();
+    private static final String SIMPLE_CONNECTION = SimpleConnection.class.getName();
+    private static final String DATASOURCE_CONNECTION = DataSourceConnection.class.getName();
 
     public void welcome()
 	{
@@ -867,7 +868,7 @@ public class InstallAction extends Command
 			topic.setType(Topic.TYPE_ANNOUNCE);
 			topic.setForumId(1);
 			
-			TopicDAO topicDao = DataAccessDriver.getInstance().newTopicDAO();
+			TopicDao topicDao = DataAccessDriver.getInstance().newTopicDao();
 			topicDao.addNew(topic);
 			
 			// Create post
@@ -883,7 +884,7 @@ public class InstallAction extends Command
 			post.setUserIp("127.0.0.1");
 			post.setTopicId(topic.getId());
 			
-			PostDAO postDao = DataAccessDriver.getInstance().newPostDAO();
+			PostDao postDao = DataAccessDriver.getInstance().newPostDao();
 			postDao.addNew(post);
 			
 			// Update topic
@@ -893,7 +894,7 @@ public class InstallAction extends Command
 			topicDao.update(topic);
 			
 			// Update forum stats
-			ForumDAO forumDao = DataAccessDriver.getInstance().newForumDAO();
+			ForumDao forumDao = DataAccessDriver.getInstance().newForumDao();
 			forumDao.incrementTotalTopics(1, 1);
 			forumDao.setLastPost(1, post.getId());
 		}

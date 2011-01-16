@@ -40,7 +40,7 @@
  * The JForum Project
  * http://www.jforum.net
  */
-package net.jforum.view.admin;
+package net.iforums.view.admin;
 
 
 import java.io.ByteArrayOutputStream;
@@ -49,22 +49,22 @@ import java.io.OutputStream;
 import java.net.URL;
 import java.net.URLConnection;
 
-import net.jforum.Command;
-import net.jforum.JForumExecutionContext;
-import net.jforum.SessionFacade;
-import net.jforum.api.integration.mail.pop.POPListener;
-import net.jforum.context.RequestContext;
-import net.jforum.context.ResponseContext;
-import net.jforum.dao.DataAccessDriver;
-import net.jforum.dao.ForumDAO;
-import net.jforum.entities.UserSession;
-import net.jforum.repository.ModulesRepository;
-import net.jforum.repository.SecurityRepository;
-import net.jforum.security.PermissionControl;
-import net.jforum.security.SecurityConstants;
-import net.jforum.util.preferences.ConfigKeys;
-import net.jforum.util.preferences.SystemGlobals;
-import net.jforum.util.preferences.TemplateKeys;
+import net.iforums.Command;
+import net.iforums.JForumExecutionContext;
+import net.iforums.SessionFacade;
+import net.iforums.api.integration.mail.pop.POPListener;
+import net.iforums.beans.UserSession;
+import net.iforums.context.RequestContext;
+import net.iforums.context.ResponseContext;
+import net.iforums.dao.DataAccessDriver;
+import net.iforums.dao.ForumDao;
+import net.iforums.repository.ModulesRepository;
+import net.iforums.repository.SecurityRepository;
+import net.iforums.security.PermissionControl;
+import net.iforums.security.SecurityConstants;
+import net.iforums.utils.preferences.ConfigKeys;
+import net.iforums.utils.preferences.SystemGlobals;
+import net.iforums.utils.preferences.TemplateKeys;
 import freemarker.template.SimpleHash;
 import freemarker.template.Template;
 
@@ -120,7 +120,7 @@ public class AdminAction extends Command {
 			this.context.put("installModuleExists", ModulesRepository.getModuleClass("install") != null);
 			this.context.put("sessions", SessionFacade.getAllSessions());
 			
-			ForumDAO dao = DataAccessDriver.getInstance().newForumDAO();
+			ForumDao dao = DataAccessDriver.getInstance().newForumDao();
 			this.context.put("stats", dao.getBoardStatus());
 			
 			this.checkBoardVersion();

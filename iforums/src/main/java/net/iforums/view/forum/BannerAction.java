@@ -40,14 +40,14 @@
  * The JForum Project
  * http://www.jforum.net
  */
-package net.jforum.view.forum;
+package net.iforums.view.forum;
 
-import net.jforum.Command;
-import net.jforum.JForumExecutionContext;
-import net.jforum.dao.BannerDAO;
-import net.jforum.dao.DataAccessDriver;
-import net.jforum.entities.Banner;
-import net.jforum.view.forum.common.BannerCommon;
+import net.iforums.Command;
+import net.iforums.JForumExecutionContext;
+import net.iforums.beans.Banner;
+import net.iforums.dao.BannerDao;
+import net.iforums.dao.DataAccessDriver;
+import net.iforums.view.forum.common.BannerCommon;
 
 /**
  * @author Samuel Yung
@@ -70,8 +70,8 @@ public class BannerAction extends Command
 			return;
 		}
 
-		BannerDAO dao = DataAccessDriver.getInstance().newBannerDAO();
-		Banner banner = dao.selectById(bannerId);
+		BannerDao dao = DataAccessDriver.getInstance().newBannerDao();
+		Banner banner = dao.getObjectById(bannerId);
 		banner.setClicks(banner.getClicks() + 1);
 		dao.update(banner);
 		JForumExecutionContext.setRedirect(banner.getUrl());

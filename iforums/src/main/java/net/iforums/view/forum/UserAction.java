@@ -40,7 +40,7 @@
  * The JForum Project
  * http://www.jforum.net
  */
-package net.jforum.view.forum;
+package net.iforums.view.forum;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -52,32 +52,32 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
-import net.jforum.Command;
-import net.jforum.ControllerUtils;
-import net.jforum.JForumExecutionContext;
-import net.jforum.SessionFacade;
-import net.jforum.context.RequestContext;
-import net.jforum.dao.DataAccessDriver;
-import net.jforum.dao.UserDAO;
-import net.jforum.dao.UserSessionDAO;
-import net.jforum.entities.Bookmark;
-import net.jforum.entities.User;
-import net.jforum.entities.UserSession;
-import net.jforum.repository.ForumRepository;
-import net.jforum.repository.RankingRepository;
-import net.jforum.repository.SecurityRepository;
-import net.jforum.security.SecurityConstants;
-import net.jforum.util.I18n;
-import net.jforum.util.MD5;
-import net.jforum.util.concurrent.Executor;
-import net.jforum.util.mail.ActivationKeySpammer;
-import net.jforum.util.mail.EmailSenderTask;
-import net.jforum.util.mail.LostPasswordSpammer;
-import net.jforum.util.preferences.ConfigKeys;
-import net.jforum.util.preferences.SystemGlobals;
-import net.jforum.util.preferences.TemplateKeys;
-import net.jforum.view.forum.common.UserCommon;
-import net.jforum.view.forum.common.ViewCommon;
+import net.iforums.Command;
+import net.iforums.ControllerUtils;
+import net.iforums.JForumExecutionContext;
+import net.iforums.SessionFacade;
+import net.iforums.beans.Bookmark;
+import net.iforums.beans.User;
+import net.iforums.beans.UserSession;
+import net.iforums.context.RequestContext;
+import net.iforums.dao.DataAccessDriver;
+import net.iforums.dao.UserDao;
+import net.iforums.dao.UserSessionDao;
+import net.iforums.repository.ForumRepository;
+import net.iforums.repository.RankingRepository;
+import net.iforums.repository.SecurityRepository;
+import net.iforums.security.SecurityConstants;
+import net.iforums.utils.I18n;
+import net.iforums.utils.MD5;
+import net.iforums.utils.concurrent.Executor;
+import net.iforums.utils.mail.ActivationKeySpammer;
+import net.iforums.utils.mail.EmailSenderTask;
+import net.iforums.utils.mail.LostPasswordSpammer;
+import net.iforums.utils.preferences.ConfigKeys;
+import net.iforums.utils.preferences.SystemGlobals;
+import net.iforums.utils.preferences.TemplateKeys;
+import net.iforums.view.forum.common.UserCommon;
+import net.iforums.view.forum.common.ViewCommon;
 
 import org.apache.log4j.Logger;
 
@@ -105,7 +105,7 @@ public class UserAction extends Command
 	{
 		if (this.canEdit()) {
 			int userId = this.request.getIntParameter("user_id");
-			UserDAO um = DataAccessDriver.getInstance().newUserDAO();
+			UserDao um = DataAccessDriver.getInstance().newUserDao();
 			User u = um.selectById(userId);
 
 			this.context.put("u", u);
@@ -258,7 +258,7 @@ public class UserAction extends Command
 		}
 
 		User u = new User();
-		UserDAO dao = DataAccessDriver.getInstance().newUserDAO();
+		UserDao dao = DataAccessDriver.getInstance().newUserDao();
 
 		String username = this.request.getParameter("username");
 		String password = this.request.getParameter("password");
@@ -343,7 +343,7 @@ public class UserAction extends Command
 		String hash = this.request.getParameter("hash");
 		int userId = (new Integer(this.request.getParameter("user_id"))).intValue();
 
-		UserDAO um = DataAccessDriver.getInstance().newUserDAO();
+		UserDao um = DataAccessDriver.getInstance().newUserDao();
 		User u = um.selectById(userId);
 
 		boolean isValid = um.validateActivationKeyHash(userId, hash);
@@ -394,7 +394,7 @@ public class UserAction extends Command
 		int userId = SessionFacade.getUserSession().getUserId();
 		
 		ForumRepository.setLastRegisteredUser(
-				DataAccessDriver.getInstance().newUserDAO().selectById(userId));
+				DataAccessDriver.getInstance().newUserDao().selectById(userId));
 		ForumRepository.incrementTotalUsers();
 
 		String profilePage = JForumExecutionContext.getForumContext().encodeURL("/user/edit/" + userId);
@@ -452,7 +452,7 @@ public class UserAction extends Command
 					SessionFacade.remove(sessionId);
 				}
 				else {
-					UserSessionDAO sm = DataAccessDriver.getInstance().newUserSessionDAO();
+					UserSessionDao sm = DataAccessDriver.getInstance().newUserSessionDao();
 					tmpUs = sm.selectById(userSession, JForumExecutionContext.getConnection());
 				}
 
@@ -468,7 +468,7 @@ public class UserAction extends Command
 					String userHash = MD5.crypt(System.currentTimeMillis() + systemHash);
 					
 					// Persist the user hash
-					UserDAO dao = DataAccessDriver.getInstance().newUserDAO();
+					UserDao dao = DataAccessDriver.getInstance().newUserDao();
 					dao.saveUserAuthHash(user.getId(), userHash);
 					
 					systemHash = MD5.crypt(userHash);
@@ -580,14 +580,14 @@ public class UserAction extends Command
 
     private User validateLogin(String name, String password)
 	{
-		UserDAO um = DataAccessDriver.getInstance().newUserDAO();
+		UserDao um = DataAccessDriver.getInstance().newUserDao();
         return um.validateLogin(name, password);
 	}
 
 	public void profile()
 	{
 		DataAccessDriver da = DataAccessDriver.getInstance();
-		UserDAO udao = da.newUserDAO();
+		UserDao udao = da.newUserDao();
 
 		User u = udao.selectById(this.request.getIntParameter("user_id"));
 		
@@ -604,7 +604,7 @@ public class UserAction extends Command
 			int loggedId = SessionFacade.getUserSession().getUserId();
 			int count = 0;
 			
-			List bookmarks = da.newBookmarkDAO().selectByUser(u.getId());
+			List bookmarks = da.newBookmarkDao().selectByUser(u.getId());
 			for (Iterator iter = bookmarks.iterator(); iter.hasNext(); ) {
 				Bookmark b = (Bookmark)iter.next();
 
@@ -615,8 +615,8 @@ public class UserAction extends Command
 
 			this.context.put("pageTitle", I18n.getMessage("UserProfile.allAbout")+" "+u.getUsername());
 			this.context.put("nbookmarks", new Integer(count));
-			this.context.put("ntopics", new Integer(da.newTopicDAO().countUserTopics(u.getId())));
-			this.context.put("nposts", new Integer(da.newPostDAO().countUserPosts(u.getId())));
+			this.context.put("ntopics", new Integer(da.newTopicDao().countUserTopics(u.getId())));
+			this.context.put("nposts", new Integer(da.newPostDao().countUserPosts(u.getId())));
 		}
 	}
 	
@@ -677,7 +677,7 @@ public class UserAction extends Command
 	public User prepareLostPassword(String username, String email)
 	{
 		User user = null;
-		UserDAO um = DataAccessDriver.getInstance().newUserDAO();
+		UserDao um = DataAccessDriver.getInstance().newUserDao();
 
 		if (email != null && !email.trim().equals("")) {
 			username = um.getUsernameByEmail(email);
@@ -746,11 +746,11 @@ public class UserAction extends Command
 		String email = this.request.getParameter("email");
 
 		String message;
-		boolean isOk = DataAccessDriver.getInstance().newUserDAO().validateLostPasswordHash(email, hash);
+		boolean isOk = DataAccessDriver.getInstance().newUserDao().validateLostPasswordHash(email, hash);
 		
 		if (isOk) {
 			String password = this.request.getParameter("newPassword");
-			DataAccessDriver.getInstance().newUserDAO().saveNewPassword(MD5.crypt(password), email);
+			DataAccessDriver.getInstance().newUserDao().saveNewPassword(MD5.crypt(password), email);
 
 			message = I18n.getMessage("PasswordRecovery.ok",
 				new String[] { this.request.getContextPath()
@@ -768,10 +768,10 @@ public class UserAction extends Command
 		
 	public void list()
 	{
-		int start = this.preparePagination(DataAccessDriver.getInstance().newUserDAO().getTotalUsers());
+		int start = this.preparePagination(DataAccessDriver.getInstance().newUserDao().getTotalUsers());
 		int usersPerPage = SystemGlobals.getIntValue(ConfigKeys.USERS_PER_PAGE);
 							
-		List users = DataAccessDriver.getInstance().newUserDAO().selectAll(start ,usersPerPage);
+		List users = DataAccessDriver.getInstance().newUserDao().selectAll(start ,usersPerPage);
 		this.context.put("users", users);
 		this.context.put("pageTitle", I18n.getMessage("ForumBase.usersList"));
 		this.setTemplateName(TemplateKeys.USER_LIST);
@@ -781,10 +781,10 @@ public class UserAction extends Command
 	{
 		int groupId = this.request.getIntParameter("group_id");
 		
-		int start = this.preparePagination(DataAccessDriver.getInstance().newUserDAO().getTotalUsersByGroup(groupId));
+		int start = this.preparePagination(DataAccessDriver.getInstance().newUserDao().getTotalUsersByGroup(groupId));
 		int usersPerPage = SystemGlobals.getIntValue(ConfigKeys.USERS_PER_PAGE);
 							
-		List users = DataAccessDriver.getInstance().newUserDAO().selectAllByGroup(groupId, start ,usersPerPage);
+		List users = DataAccessDriver.getInstance().newUserDao().selectAllByGroup(groupId, start ,usersPerPage);
 		
 		this.context.put("users", users);
 		this.setTemplateName(TemplateKeys.USER_LIST);
@@ -795,11 +795,11 @@ public class UserAction extends Command
 	 */
 	public void searchKarma() 
 	{
-		int start = this.preparePagination(DataAccessDriver.getInstance().newUserDAO().getTotalUsers());
+		int start = this.preparePagination(DataAccessDriver.getInstance().newUserDao().getTotalUsers());
 		int usersPerPage = SystemGlobals.getIntValue(ConfigKeys.USERS_PER_PAGE);
 		
 		//Load all users with your karma
-		List users = DataAccessDriver.getInstance().newUserDAO().selectAllWithKarma(start ,usersPerPage);
+		List users = DataAccessDriver.getInstance().newUserDao().selectAllWithKarma(start ,usersPerPage);
 		this.context.put("users", users);
 		this.setTemplateName(TemplateKeys.USER_SEARCH_KARMA);
 	}

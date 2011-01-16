@@ -40,24 +40,24 @@
  * The JForum Project
  * http://www.jforum.net
  */
-package net.jforum.view.admin;
+package net.iforums.view.admin;
 
 import java.util.Collection;
 
-import net.jforum.SessionFacade;
-import net.jforum.dao.DataAccessDriver;
-import net.jforum.repository.BBCodeRepository;
-import net.jforum.repository.ForumRepository;
-import net.jforum.repository.ModulesRepository;
-import net.jforum.repository.PostRepository;
-import net.jforum.repository.RankingRepository;
-import net.jforum.repository.SecurityRepository;
-import net.jforum.repository.SmiliesRepository;
-import net.jforum.repository.TopicRepository;
-import net.jforum.util.bbcode.BBCodeHandler;
-import net.jforum.util.preferences.ConfigKeys;
-import net.jforum.util.preferences.SystemGlobals;
-import net.jforum.util.preferences.TemplateKeys;
+import net.iforums.SessionFacade;
+import net.iforums.dao.DataAccessDriver;
+import net.iforums.repository.BBCodeRepository;
+import net.iforums.repository.ForumRepository;
+import net.iforums.repository.ModulesRepository;
+import net.iforums.repository.PostRepository;
+import net.iforums.repository.RankingRepository;
+import net.iforums.repository.SecurityRepository;
+import net.iforums.repository.SmiliesRepository;
+import net.iforums.repository.TopicRepository;
+import net.iforums.utils.bbcode.BBCodeHandler;
+import net.iforums.utils.preferences.ConfigKeys;
+import net.iforums.utils.preferences.SystemGlobals;
+import net.iforums.utils.preferences.TemplateKeys;
 
 /**
  * @author Rafael Steil
@@ -141,7 +141,7 @@ public class CacheAction extends AdminCommand
 		
 		Collection topics = PostRepository.cachedTopics();
 		
-		this.context.put("topics", DataAccessDriver.getInstance().newTopicDAO().selectTopicTitlesByIds(topics));
+		this.context.put("topics", DataAccessDriver.getInstance().newTopicDao().selectTopicTitlesByIds(topics));
 		this.context.put("repository", new PostRepository());
 		this.setTemplateName(TemplateKeys.CACHE_POST_MOREINFO);
 	}

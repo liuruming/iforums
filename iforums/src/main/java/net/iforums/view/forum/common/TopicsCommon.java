@@ -40,32 +40,34 @@
  * The JForum Project
  * http://www.jforum.net
  */
-package net.jforum.view.forum.common;
+package net.iforums.view.forum.common;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import net.iforums.JForumExecutionContext;
+import net.iforums.SessionFacade;
 import net.iforums.beans.Forum;
 import net.iforums.beans.Post;
 import net.iforums.beans.Topic;
 import net.iforums.beans.UserSession;
-import net.jforum.JForumExecutionContext;
-import net.jforum.SessionFacade;
-import net.jforum.dao.DataAccessDriver;
-import net.jforum.repository.ForumRepository;
-import net.jforum.repository.SecurityRepository;
-import net.jforum.repository.TopicRepository;
-import net.jforum.security.PermissionControl;
-import net.jforum.security.SecurityConstants;
-import net.jforum.util.I18n;
-import net.jforum.util.concurrent.Executor;
-import net.jforum.util.mail.EmailSenderTask;
-import net.jforum.util.mail.TopicReplySpammer;
-import net.jforum.util.preferences.ConfigKeys;
-import net.jforum.util.preferences.SystemGlobals;
-import net.jforum.view.forum.ModerationHelper;
+import net.iforums.dao.DataAccessDriver;
+import net.iforums.dao.ForumDao;
+import net.iforums.dao.TopicDao;
+import net.iforums.repository.ForumRepository;
+import net.iforums.repository.SecurityRepository;
+import net.iforums.repository.TopicRepository;
+import net.iforums.security.PermissionControl;
+import net.iforums.security.SecurityConstants;
+import net.iforums.utils.I18n;
+import net.iforums.utils.concurrent.Executor;
+import net.iforums.utils.mail.EmailSenderTask;
+import net.iforums.utils.mail.TopicReplySpammer;
+import net.iforums.utils.preferences.ConfigKeys;
+import net.iforums.utils.preferences.SystemGlobals;
+import net.iforums.view.forum.ModerationHelper;
 import freemarker.template.SimpleHash;
 
 /**
@@ -89,7 +91,7 @@ public class TopicsCommon
 	 */
 	public static List topicsByForum(int forumId, int start)
 	{
-		TopicDAO tm = DataAccessDriver.getInstance().newTopicDAO();
+		TopicDao tm = DataAccessDriver.getInstance().newTopicDao();
 		int topicsPerPage = SystemGlobals.getIntValue(ConfigKeys.TOPICS_PER_PAGE);
 		List topics;
 		
@@ -238,7 +240,7 @@ public class TopicsCommon
 	public static void notifyUsers(Topic t, Post p)
 	{
 		if (SystemGlobals.getBoolValue(ConfigKeys.MAIL_NOTIFY_ANSWERS)) {
-			TopicDAO dao = DataAccessDriver.getInstance().newTopicDAO();
+			TopicDao dao = DataAccessDriver.getInstance().newTopicDao();
 			List usersToNotify = dao.notifyUsers(t);
 
 			// We only have to send an email if there are users
@@ -257,12 +259,12 @@ public class TopicsCommon
 	 * 
 	 * @param topic Topic The topic to update
 	 * @param lastPostId int The id of the last post
-	 * @param topicDao TopicDAO A TopicModel instance
-	 * @param forumDao ForumDAO A ForumModel instance
+	 * @param topicDao TopicDao A TopicModel instance
+	 * @param forumDao ForumDao A ForumModel instance
      * @param firstPost boolean
 	 */
 	public static synchronized void updateBoardStatus(Topic topic, int lastPostId, boolean firstPost, 
-		TopicDAO topicDao, ForumDAO forumDao)
+		TopicDao topicDao, ForumDao forumDao)
 	{
 		topic.setLastPostId(lastPostId);
 		topicDao.update(topic);
@@ -295,7 +297,7 @@ public class TopicsCommon
 	 */
 	public static synchronized void deleteTopic(int topicId, int forumId, boolean fromModeration)
 	{
-		TopicDAO topicDao = DataAccessDriver.getInstance().newTopicDAO();
+		TopicDao topicDao = DataAccessDriver.getInstance().newTopicDao();
 		
 		Topic topic = new Topic();
 		topic.setId(topicId);

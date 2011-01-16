@@ -40,27 +40,27 @@
  * The JForum Project
  * http://www.jforum.net
  */
-package net.jforum.view.admin;
+package net.iforums.view.admin;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import net.jforum.dao.CategoryDAO;
-import net.jforum.dao.DataAccessDriver;
-import net.jforum.dao.GroupSecurityDAO;
-import net.jforum.entities.Category;
-import net.jforum.repository.ForumRepository;
-import net.jforum.repository.RolesRepository;
-import net.jforum.repository.SecurityRepository;
-import net.jforum.security.PermissionControl;
-import net.jforum.security.Role;
-import net.jforum.security.RoleValue;
-import net.jforum.security.RoleValueCollection;
-import net.jforum.security.SecurityConstants;
-import net.jforum.util.I18n;
-import net.jforum.util.TreeGroup;
-import net.jforum.util.preferences.TemplateKeys;
-import net.jforum.view.admin.common.ModerationCommon;
+import net.iforums.beans.Category;
+import net.iforums.dao.CategoryDao;
+import net.iforums.dao.DataAccessDriver;
+import net.iforums.dao.GroupSecurityDao;
+import net.iforums.repository.ForumRepository;
+import net.iforums.repository.RolesRepository;
+import net.iforums.repository.SecurityRepository;
+import net.iforums.security.PermissionControl;
+import net.iforums.security.Role;
+import net.iforums.security.RoleValue;
+import net.iforums.security.RoleValueCollection;
+import net.iforums.security.SecurityConstants;
+import net.iforums.utils.I18n;
+import net.iforums.utils.TreeGroup;
+import net.iforums.utils.preferences.TemplateKeys;
+import net.iforums.view.admin.common.ModerationCommon;
 
 /**
  * ViewHelper for category administration.
@@ -70,12 +70,12 @@ import net.jforum.view.admin.common.ModerationCommon;
  */
 public class CategoryAction extends AdminCommand 
 {
-	private CategoryDAO cm = DataAccessDriver.getInstance().newCategoryDAO();
+	private CategoryDao cm = DataAccessDriver.getInstance().newCategoryDao();
 	
 	// Listing
 	public void list()
 	{
-		this.context.put("categories", DataAccessDriver.getInstance().newCategoryDAO().selectAll());
+		this.context.put("categories", DataAccessDriver.getInstance().newCategoryDao().select(0,Integer.MAX_VALUE));
 		this.context.put("repository", new ForumRepository());
 		this.setTemplateName(TemplateKeys.CATEGORY_LIST);
 	}
@@ -92,7 +92,7 @@ public class CategoryAction extends AdminCommand
 	// Edit
 	public void edit()
 	{
-		this.context.put("category", this.cm.selectById(this.request.getIntParameter("category_id")));
+		this.context.put("category", this.cm.getObjectById(this.request.getIntParameter("category_id")));
 		this.setTemplateName(TemplateKeys.CATEGORY_EDIT);
 		this.context.put("action", "editSave");
 	}
@@ -123,8 +123,8 @@ public class CategoryAction extends AdminCommand
 			for (int i = 0; i < ids.length; i++){
 				if (this.cm.canDelete(Integer.parseInt(ids[i]))) {
 					int id = Integer.parseInt(ids[i]);
-					Category c = this.cm.selectById(id);
-					this.cm.delete(id);
+					Category c = this.cm.getObjectById(id);
+					this.cm.deleteObjectById(id);
 					
 					ForumRepository.removeCategory(c);
 				}
@@ -148,14 +148,14 @@ public class CategoryAction extends AdminCommand
 		c.setName(this.request.getParameter("category_name"));
 		c.setModerated("1".equals(this.request.getParameter("moderated")));
 			
-		int categoryId = this.cm.addNew(c);
+		long categoryId = this.cm.insert(c);
 		c.setId(categoryId);
 
 		ForumRepository.addCategory(c);
 		
 		String[] groups = this.request.getParameterValues("groups");
 		if (groups != null) {
-			GroupSecurityDAO gmodel = DataAccessDriver.getInstance().newGroupSecurityDAO();
+			GroupSecurityDao gmodel = DataAccessDriver.getInstance().newGroupSecurityDao();
 			PermissionControl pc = new PermissionControl();
 			pc.setSecurityModel(gmodel);
 
@@ -167,7 +167,7 @@ public class CategoryAction extends AdminCommand
 				RoleValueCollection roleValues = new RoleValueCollection();
 				
 				RoleValue rv = new RoleValue();
-				rv.setValue(Integer.toString(categoryId));
+				rv.setValue(Long.toString(categoryId));
 				
 				roleValues.add(rv);
 				

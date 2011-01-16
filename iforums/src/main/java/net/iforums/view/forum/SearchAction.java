@@ -40,25 +40,25 @@
  * The JForum Project
  * http://www.jforum.net
  */
-package net.jforum.view.forum;
+package net.iforums.view.forum;
 
 import java.util.Date;
 
-import net.jforum.Command;
-import net.jforum.context.RequestContext;
-import net.jforum.context.ResponseContext;
-import net.jforum.repository.ForumRepository;
-import net.jforum.search.ContentSearchOperation;
-import net.jforum.search.NewMessagesSearchOperation;
-import net.jforum.search.SearchArgs;
-import net.jforum.search.SearchOperation;
-import net.jforum.search.SearchResult;
-import net.jforum.util.I18n;
-import net.jforum.util.preferences.ConfigKeys;
-import net.jforum.util.preferences.SystemGlobals;
-import net.jforum.util.preferences.TemplateKeys;
-import net.jforum.view.forum.common.TopicsCommon;
-import net.jforum.view.forum.common.ViewCommon;
+import net.iforums.Command;
+import net.iforums.context.RequestContext;
+import net.iforums.context.ResponseContext;
+import net.iforums.repository.ForumRepository;
+import net.iforums.search.ContentSearchOperation;
+import net.iforums.search.NewMessagesSearchOperation;
+import net.iforums.search.SearchArgs;
+import net.iforums.search.SearchOperation;
+import net.iforums.search.SearchResult;
+import net.iforums.utils.I18n;
+import net.iforums.utils.preferences.ConfigKeys;
+import net.iforums.utils.preferences.SystemGlobals;
+import net.iforums.utils.preferences.TemplateKeys;
+import net.iforums.view.forum.common.TopicsCommon;
+import net.iforums.view.forum.common.ViewCommon;
 import freemarker.template.SimpleHash;
 
 /**

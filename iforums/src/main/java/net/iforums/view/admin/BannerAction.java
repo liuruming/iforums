@@ -40,13 +40,13 @@
  * The JForum Project
  * http://www.jforum.net
  */
-package net.jforum.view.admin;
+package net.iforums.view.admin;
 
-import net.jforum.dao.BannerDAO;
-import net.jforum.dao.DataAccessDriver;
-import net.jforum.entities.Banner;
-import net.jforum.util.I18n;
-import net.jforum.util.preferences.TemplateKeys;
+import net.iforums.beans.Banner;
+import net.iforums.dao.BannerDao;
+import net.iforums.dao.DataAccessDriver;
+import net.iforums.utils.I18n;
+import net.iforums.utils.preferences.TemplateKeys;
 
 /**
  * ViewHelper class for banner administration.
@@ -60,7 +60,7 @@ public class BannerAction extends AdminCommand
 	public void list()
 	{
 		this.context.put("banners",
-			DataAccessDriver.getInstance().newBannerDAO().selectAll());
+			DataAccessDriver.getInstance().newBannerDao().select(0,Integer.MAX_VALUE));
 		this.setTemplateName(TemplateKeys.BANNER_LIST);
 	}
 
@@ -74,9 +74,9 @@ public class BannerAction extends AdminCommand
 	// Saves a new banner
 	public void insertSave()
 	{
-		BannerDAO dao = DataAccessDriver.getInstance().newBannerDAO();
+		BannerDao dao = DataAccessDriver.getInstance().newBannerDao();
 
-		dao.addNew(getBanner());
+		dao.insert(getBanner());
 
 		this.list();
 	}
@@ -85,9 +85,9 @@ public class BannerAction extends AdminCommand
 	public void edit()
 	{
 		int bannerId = this.request.getIntParameter("banner_id");
-		BannerDAO dao = DataAccessDriver.getInstance().newBannerDAO();
+		BannerDao dao = DataAccessDriver.getInstance().newBannerDao();
 
-		this.context.put("banner", dao.selectById(bannerId));
+		this.context.put("banner", dao.getObjectById(bannerId));
 		this.setTemplateName(TemplateKeys.BANNER_EDIT);
 		this.context.put("action", "editSave");
 	}
@@ -100,7 +100,7 @@ public class BannerAction extends AdminCommand
 		Banner banner = getBanner();
 		banner.setId(bannerId);
 
-		DataAccessDriver.getInstance().newBannerDAO().update(banner);
+		DataAccessDriver.getInstance().newBannerDao().update(banner);
 
 		this.list();
 	}
@@ -115,12 +115,12 @@ public class BannerAction extends AdminCommand
 			return;
 		}
 
-		BannerDAO dao = DataAccessDriver.getInstance().newBannerDAO();
+		BannerDao dao = DataAccessDriver.getInstance().newBannerDao();
 
 		int id = Integer.parseInt(bannerId);
 		if(dao.canDelete(id))
 		{
-			dao.delete(id);
+			dao.deleteObjectById(id);
 		}
 		else
 		{

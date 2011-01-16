@@ -40,11 +40,11 @@
  * The JForum Project
  * http://www.jforum.net
  */
-package net.jforum.view.admin;
+package net.iforums.view.admin;
 
-import net.jforum.Command;
-import net.jforum.context.RequestContext;
-import net.jforum.context.ResponseContext;
+import net.iforums.Command;
+import net.iforums.context.RequestContext;
+import net.iforums.context.ResponseContext;
 import freemarker.template.SimpleHash;
 import freemarker.template.Template;
 

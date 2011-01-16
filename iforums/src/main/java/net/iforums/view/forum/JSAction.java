@@ -1,10 +1,10 @@
 /*
  * Created on 27/06/2005 00:20:38
  */
-package net.jforum.view.forum;
+package net.iforums.view.forum;
 
-import net.jforum.Command;
-import net.jforum.JForumExecutionContext;
+import net.iforums.Command;
+import net.iforums.JForumExecutionContext;
 /**
  * Loads and parse javascript files with FTL statements.
  * 

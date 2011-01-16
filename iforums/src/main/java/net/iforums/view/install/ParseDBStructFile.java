@@ -40,7 +40,7 @@
  * The JForum Project
  * http://www.jforum.net
  */
-package net.jforum.view.install;
+package net.iforums.view.install;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

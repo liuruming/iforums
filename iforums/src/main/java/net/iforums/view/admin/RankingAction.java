@@ -40,14 +40,14 @@
  * The JForum Project
  * http://www.jforum.net
  */
-package net.jforum.view.admin;
+package net.iforums.view.admin;
 
 
-import net.jforum.dao.DataAccessDriver;
-import net.jforum.dao.RankingDAO;
-import net.jforum.entities.Ranking;
-import net.jforum.repository.RankingRepository;
-import net.jforum.util.preferences.TemplateKeys;
+import net.iforums.beans.Ranking;
+import net.iforums.dao.DataAccessDriver;
+import net.iforums.dao.RankingDao;
+import net.iforums.repository.RankingRepository;
+import net.iforums.utils.preferences.TemplateKeys;
 
 /**
  * @author Rafael Steil
@@ -58,7 +58,7 @@ public class RankingAction extends AdminCommand
 	// List
 	public void list()
 	{
-		this.context.put("ranks", DataAccessDriver.getInstance().newRankingDAO().selectAll());
+		this.context.put("ranks", DataAccessDriver.getInstance().newRankingDao().selectAll());
 		this.setTemplateName(TemplateKeys.RANKING_LIST);
 	}
 	
@@ -74,7 +74,7 @@ public class RankingAction extends AdminCommand
 	{
 		this.setTemplateName(TemplateKeys.RANKING_EDIT);
 		this.context.put("action", "editSave");
-		this.context.put("rank", DataAccessDriver.getInstance().newRankingDAO().selectById(
+		this.context.put("rank", DataAccessDriver.getInstance().newRankingDao().selectById(
 			this.request.getIntParameter("ranking_id")));
 	}
 	
@@ -92,7 +92,7 @@ public class RankingAction extends AdminCommand
 			r.setMin(this.request.getIntParameter("rank_min"));
 		}
 		
-		DataAccessDriver.getInstance().newRankingDAO().update(r);
+		DataAccessDriver.getInstance().newRankingDao().update(r);
 		RankingRepository.loadRanks();	
 		this.list();
 	}
@@ -102,7 +102,7 @@ public class RankingAction extends AdminCommand
 	{
 		String ids[] = this.request.getParameterValues("rank_id");
 		
-		RankingDAO rm = DataAccessDriver.getInstance().newRankingDAO();
+		RankingDao rm = DataAccessDriver.getInstance().newRankingDao();
 		
 		if (ids != null) {
 			for (int i = 0; i < ids.length; i++) {
@@ -126,7 +126,7 @@ public class RankingAction extends AdminCommand
 			r.setMin(this.request.getIntParameter("rank_min"));			
 		}
 		
-		DataAccessDriver.getInstance().newRankingDAO().addNew(r);
+		DataAccessDriver.getInstance().newRankingDao().addNew(r);
 		
 		RankingRepository.loadRanks();
 		

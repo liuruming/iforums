@@ -40,7 +40,7 @@
  * The JForum Project
  * http://www.jforum.net
  */
-package net.jforum.view.forum.common;
+package net.iforums.view.forum.common;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -50,21 +50,21 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import net.iforums.JForumExecutionContext;
+import net.iforums.SessionFacade;
 import net.iforums.beans.Post;
 import net.iforums.beans.Smilie;
+import net.iforums.context.RequestContext;
 import net.iforums.dao.PostDao;
-import net.jforum.JForumExecutionContext;
-import net.jforum.SessionFacade;
-import net.jforum.context.RequestContext;
-import net.jforum.repository.BBCodeRepository;
-import net.jforum.repository.PostRepository;
-import net.jforum.repository.SecurityRepository;
-import net.jforum.repository.SmiliesRepository;
-import net.jforum.security.SecurityConstants;
-import net.jforum.util.SafeHtml;
-import net.jforum.util.bbcode.BBCode;
-import net.jforum.util.preferences.ConfigKeys;
-import net.jforum.util.preferences.SystemGlobals;
+import net.iforums.repository.BBCodeRepository;
+import net.iforums.repository.PostRepository;
+import net.iforums.repository.SecurityRepository;
+import net.iforums.repository.SmiliesRepository;
+import net.iforums.security.SecurityConstants;
+import net.iforums.utils.SafeHtml;
+import net.iforums.utils.bbcode.BBCode;
+import net.iforums.utils.preferences.ConfigKeys;
+import net.iforums.utils.preferences.SystemGlobals;
 
 /**
  * @author Rafael Steil

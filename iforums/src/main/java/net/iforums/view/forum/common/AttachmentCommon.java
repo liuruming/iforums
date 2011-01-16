@@ -40,7 +40,7 @@
  * The JForum Project
  * http://www.jforum.net
  */
-package net.jforum.view.forum.common;
+package net.iforums.view.forum.common;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -53,6 +53,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import net.iforums.SessionFacade;
 import net.iforums.beans.Attachment;
 import net.iforums.beans.AttachmentExtension;
 import net.iforums.beans.AttachmentInfo;
@@ -60,18 +61,17 @@ import net.iforums.beans.Group;
 import net.iforums.beans.Post;
 import net.iforums.beans.QuotaLimit;
 import net.iforums.beans.User;
+import net.iforums.context.RequestContext;
 import net.iforums.dao.AttachmentDao;
-import net.jforum.SessionFacade;
-import net.jforum.context.RequestContext;
-import net.jforum.dao.DataAccessDriver;
-import net.jforum.repository.SecurityRepository;
-import net.jforum.security.SecurityConstants;
-import net.jforum.util.I18n;
-import net.jforum.util.MD5;
-import net.jforum.util.image.ImageUtils;
-import net.jforum.util.legacy.commons.fileupload.FileItem;
-import net.jforum.util.preferences.ConfigKeys;
-import net.jforum.util.preferences.SystemGlobals;
+import net.iforums.dao.DataAccessDriver;
+import net.iforums.repository.SecurityRepository;
+import net.iforums.security.SecurityConstants;
+import net.iforums.utils.I18n;
+import net.iforums.utils.MD5;
+import net.iforums.utils.image.ImageUtils;
+import net.iforums.utils.legacy.commons.fileupload.FileItem;
+import net.iforums.utils.preferences.ConfigKeys;
+import net.iforums.utils.preferences.SystemGlobals;
 
 import org.apache.log4j.Logger;
 

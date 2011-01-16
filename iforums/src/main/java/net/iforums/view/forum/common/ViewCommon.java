@@ -40,7 +40,7 @@
  * The JForum Project
  * http://www.jforum.net
  */
-package net.jforum.view.forum.common;
+package net.iforums.view.forum.common;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
@@ -48,12 +48,12 @@ import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import net.iforums.JForumExecutionContext;
 import net.iforums.beans.User;
-import net.jforum.JForumExecutionContext;
-import net.jforum.context.RequestContext;
-import net.jforum.util.preferences.ConfigKeys;
-import net.jforum.util.preferences.SystemGlobals;
-import net.jforum.util.preferences.TemplateKeys;
+import net.iforums.context.RequestContext;
+import net.iforums.utils.preferences.ConfigKeys;
+import net.iforums.utils.preferences.SystemGlobals;
+import net.iforums.utils.preferences.TemplateKeys;
 
 import org.apache.commons.lang.StringUtils;
 

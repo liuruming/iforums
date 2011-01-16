@@ -40,21 +40,21 @@
  * The JForum Project
  * http://www.jforum.net
  */
-package net.jforum.view.admin;
+package net.iforums.view.admin;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import net.jforum.dao.AttachmentDAO;
-import net.jforum.dao.DataAccessDriver;
-import net.jforum.entities.AttachmentExtension;
-import net.jforum.entities.AttachmentExtensionGroup;
-import net.jforum.entities.QuotaLimit;
-import net.jforum.util.TreeGroup;
-import net.jforum.util.preferences.ConfigKeys;
-import net.jforum.util.preferences.SystemGlobals;
-import net.jforum.util.preferences.TemplateKeys;
+import net.iforums.beans.AttachmentExtension;
+import net.iforums.beans.AttachmentExtensionGroup;
+import net.iforums.beans.QuotaLimit;
+import net.iforums.dao.AttachmentDao;
+import net.iforums.dao.DataAccessDriver;
+import net.iforums.utils.TreeGroup;
+import net.iforums.utils.preferences.ConfigKeys;
+import net.iforums.utils.preferences.SystemGlobals;
+import net.iforums.utils.preferences.TemplateKeys;
 
 /**
  * @author Rafael Steil
@@ -84,7 +84,7 @@ public class AttachmentsAction extends AdminCommand
 	
 	public void quotaLimit()
 	{
-		AttachmentDAO am = DataAccessDriver.getInstance().newAttachmentDAO();
+		AttachmentDao am = DataAccessDriver.getInstance().newAttachmentDao();
 		
 		this.context.put("quotas", am.selectQuotaLimit());
 		this.setTemplateName(TemplateKeys.ATTACHMENTS_QUOTA_LIMIT);
@@ -100,13 +100,13 @@ public class AttachmentsAction extends AdminCommand
 		ql.setSize(this.request.getIntParameter("max_filesize"));
 		ql.setType(this.request.getIntParameter("type"));
 		
-		DataAccessDriver.getInstance().newAttachmentDAO().addQuotaLimit(ql);
+		DataAccessDriver.getInstance().newAttachmentDao().addQuotaLimit(ql);
 		this.quotaLimit();
 	}
 	
 	public void quotaLimitUpdate()
 	{
-		AttachmentDAO am = DataAccessDriver.getInstance().newAttachmentDAO();
+		AttachmentDao am = DataAccessDriver.getInstance().newAttachmentDao();
 		
 		// First check if we should delete some entry
 		String[] delete = this.request.getParameterValues("delete");
@@ -138,7 +138,7 @@ public class AttachmentsAction extends AdminCommand
 	public void extensionGroups()
 	{
 		this.setTemplateName(TemplateKeys.ATTACHMENTS_EXTENSION_GROUPS);
-		this.context.put("groups", DataAccessDriver.getInstance().newAttachmentDAO().selectExtensionGroups());
+		this.context.put("groups", DataAccessDriver.getInstance().newAttachmentDao().selectExtensionGroups());
 	}
 	
 	public void extensionGroupsSave()
@@ -149,13 +149,13 @@ public class AttachmentsAction extends AdminCommand
 		g.setName(this.request.getParameter("name"));
 		g.setUploadIcon(this.request.getParameter("upload_icon"));
 		
-		DataAccessDriver.getInstance().newAttachmentDAO().addExtensionGroup(g);
+		DataAccessDriver.getInstance().newAttachmentDao().addExtensionGroup(g);
 		this.extensionGroups();
 	}
 	
 	public void extensionGroupsUpdate()
 	{
-		AttachmentDAO am = DataAccessDriver.getInstance().newAttachmentDAO();
+		AttachmentDao am = DataAccessDriver.getInstance().newAttachmentDao();
 		
 		// Check if there are records to remove
 		String[] delete = this.request.getParameterValues("delete");
@@ -187,7 +187,7 @@ public class AttachmentsAction extends AdminCommand
 	
 	public void extensions()
 	{
-		AttachmentDAO am = DataAccessDriver.getInstance().newAttachmentDAO();
+		AttachmentDao am = DataAccessDriver.getInstance().newAttachmentDao();
 		
 		this.setTemplateName(TemplateKeys.ATTACHMENTS_EXTENSIONS);
 		this.context.put("extensions", am.selectExtensions());
@@ -207,13 +207,13 @@ public class AttachmentsAction extends AdminCommand
 			e.setExtension(e.getExtension().substring(1));
 		}
 		
-		DataAccessDriver.getInstance().newAttachmentDAO().addExtension(e);
+		DataAccessDriver.getInstance().newAttachmentDao().addExtension(e);
 		this.extensions();
 	}
 	
 	public void extensionsUpdate()
 	{
-		AttachmentDAO am = DataAccessDriver.getInstance().newAttachmentDAO();
+		AttachmentDao am = DataAccessDriver.getInstance().newAttachmentDao();
 		
 		// Check for records to delete
 		String[] delete = this.request.getParameterValues("delete");
@@ -248,7 +248,7 @@ public class AttachmentsAction extends AdminCommand
 	public void quotaGroupsSave() 
 	{
 		int total = this.request.getIntParameter("total_groups");
-		AttachmentDAO am = DataAccessDriver.getInstance().newAttachmentDAO();
+		AttachmentDao am = DataAccessDriver.getInstance().newAttachmentDao();
 		am.cleanGroupQuota();
 		
 		for (int i = 0; i < total; i++) {

@@ -41,23 +41,23 @@
  * The JForum Project
  * http://www.jforum.net
  */
-package net.jforum.view.admin;
+package net.iforums.view.admin;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-import net.jforum.context.RequestContext;
-import net.jforum.context.ResponseContext;
-import net.jforum.repository.ForumRepository;
-import net.jforum.search.LuceneManager;
-import net.jforum.search.LuceneReindexArgs;
-import net.jforum.search.LuceneReindexer;
-import net.jforum.search.LuceneSettings;
-import net.jforum.util.preferences.ConfigKeys;
-import net.jforum.util.preferences.SystemGlobals;
-import net.jforum.util.preferences.TemplateKeys;
+import net.iforums.context.RequestContext;
+import net.iforums.context.ResponseContext;
+import net.iforums.repository.ForumRepository;
+import net.iforums.search.LuceneManager;
+import net.iforums.search.LuceneReindexArgs;
+import net.iforums.search.LuceneReindexer;
+import net.iforums.search.LuceneSettings;
+import net.iforums.utils.preferences.ConfigKeys;
+import net.iforums.utils.preferences.SystemGlobals;
+import net.iforums.utils.preferences.TemplateKeys;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.lucene.index.IndexReader;

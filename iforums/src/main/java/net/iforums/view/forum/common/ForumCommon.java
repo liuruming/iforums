@@ -40,26 +40,28 @@
  * The JForum Project
  * http://www.jforum.net
  */
-package net.jforum.view.forum.common;
+package net.iforums.view.forum.common;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import net.iforums.SessionFacade;
+import net.iforums.beans.Category;
 import net.iforums.beans.Forum;
 import net.iforums.beans.LastPostInfo;
 import net.iforums.beans.Post;
 import net.iforums.beans.Topic;
 import net.iforums.beans.UserSession;
-import net.jforum.SessionFacade;
-import net.jforum.dao.DataAccessDriver;
-import net.jforum.repository.ForumRepository;
-import net.jforum.util.concurrent.Executor;
-import net.jforum.util.mail.EmailSenderTask;
-import net.jforum.util.mail.ForumNewTopicSpammer;
-import net.jforum.util.preferences.ConfigKeys;
-import net.jforum.util.preferences.SystemGlobals;
+import net.iforums.dao.DataAccessDriver;
+import net.iforums.dao.ForumDao;
+import net.iforums.repository.ForumRepository;
+import net.iforums.utils.concurrent.Executor;
+import net.iforums.utils.mail.EmailSenderTask;
+import net.iforums.utils.mail.ForumNewTopicSpammer;
+import net.iforums.utils.preferences.ConfigKeys;
+import net.iforums.utils.preferences.SystemGlobals;
 
 import org.apache.log4j.Logger;
 
@@ -198,7 +200,7 @@ public class ForumCommon
 	{
 		if (SystemGlobals.getBoolValue(ConfigKeys.MAIL_NOTIFY_ANSWERS)) {
 			try {
-				ForumDAO dao = DataAccessDriver.getInstance().newForumDAO();
+				ForumDao dao = DataAccessDriver.getInstance().newForumDao();
 				List usersToNotify = dao.notifyUsers(f);
 
 				// we only have to send an email if there are users
