@@ -40,21 +40,21 @@
  * The JForum Project
  * http://www.jforum.net
  */
-package net.jforum.dao.hsqldb;
+package net.iforums.dao.hsqldb;
 
 import java.util.List;
 
-import net.jforum.dao.generic.GenericUserDAO;
+import net.iforums.dao.impl.UserDaoImpl;
 
 /**
  * @author Marc Wick
  * @author Rafael Steil
- * @version $Id: HsqldbUserDAO.java,v 1.7 2006/08/20 22:47:47 rafaelsteil Exp $
+ * @version $Id: HsqldbUserDao.java,v 1.7 2006/08/20 22:47:47 rafaelsteil Exp $
  */
-public class HsqldbUserDAO extends GenericUserDAO
+public class HsqldbUserDaoImpl extends UserDaoImpl
 {
 	/**
-	 * @see net.jforum.dao.postgresql.PostgresqlUserDAO#selectAllByGroup(int, int, int)
+	 * @see net.iforums.dao.postgresql.PostgresqlUserDao#selectAllByGroup(int, int, int)
 	 */
 	public List selectAllByGroup(int groupId, int start, int count)
 	{

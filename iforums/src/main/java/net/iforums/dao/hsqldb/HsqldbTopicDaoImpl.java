@@ -40,25 +40,25 @@
  * The JForum Project
  * http://www.jforum.net
  */
-package net.jforum.dao.hsqldb;
+package net.iforums.dao.hsqldb;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 
-import net.jforum.JForumExecutionContext;
-import net.jforum.dao.generic.GenericTopicDAO;
-import net.jforum.util.DbUtils;
-import net.jforum.util.preferences.SystemGlobals;
+import net.iforums.JForumExecutionContext;
+import net.iforums.dao.impl.TopicDaoImpl;
+import net.iforums.utils.DbUtils;
+import net.iforums.utils.preferences.SystemGlobals;
 
 /**
  * @author Marc Wick
- * @version $Id: HsqldbTopicDAO.java,v 1.9 2007/08/23 13:47:52 rafaelsteil Exp $
+ * @version $Id: HsqldbTopicDao.java,v 1.9 2007/08/23 13:47:52 rafaelsteil Exp $
  */
-public class HsqldbTopicDAO extends GenericTopicDAO
+public class HsqldbTopicDaoImpl extends TopicDaoImpl
 {
 	/**
-	 * @see net.jforum.dao.TopicDAO#selectAllByForumByLimit(int, int, int)
+	 * @see net.iforums.dao.TopicDao#selectAllByForumByLimit(int, int, int)
 	 */
 	public List selectAllByForumByLimit(int forumId, int startFrom, int count)
 	{
@@ -84,7 +84,7 @@ public class HsqldbTopicDAO extends GenericTopicDAO
 	}
 	
 	/**
-	 * @see net.jforum.dao.generic.GenericTopicDAO#selectByUserByLimit(int, int, int)
+	 * @see GenericTopicDao#selectByUserByLimit(int, int, int)
 	 */
 	public List selectByUserByLimit(int userId, int startFrom, int count) 
 	{

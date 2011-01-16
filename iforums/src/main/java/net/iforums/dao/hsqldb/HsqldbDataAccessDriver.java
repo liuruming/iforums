@@ -40,12 +40,12 @@
  * The JForum Project
  * http://www.jforum.net
  */
-package net.jforum.dao.hsqldb;
+package net.iforums.dao.hsqldb;
 
 import net.iforums.dao.PostDao;
 import net.iforums.dao.TopicDao;
 import net.iforums.dao.UserDao;
-import net.jforum.dao.generic.GenericDataAccessDriver;
+import net.iforums.dao.generic.GenericDataAccessDriver;
 
 /**
  * @author Marc Wick
@@ -53,26 +53,26 @@ import net.jforum.dao.generic.GenericDataAccessDriver;
  */
 public class HsqldbDataAccessDriver extends GenericDataAccessDriver 
 {
-	private static PostDao postDao = new HsqldbPostDao();
-	private static UserDao userDao = new HsqldbUserDao();
-	private static TopicDao topicDao = new HsqldbTopicDao();
+	private static PostDao postDao ;
+	private static UserDao userDao ;
+	private static TopicDao topicDao;
 	
 	/**
-	 * @see net.jforum.dao.DataAccessDriver#newPostDao()
+	 * @see net.iforums.dao.DataAccessDriver#newPostDao()
 	 */
 	public PostDao newPostDao() {
 		return postDao;
 	}
 
 	/**
-	 * @see net.jforum.dao.DataAccessDriver#newTopicDao()
+	 * @see net.iforums.dao.DataAccessDriver#newTopicDao()
 	 */
 	public TopicDao newTopicDao() {
 		return topicDao;
 	}
 	
 	/**
-	 * @see net.jforum.dao.DataAccessDriver#newUserDao()
+	 * @see net.iforums.dao.DataAccessDriver#newUserDao()
 	 */
 	public UserDao newUserDao() {
 		return userDao;

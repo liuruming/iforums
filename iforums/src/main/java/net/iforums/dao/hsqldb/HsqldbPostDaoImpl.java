@@ -40,20 +40,20 @@
  * The JForum Project
  * http://www.jforum.net
  */
-package net.jforum.dao.hsqldb;
+package net.iforums.dao.hsqldb;
 
 import java.util.List;
 
-import net.jforum.dao.generic.GenericPostDAO;
+import net.iforums.dao.impl.PostDaoImpl;
 
 /**
  * @author Marc Wick
- * @version $Id: HsqldbPostDAO.java,v 1.8 2007/09/02 15:08:05 rafaelsteil Exp $
+ * @version $Id: HsqldbPostDao.java,v 1.8 2007/09/02 15:08:05 rafaelsteil Exp $
  */
-public class HsqldbPostDAO extends GenericPostDAO
+public class HsqldbPostDaoImpl extends PostDaoImpl
 {
 	/**
-	 * @see net.jforum.dao.generic.GenericPostDAO#selectLatestByForumForRSS(int, int)
+	 * @see GenericPostDao#selectLatestByForumForRSS(int, int)
 	 */
 	public List selectLatestByForumForRSS(int forumId, int limit) 
 	{
@@ -61,7 +61,7 @@ public class HsqldbPostDAO extends GenericPostDAO
 	}
 	
 	/**
-	 * @see net.jforum.dao.PostDAO#selectAllByTopicByLimit(int, int, int)
+	 * @see net.iforums.dao.PostDao#selectAllByTopicByLimit(int, int, int)
 	 */
 	public List selectAllByTopicByLimit(int topicId, int startFrom, int count)
 	{
@@ -69,7 +69,7 @@ public class HsqldbPostDAO extends GenericPostDAO
 	}
 	
 	/**
-	 * @see net.jforum.dao.generic.GenericPostDAO#selectByUserByLimit(int, int, int)
+	 * @see GenericPostDao#selectByUserByLimit(int, int, int)
 	 */
 	public List selectByUserByLimit(int userId, int startFrom, int count) 
 	{
