@@ -44,19 +44,15 @@ package net.iforums.beans;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-import java.util.TreeSet;
 
 import net.iforums.SessionFacade;
 import net.iforums.repository.SecurityRepository;
 import net.iforums.security.PermissionControl;
 import net.iforums.security.SecurityConstants;
-import net.iforums.utils.ForumOrderComparator;
 
 /**
  * Represents a category in the System.
@@ -83,8 +79,8 @@ public class Category  implements Serializable
 	private int order;
 	private boolean moderated;
 	private String name;
-	private Map forumsIdMap = new HashMap();
-	private Set forums = new TreeSet(new ForumOrderComparator());
+	private Map<Integer, Forum> forumMap = new HashMap<Integer, Forum>();
+	private List<KeyValue<Integer,Forum>> forumList = new ArrayList<KeyValue<Integer,Forum>>();
 		
 	public Category() {}
 	
@@ -103,9 +99,8 @@ public class Category  implements Serializable
 		this.order = c.getOrder();
 		this.moderated = c.isModerated();
 		
-		for (Iterator iter = c.getForums().iterator(); iter.hasNext(); ) {
-			this.addForum(new Forum((Forum)iter.next()));
-		}
+		forumList.clear();
+		forumList.addAll(c.getForumList());
 	}
 	
 	public void setModerated(boolean status)
@@ -169,8 +164,8 @@ public class Category  implements Serializable
 	 * @param forum Forum
 	 */
 	public void addForum(Forum forum) {
-		this.forumsIdMap.put(new Integer(forum.getId()), forum);
-		this.forums.add(forum);
+		this.forumMap.put(new Integer(forum.getId()), forum);
+		this.forumList.add(new KeyValue<Integer,Forum>(new Integer(forum.getId()),forum));
 	}
 	
 	/**
@@ -184,21 +179,21 @@ public class Category  implements Serializable
 	 * @see #changeForumOrder(Forum)
 	 */
 	public void reloadForum(Forum forum) {
-		Forum currentForum = this.getForum(forum.getId());
-		
-		if (forum.getOrder() != currentForum.getOrder()) {
-			throw new RuntimeException("Forum #" + forum.getId() + " cannot be reloaded, since its "
-					+ "display order was changed. You must call Category#changeForumOrder(Forum)"
-					+ "first");
-		}
-		
-		Set tmpSet = new TreeSet(new ForumOrderComparator());
-		tmpSet.addAll(this.forums);
-		tmpSet.remove(currentForum);
-		tmpSet.add(forum);
-		this.forumsIdMap.put(new Integer(forum.getId()), forum);
-		
-		this.forums = tmpSet;
+//		Forum currentForum = this.getForum(forum.getId());
+//		
+//		if (forum.getOrder() != currentForum.getOrder()) {
+//			throw new RuntimeException("Forum #" + forum.getId() + " cannot be reloaded, since its "
+//					+ "display order was changed. You must call Category#changeForumOrder(Forum)"
+//					+ "first");
+//		}
+//		
+//		Set<Forum> tmpSet = new TreeSet<Forum>(new ForumOrderComparator());
+//		tmpSet.addAll(this.forumList);
+//		tmpSet.remove(currentForum);
+//		tmpSet.add(forum);
+//		this.forumsIdMap.put(new Integer(forum.getId()), forum);
+//		forumList.clear();
+//		this.forumList.addAll(tmpSet);
 	}
 	
 	/**
@@ -211,44 +206,44 @@ public class Category  implements Serializable
 	 */
 	public void changeForumOrder(Forum forum)
 	{
-		Forum current = this.getForum(forum.getId());
-		Forum currentAtOrder = this.findByOrder(forum.getOrder());
-		
-		Set tmpSet = new TreeSet(new ForumOrderComparator());
-		tmpSet.addAll(this.forums);
-		
-		// Remove the forum in the current order
-		// where the changed forum will need to be
-		if (currentAtOrder != null) {
-			tmpSet.remove(currentAtOrder);
-		}
-		
-		tmpSet.add(forum);
-		this.forumsIdMap.put(new Integer(forum.getId()), forum);
-		
-		// Remove the forum in the position occupied
-		// by the changed forum before its modification,
-		// so then we can add the another forum into 
-		// its position
-		if (currentAtOrder != null) {
-			tmpSet.remove(current);
-			currentAtOrder.setOrder(current.getOrder());
-			tmpSet.add(currentAtOrder);
-
-			this.forumsIdMap.put(new Integer(currentAtOrder.getId()), currentAtOrder);
-		}
-		
-		this.forums = tmpSet;
+//		Forum current = this.getForum(forum.getId());
+//		Forum currentAtOrder = this.findByOrder(forum.getOrder());
+//		
+//		Set<Forum> tmpSet = new TreeSet<Forum>(new ForumOrderComparator());
+//		tmpSet.addAll(this.forumList);
+//		
+//		// Remove the forum in the current order
+//		// where the changed forum will need to be
+//		if (currentAtOrder != null) {
+//			tmpSet.remove(currentAtOrder);
+//		}
+//		
+//		tmpSet.add(forum);
+//		this.forumsIdMap.put(new Integer(forum.getId()), forum);
+//		
+//		// Remove the forum in the position occupied
+//		// by the changed forum before its modification,
+//		// so then we can add the another forum into 
+//		// its position
+//		if (currentAtOrder != null) {
+//			tmpSet.remove(current);
+//			currentAtOrder.setOrder(current.getOrder());
+//			tmpSet.add(currentAtOrder);
+//
+//			this.forumsIdMap.put(new Integer(currentAtOrder.getId()), currentAtOrder);
+//		}
+//		forumList.clear();
+//		this.forumList.addAll(tmpSet);
 	}
 	
 	private Forum findByOrder(int order)
 	{
-		for (Iterator iter = this.forums.iterator(); iter.hasNext(); ) {
-			Forum f = (Forum)iter.next();
-			if (f.getOrder() == order) {
-				return f;
-			}
-		}
+//		for (Iterator<Forum> iter = this.forumList.iterator(); iter.hasNext(); ) {
+//			Forum f = iter.next();
+//			if (f.getOrder() == order) {
+//				return f;
+//			}
+//		}
 		
 		return null;
 	}
@@ -258,8 +253,8 @@ public class Category  implements Serializable
 	 * @param forumId int
 	 */
 	public void removeForum(int forumId) {
-		this.forums.remove(this.getForum(forumId));
-		this.forumsIdMap.remove(new Integer(forumId));
+		this.forumList.remove(this.getForum(forumId));
+		this.forumMap.remove(new Integer(forumId));
 	}
 
 	/**
@@ -275,7 +270,7 @@ public class Category  implements Serializable
 	{
 		PermissionControl pc = SecurityRepository.get(userId);
 		if (pc.canAccess(SecurityConstants.PERM_FORUM, Integer.toString(forumId))) {
-			return (Forum)this.forumsIdMap.get(new Integer(forumId));
+			return this.forumMap.get(new Integer(forumId));
 		}
 		
 		return null;
@@ -300,30 +295,26 @@ public class Category  implements Serializable
 	 * @return All forums, regardless it is accessible 
 	 * to the user or not.
 	 */
-	public Collection getForums()
+	public List<KeyValue<Integer,Forum>> getForumList()
 	{
-		if (this.forums.size() == 0) {
-			return this.forums;
-		}
-
-		return this.getForums(SessionFacade.getUserSession().getUserId());
+		return forumList;
 	}
 
 	/**
 	 * Gets all forums from this category.
 	 * 
 	 * @return The forums available to the user who make the call
-	 * @see #getForums()
+	 * @see #getForumList()
      * @param userId int
 	 */
-	public Collection getForums(int userId) 
+	public List<KeyValue<Integer,Forum>> getForums(int userId) 
 	{
 		PermissionControl pc = SecurityRepository.get(userId);
-		List forums = new ArrayList();
+		List<KeyValue<Integer,Forum>> forums = new ArrayList<KeyValue<Integer,Forum>>();
 
-		for (Iterator iter = this.forums.iterator(); iter.hasNext(); ) {
-			Forum f = (Forum)iter.next();
-			if (pc.canAccess(SecurityConstants.PERM_FORUM, Integer.toString(f.getId()))) {
+		for (Iterator<KeyValue<Integer,Forum>> iter = this.forumList.iterator(); iter.hasNext(); ) {
+			KeyValue<Integer,Forum> f = iter.next();
+			if (pc.canAccess(SecurityConstants.PERM_FORUM, Integer.toString(f.getValue().getId()))) {
 				forums.add(f);
 			}
 		}
