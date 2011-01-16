@@ -49,8 +49,8 @@ import java.util.Locale;
 
 import javax.servlet.http.Cookie;
 
-import net.jforum.context.RequestContext;
-import net.jforum.context.SessionContext;
+import net.iforums.context.RequestContext;
+import net.iforums.context.SessionContext;
 
 /**
  * Request context non-dependent of HTTP 

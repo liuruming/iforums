@@ -46,7 +46,7 @@ import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.Random;
 
-import net.jforum.context.SessionContext;
+import net.iforums.context.SessionContext;
 
 /**
  * Session Context non-dependent of HTTP requests

@@ -42,11 +42,11 @@
  */
 package net.iforums.context.web;
 
+import java.util.Enumeration;
+
 import javax.servlet.http.HttpSession;
 
-import net.jforum.context.SessionContext;
-
-import java.util.Enumeration;
+import net.iforums.context.SessionContext;
 
 /**
  * @author: SergeMaslyukov 

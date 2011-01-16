@@ -56,17 +56,17 @@ import java.util.StringTokenizer;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 
-import net.jforum.UrlPattern;
-import net.jforum.UrlPatternCollection;
-import net.jforum.context.RequestContext;
-import net.jforum.context.SessionContext;
-import net.jforum.util.legacy.commons.fileupload.FileItem;
-import net.jforum.util.legacy.commons.fileupload.FileUploadException;
-import net.jforum.util.legacy.commons.fileupload.disk.DiskFileItemFactory;
-import net.jforum.util.legacy.commons.fileupload.servlet.ServletFileUpload;
-import net.jforum.util.legacy.commons.fileupload.servlet.ServletRequestContext;
-import net.jforum.util.preferences.ConfigKeys;
-import net.jforum.util.preferences.SystemGlobals;
+import net.iforums.UrlPattern;
+import net.iforums.UrlPatternCollection;
+import net.iforums.context.RequestContext;
+import net.iforums.context.SessionContext;
+import net.iforums.utils.legacy.commons.fileupload.FileItem;
+import net.iforums.utils.legacy.commons.fileupload.FileUploadException;
+import net.iforums.utils.legacy.commons.fileupload.disk.DiskFileItemFactory;
+import net.iforums.utils.legacy.commons.fileupload.servlet.ServletFileUpload;
+import net.iforums.utils.legacy.commons.fileupload.servlet.ServletRequestContext;
+import net.iforums.utils.preferences.ConfigKeys;
+import net.iforums.utils.preferences.SystemGlobals;
 
 import org.apache.commons.lang.StringUtils;
 
