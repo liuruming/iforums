@@ -48,7 +48,7 @@ import net.iforums.beans.UserSession;
 
 /**
  * @author Rafael Steil
- * @version $Id: UserSessionDAO.java,v 1.6 2006/08/23 02:13:34 rafaelsteil Exp $
+ * @version $Id: UserSessionDao.java,v 1.6 2006/08/23 02:13:34 rafaelsteil Exp $
  */
 public interface UserSessionDao  extends BaseDao<UserSession>
 {

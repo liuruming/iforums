@@ -48,7 +48,7 @@ import net.iforums.beans.Smilie;
 
 /**
  * @author Rafael Steil
- * @version $Id: SmilieDAO.java,v 1.6 2006/08/23 02:13:34 rafaelsteil Exp $
+ * @version $Id: SmilieDao.java,v 1.6 2006/08/23 02:13:34 rafaelsteil Exp $
  */
 public interface SmilieDao extends BaseDao<Smilie>
 {

@@ -54,7 +54,7 @@ import net.iforums.beans.Ranking;
  * select some specific data.
  * 
  * @author Rafael Steil
- * @version $Id: RankingDAO.java,v 1.7 2006/12/02 03:19:54 rafaelsteil Exp $
+ * @version $Id: RankingDao.java,v 1.7 2006/12/02 03:19:54 rafaelsteil Exp $
  */
 public interface RankingDao extends BaseDao<Ranking>
 {

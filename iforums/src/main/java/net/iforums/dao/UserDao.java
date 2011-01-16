@@ -54,7 +54,7 @@ import net.iforums.beans.User;
  * select some specific data.
  * 
  * @author Rafael Steil
- * @version $Id: UserDAO.java,v 1.10 2007/09/21 17:26:08 rafaelsteil Exp $
+ * @version $Id: UserDao.java,v 1.10 2007/09/21 17:26:08 rafaelsteil Exp $
  */
 public interface UserDao  extends BaseDao<User>
 {

@@ -386,16 +386,22 @@ public class BaseORMDao<T> extends SqlMapClientDaoSupport {
         return queryForEntryList("selectMarked",params);
     }
     
-    public void insert(T obj) {
+    public long insert(T obj) {
         Map<String,Object> params = BeanMap.create(obj);
         
-        if(params.get("id")==null){
+        long id = 0l;
+        Object idObj = params.get("id");
+        if(idObj==null){
+        	id = getAutoId();
             params.put("id", getAutoId());
+        }else{
+        	return (Long)idObj;
         }
         
         logger.info(params);
         
-        insert("insert",params); 
+        insert("insert",params);
+        return id;
     }
 
     public void update(T obj) {

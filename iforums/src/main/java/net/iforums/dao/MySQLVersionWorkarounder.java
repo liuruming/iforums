@@ -65,8 +65,8 @@ import org.apache.log4j.Logger;
 public class MySQLVersionWorkarounder
 {
 	private static Logger logger = Logger.getLogger(MySQLVersionWorkarounder.class);
-    private static final String MYSQL_323_DATA_ACCESS_DRIVER = net.jforum.dao.mysql.MySQL323DataAccessDriver.class.getName();
-    private static final String MYSQL_DATA_ACCESS_DRIVER = net.jforum.dao.mysql.MysqlDataAccessDriver.class.getName();
+    private static final String MYSQL_323_DATA_ACCESS_DRIVER = net.iforums.dao.mysql.MySQL323DataAccessDriver.class.getName();
+    private static final String MYSQL_DATA_ACCESS_DRIVER = net.iforums.dao.mysql.MysqlDataAccessDriver.class.getName();
 
     public void handleWorkarounds(Connection c)
 	{
@@ -217,12 +217,12 @@ public class MySQLVersionWorkarounder
 	
 	private void ensureDaoClassIsCorrect(String shouldBe) throws Exception
 	{
-		if (!shouldBe.equals(SystemGlobals.getValue(ConfigKeys.DAO_DRIVER))) {
-			logger.info("MySQL DAO class is incorrect. Setting it to " + shouldBe);
+		if (!shouldBe.equals(SystemGlobals.getValue(ConfigKeys.Dao_DRIVER))) {
+			logger.info("MySQL Dao class is incorrect. Setting it to " + shouldBe);
 			
-			this.fixDAODriver(shouldBe);
+			this.fixDaoDriver(shouldBe);
 			
-			SystemGlobals.setValue(ConfigKeys.DAO_DRIVER, shouldBe);
+			SystemGlobals.setValue(ConfigKeys.Dao_DRIVER, shouldBe);
 			ConfigLoader.loadDaoImplementation();
 		}
 	}
@@ -267,14 +267,14 @@ public class MySQLVersionWorkarounder
 		SystemGlobals.loadQueries(SystemGlobals.getValue(ConfigKeys.SQL_QUERIES_DRIVER));
 	}
 	
-	private void fixDAODriver(String daoClassName) throws Exception
+	private void fixDaoDriver(String daoClassName) throws Exception
 	{
 		String driverConfigPath = SystemGlobals.getValue(ConfigKeys.DATABASE_DRIVER_CONFIG);
 		
 		File f = new File(driverConfigPath);
 		
 		if (f.canWrite()) {
-			// Fix the DAO class
+			// Fix the Dao class
 			Properties p = new Properties();
 			
 			FileInputStream fis = new FileInputStream(driverConfigPath);
@@ -282,7 +282,7 @@ public class MySQLVersionWorkarounder
 			
 			try {
 				p.load(fis);
-				p.setProperty(ConfigKeys.DAO_DRIVER, daoClassName);
+				p.setProperty(ConfigKeys.Dao_DRIVER, daoClassName);
 				
 				fos = new FileOutputStream(driverConfigPath);
 				p.store(fos, null);

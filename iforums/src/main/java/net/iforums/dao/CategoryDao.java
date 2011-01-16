@@ -52,7 +52,7 @@ import net.iforums.beans.Category;
  * select some specific data.
  * 
  * @author Rafael Steil
- * @version $Id: CategoryDAO.java,v 1.6 2006/08/23 02:13:34 rafaelsteil Exp $
+ * @version $Id: CategoryDao.java,v 1.6 2006/08/23 02:13:34 rafaelsteil Exp $
  */
 public interface CategoryDao extends BaseDao<Category>
 {	

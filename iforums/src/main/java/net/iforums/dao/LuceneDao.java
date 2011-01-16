@@ -48,7 +48,7 @@ import java.util.List;
 
 /**
  * @author Rafael Steil
- * @version $Id: LuceneDAO.java,v 1.5 2007/09/01 05:46:53 rafaelsteil Exp $
+ * @version $Id: LuceneDao.java,v 1.5 2007/09/01 05:46:53 rafaelsteil Exp $
  */
 public interface LuceneDao 
 {

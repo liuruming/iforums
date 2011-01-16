@@ -48,7 +48,7 @@ import net.iforums.beans.User;
 
 /**
  * @author Rafael Steil
- * @version $Id: PrivateMessageDAO.java,v 1.8 2007/08/01 22:30:04 rafaelsteil Exp $
+ * @version $Id: PrivateMessageDao.java,v 1.8 2007/08/01 22:30:04 rafaelsteil Exp $
  */
 public interface PrivateMessageDao  extends BaseDao<PrivateMessage>
 {

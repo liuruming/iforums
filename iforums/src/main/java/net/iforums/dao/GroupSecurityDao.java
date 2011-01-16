@@ -44,13 +44,14 @@ package net.iforums.dao;
 
 import net.iforums.beans.Group;
 import net.iforums.beans.User;
+import net.iforums.security.Role;
 import net.iforums.security.RoleCollection;
 import net.iforums.security.RoleValueCollection;
 
 
 /**
  * @author Rafael Steil
- * @version $Id: GroupSecurityDAO.java,v 1.2 2007/08/24 23:11:35 rafaelsteil Exp $
+ * @version $Id: GroupSecurityDao.java,v 1.2 2007/08/24 23:11:35 rafaelsteil Exp $
  */
 public interface GroupSecurityDao extends BaseDao<Group>
 {

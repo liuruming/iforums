@@ -52,7 +52,7 @@ import net.iforums.beans.User;
 
 /**
  * @author Rafael Steil
- * @version $Id: KarmaDAO.java,v 1.7 2007/08/01 22:30:04 rafaelsteil Exp $
+ * @version $Id: KarmaDao.java,v 1.7 2007/08/01 22:30:04 rafaelsteil Exp $
  */
 public interface KarmaDao extends BaseDao<Karma>
 {

@@ -54,7 +54,7 @@ import net.iforums.beans.Banner;
  * select some specific data.
  *
  * @author Samuel Yung
- * @version $Id: BannerDAO.java,v 1.6 2006/08/23 02:13:34 rafaelsteil Exp $
+ * @version $Id: BannerDao.java,v 1.6 2006/08/23 02:13:34 rafaelsteil Exp $
  */
 public interface BannerDao extends BaseDao<Banner>
 {

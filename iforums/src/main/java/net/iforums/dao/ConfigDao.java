@@ -49,7 +49,7 @@ import net.iforums.beans.Config;
  * Model interface for the {@link net.jforum.entities.Config} class. 
  * 
  * @author Rafael Steil
- * @version $Id: ConfigDAO.java,v 1.6 2006/08/23 02:13:34 rafaelsteil Exp $
+ * @version $Id: ConfigDao.java,v 1.6 2006/08/23 02:13:34 rafaelsteil Exp $
  */
 public interface ConfigDao extends BaseDao<Config>
 {

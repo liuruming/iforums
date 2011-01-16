@@ -5,7 +5,7 @@ package net.iforums.dao;
 
 /**
  * @author Rafael Steil
- * @version $Id: ApiDAO.java,v 1.2 2006/10/10 00:49:04 rafaelsteil Exp $
+ * @version $Id: ApiDao.java,v 1.2 2006/10/10 00:49:04 rafaelsteil Exp $
  */
 public interface ApiDao
 {

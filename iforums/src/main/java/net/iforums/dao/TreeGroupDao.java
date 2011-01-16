@@ -46,7 +46,7 @@ import java.util.List;
 
 /**
  * @author Rafael Steil
- * @version $Id: TreeGroupDAO.java,v 1.6 2006/08/23 02:13:34 rafaelsteil Exp $
+ * @version $Id: TreeGroupDao.java,v 1.6 2006/08/23 02:13:34 rafaelsteil Exp $
  */
 public interface TreeGroupDao 
 {

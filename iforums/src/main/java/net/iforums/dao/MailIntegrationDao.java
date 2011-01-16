@@ -9,7 +9,7 @@ import net.iforums.beans.MailIntegration;
 
 /**
  * @author Rafael Steil
- * @version $Id: MailIntegrationDAO.java,v 1.1 2006/08/22 02:05:24 rafaelsteil Exp $
+ * @version $Id: MailIntegrationDao.java,v 1.1 2006/08/22 02:05:24 rafaelsteil Exp $
  */
 public interface MailIntegrationDao extends BaseDao<MailIntegration>
 {

@@ -47,7 +47,9 @@ import java.util.List;
 import java.util.Map;
 
 import net.iforums.beans.Topic;
+import net.iforums.beans.User;
 import net.iforums.search.SearchArgs;
+import net.iforums.search.SearchResult;
 
 /**
 * Model interface for {@link net.jforum.entities.Topic}.
@@ -57,7 +59,7 @@ import net.iforums.search.SearchArgs;
  * select some specific data.
  *
  * @author Rafael Steil
- * @version $Id: TopicDAO.java,v 1.18 2007/09/09 22:53:36 rafaelsteil Exp $
+ * @version $Id: TopicDao.java,v 1.18 2007/09/09 22:53:36 rafaelsteil Exp $
  */
 public interface TopicDao extends BaseDao<Topic>
 {

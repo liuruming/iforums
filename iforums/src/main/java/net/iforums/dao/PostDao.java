@@ -54,7 +54,7 @@ import net.iforums.beans.Post;
  * select some specific data.
  * 
  * @author Rafael Steil
- * @version $Id: PostDAO.java,v 1.12 2007/08/20 19:35:52 rafaelsteil Exp $
+ * @version $Id: PostDao.java,v 1.12 2007/08/20 19:35:52 rafaelsteil Exp $
  */
 public interface PostDao  extends BaseDao<Post>
 {

@@ -46,7 +46,7 @@ import net.iforums.beans.Banlist;
 
 /**
  * @author Rafael Steil
- * @version $Id: BanlistDAO.java,v 1.1 2006/12/07 23:21:31 rafaelsteil Exp $
+ * @version $Id: BanlistDao.java,v 1.1 2006/12/07 23:21:31 rafaelsteil Exp $
  */
 public interface BanlistDao extends BaseDao<Banlist>
 {

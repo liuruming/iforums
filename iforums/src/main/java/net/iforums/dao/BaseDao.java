@@ -14,7 +14,7 @@ public interface BaseDao<T> {
      * 插入
      * @param obj
      */
-    public void insert(T obj);
+    public long insert(T obj);
     
     /**
      * 更新

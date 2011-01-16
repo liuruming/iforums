@@ -50,7 +50,7 @@ import java.util.List;
  * 
  * @author Franklin S. Dattein (<a href="mailto:franklin@portaljava.com">franklin@portaljava.com</a>)
  * 
- * @version $Id: SummaryDAO.java,v 1.6 2006/08/20 22:47:22 rafaelsteil Exp $
+ * @version $Id: SummaryDao.java,v 1.6 2006/08/20 22:47:22 rafaelsteil Exp $
  */
 public interface SummaryDao 
 {

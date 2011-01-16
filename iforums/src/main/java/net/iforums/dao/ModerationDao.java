@@ -47,7 +47,7 @@ import java.util.Map;
 
 /**
  * @author Rafael Steil
- * @version $Id: ModerationDAO.java,v 1.7 2006/08/23 02:13:35 rafaelsteil Exp $
+ * @version $Id: ModerationDao.java,v 1.7 2006/08/23 02:13:35 rafaelsteil Exp $
  */
 public interface ModerationDao 
 {

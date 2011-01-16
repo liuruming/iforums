@@ -56,7 +56,7 @@ import net.iforums.beans.LastPostInfo;
  * select some specific data.
  * 
  * @author Rafael Steil
- * @version $Id: ForumDAO.java,v 1.12 2006/08/28 23:22:27 rafaelsteil Exp $
+ * @version $Id: ForumDao.java,v 1.12 2006/08/28 23:22:27 rafaelsteil Exp $
  */
 public interface ForumDao extends BaseDao<Forum>
 {
@@ -174,7 +174,7 @@ public interface ForumDao extends BaseDao<Forum>
 	 * @param categoryId The main category for the forum
 	 * @param status a boolean value representing the desired status
 	 */
-	public void setModerated(int categoryId, boolean status) ;
+	public void setModerated(long categoryId, boolean status) ;
 	
 	/**
 	 * Ges general statistics from the board

@@ -54,7 +54,7 @@ import net.iforums.beans.Group;
  * select some specific data.
  * 
  * @author Rafael Steil
- * @version $Id: GroupDAO.java,v 1.6 2006/08/23 02:13:34 rafaelsteil Exp $
+ * @version $Id: GroupDao.java,v 1.6 2006/08/23 02:13:34 rafaelsteil Exp $
  */
 public interface GroupDao extends BaseDao<Group>
 {

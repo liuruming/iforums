@@ -47,7 +47,7 @@ import net.iforums.beans.Bookmark;
 
 /**
  * @author Rafael Steil
- * @version $Id: BookmarkDAO.java,v 1.6 2006/08/23 02:13:35 rafaelsteil Exp $
+ * @version $Id: BookmarkDao.java,v 1.6 2006/08/23 02:13:35 rafaelsteil Exp $
  */
 public interface BookmarkDao extends BaseDao<Bookmark>
 {

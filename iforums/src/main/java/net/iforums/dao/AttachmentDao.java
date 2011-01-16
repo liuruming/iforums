@@ -53,7 +53,7 @@ import net.iforums.beans.QuotaLimit;
 
 /**
  * @author Rafael Steil
- * @version $Id: AttachmentDAO.java,v 1.7 2006/08/23 02:13:34 rafaelsteil Exp $
+ * @version $Id: AttachmentDao.java,v 1.7 2006/08/23 02:13:34 rafaelsteil Exp $
  */
 public interface AttachmentDao extends BaseDao<Attachment>
 {
