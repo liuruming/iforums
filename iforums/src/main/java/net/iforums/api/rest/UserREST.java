@@ -5,17 +5,17 @@ package net.iforums.api.rest;
 
 import java.util.List;
 
+import net.iforums.Command;
+import net.iforums.JForumExecutionContext;
 import net.iforums.beans.User;
+import net.iforums.context.RequestContext;
+import net.iforums.context.ResponseContext;
+import net.iforums.dao.DataAccessDriver;
 import net.iforums.dao.UserDao;
-import net.jforum.Command;
-import net.jforum.JForumExecutionContext;
-import net.jforum.context.RequestContext;
-import net.jforum.context.ResponseContext;
-import net.jforum.dao.DataAccessDriver;
-import net.jforum.util.I18n;
-import net.jforum.util.preferences.ConfigKeys;
-import net.jforum.util.preferences.SystemGlobals;
-import net.jforum.util.preferences.TemplateKeys;
+import net.iforums.utils.I18n;
+import net.iforums.utils.preferences.ConfigKeys;
+import net.iforums.utils.preferences.SystemGlobals;
+import net.iforums.utils.preferences.TemplateKeys;
 import freemarker.template.SimpleHash;
 import freemarker.template.Template;
 

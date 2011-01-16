@@ -8,18 +8,19 @@ import java.util.Iterator;
 
 import javax.annotation.Resource;
 
+import net.iforums.JForumExecutionContext;
+import net.iforums.SessionFacade;
 import net.iforums.beans.Topic;
 import net.iforums.beans.User;
 import net.iforums.beans.UserSession;
 import net.iforums.context.JForumContext;
+import net.iforums.context.RequestContext;
 import net.iforums.context.standard.StandardRequestContext;
 import net.iforums.context.standard.StandardSessionContext;
 import net.iforums.dao.ForumDao;
 import net.iforums.dao.UserDao;
 import net.iforums.utils.preferences.ConfigKeys;
 import net.iforums.view.forum.PostAction;
-import net.jforum.JForumExecutionContext;
-import net.jforum.SessionFacade;
 
 import org.apache.log4j.Logger;
 

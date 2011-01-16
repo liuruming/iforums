@@ -51,6 +51,9 @@ import net.iforums.JForumExecutionContext;
 import net.iforums.SessionFacade;
 import net.iforums.repository.SecurityRepository;
 import net.iforums.security.PermissionControl;
+import net.iforums.security.SecurityConstants;
+import net.iforums.utils.Captcha;
+import net.iforums.utils.I18n;
 import net.iforums.utils.preferences.ConfigKeys;
 import net.iforums.utils.preferences.SystemGlobals;
 

@@ -4,7 +4,7 @@
 package net.iforums.api.rest;
 
 import net.iforums.dao.ApiDao;
-import net.jforum.dao.DataAccessDriver;
+import net.iforums.dao.DataAccessDriver;
 
 /**
  * @author Rafael Steil

@@ -55,6 +55,7 @@ import java.util.TreeSet;
 import net.iforums.SessionFacade;
 import net.iforums.repository.SecurityRepository;
 import net.iforums.security.PermissionControl;
+import net.iforums.security.SecurityConstants;
 import net.iforums.utils.ForumOrderComparator;
 
 /**
@@ -78,7 +79,7 @@ public class Category  implements Serializable
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private int id;
+	private long id;
 	private int order;
 	private boolean moderated;
 	private String name;
@@ -87,7 +88,7 @@ public class Category  implements Serializable
 		
 	public Category() {}
 	
-	public Category(int id) {
+	public Category(long id) {
 		this.id = id;
 	}
 	
@@ -120,7 +121,7 @@ public class Category  implements Serializable
 	/**
 	 * @return int
 	 */
-	public int getId() {
+	public long getId() {
 		return this.id;
 	}
 
@@ -142,7 +143,7 @@ public class Category  implements Serializable
 	 * Sets the id.
 	 * @param id The id to set
 	 */
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -335,7 +336,7 @@ public class Category  implements Serializable
 	 */
 	public int hashCode() 
 	{
-		return this.id;
+		return (int) this.id;
 	}
 
 	/** 
