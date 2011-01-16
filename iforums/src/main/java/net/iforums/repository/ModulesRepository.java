@@ -47,8 +47,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
-import net.jforum.ConfigLoader;
-import net.jforum.JForumExecutionContext;
+import net.iforums.ConfigLoader;
+import net.iforums.JForumExecutionContext;
 
 import org.apache.log4j.Logger;
 

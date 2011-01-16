@@ -48,9 +48,9 @@ import java.util.List;
 
 import net.iforums.beans.Topic;
 import net.iforums.dao.DataAccessDriver;
+import net.iforums.dao.TopicDao;
 import net.iforums.utils.preferences.TemplateKeys;
 import net.iforums.view.forum.common.TopicsCommon;
-import net.jforum.dao.TopicDAO;
 
 /**
  * @author Rafael Steil
@@ -62,7 +62,7 @@ public class NewMessagesSearchOperation extends SearchOperation
 	
 	public SearchResult performSearch(SearchArgs args)
 	{
-		TopicDAO dao = DataAccessDriver.getInstance().newTopicDAO();
+		TopicDao dao = DataAccessDriver.getInstance().newTopicDao();
 		SearchResult searchResult = dao.findTopicsByDateRange(args);
 		
 		this.results = searchResult.records();

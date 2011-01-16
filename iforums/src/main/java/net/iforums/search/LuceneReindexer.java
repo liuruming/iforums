@@ -47,12 +47,12 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 
+import net.iforums.JForumExecutionContext;
 import net.iforums.beans.Post;
 import net.iforums.dao.DataAccessDriver;
 import net.iforums.dao.LuceneDao;
 import net.iforums.utils.preferences.ConfigKeys;
 import net.iforums.utils.preferences.SystemGlobals;
-import net.jforum.JForumExecutionContext;
 
 import org.apache.lucene.search.IndexSearcher;
 

@@ -98,7 +98,7 @@ public class LuceneSearch implements NewDocumentAdded
 	}
 	
 	/**
-	 * @see net.jforum.dao.SearchDAO#search(net.jforum.search.SearchArgs)
+	 * @see net.iforums.dao.SearchDao#search(net.jforum.search.SearchArgs)
 	 */
 	public SearchResult search(SearchArgs args)
 	{

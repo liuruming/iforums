@@ -52,6 +52,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
+import net.iforums.SessionFacade;
 import net.iforums.beans.Category;
 import net.iforums.beans.Config;
 import net.iforums.beans.Forum;
@@ -69,11 +70,11 @@ import net.iforums.dao.DataAccessDriver;
 import net.iforums.dao.ForumDao;
 import net.iforums.dao.UserDao;
 import net.iforums.security.PermissionControl;
+import net.iforums.security.SecurityConstants;
 import net.iforums.utils.CategoryOrderComparator;
 import net.iforums.utils.preferences.ConfigKeys;
 import net.iforums.utils.preferences.SystemGlobals;
 import net.iforums.view.forum.common.ViewCommon;
-import net.jforum.SessionFacade;
 
 import org.apache.log4j.Logger;
 
@@ -173,13 +174,13 @@ public class ForumRepository implements Cacheable
 		return (Category)cache.get(FQN, Integer.toString(categoryId));
 	}
 	
-	public static Category getCategory(PermissionControl pc, int categoryId)
+	public static Category getCategory(PermissionControl pc, long categoryId)
 	{
 		if (!isCategoryAccessible(pc, categoryId)) {
 			return null;
 		}
 		
-		return (Category)cache.get(FQN, Integer.toString(categoryId)); 
+		return (Category)cache.get(FQN, Long.toString(categoryId)); 
 	}
 	
 	public static Category retrieveCategory(int categoryId)
@@ -194,7 +195,7 @@ public class ForumRepository implements Cacheable
 	 * @param categoryId The category's id to check for access rights
 	 * @return <code>true</code> if access to the category is allowed.
 	 */
-	public static boolean isCategoryAccessible(int userId, int categoryId)
+	public static boolean isCategoryAccessible(int userId, long categoryId)
 	{
 		return isCategoryAccessible(SecurityRepository.get(userId), categoryId);
 	}
@@ -205,7 +206,7 @@ public class ForumRepository implements Cacheable
 	 * @param categoryId The category id to check for access rights
 	 * @return <code>true</code> if access to the category is allowed.
 	 */
-	public static boolean isCategoryAccessible(int categoryId)
+	public static boolean isCategoryAccessible(long categoryId)
 	{
 		return isCategoryAccessible(SessionFacade.getUserSession().getUserId(), categoryId);
 	}
@@ -218,9 +219,9 @@ public class ForumRepository implements Cacheable
 	 * @param categoryId the category's id to check for access rights
 	 * @return <code>true</code> if access to the category is allowed.
 	 */
-	public static boolean isCategoryAccessible(PermissionControl pc, int categoryId)
+	public static boolean isCategoryAccessible(PermissionControl pc, long categoryId)
 	{
-		return pc.canAccess(SecurityConstants.PERM_CATEGORY, Integer.toString(categoryId));
+		return pc.canAccess(SecurityConstants.PERM_CATEGORY, Long.toString(categoryId));
 	}
 	
 	/**
@@ -304,7 +305,7 @@ public class ForumRepository implements Cacheable
 	 */
 	public synchronized static void reloadCategory(Category c)
 	{
-		Category current = (Category)cache.get(FQN, Integer.toString(c.getId()));
+		Category current = (Category)cache.get(FQN, Long.toString(c.getId()));
 		Category currentAtOrder = findCategoryByOrder(c.getOrder());
 		
 		Set tmpSet = new TreeSet(new CategoryOrderComparator());
@@ -312,18 +313,18 @@ public class ForumRepository implements Cacheable
 		
 		if (currentAtOrder != null) {
 			tmpSet.remove(currentAtOrder);
-			cache.remove(FQN, Integer.toString(currentAtOrder.getId()));
+			cache.remove(FQN, Long.toString(currentAtOrder.getId()));
 		}
 		
 		tmpSet.add(c);
-		cache.add(FQN, Integer.toString(c.getId()), c);
+		cache.add(FQN, Long.toString(c.getId()), c);
 		
 		if (currentAtOrder != null && c.getId() != currentAtOrder.getId()) {
 			tmpSet.remove(current);
 			currentAtOrder.setOrder(current.getOrder());
 			tmpSet.add(currentAtOrder);
 			
-			cache.add(FQN, Integer.toString(currentAtOrder.getId()), currentAtOrder);
+			cache.add(FQN, Long.toString(currentAtOrder.getId()), currentAtOrder);
 		}
 		
 		cache.add(FQN, CATEGORIES_SET, tmpSet);
@@ -336,7 +337,7 @@ public class ForumRepository implements Cacheable
 	 */
 	public synchronized static void refreshCategory(Category c)
 	{
-		cache.add(FQN, Integer.toString(c.getId()), c);
+		cache.add(FQN, Long.toString(c.getId()), c);
 		Set s = (Set)cache.get(FQN, CATEGORIES_SET);
 		s.remove(c);
 		s.add(c);
@@ -357,7 +358,7 @@ public class ForumRepository implements Cacheable
 	 */
 	public synchronized static void removeCategory(Category c)
 	{
-		cache.remove(FQN, Integer.toString(c.getId()));
+		cache.remove(FQN, Long.toString(c.getId()));
 		
 		Set s = (Set)cache.get(FQN, CATEGORIES_SET);
 		s.remove(c);
@@ -379,7 +380,7 @@ public class ForumRepository implements Cacheable
 	 */
 	public synchronized static void addCategory(Category c)
 	{
-		String categoryId = Integer.toString(c.getId());
+		String categoryId = Long.toString(c.getId());
 		cache.add(FQN, categoryId, c);
 		
 		Set s = (Set)cache.get(FQN, CATEGORIES_SET);
@@ -821,7 +822,7 @@ public class ForumRepository implements Cacheable
 		for (Iterator iter = categories.iterator(); iter.hasNext(); ) {
 			Category c = (Category)iter.next();
 			
-			cache.add(FQN, Integer.toString(c.getId()), c);
+			cache.add(FQN, Long.toString(c.getId()), c);
 			categoriesSet.add(c);
 		}
 		
