@@ -1,9 +1,9 @@
 # ####################################
 # @author ??? (original coding)
 # @author Dirk Rasmussen - d.rasmussen@bevis.de (modifs for MS SqlServer 2005)
-# @see net.jforum.dao.sqlserver.SqlServerUserDAO.class
-# @see net.jforum.dao.sqlserver.SqlServerTopicDAO..class
-# @see net.jforum.dao.sqlserver.SqlServerPostDAO.class
+# @see net.iforums.dao.sqlserver.SqlServerUserDao.class
+# @see net.iforums.dao.sqlserver.SqlServerTopicDao..class
+# @see net.iforums.dao.sqlserver.SqlServerPostDao.class
 # @version $Id$
 # ####################################
 

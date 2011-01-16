@@ -589,72 +589,7 @@ BookmarkModel.selectById = SELECT bookmark_id, relation_id, public_visible, titl
 # ################
 # AttachmentModel
 # ################
-AttachmentModel.addQuotaLimit = INSERT INTO jforum_quota_limit (quota_desc, quota_limit, quota_type) VALUES (?, ?, ?)
-AttachmentModel.updateQuotaLimit = UPDATE jforum_quota_limit SET quota_desc = ?, quota_limit = ?, quota_type = ? WHERE quota_limit_id = ?
-AttachmentModel.removeQuotaLimit = DELETE FROM jforum_quota_limit WHERE quota_limit_id = ?
 
-AttachmentModel.selectQuotaLimit = SELECT quota_limit_id, quota_desc, quota_limit, quota_type \
-	FROM jforum_quota_limit ORDER BY quota_type, quota_limit
-	
-AttachmentModel.addExtensionGroup = INSERT INTO jforum_extension_groups (name, allow, upload_icon, download_mode) VALUES (?, ?, ?, ?)
-
-AttachmentModel.updateExtensionGroups = UPDATE jforum_extension_groups SET name = ?, allow = ?, upload_icon = ?, download_mode = ? \
-	WHERE extension_group_id = ?
-
-AttachmentModel.removeExtensionGroups = DELETE FROM jforum_extension_groups WHERE extension_group_id = ?
-AttachmentModel.selectExtensionGroups = SELECT extension_group_id, name, allow, upload_icon, download_mode FROM jforum_extension_groups ORDER BY name
-
-AttachmentModel.addExtension = INSERT INTO jforum_extensions (extension_group_id, description, upload_icon, extension, allow) VALUES (?, ?, ?, ?, ?)
-
-AttachmentModel.updateExtension = UPDATE jforum_extensions SET extension_group_id = ?, description = ?, upload_icon = ?, extension = ?, allow = ? \
-	WHERE extension_id = ?
-
-AttachmentModel.removeExtension = DELETE FROM jforum_extensions WHERE extension_id = ?
-AttachmentModel.addAttachment = INSERT INTO jforum_attach (post_id, privmsgs_id, user_id) VALUES (?, ?, ?)
-
-AttachmentModel.addAttachmentInfo = INSERT INTO jforum_attach_desc (attach_id, physical_filename, real_filename, description, \
-	mimetype, filesize, upload_time, thumb, extension_id ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-	
-AttachmentModel.updatePost = UPDATE jforum_posts SET attach = ? WHERE post_id = ?
-
-AttachmentModel.selectExtensions = SELECT extension_id, extension_group_id, extension, description, upload_icon, allow, '' AS group_icon FROM jforum_extensions ORDER BY extension
-
-AttachmentModel.selectExtension = SELECT e.extension_id, e.extension_group_id, e.extension, e.description, e.upload_icon, e.allow, g.upload_icon AS group_icon \
-	FROM jforum_extensions e, jforum_extension_groups g \
-	WHERE e.$field = ? \
-	AND e.extension_group_id = g.extension_group_id
-
-AttachmentModel.extensionsForSecurity = SELECT e.extension, e.allow, eg.allow AS group_allow \
-	FROM jforum_extensions e, jforum_extension_groups eg \
-	WHERE e.extension_group_id = eg.extension_group_id
-
-AttachmentModel.isPhysicalDownloadMode = SELECT download_mode FROM jforum_extension_groups WHERE extension_group_id = ?
-
-AttachmentModel.selectAttachments = SELECT a.attach_id, a.user_id, a.post_id, a.privmsgs_id, d.mimetype, d.physical_filename, d.real_filename, \
-	d.download_count, d.description, d.filesize, d.upload_time, d.extension_id \
-	FROM jforum_attach a, jforum_attach_desc d \
-	WHERE a.post_id = ? \
-	AND a.attach_id = d.attach_id
-	
-AttachmentModel.selectAttachmentById = SELECT a.attach_id, a.user_id, a.post_id, a.privmsgs_id, d.mimetype, d.physical_filename, d.real_filename, \
-	d.download_count, d.description, d.filesize, d.upload_time, d.extension_id \
-	FROM jforum_attach a, jforum_attach_desc d \
-	WHERE a.attach_id = ? \
-	AND a.attach_id = d.attach_id
-	
-AttachmentModel.updateAttachment = UPDATE jforum_attach_desc SET description = ?, download_count = ? WHERE attach_id = ?
-AttachmentModel.removeAttachment = DELETE FROM jforum_attach WHERE attach_id = ?
-AttachmentModel.removeAttachmentInfo = DELETE FROM jforum_attach_desc WHERE attach_id = ?
-AttachmentModel.countPostAttachments = SELECT COUNT(1) FROM jforum_attach WHERE post_id = ?
-AttachmentModel.deleteGroupQuota = DELETE FROM jforum_attach_quota
-AttachmentModel.setGroupQuota = INSERT INTO jforum_attach_quota (group_id, quota_limit_id) VALUES (?, ?)
-AttachmentModel.selectGroupsQuotaLimits = SELECT group_id, quota_limit_id FROM jforum_attach_quota
-
-AttachmentModel.selectQuotaLimitByGroup = SELECT ql.quota_limit_id, ql.quota_desc, ql.quota_limit, ql.quota_type \
-	FROM jforum_quota_limit ql, jforum_attach_quota at \
-	WHERE ql.quota_limit_id = at.quota_limit_id \
-	AND at.group_id = ?
-	
 # ################
 # ModerationModel
 # ################
@@ -677,30 +612,30 @@ ModerationModel.topicsByForum = SELECT p.post_id, t.topic_id, t.topic_title, t.t
 	ORDER BY t.topic_id, post_time ASC 
 
 # #############
-# BannerDAO
+# BannerDao
 # #############
-BannerDAO.selectById = SELECT banner_id, name, banner_placement, banner_description, banner_clicks, banner_views, \
+BannerDao.selectById = SELECT banner_id, name, banner_placement, banner_description, banner_clicks, banner_views, \
 	banner_url, banner_weight, banner_active, banner_comment, banner_type, banner_width, banner_height \
 	FROM jforum_banner \
 	WHERE banner_id = ?
 	
-BannerDAO.selectAll = SELECT banner_id, banner_name, banner_placement, banner_description, banner_clicks, banner_views, \
+BannerDao.selectAll = SELECT banner_id, banner_name, banner_placement, banner_description, banner_clicks, banner_views, \
 	banner_url, banner_weight, banner_active, banner_comment, banner_type, banner_width, banner_height \
 	FROM jforum_banner \
 	ORDER BY comment
 	
-BannerDAO.canDelete = SELECT COUNT(1) AS total FROM jforum_banner WHERE banner_id = ?
-BannerDAO.delete = DELETE FROM jforum_banner WHERE banner_id = ?
+BannerDao.canDelete = SELECT COUNT(1) AS total FROM jforum_banner WHERE banner_id = ?
+BannerDao.delete = DELETE FROM jforum_banner WHERE banner_id = ?
 
-BannerDAO.update = UPDATE jforum_banner SET banner_name = ?, banner_placement = ?, banner_description = ?, banner_clicks = ?, \
+BannerDao.update = UPDATE jforum_banner SET banner_name = ?, banner_placement = ?, banner_description = ?, banner_clicks = ?, \
 	banner_views = ?, banner_url = ?, banner_weight = ?, banner_active = ?, banner_comment = ?, banner_type = ?, \
 	banner_width = ?, banner_height = ? \
 	WHERE banner_id = ?
 
-BannerDAO.addNew = INSERT INTO jforum_banner (banner_name, banner_placement, banner_description, banner_clicks, banner_views, banner_url, banner_weight, \
+BannerDao.addNew = INSERT INTO jforum_banner (banner_name, banner_placement, banner_description, banner_clicks, banner_views, banner_url, banner_weight, \
 	banner_active, banner_comment, banner_type, banner_width, banner_height) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
 
-BannerDAO.selectActiveBannerByPlacement = SELECT banner_id, banner_name, banner_placement, banner_description, banner_clicks, \
+BannerDao.selectActiveBannerByPlacement = SELECT banner_id, banner_name, banner_placement, banner_description, banner_clicks, \
 	banner_views, banner_url, \
 	banner_weight, banner_active, banner_comment, banner_type, banner_width, banner_height \
 	FROM jforum_banner \
@@ -709,12 +644,12 @@ BannerDAO.selectActiveBannerByPlacement = SELECT banner_id, banner_name, banner_
 	ORDER BY banner_weight ASC
 
 ##############
-# SummaryDAO
+# SummaryDao
 ##############
 
-SummaryDAO.selectAllRecipients = SELECT username, user_email FROM jforum_users 
+SummaryDao.selectAllRecipients = SELECT username, user_email FROM jforum_users 
 
-SummaryDAO.selectPosts = SELECT p.post_id, p.topic_id, p.forum_id, p.user_id, post_time, \
+SummaryDao.selectPosts = SELECT p.post_id, p.topic_id, p.forum_id, p.user_id, post_time, \
 	pt.post_subject, pt.post_text, username \
 	FROM jforum_topics t,jforum_posts p, jforum_posts_text pt, jforum_users u \
 	WHERE p.post_id = pt.post_id \
