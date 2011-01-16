@@ -36,88 +36,47 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
  * 
- * This file creation date: 24/05/2004 / 12:01 PM
+ * Created on 24/05/2004 01:07:39
  * The JForum Project
  * http://www.jforum.net
  */
 package net.iforums.dao.oracle;
 
-import net.iforums.dao.LuceneDao;
-import net.iforums.dao.ModerationDao;
-import net.iforums.dao.ModerationLogDao;
-import net.iforums.dao.PostDao;
-import net.iforums.dao.PrivateMessageDao;
-import net.iforums.dao.TopicDao;
-import net.iforums.dao.UserDao;
-import net.iforums.dao.generic.GenericDataAccessDriver;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import net.iforums.JForumExecutionContext;
+import net.iforums.beans.PrivateMessage;
+import net.iforums.dao.impl.PrivateMessageDaoImpl;
+import net.iforums.utils.preferences.SystemGlobals;
 
 /**
  * @author Dmitriy Kiriy
- * @version $Id: OracleDataAccessDriver.java,v 1.11 2007/09/10 22:34:21 rafaelsteil Exp $
+ * @version $Id: OraclePrivateMessageDao.java,v 1.10 2007/08/31 22:56:40 rafaelsteil Exp $
  */
-public class OracleDataAccessDriver extends GenericDataAccessDriver
+public class OraclePrivateMessageDaoImpl extends PrivateMessageDaoImpl
 {
-	private static PostDao postDao ;
-	private static TopicDao topicDao;
-	private static UserDao userDao;
-	private static PrivateMessageDao pmDao ;
-	private static ModerationDao moderationDao ;
-	private static ModerationLogDao moderationLogDao ;
-	private static LuceneDao luceneDao;
-	
 	/**
-	 * @see GenericDataAccessDriver#newModerationLogDao()
+	 * @see GenericPrivateMessageDao#addPmText(net.jforum.entities.PrivateMessage)
 	 */
-	public ModerationLogDao newModerationLogDao() 
-	{
-		return moderationLogDao;
-	}
-	
-	/**
-	 * @see net.iforums.dao.DataAccessDriver#newModerationDao()
-	 */
-	public ModerationDao newModerationDao()
-	{
-		return moderationDao;
+	protected void addPmText(PrivateMessage pm) throws Exception
+    {
+		PreparedStatement p = JForumExecutionContext.getConnection().prepareStatement(
+				SystemGlobals.getSql("PrivateMessagesModel.addText"));
+		p.setInt(1, pm.getId());
+		p.executeUpdate();
+		p.close();
+		
+		OracleUtils.writeBlobUTF16BinaryStream(SystemGlobals.getSql("PrivateMessagesModel.addTextField"), 
+			pm.getId(), pm.getPost().getText());
 	}
 	
 	/**
-	 * @see net.iforums.dao.DataAccessDriver#newPostDao()
+	 * @see GenericPrivateMessageDao#getPmText(java.sql.ResultSet)
 	 */
-	public PostDao newPostDao()
+	protected String getPmText(ResultSet rs) throws SQLException
 	{
-		return postDao;
-	}
-
-	/** 
-	 * @see net.iforums.dao.DataAccessDriver#newTopicDao()
-	 */
-	public TopicDao newTopicDao()
-	{
-		return topicDao;
-	}
-	
-	/** 
-	 * @see net.iforums.dao.DataAccessDriver#newUserDao()
-	 */
-	public UserDao newUserDao()
-	{
-		return userDao;
-	}
-	
-	/**
-	 * @see net.iforums.dao.DataAccessDriver#newPrivateMessageDao()
-	 */
-	public PrivateMessageDao newPrivateMessageDao()
-	{
-		return pmDao;
-	}
-	
-	/**
-	 * @see GenericDataAccessDriver#newLuceneDao()
-	 */
-	public LuceneDao newLuceneDao() 
-	{
-		return luceneDao;
+		return OracleUtils.readBlobUTF16BinaryStream(rs, "privmsgs_text");
 	}
 }

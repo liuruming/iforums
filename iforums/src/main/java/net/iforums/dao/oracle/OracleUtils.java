@@ -40,7 +40,7 @@
  * The JForum Project
  * http://www.jforum.net
  */
-package net.jforum.dao.oracle;
+package net.iforums.dao.oracle;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -50,8 +50,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import net.jforum.JForumExecutionContext;
-import net.jforum.util.DbUtils;
+import net.iforums.JForumExecutionContext;
+import net.iforums.utils.DbUtils;
 import oracle.sql.BLOB;
 
 /**

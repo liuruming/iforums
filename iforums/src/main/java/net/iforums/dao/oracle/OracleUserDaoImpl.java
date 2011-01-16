@@ -1,11 +1,11 @@
 /*
  * Copyright (c) JForum Team
  * All rights reserved.
- * 
+
  * Redistribution and use in source and binary forms, 
  * with or without modification, are permitted provided 
  * that the following conditions are met:
- * 
+
  * 1) Redistributions of source code must retain the above 
  * copyright notice, this list of conditions and the 
  * following  disclaimer.
@@ -36,88 +36,27 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
  * 
- * This file creation date: 24/05/2004 / 12:01 PM
+ * Created on 24/05/2004 22:36:07
  * The JForum Project
  * http://www.jforum.net
  */
 package net.iforums.dao.oracle;
 
-import net.iforums.dao.LuceneDao;
-import net.iforums.dao.ModerationDao;
-import net.iforums.dao.ModerationLogDao;
-import net.iforums.dao.PostDao;
-import net.iforums.dao.PrivateMessageDao;
-import net.iforums.dao.TopicDao;
-import net.iforums.dao.UserDao;
-import net.iforums.dao.generic.GenericDataAccessDriver;
+import java.util.List;
+
+import net.iforums.dao.impl.UserDaoImpl;
 
 /**
  * @author Dmitriy Kiriy
- * @version $Id: OracleDataAccessDriver.java,v 1.11 2007/09/10 22:34:21 rafaelsteil Exp $
+ * @version $Id: OracleUserDao.java,v 1.8 2006/08/20 22:47:32 rafaelsteil Exp $
  */
-public class OracleDataAccessDriver extends GenericDataAccessDriver
+public class OracleUserDaoImpl extends UserDaoImpl
 {
-	private static PostDao postDao ;
-	private static TopicDao topicDao;
-	private static UserDao userDao;
-	private static PrivateMessageDao pmDao ;
-	private static ModerationDao moderationDao ;
-	private static ModerationLogDao moderationLogDao ;
-	private static LuceneDao luceneDao;
-	
-	/**
-	 * @see GenericDataAccessDriver#newModerationLogDao()
-	 */
-	public ModerationLogDao newModerationLogDao() 
-	{
-		return moderationLogDao;
-	}
-	
-	/**
-	 * @see net.iforums.dao.DataAccessDriver#newModerationDao()
-	 */
-	public ModerationDao newModerationDao()
-	{
-		return moderationDao;
-	}
-	
-	/**
-	 * @see net.iforums.dao.DataAccessDriver#newPostDao()
-	 */
-	public PostDao newPostDao()
-	{
-		return postDao;
-	}
-
 	/** 
-	 * @see net.iforums.dao.DataAccessDriver#newTopicDao()
+	 * @see net.iforums.dao.UserDao#selectAll(int, int)
 	 */
-	public TopicDao newTopicDao()
+	public List selectAll(int startFrom, int count) 
 	{
-		return topicDao;
-	}
-	
-	/** 
-	 * @see net.iforums.dao.DataAccessDriver#newUserDao()
-	 */
-	public UserDao newUserDao()
-	{
-		return userDao;
-	}
-	
-	/**
-	 * @see net.iforums.dao.DataAccessDriver#newPrivateMessageDao()
-	 */
-	public PrivateMessageDao newPrivateMessageDao()
-	{
-		return pmDao;
-	}
-	
-	/**
-	 * @see GenericDataAccessDriver#newLuceneDao()
-	 */
-	public LuceneDao newLuceneDao() 
-	{
-		return luceneDao;
+		return super.selectAll(startFrom, (count > 0 ? startFrom + count : 0));
 	}
 }

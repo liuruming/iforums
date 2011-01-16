@@ -36,88 +36,37 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
  * 
- * This file creation date: 24/05/2004 / 12:01 PM
+ * Created on 24/05/2004 12:25:35
  * The JForum Project
  * http://www.jforum.net
  */
 package net.iforums.dao.oracle;
 
-import net.iforums.dao.LuceneDao;
-import net.iforums.dao.ModerationDao;
-import net.iforums.dao.ModerationLogDao;
-import net.iforums.dao.PostDao;
-import net.iforums.dao.PrivateMessageDao;
-import net.iforums.dao.TopicDao;
-import net.iforums.dao.UserDao;
-import net.iforums.dao.generic.GenericDataAccessDriver;
+import java.util.List;
+
+import net.iforums.dao.impl.TopicDaoImpl;
 
 /**
- * @author Dmitriy Kiriy
- * @version $Id: OracleDataAccessDriver.java,v 1.11 2007/09/10 22:34:21 rafaelsteil Exp $
+ * @author Dmitriy Kiriy 
+ * @author Jake Fear
+ * @version $Id: OracleTopicDao.java,v 1.13 2006/08/20 22:47:32 rafaelsteil Exp $
  */
-public class OracleDataAccessDriver extends GenericDataAccessDriver
+public class OracleTopicDaoImpl extends TopicDaoImpl
 {
-	private static PostDao postDao ;
-	private static TopicDao topicDao;
-	private static UserDao userDao;
-	private static PrivateMessageDao pmDao ;
-	private static ModerationDao moderationDao ;
-	private static ModerationLogDao moderationLogDao ;
-	private static LuceneDao luceneDao;
-	
-	/**
-	 * @see GenericDataAccessDriver#newModerationLogDao()
+   	/**
+   	 * Does some addition to make the parameters work with our query flavor.
+	 * @see net.iforums.dao.TopicDao#selectAllByForumByLimit(int, int, int)
 	 */
-	public ModerationLogDao newModerationLogDao() 
+	public List selectAllByForumByLimit(int forumId, int startFrom, int count)
 	{
-		return moderationLogDao;
+		return super.selectAllByForumByLimit(forumId, startFrom, startFrom + count);
 	}
 	
 	/**
-	 * @see net.iforums.dao.DataAccessDriver#newModerationDao()
+	 * @see net.iforums.dao.TopicDao#selectByUserByLimit(int, int, int)
 	 */
-	public ModerationDao newModerationDao()
+	public List selectByUserByLimit(int userId, int startFrom, int count) 
 	{
-		return moderationDao;
-	}
-	
-	/**
-	 * @see net.iforums.dao.DataAccessDriver#newPostDao()
-	 */
-	public PostDao newPostDao()
-	{
-		return postDao;
-	}
-
-	/** 
-	 * @see net.iforums.dao.DataAccessDriver#newTopicDao()
-	 */
-	public TopicDao newTopicDao()
-	{
-		return topicDao;
-	}
-	
-	/** 
-	 * @see net.iforums.dao.DataAccessDriver#newUserDao()
-	 */
-	public UserDao newUserDao()
-	{
-		return userDao;
-	}
-	
-	/**
-	 * @see net.iforums.dao.DataAccessDriver#newPrivateMessageDao()
-	 */
-	public PrivateMessageDao newPrivateMessageDao()
-	{
-		return pmDao;
-	}
-	
-	/**
-	 * @see GenericDataAccessDriver#newLuceneDao()
-	 */
-	public LuceneDao newLuceneDao() 
-	{
-		return luceneDao;
+		return super.selectByUserByLimit(userId, startFrom, startFrom + count);
 	}
 }
