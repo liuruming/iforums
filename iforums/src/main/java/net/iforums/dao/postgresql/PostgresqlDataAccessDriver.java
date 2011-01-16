@@ -40,10 +40,12 @@
  * The JForum Project
  * http://www.jforum.net
  */
-package net.jforum.dao.postgresql;
+package net.iforums.dao.postgresql;
+
+import net.iforums.dao.generic.GenericDataAccessDriver;
 
 /**
  * @author Rafael Steil
  * @version $Id: PostgresqlDataAccessDriver.java,v 1.9 2006/11/21 22:07:59 rafaelsteil Exp $
  */
-public class PostgresqlDataAccessDriver extends net.jforum.dao.generic.GenericDataAccessDriver {}
+public class PostgresqlDataAccessDriver extends GenericDataAccessDriver {}
