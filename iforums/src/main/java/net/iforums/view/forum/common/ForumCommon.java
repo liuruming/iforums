@@ -136,7 +136,7 @@ public class ForumCommon
 			if(catid!=-1&&catid!=c.getId()){
 				continue;
 			}
-			for (Iterator tmpIterator = c.getForums().iterator(); tmpIterator.hasNext(); ) {
+			for (Iterator tmpIterator = c.getForumList().iterator(); tmpIterator.hasNext(); ) {
 				Forum f = (Forum)tmpIterator.next();
 				ForumCommon.checkUnreadPosts(f, tracking, lastVisit);
 			}

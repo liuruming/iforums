@@ -198,7 +198,7 @@ public class ForumAction extends AdminCommand
 				this.request.getParameter("forum_id"))));
 		
 		Category category = ForumRepository.getCategory(toChange.getCategoryId());
-		List forums = new ArrayList(category.getForums());
+		List forums = new ArrayList(category.getForumList());
 		int index = forums.indexOf(toChange);
 		
 		if (index == -1 || (up && index == 0) || (!up && index + 1 == forums.size())) {

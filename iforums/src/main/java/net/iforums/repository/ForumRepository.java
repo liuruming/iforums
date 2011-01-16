@@ -397,7 +397,7 @@ public class ForumRepository implements Cacheable
 			relation = new HashMap();
 		}
 		
-		for (Iterator iter = c.getForums().iterator(); iter.hasNext(); ) {
+		for (Iterator iter = c.getForumList().iterator(); iter.hasNext(); ) {
 			Forum f = (Forum)iter.next();
 			relation.put(Integer.toString(f.getId()), categoryId);
 		}
@@ -857,7 +857,7 @@ public class ForumRepository implements Cacheable
 		List allCategories = ForumRepository.getAllCategories();
 		
 		for (Iterator iter = allCategories.iterator(); iter.hasNext(); ) {
-			Collection forums = ((Category)iter.next()).getForums();
+			Collection forums = ((Category)iter.next()).getForumList();
 			
 			for (Iterator tmpIterator = forums.iterator(); tmpIterator.hasNext(); ) {
 				Forum f = (Forum)tmpIterator.next();

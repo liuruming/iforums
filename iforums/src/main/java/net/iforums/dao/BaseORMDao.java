@@ -383,7 +383,7 @@ public class BaseORMDao<T> extends SqlMapClientDaoSupport {
     public List<T> select(int page, int size) {
         Map<String,Object> params = new HashMap<String,Object>(2);
         if(page<=0)page=1;
-        params.put("startId",(page-1)*size+1);
+        params.put("startId",(page-1)*size);
         params.put("endId",page*size);
         return queryForEntryList("select",params);
     }

@@ -16,6 +16,10 @@ import net.iforums.utils.DbUtils;
 import net.iforums.utils.preferences.SystemGlobals;
 @Repository
 public class CategoryDaoImpl extends BaseORMDao<Category> implements CategoryDao{
+	
+	public CategoryDaoImpl(){
+		setNamespace("Category");
+	}
 	/**
 	 * @see net.iforums.dao.CategoryDao#selectById(int)
 	 */

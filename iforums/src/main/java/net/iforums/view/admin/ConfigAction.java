@@ -161,7 +161,7 @@ public class ConfigAction extends AdminCommand
 			for (Iterator iter = categories.iterator(); iter.hasNext(); ) {
 				Category c = (Category)iter.next();
 				
-				for (Iterator iter2 = c.getForums().iterator(); iter2.hasNext(); ) {
+				for (Iterator iter2 = c.getForumList().iterator(); iter2.hasNext(); ) {
 					Forum f = (Forum)iter2.next();
 					TopicRepository.clearCache(f.getId());
 				}

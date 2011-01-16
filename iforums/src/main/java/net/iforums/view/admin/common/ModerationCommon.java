@@ -56,7 +56,7 @@ public class ModerationCommon
 {
 	public void setForumsModerationStatus(Category c, boolean status)
 	{
-		for (Iterator iter = c.getForums().iterator(); iter.hasNext(); ) {
+		for (Iterator iter = c.getForumList().iterator(); iter.hasNext(); ) {
 			Forum f = (Forum)iter.next();
 			if (f.isModerated() != c.isModerated()) {
 				f.setModerated(c.isModerated());
