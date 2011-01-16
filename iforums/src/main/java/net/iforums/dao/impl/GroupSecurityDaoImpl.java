@@ -23,7 +23,9 @@ import net.iforums.utils.DbUtils;
 import net.iforums.utils.preferences.SystemGlobals;
 
 import org.apache.commons.lang.StringUtils;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class GroupSecurityDaoImpl extends BaseORMDao<Group> implements GroupSecurityDao {
 	private List selectForumRoles(int forumId) 
 	{
