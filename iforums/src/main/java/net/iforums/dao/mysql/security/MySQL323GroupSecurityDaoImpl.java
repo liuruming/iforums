@@ -40,7 +40,7 @@
  * The JForum Project
  * http://www.jforum.net
  */
-package net.jforum.dao.mysql.security;
+package net.iforums.dao.mysql.security;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -51,12 +51,12 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import net.jforum.JForumExecutionContext;
-import net.jforum.dao.generic.security.GenericGroupSecurityDAO;
-import net.jforum.dao.generic.security.SecurityCommon;
-import net.jforum.security.RoleCollection;
-import net.jforum.util.DbUtils;
-import net.jforum.util.preferences.SystemGlobals;
+import net.iforums.JForumExecutionContext;
+import net.iforums.dao.generic.security.SecurityCommon;
+import net.iforums.dao.impl.GroupSecurityDaoImpl;
+import net.iforums.security.RoleCollection;
+import net.iforums.utils.DbUtils;
+import net.iforums.utils.preferences.SystemGlobals;
 
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
@@ -65,12 +65,12 @@ import com.mysql.jdbc.Statement;
  * MySQL 3.23 hacks based on Andy's work
  * 
  * @author Rafael Steil
- * @version $Id: MySQL323GroupSecurityDAO.java,v 1.9 2007/08/16 13:07:33 rafaelsteil Exp $
+ * @version $Id: MySQL323GroupSecurityDao.java,v 1.9 2007/08/16 13:07:33 rafaelsteil Exp $
  */
-public class MySQL323GroupSecurityDAO extends GenericGroupSecurityDAO
+public class MySQL323GroupSecurityDaoImpl extends GroupSecurityDaoImpl
 {	
 	/**
-	 * @see net.jforum.dao.generic.security.GenericGroupSecurityDAO#loadRoles(int[])
+	 * @see security.GenericGroupSecurityDao#loadRoles(int[])
 	 */
 	protected RoleCollection loadRoles(int[] groupIds)
 	{
@@ -128,7 +128,7 @@ public class MySQL323GroupSecurityDAO extends GenericGroupSecurityDAO
 	}
 	
 	/**
-	 * @see net.jforum.dao.security.SecurityDAO#deleteAllRoles(int)
+	 * @see net.iforums.dao.security.SecurityDao#deleteAllRoles(int)
 	 */
 	public void deleteAllRoles(int id)
 	{
