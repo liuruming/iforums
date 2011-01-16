@@ -76,7 +76,7 @@ public interface LoginAuthenticator
 	/**
 	 * Sets the user model for the instance.
 	 * 
-	 * @param dao UserDAOThe user model to set
+	 * @param dao UserDaoThe user model to set
 	 */
 	public void setUserModel(UserDao dao);
 }

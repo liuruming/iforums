@@ -43,6 +43,7 @@
 package net.iforums.sso;
 
 import net.iforums.beans.UserSession;
+import net.iforums.context.RequestContext;
 import net.iforums.utils.preferences.ConfigKeys;
 import net.iforums.utils.preferences.SystemGlobals;
 

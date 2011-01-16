@@ -47,11 +47,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Map;
 
+import org.springframework.stereotype.Repository;
+
+import net.iforums.JForumExecutionContext;
 import net.iforums.beans.User;
 import net.iforums.dao.UserDao;
 import net.iforums.utils.DbUtils;
+import net.iforums.utils.MD5;
 import net.iforums.utils.preferences.SystemGlobals;
-import net.jforum.JForumExecutionContext;
 
 /**
  * Default login authenticator for JForum.
@@ -61,12 +64,13 @@ import net.jforum.JForumExecutionContext;
  * @author Rafael Steil
  * @version $Id: DefaultLoginAuthenticator.java,v 1.10 2007/07/28 14:17:10 rafaelsteil Exp $
  */
+@Repository
 public class DefaultLoginAuthenticator implements LoginAuthenticator
 {
 	private UserDao userModel;
 
 	/**
-	 * @see net.jforum.sso.LoginAuthenticator#setUserModel(net.jforum.dao.UserDAO)
+	 * @see net.jforum.sso.LoginAuthenticator#setUserModel(net.iforums.dao.UserDao)
 	 */
 	public void setUserModel(UserDao userModel)
 	{

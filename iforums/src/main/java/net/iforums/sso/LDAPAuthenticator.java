@@ -154,7 +154,7 @@ public class LDAPAuthenticator implements LoginAuthenticator
 	}
 
 	/**
-	 * @see net.jforum.sso.LoginAuthenticator#setUserModel(net.jforum.dao.UserDAO)
+	 * @see net.jforum.sso.LoginAuthenticator#setUserModel(net.iforums.dao.UserDao)
 	 */
 	public void setUserModel(UserDao dao) 
 	{
