@@ -351,6 +351,11 @@ public class BaseORMDao<T> extends SqlMapClientDaoSupport {
         params.put("id",id);
         this.delete("deleteObjectById", params);
     }
+    public void deleteObjectById(int id) {
+    	Map<String,Object> params = new HashMap<String,Object>();
+    	params.put("id",id);
+    	this.delete("deleteObjectById", params);
+    }
     public void deleteObjectById(String id) {
         Map<String,Object> params = new HashMap<String,Object>();
         params.put("id",id);
@@ -360,6 +365,11 @@ public class BaseORMDao<T> extends SqlMapClientDaoSupport {
         Map<String,Object> params = new HashMap<String,Object>();
         params.put("id",id);
         return queryForEntry("getObjectById", params);
+    }
+    public T getObjectById(int id) {
+    	Map<String,Object> params = new HashMap<String,Object>();
+    	params.put("id",id);
+    	return queryForEntry("getObjectById", params);
     }
     
     public int getTotal() {
