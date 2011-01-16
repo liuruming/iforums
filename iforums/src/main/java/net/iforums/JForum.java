@@ -55,6 +55,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import net.iforums.beans.Banlist;
 import net.iforums.context.JForumContext;
+import net.iforums.context.RequestContext;
+import net.iforums.context.ResponseContext;
 import net.iforums.context.web.WebRequestContext;
 import net.iforums.context.web.WebResponseContext;
 import net.iforums.dao.MySQLVersionWorkarounder;
@@ -63,6 +65,7 @@ import net.iforums.repository.ModulesRepository;
 import net.iforums.repository.RankingRepository;
 import net.iforums.repository.SecurityRepository;
 import net.iforums.repository.SmiliesRepository;
+import net.iforums.utils.I18n;
 import net.iforums.utils.preferences.ConfigKeys;
 import net.iforums.utils.preferences.SystemGlobals;
 import freemarker.template.SimpleHash;

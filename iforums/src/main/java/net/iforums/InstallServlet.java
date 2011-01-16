@@ -53,9 +53,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import net.iforums.context.ForumContext;
 import net.iforums.context.JForumContext;
+import net.iforums.context.RequestContext;
+import net.iforums.context.ResponseContext;
 import net.iforums.context.web.WebRequestContext;
 import net.iforums.context.web.WebResponseContext;
 import net.iforums.repository.ModulesRepository;
+import net.iforums.utils.I18n;
 import net.iforums.utils.preferences.ConfigKeys;
 import net.iforums.utils.preferences.SystemGlobals;
 import freemarker.template.SimpleHash;

@@ -52,6 +52,7 @@ import javax.servlet.http.HttpServlet;
 import net.iforums.repository.BBCodeRepository;
 import net.iforums.repository.ModulesRepository;
 import net.iforums.repository.Tpl;
+import net.iforums.utils.I18n;
 import net.iforums.utils.bbcode.BBCodeHandler;
 import net.iforums.utils.preferences.ConfigKeys;
 import net.iforums.utils.preferences.SystemGlobals;

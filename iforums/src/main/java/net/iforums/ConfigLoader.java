@@ -204,7 +204,7 @@ public class ConfigLoader
 	public static void loadDaoImplementation()
 	{
 		// Start the dao.driver implementation
-		String driver = SystemGlobals.getValue(ConfigKeys.DAO_DRIVER);
+		String driver = SystemGlobals.getValue(ConfigKeys.Dao_DRIVER);
 
 		logger.info("Loading JDBC driver " + driver);
 

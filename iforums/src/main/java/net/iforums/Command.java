@@ -44,6 +44,8 @@ package net.iforums;
 
 import java.io.IOException;
 
+import net.iforums.context.RequestContext;
+import net.iforums.context.ResponseContext;
 import net.iforums.repository.Tpl;
 import net.iforums.utils.preferences.ConfigKeys;
 import net.iforums.utils.preferences.SystemGlobals;
