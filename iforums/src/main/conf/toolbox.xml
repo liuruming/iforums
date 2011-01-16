@@ -23,4 +23,9 @@
      <scope>application</scope>
      <class>org.apache.velocity.tools.generic.DateTool</class>
   </tool>
+  <tool>
+     <key>I18n</key>
+     <scope>application</scope>
+     <class>net.iforums.utils.Messages</class>
+  </tool>
 </toolbox>
