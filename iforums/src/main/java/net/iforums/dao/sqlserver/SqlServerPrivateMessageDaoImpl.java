@@ -1,11 +1,11 @@
 /*
  * Copyright (c) JForum Team
  * All rights reserved.
-
+ * 
  * Redistribution and use in source and binary forms, 
  * with or without modification, are permitted provided 
  * that the following conditions are met:
-
+ * 
  * 1) Redistributions of source code must retain the above 
  * copyright notice, this list of conditions and the 
  * following  disclaimer.
@@ -36,78 +36,54 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
  * 
- * Created on 29/05/2004 00:12:37
+ * Created on 24/05/2004 01:07:39
  * The JForum Project
  * http://www.jforum.net
  */
 package net.iforums.dao.sqlserver;
 
-import javax.annotation.Resource;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
-import net.iforums.dao.DataAccessDriver;
-import net.iforums.dao.KarmaDao;
-import net.iforums.dao.PostDao;
-import net.iforums.dao.PrivateMessageDao;
-import net.iforums.dao.TopicDao;
-import net.iforums.dao.UserDao;
-import net.iforums.dao.generic.GenericDataAccessDriver;
+import net.iforums.JForumExecutionContext;
+import net.iforums.beans.PrivateMessage;
+import net.iforums.dao.impl.PrivateMessageDaoImpl;
+import net.iforums.utils.DbUtils;
+import net.iforums.utils.preferences.SystemGlobals;
 
 /**
  * @author Andre de Andrade da Silva - andre.de.andrade@gmail.com
- * @author Dirk Rasmussen - d.rasmussen@bevis.de (2007/02/19, modifs for MS SqlServer 2005)
- * @see WEB-INF\config\database\sqlserver\sqlserver.sql (2007/02/19, MS SqlServer 2005 specific version!)
- * @version $Id: SqlServerDataAccessDriver.java,v 1.9 2007/07/28 20:07:18 rafaelsteil Exp $
+ * @version $Id: SqlServerPrivateMessageDao.java,v 1.11 2007/03/03 18:33:46 rafaelsteil Exp $
  */
-public class SqlServerDataAccessDriver extends GenericDataAccessDriver
+public class SqlServerPrivateMessageDaoImpl extends PrivateMessageDaoImpl
 {
-	@Resource(name="")
-	private static PostDao postDao;
-	@Resource(name="")
-	private static TopicDao topicDao;
-	@Resource(name="")
-	private static UserDao userDao;
-	@Resource(name="")
-	private static PrivateMessageDao pmDao;
-	@Resource(name="")
-	private static KarmaDao karmaDao;
+	/**
+	 * @see net.iforums.dao.PrivateMessageDao#selectById(net.jforum.entities.PrivateMessage)
+	 */
+	public PrivateMessage selectById(PrivateMessage pm)
+	{
+		PreparedStatement p = null;
+		ResultSet rs = null;
+		try {
+			p = JForumExecutionContext.getConnection().prepareStatement(
+					SystemGlobals.getSql("PrivateMessageModel.selectById"), ResultSet.TYPE_SCROLL_INSENSITIVE,
+					ResultSet.CONCUR_UPDATABLE);
 
-	/** 
-	 * @see net.iforums.dao.DataAccessDriver#newPostDao()
-	 */
-	public PostDao newPostDao()
-	{
-		return postDao;
-	}
+			p.setInt(1, pm.getId());
 
-	/** 
-	 * @see DataAccessDriver#newTopicDao()
-	 */
-	public TopicDao newTopicDao()
-	{
-		return topicDao;
-	}
-	
-	/** 
-	 * @see DataAccessDriver#newUserDao()
-	 */
-	public UserDao newUserDao()
-	{
-		return userDao;
-	}
-	
-	/** 
-	 * @see DataAccessDriver#newPrivateMessageDao()
-	 */
-	public PrivateMessageDao newPrivateMessageDao()
-	{
-		return pmDao;
-	}
-	
-	/** 
-	 * @see DataAccessDriver#newKarmaDao()
-	 */
-	public KarmaDao newKarmaDao()
-	{
-		return karmaDao;
+			rs = p.executeQuery();
+			if (rs.next()) {
+				pm = this.getPm(rs);
+			}
+
+			return pm;
+		}
+		catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+		finally {
+			DbUtils.close(rs, p);
+		}
 	}
 }
