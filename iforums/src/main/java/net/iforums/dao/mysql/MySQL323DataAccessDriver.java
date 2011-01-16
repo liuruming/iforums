@@ -40,20 +40,19 @@
  * The JForum Project
  * http://www.jforum.net
  */
-package net.jforum.dao.mysql;
+package net.iforums.dao.mysql;
 
-import net.iforums.dao.GroupSecurityDAO;
-import net.jforum.dao.mysql.security.MySQL323GroupSecurityDAO;
+import net.iforums.dao.GroupSecurityDao;
 
 public class MySQL323DataAccessDriver extends MysqlDataAccessDriver
 {
-	private static GroupSecurityDAO groupSecurityDAO = new MySQL323GroupSecurityDAO();
+	private static GroupSecurityDao groupSecurityDao;
 	
 	/**
-	 * @see net.jforum.dao.DataAccessDriver#newGroupSecurityDAO()
+	 * @see net.iforums.dao.DataAccessDriver#newGroupSecurityDao()
 	 */
-	public GroupSecurityDAO newGroupSecurityDAO()
+	public GroupSecurityDao newGroupSecurityDao()
 	{
-		return groupSecurityDAO;
+		return groupSecurityDao;
 	}
 }

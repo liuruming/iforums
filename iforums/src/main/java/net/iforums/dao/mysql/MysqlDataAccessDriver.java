@@ -40,10 +40,12 @@
  * The JForum Project
  * http://www.jforum.net
  */
-package net.jforum.dao.mysql;
+package net.iforums.dao.mysql;
+
+import net.iforums.dao.generic.GenericDataAccessDriver;
 
 /**
  * @author Rafael Steil
  * @version $Id: MysqlDataAccessDriver.java,v 1.7 2006/08/20 22:47:54 rafaelsteil Exp $
  */
-public class MysqlDataAccessDriver extends net.jforum.dao.generic.GenericDataAccessDriver {}
+public class MysqlDataAccessDriver extends GenericDataAccessDriver {}
