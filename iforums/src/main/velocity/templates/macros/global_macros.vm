@@ -1,5 +1,5 @@
 ## -----------------------------------------------------
-## 页面头部调用函数
+## 页脚跳转调用函数
 ## -----------------------------------------------------
 #macro(header, $menu, $title, $ad)
 #end
@@ -10,7 +10,7 @@
 			<td nowrap="nowrap">
 				<form action="" name="f" id="f" accept-charset="${encoding}">
 					<span class="gensmall">${I18n.getMessage("ForumIndex.goTo")}:&nbsp;</span>
-					<select onchange="if(this.options[this.selectedIndex].value != -1){ document.location = '${contextPath}/forums/show/'+ this.options[this.selectedIndex].value +'${extension}'; }" name="select">
+					<select onchange="if(this.options[this.selectedIndex].value != -1){ document.location = '${contextPath}/forum-'+ this.options[this.selectedIndex].value +'.html'; }" name="select">
 						<option value="-1" selected="selected">${I18n.getMessage("ForumIndex.goToSelectAForum")}</option>				
 						
 #foreach($category in $categoryList)
