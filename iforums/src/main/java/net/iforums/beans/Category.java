@@ -80,11 +80,11 @@ public class Category  implements Serializable
 	private boolean moderated;
 	private String name;
 	private Map<Integer, Forum> forumMap = new HashMap<Integer, Forum>();
-	private List<KeyValue<Integer,Forum>> forumList = new ArrayList<KeyValue<Integer,Forum>>();
+	private List<Forum> forumList = new ArrayList<Forum>();
 		
 	public Category() {}
 	
-	public Category(long id) {
+	public Category(int id) {
 		this.id = id;
 	}
 	
@@ -165,7 +165,7 @@ public class Category  implements Serializable
 	 */
 	public void addForum(Forum forum) {
 		this.forumMap.put(new Integer(forum.getId()), forum);
-		this.forumList.add(new KeyValue<Integer,Forum>(new Integer(forum.getId()),forum));
+		this.forumList.add(forum);
 	}
 	
 	/**
@@ -295,7 +295,7 @@ public class Category  implements Serializable
 	 * @return All forums, regardless it is accessible 
 	 * to the user or not.
 	 */
-	public List<KeyValue<Integer,Forum>> getForumList()
+	public List<Forum> getForumList()
 	{
 		return forumList;
 	}
@@ -307,14 +307,14 @@ public class Category  implements Serializable
 	 * @see #getForumList()
      * @param userId int
 	 */
-	public List<KeyValue<Integer,Forum>> getForums(int userId) 
+	public List<Forum> getForums(int userId) 
 	{
 		PermissionControl pc = SecurityRepository.get(userId);
-		List<KeyValue<Integer,Forum>> forums = new ArrayList<KeyValue<Integer,Forum>>();
+		List<Forum> forums = new ArrayList<Forum>();
 
-		for (Iterator<KeyValue<Integer,Forum>> iter = this.forumList.iterator(); iter.hasNext(); ) {
-			KeyValue<Integer,Forum> f = iter.next();
-			if (pc.canAccess(SecurityConstants.PERM_FORUM, Integer.toString(f.getValue().getId()))) {
+		for (Iterator<Forum> iter = this.forumList.iterator(); iter.hasNext(); ) {
+			Forum f = iter.next();
+			if (pc.canAccess(SecurityConstants.PERM_FORUM, Integer.toString(f.getId()))) {
 				forums.add(f);
 			}
 		}
@@ -343,6 +343,24 @@ public class Category  implements Serializable
 	 */
 	public String toString() {
 		return "[" + this.name + ", id=" + this.id + ", order=" + this.order + "]"; 
+	}
+
+	public Map<Integer, Forum> getForumMap() {
+		return forumMap;
+	}
+
+	public void setForumMap(Map<Integer, Forum> forumMap) {
+		this.forumMap = forumMap;
+	}
+
+	public void setForumList(List<Forum> forumList) {
+		this.forumList.clear();
+		this.forumList.addAll(forumList);
+		
+		forumMap.clear();
+		for(Forum forum:forumList){
+			forumMap.put(forum.getId(),forum);
+		}
 	}
 
 }

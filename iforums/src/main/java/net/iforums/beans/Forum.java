@@ -60,7 +60,7 @@ public class Forum implements Serializable
 	 */
 	private static final long serialVersionUID = 1L;
 	private int id;
-	private int idCategories;
+	private int catId;
 	private String name;
 	private String description;
 	private int order;
@@ -81,7 +81,7 @@ public class Forum implements Serializable
 	{
 		this.description = f.getDescription();
 		this.id = f.getId();
-		this.idCategories = f.getCategoryId();
+		this.catId = f.getCategoryId();
 		this.lastPostId = f.getLastPostId();
 		this.moderated = f.isModerated();
 		this.name = f.getName();
@@ -129,7 +129,7 @@ public class Forum implements Serializable
 	 * @return int value representing the ID of the category 
 	 */
 	public int getCategoryId() {
-		return this.idCategories;
+		return this.catId;
 	}
 
 	/**
@@ -205,7 +205,7 @@ public class Forum implements Serializable
 	 * @param idCategories The ID of the category  to set to the forum
 	 */
 	public void setIdCategories(int idCategories) {
-		this.idCategories = idCategories;
+		this.catId = idCategories;
 	}
 
 	/**

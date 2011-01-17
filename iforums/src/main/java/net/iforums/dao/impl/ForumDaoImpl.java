@@ -9,7 +9,9 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -37,102 +39,20 @@ public class ForumDaoImpl extends BaseORMDao<Forum> implements ForumDao{
 	private GroupSecurityDao groupSecurityDao;
 	@Resource
 	private TopicDao topicDao;
-	/**
-	 * @see net.iforums.dao.ForumDao#selectById(int)
-	 */
-	public Forum selectById(int forumId)
-	{
-		PreparedStatement p = null;
-		ResultSet rs = null;
-		try {
-			p = JForumExecutionContext.getConnection().prepareStatement(SystemGlobals.getSql("ForumModel.selectById"));
-			p.setInt(1, forumId);
 
-			rs = p.executeQuery();
-
-			Forum f = new Forum();
-
-			if (rs.next()) {
-				f = this.fillForum(rs);
-			}
-			return f;
-		}
-		catch (SQLException e) {
-			throw new RuntimeException(e);
-		}
-		finally {
-			DbUtils.close(rs, p);
-		}
+	public ForumDaoImpl(){
+		setNamespace("Forum");
 	}
-
-	protected Forum fillForum(ResultSet rs) throws SQLException
-	{
-		Forum f = new Forum();
-
-		f.setId(rs.getInt("forum_id"));
-		f.setIdCategories(rs.getInt("categories_id"));
-		f.setName(rs.getString("forum_name"));
-		f.setDescription(rs.getString("forum_desc"));
-		f.setOrder(rs.getInt("forum_order"));
-		f.setTotalTopics(rs.getInt("forum_topics"));
-		f.setLastPostId(rs.getInt("forum_last_post_id"));
-		f.setModerated(rs.getInt("moderated") > 0);
-		f.setTotalPosts(this.countForumPosts(f.getId()));
-
-		return f;
+	public List<Forum> selectForumByCatId(long catId,boolean hasLastPost){
+        Map<String,Object> params = new HashMap<String,Object>(21);
+        params.put("catId",catId);
+        List<Forum> forumList = queryForEntryList("selectForumByCatId",params);
+        
+        for(Forum forum:forumList){
+        	
+        }
+        return forumList;
 	}
-
-	protected int countForumPosts(int forumId)
-	{
-		PreparedStatement p = null;
-		ResultSet rs = null;
-		try {
-			p = JForumExecutionContext.getConnection().prepareStatement(
-					SystemGlobals.getSql("ForumModel.countForumPosts"));
-			p.setInt(1, forumId);
-			rs = p.executeQuery();
-
-			if (rs.next()) {
-				return rs.getInt(1);
-			}
-			
-			return 0;
-		}
-		catch (SQLException e) {
-			throw new RuntimeException(e);
-		}
-		finally {
-			DbUtils.close(rs, p);
-		}
-	}
-
-	/**
-	 * @see net.iforums.dao.ForumDao#selectAll()
-	 */
-	public List selectAll()
-	{
-		PreparedStatement p = null;
-		ResultSet rs = null;
-		try {
-			p = JForumExecutionContext.getConnection().prepareStatement(SystemGlobals.getSql("ForumModel.selectAll"));
-			List l = new ArrayList();
-
-			rs = p.executeQuery();
-
-			while (rs.next()) {
-				l.add(this.fillForum(rs));
-			}
-
-			return l;
-		}
-		catch (SQLException e) {
-			throw new RuntimeException(e);
-		}
-		finally {
-			DbUtils.close(rs, p);
-		}
-	}
-
 	/**
 	 * @see net.iforums.dao.ForumDao#setOrderUp(Forum, Forum)
 	 */
@@ -171,7 +91,7 @@ public class ForumDaoImpl extends BaseORMDao<Forum> implements ForumDao{
 			p.setInt(2, related.getId());
 			p.executeUpdate();
 
-			return this.selectById(forum.getId());
+			return this.getObjectById(forum.getId());
 		}
 		catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -181,27 +101,6 @@ public class ForumDaoImpl extends BaseORMDao<Forum> implements ForumDao{
 		}
 	}
 
-	/**
-	 * @see net.iforums.dao.ForumDao#delete(int)
-	 */
-	public void delete(int forumId)
-	{
-		PreparedStatement p = null;
-		try {
-			p = JForumExecutionContext.getConnection().prepareStatement(SystemGlobals.getSql("ForumModel.delete"));
-			p.setInt(1, forumId);
-
-			p.executeUpdate();
-			
-			groupSecurityDao.deleteForumRoles(forumId);
-		}
-		catch (SQLException e) {
-			throw new RuntimeException(e);
-		}
-		finally {
-			DbUtils.close(p);
-		}
-	}
 
 	/**
 	 * @see net.iforums.dao.ForumDao#update(net.jforum.entities.Forum)
@@ -573,7 +472,7 @@ public class ForumDaoImpl extends BaseORMDao<Forum> implements ForumDao{
 			
 			t.setInt(1, toForumId);
 
-			Forum f = this.selectById(toForumId);
+			Forum f = this.getObjectById(toForumId);
 
 			for (int i = 0; i < topics.length; i++) {
 				int topicId = Integer.parseInt(topics[i]);

@@ -60,7 +60,7 @@ import net.iforums.beans.LastPostInfo;
  */
 public interface ForumDao extends BaseDao<Forum>
 {
-	
+	public List<Forum> selectForumByCatId(long catId,boolean hasLastPost);
 	/**
 	 * Sets the forum's order one level up.
 	 * When you call this method on a specific forum, the forum that 

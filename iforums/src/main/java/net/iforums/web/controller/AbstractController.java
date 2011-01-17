@@ -1,5 +1,8 @@
 package net.iforums.web.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -22,7 +25,8 @@ public abstract class AbstractController extends ParameterizableViewController{
 	protected ModelAndView handleRequestInternal(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
         try{
-            return handleGetPostRequestInternal(request,response);
+        	Map<String,Object> model = new HashMap<String,Object>();
+            return handleGetPostRequestInternal(request,response,model);
         }catch(Exception e){
             logger.error("页面逻辑处理出现错误",e);
         }
@@ -35,7 +39,7 @@ public abstract class AbstractController extends ParameterizableViewController{
      * @return
      * @throws Exception
      */
-    protected abstract ModelAndView handleGetPostRequestInternal(HttpServletRequest request,HttpServletResponse response) throws Exception;
+    protected abstract ModelAndView handleGetPostRequestInternal(HttpServletRequest request,HttpServletResponse response,Map<String,Object> model) throws Exception;
 	
     public String getErrorViewName() {
 		return errorViewName;

@@ -25,6 +25,8 @@ public class ForumServiceImpl implements ForumService {
 		
 		if(hasForum){
 			for(Category category:categoryList){
+				category.setForumList(forumDao.selectForumByCatId(category.getId(),true));
+				System.out.println("--->"+category.getForumList());
 			}
 		}
 		return categoryList;

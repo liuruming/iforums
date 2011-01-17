@@ -37,7 +37,7 @@ public class TestController extends AbstractController{
 //	}
 	@Override
 	protected ModelAndView handleGetPostRequestInternal(
-			HttpServletRequest request, HttpServletResponse response)
+			HttpServletRequest request, HttpServletResponse response,Map<String,Object> model)
 			throws Exception {
 		Map<String,Object> params = new HashMap<String,Object>();
 		params.put("result", "oooo4562222");

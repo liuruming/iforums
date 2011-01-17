@@ -23,9 +23,8 @@ public class FrameController extends AbstractController{
 	
 	@Override
 	protected ModelAndView handleGetPostRequestInternal(
-			HttpServletRequest request, HttpServletResponse response)
+			HttpServletRequest request, HttpServletResponse response,Map<String,Object> model)
 			throws Exception {
-		Map<String,Object> model = new HashMap<String,Object>();
 		model.put("result", System.currentTimeMillis());
 		
 		model.put("categoryList", forumService.selectCategoryList(0, Integer.MAX_VALUE,false));
