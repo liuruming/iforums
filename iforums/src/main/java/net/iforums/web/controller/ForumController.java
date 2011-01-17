@@ -1,6 +1,5 @@
 package net.iforums.web.controller;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -9,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import net.iforums.service.ForumService;
 import net.iforums.utils.JsonUtil;
+import net.iforums.utils.ParamUtil;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,9 +25,14 @@ public class ForumController extends AbstractController{
 	protected ModelAndView handleGetPostRequestInternal(
 			HttpServletRequest request, HttpServletResponse response,Map<String,Object> model)
 			throws Exception {
-		model.put("result", System.currentTimeMillis());
+		ParamUtil paramUtil = new ParamUtil(request);
+		
+		int forumId = paramUtil.getInt("forumId", -1);
+		
+		model.put("forum", forumService.getForumById(forumId));
 		
 		model.put("categoryList", forumService.selectCategoryList(0, Integer.MAX_VALUE,true));
+		
 		System.out.println(JsonUtil.toString(model));
 		return new ModelAndView(getViewName(),model);
 	}

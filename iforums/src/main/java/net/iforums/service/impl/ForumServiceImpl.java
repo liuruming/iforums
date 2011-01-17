@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import net.iforums.beans.Category;
+import net.iforums.beans.Forum;
 import net.iforums.dao.CategoryDao;
 import net.iforums.dao.ForumDao;
 import net.iforums.service.ForumService;
@@ -26,10 +27,23 @@ public class ForumServiceImpl implements ForumService {
 		if(hasForum){
 			for(Category category:categoryList){
 				category.setForumList(forumDao.selectForumByCatId(category.getId(),true));
-				System.out.println("--->"+category.getForumList());
 			}
 		}
 		return categoryList;
 	}
 
+	public Category getCategoryById(long id,boolean hasForum){
+		Category category = categoryDao.getObjectById(id);
+		
+		if(category!=null&&hasForum){
+			category.setForumList(forumDao.selectForumByCatId(category.getId(),true));
+		}
+		
+		return category;
+	}
+
+	@Override
+	public Forum getForumById(int id) {
+		return forumDao.getObjectById(id);
+	}
 }
