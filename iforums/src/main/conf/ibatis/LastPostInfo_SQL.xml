@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="LastPostInfo">
+	<select id="getLastPostInfo" resultClass="net.iforums.beans.LastPostInfo" parameterClass="java.util.Map">
+	 	SELECT POST_TIME POSTTIMEMILLIS, P.TOPIC_ID TOPICID, T.TOPIC_REPLIES TOPICREPLIES, POST_ID POSTID, U.USER_ID USERID, U.USERNAME USERNAME  
+		FROM JFORUM_POSTS P, JFORUM_USERS U, JFORUM_TOPICS T , JFORUM_FORUMS F 
+		WHERE T.FORUM_ID = F.FORUM_ID 
+		AND T.TOPIC_ID = P.TOPIC_ID 
+		AND F.FORUM_LAST_POST_ID = T.TOPIC_LAST_POST_ID 
+		AND T.TOPIC_LAST_POST_ID = P.POST_ID 
+		AND P.FORUM_ID = #forumId# 
+		AND P.USER_ID = U.USER_ID 
+	    AND P.NEED_MODERATE = 0
+	</select>
+</sqlMap>
