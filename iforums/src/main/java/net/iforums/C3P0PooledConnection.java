@@ -44,6 +44,7 @@ package net.iforums;
 
 import java.lang.reflect.Method;
 import java.sql.Connection;
+import java.util.Random;
 
 import net.iforums.utils.preferences.ConfigKeys;
 import net.iforums.utils.preferences.SystemGlobals;
@@ -163,5 +164,25 @@ public class C3P0PooledConnection extends DBConnection
 	public void realReleaseAllConnections() throws Exception
 	{
 		DataSources.destroy(this.ds);
-	}
+	} public static void main(String[] args) {
+		  // TODO Auto-generated method stub
+		 
+
+		  int N = 100000000;    /*定义随机点数*/
+		  int    n = 0,i,resulttimes;
+		   double r;
+		      double x,y;                          /*坐标*/
+		      Random s = new Random();                     
+		   for(resulttimes=0;resulttimes<10;resulttimes++){   /*输出十次结果*/
+		      for (i=1;i<=N;i++)
+		      {          
+		          x=s.nextDouble();           /*在0~1之间产生一个随机x坐标*/
+		          y=s.nextDouble();           /*在0~1之间产生一个随机y坐标*/
+		           if(x*x+y*y<=1.0)   n++;          /*统计落入单位圆中的点数*/
+		       }
+		   r=(double)n/N;
+		   System.out.println("The result of pai is "+r*4);        /*计算出π的值*/
+		   n=0;
+		   }
+		 }
 }
