@@ -39,7 +39,7 @@
 </div>
 <div class="pages_btns" valign="center">
 	<div class="pages">
-		<a href="${JForumContext.encodeURL("/forums/list")}" class="next"> &lsaquo;&lsaquo; ${I18n.getMessage("ForumListing.forumIndex")}</a>
+		<a href="${contextPath}/index.html" class="next"> &lsaquo;&lsaquo; ${I18n.getMessage("ForumListing.forumIndex")}</a>
 	</div>
 	${paginationData}
 	<SPAN class=postbtn id="newtopic" onmouseover="$('newtopic').id = 'newtopictmp';this.id = 'newtopic';showMenu(this.id);">
@@ -206,7 +206,7 @@
 <div id="foruminfo">
 	<div id="nav">
 		<p>
-		<a class="forumlink" href="${JForumContext.encodeURL("/forums/list")}">${I18n.getMessage("ForumListing.forumIndex")}</a> &raquo;&nbsp; 
+		<a class="forumlink" href="${contextPath}/index.html">${I18n.getMessage("ForumListing.forumIndex")}</a> &raquo;&nbsp; 
 		<a class="forumlink" href="${JForumContext.encodeURL("/forums/show/${forum.id}")}">${forum.name}</a>
 		</p>
 	</div>

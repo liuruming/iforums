@@ -14,7 +14,7 @@
 <table cellspacing="0" cellpadding="0" width="100%" border="0">
 	<tr>
 		<td>
-			<a href="$!{homepageLink}"><img src="$!{contextPath}/templates/$!{templateName}/images/logo.jpg"  vspace="1" border="0" alt="[Logo]" /></a>
+			<a href="${contextPath}/index.html"><img src="$!{contextPath}/templates/$!{templateName}/images/logo.jpg"  vspace="1" border="0" alt="[Logo]" /></a>
 		</td>					 
 		<td width="100%" align="center" valign="middle">
 			<table cellspacing="0" cellpadding="2" border="0">
@@ -30,27 +30,27 @@
 <div id="headermenu">
 	<ul>
 #if(!$logged && !$sso)
-		<li><a id="register" class="mainmenu" href="$!{JForumContext.encodeURL("/user/insert")}">
+		<li><a id="register" class="mainmenu" href="$!{contextPath}/register.html">
 		$!{I18n.getMessage("ForumBase.register")}</a></li>
-		<li><a id="login" class="mainmenu" href="$!{JForumContext.encodeURL("/user/login")}">
+		<li><a id="login" class="mainmenu" href="$!{contextPath}/login.html">
 		 $!{I18n.getMessage("ForumBase.login")}</a></li>
 #end
-	<li><a id="search" class="mainmenu" href="$!{JForumContext.encodeURL("/search/filters")}">$!{I18n.getMessage("ForumBase.search")}</a></li>
-	<li><a id="latest" class="mainmenu" href="$!{JForumContext.encodeURL("/recentTopics/list")}">$!{I18n.getMessage("ForumBase.recentTopics")}</a></li>
-	<li><a id="hottest" class="mainmenu" href="$!{JForumContext.encodeURL("/hottestTopics/list")}">$!{I18n.getMessage("ForumBase.hottestTopics")}</a></li>
-	<li><a id="latest2" class="mainmenu" href="$!{JForumContext.encodeURL("/user/list")}">$!{I18n.getMessage("ForumBase.usersList")}</a></li>
+	<li><a id="search" class="mainmenu" href="$!{contextPath}/search/filters.html">$!{I18n.getMessage("ForumBase.search")}</a></li>
+	<li><a id="latest" class="mainmenu" href="$!{contextPath}/recentTopics/list.html">$!{I18n.getMessage("ForumBase.recentTopics")}</a></li>
+	<li><a id="hottest" class="mainmenu" href="$!{contextPath}/hottestTopics/list.html">$!{I18n.getMessage("ForumBase.hottestTopics")}</a></li>
+	<li><a id="latest2" class="mainmenu" href="$!{contextPath}/user/list.html">$!{I18n.getMessage("ForumBase.usersList")}</a></li>
 	<li><a id="backtosite" class="mainmenu" href="$!{homepageLink}">$!{I18n.getMessage("ForumBase.backToSite")}</a>&nbsp;</li>
 #if($canAccessModerationLog)
-		<li><a id="moderationlog" class="mainmenu" href="$!{JForumContext.encodeURL("/moderation/showActivityLog")}">$!{I18n.getMessage("ModerationLog.moderationLog")}</a></li>
+		<li><a id="moderationlog" class="mainmenu" href="$!{contextPath}/moderation/showActivityLog")}">$!{I18n.getMessage("ModerationLog.moderationLog")}</a></li>
 #end
 #if($logged)
-		<li><a id="myprofile" class="mainmenu" href="$!{JForumContext.encodeURL("/user/edit/$!{session.userId}")}">
+		<li><a id="myprofile" class="mainmenu" href="$!{contextPath}/user/edit/$!{session.userId}.html">
 		 $!{I18n.getMessage("ForumBase.profile")}</a>&nbsp; </li>
 #if($bookmarksEnabled)
-			<li><a class="mainmenu" href="$!{JForumContext.encodeURL("/bookmarks/list/$!{session.userId}")}">
+			<li><a class="mainmenu" href="$!{contextPath}/bookmarks/list/$!{session.userId}.html">
 			$!{I18n.getMessage("Bookmarks.myBag")}</a>&nbsp;</li>
 #end
-		<li><a id="privatemessages" class="mainmenu" href="$!{JForumContext.encodeURL("/pm/inbox")}">
+		<li><a id="privatemessages" class="mainmenu" href="$!{contextPath}/pm/inbox.html">
 #if ($session.privateMessages > 0)
 				$!{I18n.getMessage("ForumBase.newPm")}: ($!{session.privateMessages})
 #else
@@ -58,7 +58,7 @@
 #end
 		</a>&nbsp;</li>
 #if(!$sso)
-			<li><a id="logout" class="mainmenu" href="$!{JForumContext.encodeURL("/user/logout")}">
+			<li><a id="logout" class="mainmenu" href="$!{contextPath}/user/logout.html">
 			$!{I18n.getMessage("ForumBase.logout")} $!{session.username} </a></li>
 #end
 #end
