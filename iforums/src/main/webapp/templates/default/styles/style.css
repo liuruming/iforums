@@ -860,7 +860,8 @@ TD.selector {
 	COLOR: #069
 }
 .formbox LABEL {
-	CURSOR: pointer
+	CURSOR: pointer;
+	float:right;
 }
 .formbox *.tips {
 	COLOR: #999
