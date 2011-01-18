@@ -30,7 +30,7 @@
 <div id="headermenu">
 	<ul>
 #if(!$logged && !$sso)
-		<li><a id="register" class="mainmenu" href="$!{contextPath}/register.html">
+		<li><a id="register" class="mainmenu" href="$!{contextPath}/agreement.html">
 		$!{I18n.getMessage("ForumBase.register")}</a></li>
 		<li><a id="login" class="mainmenu" href="$!{contextPath}/login.html">
 		 $!{I18n.getMessage("ForumBase.login")}</a></li>
