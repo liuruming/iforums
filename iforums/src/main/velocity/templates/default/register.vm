@@ -49,8 +49,8 @@ function newCaptcha()
 	document.getElementById("captcha_img").src = "${contextPath}/jforum${extension}?module=captcha&action=regenerate&timestamp=" + new Date().getTime();
 }
 </script>
-<div id="nav"><a class="nav" href="${JForumContext.encodeURL("/forums/list")}">${I18n.getMessage("ForumListing.forumIndex")}</a></div>
-<form id="formregister" accept-charset="${encoding}" name="formregister" action="${JForumContext.encodeURL("/jforum")}" method="post" onsubmit="return validateRegistrationForm(this);">
+<div id="nav"><a class="nav" href="$!{contextPath}/index.html">${I18n.getMessage("ForumListing.forumIndex")}</a></div>
+<form id="formregister" accept-charset="utf-8" name="formregister" action="$!{contextPath}/register.html" method="post" onsubmit="return validateRegistrationForm(this);">
 <input type="hidden" name="action" value="${action}" />
 <input type="hidden" name="module" value="${moduleName}" />
 <div class="mainbox formbox">	
@@ -58,7 +58,7 @@ function newCaptcha()
 <H1>${I18n.getMessage("User.registerInformation")} (${I18n.getMessage("User.requiredFields")})</H1>
 <table cellspacing="1" cellpadding="3" width="100%" border="0">
 	<tr>
-		<td width="15%"><label>${I18n.getMessage("User.user")}: *</label></td>
+		<td width="160px"><label>${I18n.getMessage("User.user")}: *</label></td>
 		<td align="left"><input class="post" type="text" style="WIDTH: 200px" maxlength="25" size="25" name="username" value="$!{username}"/></td>
 	</tr>
         
