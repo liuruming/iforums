@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
 <sqlMap namespace="Topic">
-	<select id="isValid" resultClass="java.lang.Integer" parameterClass="java.lang.String">
-		SELECT 1 FROM JFORUM_API WHERE API_KEY = #key#
+	<select id="selectByForumId" resultClass="net.iforums.beans.Topic" parameterClass="java.util.Map">
+		SELECT t.*, p.user_id AS last_user_id, p.post_time, p.attach AS lastPostHasAttach 
+		FROM jforum_topics t, jforum_posts p 
+		WHERE (t.forumid = #forumId# OR t.movedid = #forumId#) 
+		AND p.post_id = t.lastpostid 
+		AND p.need_moderate = 0 
+		ORDER BY t.type DESC, t.lastpostid DESC 
+		LIMIT #startId#, #size#
 	</select>
 </sqlMap>

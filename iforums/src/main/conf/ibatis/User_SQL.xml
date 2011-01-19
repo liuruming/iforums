@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
 <sqlMap namespace="User">
-	<select id="isValid" resultClass="java.lang.Integer" parameterClass="java.lang.String">
-		SELECT 1 FROM JFORUM_API WHERE API_KEY = #key#
+	<select id="getObjectById" resultClass="net.iforums.beans.User" parameterClass="java.util.Map">
+		SELECT COUNT(pm.privmsgs_to_userid) AS private_messages, u.* 
+		FROM jforum_users u 
+		LEFT JOIN jforum_privmsgs pm ON pm.privmsgs_type = 1 AND pm.privmsgs_to_userid = u.id 
+		WHERE u.id = #id# 
+		GROUP BY pm.privmsgs_to_userid
 	</select>
 </sqlMap>
