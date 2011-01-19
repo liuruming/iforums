@@ -111,6 +111,7 @@ public class User implements Serializable
 	private boolean viewEmailEnabled = true;
 	private List groupsList;
 	private int privateMessagesCount;
+	private double karmaPoints;
 	private KarmaStatus karma;
 	private int active;
 	private String activationKey;
@@ -909,5 +910,49 @@ public class User implements Serializable
 	public void setNotifyText(boolean notifyText)
 	{
 		this.notifyText = notifyText;
+	}
+
+	public double getKarmaPoints() {
+		return karmaPoints;
+	}
+
+	public void setKarmaPoints(double karmaPoints) {
+		this.karmaPoints = karmaPoints;
+	}
+
+	public Map getExtra() {
+		return extra;
+	}
+
+	public void setExtra(Map extra) {
+		this.extra = extra;
+	}
+
+	public boolean isNotifyAlways() {
+		return notifyAlways;
+	}
+
+	public boolean isNotifyText() {
+		return notifyText;
+	}
+
+	public int getActive() {
+		return active;
+	}
+
+	public int getDeleted() {
+		return deleted;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setExternalAvatar(boolean isExternalAvatar) {
+		this.isExternalAvatar = isExternalAvatar;
+	}
+
+	public void setGroupsList(List groupsList) {
+		this.groupsList = groupsList;
 	}
 }

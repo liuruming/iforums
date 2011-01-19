@@ -108,7 +108,7 @@ public interface TopicDao extends BaseDao<Topic>
      * @param startFrom int
      * @param count int
 	 */
-	public List selectAllByForumByLimit(int forumId, int startFrom, int count) ;
+	public List<Topic> selectByForumId(int forumId, int page, int size) ;
 
     /**
      * Selects all topics associated to a specific user and belonging to

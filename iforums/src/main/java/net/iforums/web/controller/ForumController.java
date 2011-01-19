@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import net.iforums.service.ForumService;
+import net.iforums.service.TopicService;
 import net.iforums.utils.JsonUtil;
 import net.iforums.utils.ParamUtil;
 
@@ -20,6 +21,8 @@ public class ForumController extends AbstractController{
 	
 	@Resource
 	private ForumService forumService;
+	@Resource
+	private TopicService topicService;
 	
 	@Override
 	protected ModelAndView handleGetPostRequestInternal(
@@ -30,6 +33,7 @@ public class ForumController extends AbstractController{
 		int forumId = paramUtil.getInt("forumId", -1);
 		
 		model.put("forum", forumService.getForumById(forumId));
+		model.put("topicList", topicService.selectTopicByForumId(forumId, 0, getSize()));
 		
 		model.put("categoryList", forumService.selectCategoryList(0, Integer.MAX_VALUE,true));
 		

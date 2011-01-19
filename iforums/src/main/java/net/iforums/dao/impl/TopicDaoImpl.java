@@ -90,6 +90,10 @@ public class TopicDaoImpl extends BaseORMDao<Topic> implements TopicDao
 	private PostDao postDao;
 	@Resource
 	private PollDao pollDao;
+	
+	public TopicDaoImpl(){
+		setNamespace("Topic");
+	}
 	/**
 	 * @see net.iforums.dao.TopicDao#findTopicsByDateRange(net.jforum.search.SearchArgs)
 	 */
@@ -454,33 +458,19 @@ public class TopicDaoImpl extends BaseORMDao<Topic> implements TopicDao
 	 */
 	public List selectAllByForum(int forumId)
 	{
-		return this.selectAllByForumByLimit(forumId, 0, Integer.MAX_VALUE);
+		return this.selectByForumId(forumId, 0, Integer.MAX_VALUE);
 	}
 
 	/**
 	 * @see net.iforums.dao.TopicDao#selectAllByForumByLimit(int, int, int)
 	 */
-	public List selectAllByForumByLimit(int forumId, int startFrom, int count)
+	public List<Topic> selectByForumId(int forumId, int page, int size)
 	{
-		String sql = SystemGlobals.getSql("TopicModel.selectAllByForumByLimit");
-
-		PreparedStatement p = null;
-
-		try {
-			p = JForumExecutionContext.getConnection().prepareStatement(sql);
-			p.setInt(1, forumId);
-			p.setInt(2, forumId);
-			p.setInt(3, startFrom);
-			p.setInt(4, count);
-
-			return this.fillTopicsData(p);
-		}
-		catch (SQLException e) {
-			throw new RuntimeException(e);
-		}
-		finally {
-			DbUtils.close(p);
-		}
+		Map<String,Object> parameterObject = new HashMap<String,Object>();
+		parameterObject.put("forumId", forumId);
+		parameterObject.put("startId", page*size);
+		parameterObject.put("size", size);
+		return queryForEntryList("selectByForumId", parameterObject);
 	}
 
 	/**

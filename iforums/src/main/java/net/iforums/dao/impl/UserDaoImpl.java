@@ -80,6 +80,7 @@ public class UserDaoImpl extends BaseORMDao<User> implements UserDao
 	private KarmaDao karmaDao;
 	public UserDaoImpl()
 	{
+		setNamespace("User");
 //		loginAuthenticator = (LoginAuthenticator)SystemGlobals.getObjectValue(
 //			ConfigKeys.LOGIN_AUTHENTICATOR_INSTANCE);
 		

@@ -70,6 +70,8 @@ public class Topic implements Serializable
 	private int totalReplies;
 	private int status;
 	private int type;
+	private int userId;
+	private int lastUserId;
 	private int firstPostId;
 	private int lastPostId;	
 	private int voteId;
@@ -79,6 +81,7 @@ public class Topic implements Serializable
 	private boolean moderated;
 	private boolean isHot;
 	private boolean hasAttach;
+	private boolean lastPostHasAttach;
 	private boolean paginate;
 	
 	private String firstPostTime;
@@ -443,5 +446,29 @@ public class Topic implements Serializable
 	public void setMovedId(int movedId)
 	{
 		this.movedId = movedId;
+	}
+
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
+	public int getLastUserId() {
+		return lastUserId;
+	}
+
+	public void setLastUserId(int lastUserId) {
+		this.lastUserId = lastUserId;
+	}
+
+	public boolean isLastPostHasAttach() {
+		return lastPostHasAttach;
+	}
+
+	public void setLastPostHasAttach(boolean lastPostHasAttach) {
+		this.lastPostHasAttach = lastPostHasAttach;
 	}
 }

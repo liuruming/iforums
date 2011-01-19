@@ -20,6 +20,7 @@ import org.springframework.web.servlet.view.RedirectView;
 public abstract class AbstractController extends ParameterizableViewController{
 
 	private String errorViewName = ForumConstants.ERROR_VIEW_NAME;
+	private int size = 20;
 	
 	@Override
 	protected ModelAndView handleRequestInternal(HttpServletRequest request,
@@ -46,5 +47,11 @@ public abstract class AbstractController extends ParameterizableViewController{
 	}
 	public void setErrorViewName(String errorViewName) {
 		this.errorViewName = errorViewName;
+	}
+	public int getSize() {
+		return size;
+	}
+	public void setSize(int size) {
+		this.size = size;
 	}
 }

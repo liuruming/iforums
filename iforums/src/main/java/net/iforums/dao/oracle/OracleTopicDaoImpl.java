@@ -59,7 +59,7 @@ public class OracleTopicDaoImpl extends TopicDaoImpl
 	 */
 	public List selectAllByForumByLimit(int forumId, int startFrom, int count)
 	{
-		return super.selectAllByForumByLimit(forumId, startFrom, startFrom + count);
+		return super.selectByForumId(forumId, startFrom, startFrom + count);
 	}
 	
 	/**

@@ -10,6 +10,7 @@ import net.iforums.beans.Category;
 import net.iforums.beans.Forum;
 import net.iforums.dao.CategoryDao;
 import net.iforums.dao.ForumDao;
+import net.iforums.dao.TopicDao;
 import net.iforums.service.ForumService;
 
 @Service

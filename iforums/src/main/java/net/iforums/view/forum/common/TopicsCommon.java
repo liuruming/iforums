@@ -102,14 +102,14 @@ public class TopicsCommon
 			if (topics.size() == 0 || !TopicRepository.isLoaded(forumId)) {
 				synchronized (MUTEXT) {
 					if (topics.size() == 0 || !TopicRepository.isLoaded(forumId)) {
-						topics = tm.selectAllByForumByLimit(forumId, start, topicsPerPage);
+						topics = tm.selectByForumId(forumId, start, topicsPerPage);
 						TopicRepository.addAll(forumId, topics);
 					}
 				}
 			}
 		}
 		else {
-			topics = tm.selectAllByForumByLimit(forumId, start, topicsPerPage);
+			topics = tm.selectByForumId(forumId, start, topicsPerPage);
 		}
 		
 		return topics;
