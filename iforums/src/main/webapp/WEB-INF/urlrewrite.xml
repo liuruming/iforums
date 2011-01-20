@@ -5,12 +5,20 @@
 -->
 <urlrewrite>
     <rule>
+        <from>^/$</from>
+        <to>/index.do</to>
+    </rule>
+    <rule>
         <from>^/index-([0-9]+)\.html</from>
         <to>/index.do?catId=$1</to>
     </rule>
     <rule>
         <from>^/forum-([0-9]+)\.html</from>
         <to>/forum.do?forumId=$1</to>
+    </rule>
+    <rule>
+        <from>^/newTopic-([0-9]+)\.html</from>
+        <to>/newTopic.do?forumId=$1</to>
     </rule>
     <rule>
         <from>^/([a-zA-Z0-9]+)\.html</from>
