@@ -12,6 +12,7 @@ import net.iforums.beans.Category;
 import net.iforums.service.ForumService;
 import net.iforums.utils.JsonUtil;
 import net.iforums.utils.ParamUtil;
+import net.iforums.web.ParamConstants;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,7 +30,7 @@ public class NewTopicController extends AbstractController{
 			HttpServletRequest request, HttpServletResponse response,Map<String,Object> model)
 			throws Exception {
 		ParamUtil paramUtil = new ParamUtil(request);
-		long catId = paramUtil.getLong("catId", -1l);
+		long catId = paramUtil.getLong(ParamConstants.ID, -1l);
 		
 		List<Category> categoryList = null;
 		if(catId!=-1){

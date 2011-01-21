@@ -6,9 +6,9 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import net.iforums.beans.Topic;
 import net.iforums.service.ForumService;
 import net.iforums.service.TopicService;
-import net.iforums.utils.JsonUtil;
 import net.iforums.utils.ParamUtil;
 import net.iforums.web.ParamConstants;
 
@@ -17,28 +17,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping(value="forum.do")
-public class ForumController extends AbstractController{
+@RequestMapping(value="topic.do")
+public class TopicController extends AbstractController {
 	
-	@Resource
-	private ForumService forumService;
 	@Resource
 	private TopicService topicService;
 	
+	@Resource
+	private ForumService forumService;
+	
 	@Override
 	protected ModelAndView handleGetPostRequestInternal(
-			HttpServletRequest request, HttpServletResponse response,Map<String,Object> model)
-			throws Exception {
+			HttpServletRequest request, HttpServletResponse response,
+			Map<String, Object> model) throws Exception {
 		ParamUtil paramUtil = new ParamUtil(request);
 		
-		int forumId = paramUtil.getInt(ParamConstants.ID, -1);
+		long topicId = paramUtil.getInt(ParamConstants.ID, -1);
 		
-		model.put("forum", forumService.getForumById(forumId));
-		model.put("topicList", topicService.selectTopicByForumId(forumId, 0, getSize()));
-		
-		model.put("categoryList", forumService.selectCategoryList(0, Integer.MAX_VALUE,true));
-		
-		System.out.println(JsonUtil.toString(model));
+		Topic topic = topicService.getTopicById(topicId);
+		model.put("topic", topic);
+		model.put("forum", forumService.getForumById(topic.getForumId()));
 		return new ModelAndView(getViewName(),model);
 	}
+
 }

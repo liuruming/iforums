@@ -10,4 +10,10 @@
 		ORDER BY t.type DESC, t.lastpostid DESC 
 		LIMIT #startId#, #size#
 	</select>
+	<select id="getObjectById" resultClass="net.iforums.beans.Topic" parameterClass="java.util.Map">
+		SELECT t.*, p.user_id AS last_user_id, p.post_time, p.attach AS attach 
+		FROM jforum_topics t, jforum_posts p 
+		WHERE t.id = #id# 
+		AND p.post_id = t.lastpostid
+	</select>
 </sqlMap>

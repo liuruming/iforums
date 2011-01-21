@@ -28,4 +28,12 @@ public class TopicServiceImpl implements TopicService {
 		}
 		return topicList;
 	}
+	
+	public Topic getTopicById(long topicId){
+		Topic topic = topicDao.getObjectById(topicId);
+		if(topic!=null){
+			topic.setPostedBy(userDao.getObjectById(topic.getUserId()));
+		}
+		return topicDao.getObjectById(topicId);
+	}
 }
