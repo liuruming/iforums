@@ -47,7 +47,6 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 
-import net.iforums.JForumExecutionContext;
 import net.iforums.beans.Post;
 import net.iforums.dao.DataAccessDriver;
 import net.iforums.dao.LuceneDao;
@@ -139,8 +138,6 @@ public class LuceneReindexer
 					: lastPostId;
 				
 				try {
-					JForumExecutionContext ex = JForumExecutionContext.get();
-					JForumExecutionContext.set(ex);
 					
 					List l = dao.getPostsToIndex(firstPostId, toPostId);
 					
@@ -152,7 +149,6 @@ public class LuceneReindexer
 						counter = 0;
 					}
 					
-					JForumExecutionContext.finish();
 					contextFinished = true;
 					
 					for (Iterator iter = l.iterator(); iter.hasNext(); ) {
@@ -180,7 +176,6 @@ public class LuceneReindexer
 				}
 				finally {
 					if (!contextFinished) {
-						JForumExecutionContext.finish();
 					}
 				}
 			}
