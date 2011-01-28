@@ -47,7 +47,6 @@ import java.io.Serializable;
 import java.util.Date;
 
 import net.iforums.ControllerUtils;
-import net.iforums.JForumExecutionContext;
 import net.iforums.SessionFacade;
 import net.iforums.repository.SecurityRepository;
 import net.iforums.security.PermissionControl;
@@ -431,18 +430,6 @@ public class UserSession implements Serializable
 		this.imageCaptcha = null;
 	}
 	
-	/**
-     * @deprecated use JForumExecutionContext.getForumContext().isBot() instead
-     *
-     *
-	 * Checks if it's a bot
-	 * @return <code>true</code> if this user session is from any robot
-	 */
-	public boolean isBot()
-	{
-//        return Boolean.TRUE.equals(JForumExecutionContext.getRequest().getAttribute(ConfigKeys.IS_BOT));
-        return JForumExecutionContext.getForumContext().isBot();
-    }
 	
 	/**
 	 * @see java.lang.Object#equals(java.lang.Object)
