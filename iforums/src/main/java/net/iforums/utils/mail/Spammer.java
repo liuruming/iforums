@@ -57,7 +57,6 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-import net.iforums.JForumExecutionContext;
 import net.iforums.beans.User;
 import net.iforums.utils.preferences.ConfigKeys;
 import net.iforums.utils.preferences.SystemGlobals;
@@ -249,7 +248,7 @@ public class Spammer
 				this.message.addHeader("In-Reply-To", this.inReplyTo);
 			}
 			
-			this.createTemplate(messageFile);
+//			this.createTemplate(messageFile);
 			this.needCustomization = this.isCustomizationNeeded();
 
 			// If we don't need to customize any part of the message, 
@@ -288,17 +287,6 @@ public class Spammer
 	 * @return The email message text
 	 * @throws Exception
 	 */
-	protected void createTemplate(String messageFile) throws Exception
-	{
-		String templateEncoding = SystemGlobals.getValue(ConfigKeys.MAIL_TEMPLATE_ENCODING);
-
-		if (StringUtils.isEmpty(templateEncoding)) {
-			this.template = JForumExecutionContext.templateConfig().getTemplate(messageFile);
-		}
-		else {
-			this.template = JForumExecutionContext.templateConfig().getTemplate(messageFile, templateEncoding);
-		}
-	}
 
 	/**
 	 * Merge the template data, creating the final content.
