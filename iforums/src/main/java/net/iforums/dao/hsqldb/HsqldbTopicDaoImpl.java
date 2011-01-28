@@ -46,7 +46,6 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 
-import net.iforums.JForumExecutionContext;
 import net.iforums.dao.impl.TopicDaoImpl;
 import net.iforums.utils.DbUtils;
 import net.iforums.utils.preferences.SystemGlobals;
@@ -67,7 +66,6 @@ public class HsqldbTopicDaoImpl extends TopicDaoImpl
 		PreparedStatement p = null;
 
 		try {
-			p = JForumExecutionContext.getConnection().prepareStatement(sql);
 			p.setInt(1, startFrom);
 			p.setInt(2, count);
 			p.setInt(3, forumId);

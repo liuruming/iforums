@@ -136,34 +136,6 @@ public class ConfigLoader
 	}
 	
 	/**
-	 * Load url patterns.
-	 * The method tries to load url patterns from <i>WEB-INF/config/urlPattern.properties</i>
-	 */
-	public static void loadUrlPatterns()  
-	{
-		FileInputStream fis = null;
-		
-		try {
-			Properties p = new Properties();
-			fis = new FileInputStream(SystemGlobals.getValue(ConfigKeys.CONFIG_DIR) + "/urlPattern.properties");
-			p.load(fis);
-
-			for (Iterator iter = p.entrySet().iterator(); iter.hasNext(); ) {
-				Map.Entry entry = (Map.Entry) iter.next();
-				UrlPatternCollection.addPattern((String)entry.getKey(), (String)entry.getValue());
-			}
-		}
-		catch (IOException e) {
-			throw new RuntimeException(e);
-		}
-		finally {
-			if (fis != null) {
-				try { fis.close(); } catch (Exception e) {}
-			}
-		}
-    }
-	
-	/**
 	 * Listen for changes in common configuration files.
 	 * The watched files are: <i>generic_queries.sql</i>, 
 	 * <i>&lt;database_name&gt;.sql</i>, <i>system.properties</i>

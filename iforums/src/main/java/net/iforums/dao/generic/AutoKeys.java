@@ -48,7 +48,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import net.iforums.JForumExecutionContext;
 import net.iforums.utils.DbUtils;
 import net.iforums.utils.preferences.ConfigKeys;
 import net.iforums.utils.preferences.SystemGlobals;
@@ -100,16 +99,6 @@ public class AutoKeys
 		}
 
 		return p;
-	}
-
-	protected PreparedStatement getStatementForAutoKeys(String queryName) throws SQLException
-	{
-		return this.getStatementForAutoKeys(queryName, JForumExecutionContext.getConnection());
-	}
-
-	protected int executeAutoKeysQuery(PreparedStatement p) throws SQLException
-	{
-		return this.executeAutoKeysQuery(p, JForumExecutionContext.getConnection());
 	}
 
 	protected int executeAutoKeysQuery(PreparedStatement p, Connection conn) throws SQLException

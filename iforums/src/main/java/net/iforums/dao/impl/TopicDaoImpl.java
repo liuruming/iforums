@@ -59,7 +59,6 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Repository;
 
-import net.iforums.JForumExecutionContext;
 import net.iforums.SessionFacade;
 import net.iforums.beans.KarmaStatus;
 import net.iforums.beans.Topic;

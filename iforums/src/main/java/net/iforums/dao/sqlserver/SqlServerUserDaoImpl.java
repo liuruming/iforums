@@ -47,7 +47,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-import net.iforums.JForumExecutionContext;
 import net.iforums.dao.impl.UserDaoImpl;
 import net.iforums.utils.DbUtils;
 import net.iforums.utils.preferences.SystemGlobals;
@@ -81,7 +80,6 @@ public class SqlServerUserDaoImpl extends UserDaoImpl
 				{
 					logger.debug("selectAll("+startFrom+","+count+")..., sqlStmnt="+sqlStmnt);
 				}
-				p = JForumExecutionContext.getConnection().prepareStatement(sqlStmnt);
 				p.setInt(1, startFrom);
 				p.setInt(2, startFrom+count);
 			}
@@ -91,7 +89,6 @@ public class SqlServerUserDaoImpl extends UserDaoImpl
 				{
 					logger.debug("selectAll("+startFrom+","+count+")..., sqlStmnt="+sqlStmnt);
 				}
-				p = JForumExecutionContext.getConnection().prepareStatement(sqlStmnt);
 			}
 
 			rs = p.executeQuery();
@@ -121,7 +118,6 @@ public class SqlServerUserDaoImpl extends UserDaoImpl
 		}
 
 		try {
-			p = JForumExecutionContext.getConnection().prepareStatement(sqlStmnt);
 			p.setInt(1, groupId);
 			p.setInt(2, startFrom);
 			p.setInt(3, count);

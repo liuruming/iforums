@@ -46,7 +46,6 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 
-import net.iforums.JForumExecutionContext;
 import net.iforums.dao.impl.TopicDaoImpl;
 import net.iforums.repository.ForumRepository;
 import net.iforums.utils.DbUtils;
@@ -77,7 +76,6 @@ public class SqlServerTopicDaoImpl extends TopicDaoImpl
 		}
 
 		try {
-			p = JForumExecutionContext.getConnection().prepareStatement(sqlStmnt);
 
 			p.setInt(1, forumId);
 			p.setInt(2, forumId);
@@ -110,7 +108,6 @@ public class SqlServerTopicDaoImpl extends TopicDaoImpl
 		}
 
 		try {
-			p = JForumExecutionContext.getConnection().prepareStatement(sqlStmnt);
 
 			p.setInt(1, limit );
 
@@ -141,7 +138,6 @@ public class SqlServerTopicDaoImpl extends TopicDaoImpl
 		}
 
 		try {
-			p = JForumExecutionContext.getConnection().prepareStatement(sqlStmnt);
 
 			p.setInt(1, userId);
 			p.setInt(2, startFrom);

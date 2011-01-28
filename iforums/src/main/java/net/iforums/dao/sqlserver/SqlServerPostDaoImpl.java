@@ -48,7 +48,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.iforums.JForumExecutionContext;
 import net.iforums.beans.Post;
 import net.iforums.dao.impl.PostDaoImpl;
 import net.iforums.repository.ForumRepository;
@@ -81,8 +80,6 @@ public class SqlServerPostDaoImpl extends PostDaoImpl
 		}
 
 		try {
-			p = JForumExecutionContext.getConnection().prepareStatement(sqlStmnt,
-					ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
 			p.setInt(1, postId);
 
 			rs = p.executeQuery();
@@ -120,9 +117,6 @@ public class SqlServerPostDaoImpl extends PostDaoImpl
 		}
 
 		try {
-			p = JForumExecutionContext.getConnection().prepareStatement(sqlStmnt,
-					ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-
 			p.setInt(1, topicId);
 			p.setInt(2, startFrom);
 			p.setInt(3, startFrom+count);
@@ -159,8 +153,6 @@ public class SqlServerPostDaoImpl extends PostDaoImpl
 		}
 
 		try {
-			p = JForumExecutionContext.getConnection().prepareStatement(sqlStmnt);
-
 			p.setInt(1, userId);
 			p.setInt(2, startFrom);
 			p.setInt(3, count);

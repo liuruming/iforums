@@ -5,8 +5,6 @@ package net.iforums.api.rest;
 
 import java.util.List;
 
-import net.iforums.Command;
-import net.iforums.JForumExecutionContext;
 import net.iforums.beans.User;
 import net.iforums.context.RequestContext;
 import net.iforums.context.ResponseContext;

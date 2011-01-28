@@ -46,7 +46,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import net.iforums.JForumExecutionContext;
 import net.iforums.beans.PrivateMessage;
 import net.iforums.dao.impl.PrivateMessageDaoImpl;
 import net.iforums.utils.DbUtils;
@@ -66,9 +65,9 @@ public class SqlServerPrivateMessageDaoImpl extends PrivateMessageDaoImpl
 		PreparedStatement p = null;
 		ResultSet rs = null;
 		try {
-			p = JForumExecutionContext.getConnection().prepareStatement(
-					SystemGlobals.getSql("PrivateMessageModel.selectById"), ResultSet.TYPE_SCROLL_INSENSITIVE,
-					ResultSet.CONCUR_UPDATABLE);
+//			p = JForumExecutionContext.getConnection().prepareStatement(
+//					SystemGlobals.getSql("PrivateMessageModel.selectById"), ResultSet.TYPE_SCROLL_INSENSITIVE,
+//					ResultSet.CONCUR_UPDATABLE);
 
 			p.setInt(1, pm.getId());
 

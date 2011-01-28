@@ -100,30 +100,6 @@ public class InstallAction extends Command
 {
 	private static Logger logger = Logger.getLogger(InstallAction.class);
 
-    private static final String POOLED_CONNECTION = PooledConnection.class.getName();
-    private static final String SIMPLE_CONNECTION = SimpleConnection.class.getName();
-    private static final String DATASOURCE_CONNECTION = DataSourceConnection.class.getName();
-
-    public void welcome()
-	{
-		this.checkLanguage();
-		
-		this.context.put("language", this.getFromSession("language"));
-		this.context.put("database", this.getFromSession("database"));
-		this.context.put("dbhost", this.getFromSession("dbHost"));
-		this.context.put("dbuser", this.getFromSession("dbUser"));
-		this.context.put("dbname", this.getFromSession("dbName"));
-		this.context.put("dbport", this.getFromSession("dbPort"));
-		this.context.put("dbpasswd", this.getFromSession("dbPassword"));
-		this.context.put("dbencoding", this.getFromSession("dbEncoding"));
-		this.context.put("use_pool", this.getFromSession("usePool"));
-		this.context.put("forumLink", this.getFromSession("forumLink"));
-		this.context.put("siteLink", this.getFromSession("siteLink"));
-		this.context.put("dbdatasource", this.getFromSession("dbdatasource"));
-		
-		this.setTemplateName(TemplateKeys.INSTALL_WELCOME);
-	}
-	
 	private void checkLanguage()
 	{
 		String lang = this.request.getParameter("l");
@@ -145,15 +121,6 @@ public class InstallAction extends Command
 		this.addToSessionAndContext("language", lang);
 	}
 	
-	private String getFromSession(String key)
-	{
-		return (String)this.request.getSessionContext().getAttribute(key);
-	}
-	
-	private void error()
-	{
-		this.setTemplateName(TemplateKeys.INSTALL_ERROR);
-	}
 	
 	public void doInstall()
 	{

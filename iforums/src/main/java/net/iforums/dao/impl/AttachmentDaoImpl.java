@@ -10,7 +10,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import net.iforums.JForumExecutionContext;
 import net.iforums.beans.Attachment;
 import net.iforums.beans.AttachmentExtension;
 import net.iforums.beans.AttachmentExtensionGroup;

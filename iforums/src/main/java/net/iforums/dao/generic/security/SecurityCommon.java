@@ -48,7 +48,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Iterator;
 
-import net.iforums.JForumExecutionContext;
 import net.iforums.security.PermissionControl;
 import net.iforums.security.Role;
 import net.iforums.security.RoleCollection;

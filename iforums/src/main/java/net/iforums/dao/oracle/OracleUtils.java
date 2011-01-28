@@ -50,7 +50,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import net.iforums.JForumExecutionContext;
 import net.iforums.utils.DbUtils;
 import oracle.sql.BLOB;
 
