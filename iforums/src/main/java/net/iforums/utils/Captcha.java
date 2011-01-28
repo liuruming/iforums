@@ -53,7 +53,6 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 
-import net.iforums.JForumExecutionContext;
 import net.iforums.SessionFacade;
 import net.iforums.utils.preferences.ConfigKeys;
 import net.iforums.utils.preferences.SystemGlobals;
@@ -178,7 +177,7 @@ public class Captcha extends ListImageCaptchaEngine
 		OutputStream outputStream = null;
 		
 		try {
-			outputStream = JForumExecutionContext.getResponse().getOutputStream();
+//			outputStream = JForumExecutionContext.getResponse().getOutputStream();
 			ImageIO.write(image, "jpg", outputStream);
 		}
 		catch (IOException ex) {

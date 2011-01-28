@@ -44,7 +44,6 @@ package net.iforums.utils.rss;
 
 import java.io.StringWriter;
 
-import net.iforums.JForumExecutionContext;
 import net.iforums.utils.preferences.ConfigKeys;
 import net.iforums.utils.preferences.SystemGlobals;
 import freemarker.template.SimpleHash;
@@ -65,23 +64,24 @@ public class GenericRSS implements RSSAware
 	
 	public String createRSS()
 	{
-		try
-		{
-			Template t = JForumExecutionContext.templateConfig().getTemplate(SystemGlobals.getValue(ConfigKeys.TEMPLATE_DIR)
-					+ "/rss_template.htm");
-			StringWriter sw = new StringWriter();
-
-			SimpleHash templateContext = JForumExecutionContext.getTemplateContext();
-
-			templateContext.put("encoding", SystemGlobals.getValue(ConfigKeys.ENCODING));
-			templateContext.put("rss", this.rss);
-			t.process(templateContext, sw);
-
-			return sw.toString();
-		}
-		catch (Exception e)
-		{
-			throw new RuntimeException(e);
-		}
+//		try
+//		{
+//			Template t = JForumExecutionContext.templateConfig().getTemplate(SystemGlobals.getValue(ConfigKeys.TEMPLATE_DIR)
+//					+ "/rss_template.htm");
+//			StringWriter sw = new StringWriter();
+//
+//			SimpleHash templateContext = JForumExecutionContext.getTemplateContext();
+//
+//			templateContext.put("encoding", SystemGlobals.getValue(ConfigKeys.ENCODING));
+//			templateContext.put("rss", this.rss);
+//			t.process(templateContext, sw);
+//
+//			return sw.toString();
+//		}
+//		catch (Exception e)
+//		{
+//			throw new RuntimeException(e);
+//		}
+		return "";
 	}
 }
