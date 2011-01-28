@@ -42,7 +42,6 @@
  */
 package net.iforums.repository;
 
-import net.iforums.JForumExecutionContext;
 import net.iforums.SessionFacade;
 import net.iforums.beans.User;
 import net.iforums.beans.UserSession;
@@ -191,8 +190,6 @@ public class SecurityRepository implements Cacheable
 		UserSession us = SessionFacade.getUserSession();
 		
 		if (us == null) {
-			logger.warn("Found null userSession. Going anonymous. Session id #" 
-				+ JForumExecutionContext.getRequest().getSessionContext().getId());
 			us = new UserSession();
 			us.makeAnonymous();
 		}
