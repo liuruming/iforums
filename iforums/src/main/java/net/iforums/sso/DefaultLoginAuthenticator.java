@@ -49,7 +49,6 @@ import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
-import net.iforums.JForumExecutionContext;
 import net.iforums.beans.User;
 import net.iforums.dao.UserDao;
 import net.iforums.utils.DbUtils;
@@ -88,8 +87,8 @@ public class DefaultLoginAuthenticator implements LoginAuthenticator
 		
 		try 
 		{
-			p = JForumExecutionContext.getConnection().prepareStatement(
-					SystemGlobals.getSql("UserModel.login"));
+//			p = JForumExecutionContext.getConnection().prepareStatement(
+//					SystemGlobals.getSql("UserModel.login"));
 			p.setString(1, username);
 			p.setString(2, MD5.crypt(password));
 
