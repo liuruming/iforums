@@ -54,7 +54,6 @@ import java.util.Map;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
-import net.iforums.JForumExecutionContext;
 import net.iforums.utils.DbUtils;
 import net.iforums.utils.FormSelectedData;
 import net.iforums.utils.I18n;
@@ -205,8 +204,8 @@ public class XMLPermissionControl extends DefaultHandler
                 PreparedStatement p = null;
                 
 				try {
-					p = JForumExecutionContext.getConnection().prepareStatement(
-						SystemGlobals.getSql(atts.getValue("queryName")));
+//					p = JForumExecutionContext.getConnection().prepareStatement(
+//						SystemGlobals.getSql(atts.getValue("queryName")));
 					rs = p.executeQuery();
 					
 					String valueField = atts.getValue("valueField");
