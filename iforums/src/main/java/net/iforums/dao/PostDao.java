@@ -96,7 +96,7 @@ public interface PostDao  extends BaseDao<Post>
 	 * @param count The total number of records to retrieve
 	 * @return <code>ArrayList</code> containing all records found. Each entry of the <code>ArrayList</code> is a {@link net.jforum.entities.Post} object
 	 */
-	public List selectAllByTopicByLimit(int topicId, int startFrom, int count) ;
+	public List<Post> selectPostByTopicId(int topicId, int startFrom, int count) ;
 
 
        /**

@@ -52,7 +52,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
-import net.iforums.SessionFacade;
 import net.iforums.beans.Category;
 import net.iforums.beans.Config;
 import net.iforums.beans.Forum;
@@ -153,7 +152,7 @@ public class ForumRepository implements Cacheable
 	 */
 	public static Category getCategory(int categoryId)
 	{
-		return getCategory(SessionFacade.getUserSession().getUserId(), categoryId);
+		return null;//getCategory(SessionFacade.getUserSession().getUserId(), categoryId);
 	}
 
 	/**
@@ -208,7 +207,7 @@ public class ForumRepository implements Cacheable
 	 */
 	public static boolean isCategoryAccessible(long categoryId)
 	{
-		return isCategoryAccessible(SessionFacade.getUserSession().getUserId(), categoryId);
+		return true;//isCategoryAccessible(SessionFacade.getUserSession().getUserId(), categoryId);
 	}
 	
 	/**
@@ -270,20 +269,6 @@ public class ForumRepository implements Cacheable
 		return l;
 	}
 
-	/**
-	 * Get all categories.
-	 * A call to @link #getAllCategories(int) is made, passing
-	 * the return of <code>SessionFacade.getUserSession().getUserId()</code> 
-	 * as the value for the "userId" argument.
-	 * 
-	 * @return <code>List</code> with the categories. Each entry is a <code>Category</code> object.
-	 * @see #getAllCategories(int)
-	 */
-	public static List getAllCategories()
-	{
-		return getAllCategories(SessionFacade.getUserSession().getUserId());
-	}
-	
 	private static Category findCategoryByOrder(int order)
 	{
 		for (Iterator iter = ((Set)cache.get(FQN, CATEGORIES_SET)).iterator(); iter.hasNext(); ) {
@@ -429,7 +414,7 @@ public class ForumRepository implements Cacheable
 	
 	public static boolean isForumAccessible(int forumId)
 	{
-		return isForumAccessible(SessionFacade.getUserSession().getUserId(), forumId);
+		return true;//isForumAccessible(SessionFacade.getUserSession().getUserId(), forumId);
 	}
 	
 	public static boolean isForumAccessible(int userId, int forumId)
@@ -854,7 +839,7 @@ public class ForumRepository implements Cacheable
 		int n = 0;
 		StringBuffer buf = new StringBuffer();
 		
-		List allCategories = ForumRepository.getAllCategories();
+		List allCategories = ForumRepository.getAllCategories(0);
 		
 		for (Iterator iter = allCategories.iterator(); iter.hasNext(); ) {
 			Collection forums = ((Category)iter.next()).getForumList();

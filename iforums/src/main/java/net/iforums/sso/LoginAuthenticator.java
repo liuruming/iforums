@@ -43,8 +43,6 @@
  */
 package net.iforums.sso;
 
-import java.util.Map;
-
 import net.iforums.beans.User;
 import net.iforums.dao.UserDao;
 
@@ -71,7 +69,7 @@ public interface LoginAuthenticator
 	 * @param extraParams Extra parameters, if any. 
 	 * @return An instance of a {@link net.jforum.entities.User} or <code>null</code>
 	 */
-	public User validateLogin(String username, String password, Map extraParams) ;
+	public User validateLogin(String username, String password) ;
 	
 	/**
 	 * Sets the user model for the instance.

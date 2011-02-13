@@ -72,15 +72,6 @@ public interface TopicDao extends BaseDao<Topic>
 	public void fixFirstLastPostId(int topicId) ;
 	
 	/**
-	 * Gets a specific <code>Topic</code>.
-	 * 
-	 * @param topicId The Topic ID to search
-	 * @return <code>Topic</code>object containing all the information
-	 * @see #selectAllByForum(int forumId)
-	 */
-	public Topic selectById(int topicId) ;
-	
-	/**
 	 * Gets a topic's information from the topics table only.
 	 * No other information, like usernames, are fetched. 
 	 * 
@@ -155,14 +146,6 @@ public interface TopicDao extends BaseDao<Topic>
 	 * @param topic Reference to a <code>Topic</code> object to update
 	 */
 	public void update(Topic topic) ;
-	
-	/**
-	 * Adds a new Topic.
-	 * 
-	 * @param topic Reference to a valid and configured <code>Topic</code> object
-	 * @return The new ID
-	 */
-	public int addNew(Topic topic) ;
 	
 	/**
 	 * Increments the number of times the topic was saw

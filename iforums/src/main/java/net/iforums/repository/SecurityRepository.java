@@ -42,7 +42,6 @@
  */
 package net.iforums.repository;
 
-import net.iforums.SessionFacade;
 import net.iforums.beans.User;
 import net.iforums.beans.UserSession;
 import net.iforums.cache.CacheEngine;
@@ -89,7 +88,7 @@ public class SecurityRepository implements Cacheable
 		if (force || cache.get(FQN, Integer.toString(userId)) == null) {
 			UserDao um = DataAccessDriver.getInstance().newUserDao();
 			
-			return SecurityRepository.load(um.selectById(userId), force);
+			return SecurityRepository.load(um.getObjectById(userId), force);
 		}
 		
 		return SecurityRepository.get(userId);
@@ -187,7 +186,7 @@ public class SecurityRepository implements Cacheable
 	 */
 	public static boolean canAccess(String roleName, String value)
 	{
-		UserSession us = SessionFacade.getUserSession();
+		UserSession us = null;//SessionFacade.getUserSession();
 		
 		if (us == null) {
 			us = new UserSession();

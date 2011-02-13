@@ -50,8 +50,6 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import net.iforums.JForumExecutionContext;
-import net.iforums.SessionFacade;
 import net.iforums.beans.Post;
 import net.iforums.beans.Smilie;
 import net.iforums.context.RequestContext;
@@ -144,9 +142,9 @@ public class PostCommon
 			post.setText(result.toString());
 		}
 		
-		if (hasCodeBlock) {
-			JForumExecutionContext.getTemplateContext().put("hasCodeBlock", hasCodeBlock);
-		}
+//		if (hasCodeBlock) {
+//			JForumExecutionContext.getTemplateContext().put("hasCodeBlock", hasCodeBlock);
+//		}
 	}
 	
 	private static String parseCode(String text)
@@ -292,7 +290,7 @@ public class PostCommon
 
 	public static Post fillPostFromRequest(Post p, boolean isEdit) 
 	{
-		RequestContext request = JForumExecutionContext.getRequest();
+		RequestContext request = null;//JForumExecutionContext.getRequest();
 		
 		p.setSubject(request.getParameter("subject"));
 		p.setBbCodeEnabled(request.getParameter("disable_bbcode") == null);
@@ -301,7 +299,7 @@ public class PostCommon
 		
 		if (!isEdit) {
 			p.setUserIp(request.getRemoteAddr());
-			p.setUserId(SessionFacade.getUserSession().getUserId());
+//			p.setUserId(SessionFacade.getUserSession().getUserId());
 		}
 		
 		boolean htmlEnabled = SecurityRepository.canAccess(SecurityConstants.PERM_HTML_DISABLED, 
@@ -320,12 +318,12 @@ public class PostCommon
 	
 	public static boolean canEditPost(Post post)
 	{
-		return SessionFacade.isLogged()
-			&& (post.getUserId() == SessionFacade.getUserSession().getUserId()
-			|| SecurityRepository.canAccess(SecurityConstants.PERM_MODERATION_POST_EDIT));
+		return false;//SessionFacade.isLogged()
+			//&& (post.getUserId() == SessionFacade.getUserSession().getUserId()
+			//|| SecurityRepository.canAccess(SecurityConstants.PERM_MODERATION_POST_EDIT);
 	}
 
-	public static List topicPosts(PostDao dao, boolean canEdit, int userId, int topicId, int start, int count)
+	public static List topicPosts(PostDao postDao, boolean canEdit, int userId, int topicId, int start, int count)
 	{
 		boolean needPrepare = true;
 		List posts;
@@ -335,7 +333,7 @@ public class PostCommon
  			needPrepare = false;
  		}
  		else {
- 			posts = dao.selectAllByTopicByLimit(topicId, start, count);
+ 			posts = postDao.selectPostByTopicId(topicId, start, count);
  		}
  		
 		List helperList = new ArrayList();
@@ -356,7 +354,7 @@ public class PostCommon
 				p.setCanEdit(true);
 			}
 
-			helperList.add(needPrepare ? PostCommon.preparePostForDisplay(p) : p);
+			helperList.add(needPrepare ? preparePostForDisplay(p) : p);
 		}
 
 		return helperList;

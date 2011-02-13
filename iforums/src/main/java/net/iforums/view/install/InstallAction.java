@@ -57,14 +57,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Properties;
 
-import net.iforums.Command;
 import net.iforums.ConfigLoader;
-import net.iforums.DBConnection;
-import net.iforums.DataSourceConnection;
 import net.iforums.JForumExecutionContext;
-import net.iforums.PooledConnection;
-import net.iforums.SessionFacade;
-import net.iforums.SimpleConnection;
 import net.iforums.beans.Post;
 import net.iforums.beans.Topic;
 import net.iforums.beans.User;

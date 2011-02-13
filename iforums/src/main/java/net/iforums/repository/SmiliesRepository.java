@@ -74,7 +74,7 @@ public class SmiliesRepository implements Cacheable
 	public static void loadSmilies()
 	{
 		try {
-			cache.add(FQN, ENTRIES, DataAccessDriver.getInstance().newSmilieDao().selectAll());
+			cache.add(FQN, ENTRIES, DataAccessDriver.getInstance().newSmilieDao().select(0, Integer.MAX_VALUE));
 			contexted = false;
 		}
 		catch (Exception e) {

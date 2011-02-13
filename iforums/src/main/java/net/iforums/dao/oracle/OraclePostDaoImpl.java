@@ -116,13 +116,6 @@ public class OraclePostDaoImpl extends PostDaoImpl
 		return OracleUtils.readBlobUTF16BinaryStream(rs, "post_text");
 	}
 
-	/**
-	 * @see net.iforums.dao.PostDao#selectAllByTopicByLimit(int, int, int)
-	 */
-	public List selectAllByTopicByLimit(int topicId, int startFrom, int count)
-	{
-		return super.selectAllByTopicByLimit(topicId, startFrom, startFrom + count);
-	}
 
 	/**
 	 * @see net.iforums.dao.PostDao#selectByUserByLimit(int, int, int)

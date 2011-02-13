@@ -49,8 +49,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.springframework.stereotype.Repository;
-
 import net.iforums.JForumExecutionContext;
 import net.iforums.beans.Post;
 import net.iforums.dao.BaseORMDao;
@@ -59,6 +57,8 @@ import net.iforums.dao.SummaryDao;
 import net.iforums.utils.DbUtils;
 import net.iforums.utils.preferences.ConfigKeys;
 import net.iforums.utils.preferences.SystemGlobals;
+
+import org.springframework.stereotype.Repository;
 
 /**
  * @author Franklin Samir (franklin (at) portaljava [dot] com)

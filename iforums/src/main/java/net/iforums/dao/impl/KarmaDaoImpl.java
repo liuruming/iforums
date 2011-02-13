@@ -52,8 +52,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.stereotype.Repository;
-
 import net.iforums.JForumExecutionContext;
 import net.iforums.beans.Karma;
 import net.iforums.beans.KarmaStatus;
@@ -62,6 +60,8 @@ import net.iforums.dao.BaseORMDao;
 import net.iforums.dao.KarmaDao;
 import net.iforums.utils.DbUtils;
 import net.iforums.utils.preferences.SystemGlobals;
+
+import org.springframework.stereotype.Repository;
 
 /**
  * @author Rafael Steil

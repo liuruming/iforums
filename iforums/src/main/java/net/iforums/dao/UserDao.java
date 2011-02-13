@@ -58,14 +58,6 @@ import net.iforums.beans.User;
  */
 public interface UserDao  extends BaseDao<User>
 {
-	/**
-	 * Gets a specific <code>User</code>.
-	 * 
-	 * @param userId The User ID to search
-	 * @return <code>User</code>object containing all the information
-	 * @see #selectAll
-	 */
-	public User selectById(int userId) ;
 	
 	/**
 	 * Gets a specific <code>User</code>.
@@ -163,16 +155,6 @@ public interface UserDao  extends BaseDao<User>
 	 * @param user Reference to a <code>User</code> object to update
 	 */
 	public void update(User user) ;
-	
-	/**
-	 * Adds a new User.
-	 * After successfuly persisting the data, this method
-	 * <b>shoud</b> call <code>user.setId(theNewId);</code>, as well
-	 * return the new user id. 
-	 * @param user Reference to a valid and configured <code>User</code> object
-	 * @return The new user id
-	 */
-	public int addNew(User user) ;
 
 	/**
 	 * Adds a new user with a predefined user id

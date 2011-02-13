@@ -43,7 +43,6 @@
 package net.iforums.sso;
 
 import java.util.Hashtable;
-import java.util.Map;
 
 import javax.naming.AuthenticationException;
 import javax.naming.Context;
@@ -90,7 +89,7 @@ public class LDAPAuthenticator implements LoginAuthenticator
 	/**
 	 * @see net.jforum.sso.LoginAuthenticator#validateLogin(java.lang.String, java.lang.String, java.util.Map)
 	 */
-	public User validateLogin(String username, String password, Map extraParams)
+	public User validateLogin(String username, String password)
 	{
 		Hashtable environment = this.prepareEnvironment();
 		

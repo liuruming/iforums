@@ -107,38 +107,38 @@ public class OracleUtils
 	 */
 	public static void writeBlobUTF16BinaryStream(String query, int idForQuery, String value) throws Exception
 	{
-		PreparedStatement p = null;
-		ResultSet rs = null;
-		OutputStream blobWriter = null;
-		
-		try {
-			p = JForumExecutionContext.getConnection().prepareStatement(query);
-			p.setInt(1, idForQuery);
-
-			rs = p.executeQuery();
-			rs.next();
-			Blob text = rs.getBlob(1);
-
-			if (text instanceof BLOB) {
-				blobWriter = ((BLOB) text).getBinaryOutputStream();
-			}
-			else {
-				blobWriter = text.setBinaryStream(0);
-			}
-
-			blobWriter.write(value.getBytes("UTF-16"));
-
-			blobWriter.close();
-		}
-		catch (IOException e) {
-			throw new RuntimeException(e);
-		}
-		finally {
-			if (blobWriter != null) {
-				blobWriter.close();
-			}
-			
-			DbUtils.close(rs, p);
-		}
+//		PreparedStatement p = null;
+//		ResultSet rs = null;
+//		OutputStream blobWriter = null;
+//		
+//		try {
+//			p = JForumExecutionContext.getConnection().prepareStatement(query);
+//			p.setInt(1, idForQuery);
+//
+//			rs = p.executeQuery();
+//			rs.next();
+//			Blob text = rs.getBlob(1);
+//
+//			if (text instanceof BLOB) {
+//				blobWriter = ((BLOB) text).getBinaryOutputStream();
+//			}
+//			else {
+//				blobWriter = text.setBinaryStream(0);
+//			}
+//
+//			blobWriter.write(value.getBytes("UTF-16"));
+//
+//			blobWriter.close();
+//		}
+//		catch (IOException e) {
+//			throw new RuntimeException(e);
+//		}
+//		finally {
+//			if (blobWriter != null) {
+//				blobWriter.close();
+//			}
+//			
+//			DbUtils.close(rs, p);
+//		}
 	}
 }

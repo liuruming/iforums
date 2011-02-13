@@ -4,16 +4,16 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.springframework.stereotype.Service;
-
 import net.iforums.beans.Topic;
 import net.iforums.dao.TopicDao;
 import net.iforums.dao.UserDao;
 import net.iforums.service.TopicService;
 import net.iforums.utils.JsonUtil;
 
+import org.springframework.stereotype.Service;
+
 @Service
-public class TopicServiceImpl implements TopicService {
+public class TopicServiceImpl extends BaseServiveImpl implements TopicService {
 	@Resource
 	private TopicDao topicDao;
 	@Resource

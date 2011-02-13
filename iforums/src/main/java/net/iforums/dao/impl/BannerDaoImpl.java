@@ -6,14 +6,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.stereotype.Repository;
-
 import net.iforums.JForumExecutionContext;
 import net.iforums.beans.Banner;
 import net.iforums.dao.BannerDao;
 import net.iforums.dao.BaseORMDao;
 import net.iforums.utils.DbUtils;
 import net.iforums.utils.preferences.SystemGlobals;
+
+import org.springframework.stereotype.Repository;
 @Repository
 public class BannerDaoImpl extends BaseORMDao<Banner> implements BannerDao{
 
@@ -135,25 +135,6 @@ public class BannerDaoImpl extends BaseORMDao<Banner> implements BannerDao{
 			setBannerParam(p, banner);
 			p.setInt(13, banner.getId());
 			p.executeUpdate();
-		}
-		catch (SQLException e) {
-			throw new RuntimeException(e);
-		}
-		finally {
-			DbUtils.close(p);
-		}
-	}
-
-	public int addNew(Banner banner)
-	{
-		PreparedStatement p = null;
-		try {
-			p = this.getStatementForAutoKeys("BannerDao.addNew");
-			setBannerParam(p, banner);
-			int id = this.executeAutoKeysQuery(p);
-
-			banner.setId(id);
-			return id;
 		}
 		catch (SQLException e) {
 			throw new RuntimeException(e);

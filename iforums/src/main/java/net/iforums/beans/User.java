@@ -52,7 +52,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import net.iforums.SessionFacade;
 import net.iforums.utils.preferences.ConfigKeys;
 import net.iforums.utils.preferences.SystemGlobals;
 
@@ -357,18 +356,6 @@ public class User implements Serializable
 	}
 
 	/**
-	 * Gets the registration date of the user
-	 * 
-	 * @return String value with the registration date
-	 */
-	public String getRegistrationDate() 
-	{
-		SimpleDateFormat df = new SimpleDateFormat(SystemGlobals.getValue(ConfigKeys.DATE_TIME_FORMAT));
-
-		return df.format(this.registrationDate);
-	}
-
-	/**
 	 * Gets the user signature
 	 * 
 	 * @return String literal with the signature
@@ -660,15 +647,6 @@ public class User implements Serializable
 	}
 
 	/**
-	 * Sets the registration date.
-	 * 
-	 * @param registrationDate The registration date to set
-	 */
-	public void setRegistrationDate(Date registrationDate) {
-		this.registrationDate = registrationDate;
-	}
-
-	/**
 	 * Sets the signature.
 	 * 
 	 * @param signature The signature to set
@@ -861,7 +839,7 @@ public class User implements Serializable
 	 */	
 	public boolean isOnline()
 	{
-		return (SessionFacade.isUserInSession(this.id) != null);
+		return false;
 	}
 
 	/**
@@ -954,5 +932,13 @@ public class User implements Serializable
 
 	public void setGroupsList(List groupsList) {
 		this.groupsList = groupsList;
+	}
+
+	public Date getRegistrationDate() {
+		return registrationDate;
+	}
+
+	public void setRegistrationDate(Date registrationDate) {
+		this.registrationDate = registrationDate;
 	}
 }

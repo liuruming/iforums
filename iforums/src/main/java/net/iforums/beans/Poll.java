@@ -67,6 +67,8 @@ public class Poll implements Serializable {
 	private transient PollChanges pollChanges;
 	private List options = new ArrayList();
 
+	private User user;
+	
 	public int getId() {
 		return id;
 	}
@@ -136,5 +138,11 @@ public class Poll implements Serializable {
 		endTime.setTime(startTime);
 		endTime.add(Calendar.DAY_OF_YEAR, length);
 		return System.currentTimeMillis() < endTime.getTimeInMillis();
+	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
 	}
 }

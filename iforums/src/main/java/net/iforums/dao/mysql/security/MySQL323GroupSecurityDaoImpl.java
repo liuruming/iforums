@@ -51,6 +51,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import net.iforums.JForumExecutionContext;
 import net.iforums.dao.generic.security.SecurityCommon;
 import net.iforums.dao.impl.GroupSecurityDaoImpl;
 import net.iforums.security.RoleCollection;

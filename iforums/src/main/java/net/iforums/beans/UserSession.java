@@ -47,7 +47,6 @@ import java.io.Serializable;
 import java.util.Date;
 
 import net.iforums.ControllerUtils;
-import net.iforums.SessionFacade;
 import net.iforums.repository.SecurityRepository;
 import net.iforums.security.PermissionControl;
 import net.iforums.security.SecurityConstants;
@@ -342,7 +341,6 @@ public class UserSession implements Serializable
 		ControllerUtils.addCookie(SystemGlobals.getValue(ConfigKeys.COOKIE_NAME_DATA),
 			SystemGlobals.getValue(ConfigKeys.ANONYMOUS_USER_ID));
 
-		SessionFacade.makeUnlogged();
 	}
 
 	/**

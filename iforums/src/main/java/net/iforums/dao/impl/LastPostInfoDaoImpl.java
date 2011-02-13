@@ -6,7 +6,6 @@ import java.util.Map;
 import net.iforums.beans.LastPostInfo;
 import net.iforums.dao.BaseORMDao;
 import net.iforums.dao.LastPostInfoDao;
-import net.sf.cglib.beans.BeanMap;
 
 import org.springframework.stereotype.Repository;
 

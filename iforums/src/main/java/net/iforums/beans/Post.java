@@ -79,7 +79,7 @@ public class Post implements Serializable
 	private KarmaStatus karma;
 	private boolean hasAttachments;
 	private boolean moderate;
-
+	private User user;
 	public Post() { }
 	
 	public Post(int postId)
@@ -465,5 +465,21 @@ public class Post implements Serializable
 	public int hashCode()
 	{
 		return this.id;
+	}
+
+	public boolean isHasAttachments() {
+		return hasAttachments;
+	}
+
+	public void setHasAttachments(boolean hasAttachments) {
+		this.hasAttachments = hasAttachments;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 }

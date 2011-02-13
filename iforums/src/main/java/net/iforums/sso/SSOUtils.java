@@ -103,7 +103,7 @@ public class SSOUtils
 		user.setEmail(email);
 		user.setActive(1);
 		
-		this.userDao.addNew(user);
+		this.userDao.insert(user);
 	}
 	
 	/**

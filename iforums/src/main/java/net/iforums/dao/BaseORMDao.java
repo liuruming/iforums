@@ -253,12 +253,15 @@ public class BaseORMDao<T> extends SqlMapClientDaoSupport {
 	 * 
 	 * @param statementName
 	 */
-	protected void insert(String statementName) {
+	protected boolean insert(String statementName) {
 		try {
 			sqlMapClientTemplate.insert(getFullStatementName(statementName));
 		} catch (Exception e) {
 			logger.error("database error.", e);
+			return false;
 		}
+		
+		return true;
 	}
 
 	/**
@@ -267,12 +270,14 @@ public class BaseORMDao<T> extends SqlMapClientDaoSupport {
 	 * @param statementName
 	 * @param parameterObject
 	 */
-	protected void insert(String statementName, Object parameterObject) {
+	protected boolean insert(String statementName, Object parameterObject) {
 		try {
 			sqlMapClientTemplate.insert(getFullStatementName(statementName), parameterObject);
 		} catch (Exception e) {
 			logger.error("database error.", e);
+			return false;
 		}
+		return true;
 	}
 
 	/**

@@ -9,14 +9,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.stereotype.Repository;
-
 import net.iforums.JForumExecutionContext;
 import net.iforums.beans.MailIntegration;
 import net.iforums.dao.BaseORMDao;
 import net.iforums.dao.MailIntegrationDao;
 import net.iforums.utils.DbUtils;
 import net.iforums.utils.preferences.SystemGlobals;
+
+import org.springframework.stereotype.Repository;
 
 /**
  * @author Rafael Steil

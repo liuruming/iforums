@@ -56,14 +56,6 @@ import net.iforums.beans.Category;
  */
 public interface CategoryDao extends BaseDao<Category>
 {	
-	/**
-	 * Checks if is possible to delete a specific category.
-	 * 
-	 * @param categoryId The category ID to verify
-	 * @return <code>true</code> if is possible to delete, <code>false</code> if not
-	 * @see #delete(int)
-	 */
-	public boolean canDelete(int categoryId);
 
 	/**
 	 * Changes the display order of some category.

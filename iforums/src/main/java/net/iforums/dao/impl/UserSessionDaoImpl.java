@@ -48,13 +48,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 
-import org.springframework.stereotype.Repository;
-
 import net.iforums.beans.UserSession;
 import net.iforums.dao.BaseORMDao;
 import net.iforums.dao.UserSessionDao;
 import net.iforums.utils.DbUtils;
 import net.iforums.utils.preferences.SystemGlobals;
+
+import org.springframework.stereotype.Repository;
 
 /**
  * @author Rafael Steil

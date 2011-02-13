@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import net.iforums.JForumExecutionContext;
 import net.iforums.beans.Attachment;
 import net.iforums.beans.AttachmentExtension;
 import net.iforums.beans.AttachmentExtensionGroup;
@@ -30,21 +31,21 @@ public class AttachmentDaoImpl extends BaseORMDao<Attachment> implements Attachm
 	 */
 	public void addQuotaLimit(QuotaLimit limit)
 	{
-		PreparedStatement p = null;
-		try {
-			p = JForumExecutionContext.getConnection().prepareStatement(
-					SystemGlobals.getSql("AttachmentModel.addQuotaLimit"));
-			p.setString(1, limit.getDescription());
-			p.setInt(2, limit.getSize());
-			p.setInt(3, limit.getType());
-			p.executeUpdate();
-		}
-		catch (SQLException e) {
-			throw new RuntimeException(e);
-		}
-		finally {
-			DbUtils.close(p);
-		}
+//		PreparedStatement p = null;
+//		try {
+//			p = JForumExecutionContext.getConnection().prepareStatement(
+//					SystemGlobals.getSql("AttachmentModel.addQuotaLimit"));
+//			p.setString(1, limit.getDescription());
+//			p.setInt(2, limit.getSize());
+//			p.setInt(3, limit.getType());
+//			p.executeUpdate();
+//		}
+//		catch (SQLException e) {
+//			throw new RuntimeException(e);
+//		}
+//		finally {
+//			DbUtils.close(p);
+//		}
 	}
 
 	/**
@@ -52,22 +53,22 @@ public class AttachmentDaoImpl extends BaseORMDao<Attachment> implements Attachm
 	 */
 	public void updateQuotaLimit(QuotaLimit limit)
 	{
-		PreparedStatement p = null;
-		try {
-			p = JForumExecutionContext.getConnection().prepareStatement(
-					SystemGlobals.getSql("AttachmentModel.updateQuotaLimit"));
-			p.setString(1, limit.getDescription());
-			p.setInt(2, limit.getSize());
-			p.setInt(3, limit.getType());
-			p.setInt(4, limit.getId());
-			p.executeUpdate();
-		}
-		catch (SQLException e) {
-			throw new RuntimeException(e);
-		}
-		finally {
-			DbUtils.close(p);
-		}
+//		PreparedStatement p = null;
+//		try {
+//			p = JForumExecutionContext.getConnection().prepareStatement(
+//					SystemGlobals.getSql("AttachmentModel.updateQuotaLimit"));
+//			p.setString(1, limit.getDescription());
+//			p.setInt(2, limit.getSize());
+//			p.setInt(3, limit.getType());
+//			p.setInt(4, limit.getId());
+//			p.executeUpdate();
+//		}
+//		catch (SQLException e) {
+//			throw new RuntimeException(e);
+//		}
+//		finally {
+//			DbUtils.close(p);
+//		}
 	}
 
 	/**
@@ -75,18 +76,18 @@ public class AttachmentDaoImpl extends BaseORMDao<Attachment> implements Attachm
 	 */
 	public void cleanGroupQuota()
 	{
-		PreparedStatement p = null;
-		try {
-			p = JForumExecutionContext.getConnection().prepareStatement(
-					SystemGlobals.getSql("AttachmentModel.deleteGroupQuota"));
-			p.executeUpdate();
-		}
-		catch (SQLException e) {
-			throw new RuntimeException(e);
-		}
-		finally {
-			DbUtils.close(p);
-		}
+//		PreparedStatement p = null;
+//		try {
+//			p = JForumExecutionContext.getConnection().prepareStatement(
+//					SystemGlobals.getSql("AttachmentModel.deleteGroupQuota"));
+//			p.executeUpdate();
+//		}
+//		catch (SQLException e) {
+//			throw new RuntimeException(e);
+//		}
+//		finally {
+//			DbUtils.close(p);
+//		}
 	}
 
 	/**
@@ -94,20 +95,20 @@ public class AttachmentDaoImpl extends BaseORMDao<Attachment> implements Attachm
 	 */
 	public void setGroupQuota(int groupId, int quotaId)
 	{
-		PreparedStatement p = null;
-		try {
-			p = JForumExecutionContext.getConnection().prepareStatement(
-					SystemGlobals.getSql("AttachmentModel.setGroupQuota"));
-			p.setInt(1, groupId);
-			p.setInt(2, quotaId);
-			p.executeUpdate();
-		}
-		catch (SQLException e) {
-			throw new RuntimeException(e);
-		}
-		finally {
-			DbUtils.close(p);
-		}
+//		PreparedStatement p = null;
+//		try {
+//			p = JForumExecutionContext.getConnection().prepareStatement(
+//					SystemGlobals.getSql("AttachmentModel.setGroupQuota"));
+//			p.setInt(1, groupId);
+//			p.setInt(2, quotaId);
+//			p.executeUpdate();
+//		}
+//		catch (SQLException e) {
+//			throw new RuntimeException(e);
+//		}
+//		finally {
+//			DbUtils.close(p);
+//		}
 	}
 
 	/**
@@ -123,22 +124,22 @@ public class AttachmentDaoImpl extends BaseORMDao<Attachment> implements Attachm
 	 */
 	public void removeQuotaLimit(String[] ids)
 	{
-		PreparedStatement p = null;
-		try {
-			p = JForumExecutionContext.getConnection().prepareStatement(
-					SystemGlobals.getSql("AttachmentModel.removeQuotaLimit"));
-
-			for (int i = 0; i < ids.length; i++) {
-				p.setInt(1, Integer.parseInt(ids[i]));
-				p.executeUpdate();
-			}
-		}
-		catch (SQLException e) {
-			throw new RuntimeException(e);
-		}
-		finally {
-			DbUtils.close(p);
-		}
+//		PreparedStatement p = null;
+//		try {
+//			p = JForumExecutionContext.getConnection().prepareStatement(
+//					SystemGlobals.getSql("AttachmentModel.removeQuotaLimit"));
+//
+//			for (int i = 0; i < ids.length; i++) {
+//				p.setInt(1, Integer.parseInt(ids[i]));
+//				p.executeUpdate();
+//			}
+//		}
+//		catch (SQLException e) {
+//			throw new RuntimeException(e);
+//		}
+//		finally {
+//			DbUtils.close(p);
+//		}
 	}
 
 	/**
@@ -544,39 +545,39 @@ public class AttachmentDaoImpl extends BaseORMDao<Attachment> implements Attachm
 	 */
 	public void addAttachment(Attachment a)
 	{
-		PreparedStatement p = null;
-		try {
-			p = this.getStatementForAutoKeys("AttachmentModel.addAttachment");
-			p.setInt(1, a.getPostId());
-			p.setInt(2, a.getPrivmsgsId());
-			p.setInt(3, a.getUserId());
-
-			this.setAutoGeneratedKeysQuery(SystemGlobals.getSql("AttachmentModel.lastGeneratedAttachmentId"));
-			int id = this.executeAutoKeysQuery(p);
-			p.close();
-			p = null;
-
-			p = JForumExecutionContext.getConnection().prepareStatement(
-					SystemGlobals.getSql("AttachmentModel.addAttachmentInfo"));
-			p.setInt(1, id);
-			p.setString(2, a.getInfo().getPhysicalFilename());
-			p.setString(3, a.getInfo().getRealFilename());
-			p.setString(4, a.getInfo().getComment());
-			p.setString(5, a.getInfo().getMimetype());
-			p.setLong(6, a.getInfo().getFilesize());
-			p.setTimestamp(7, new Timestamp(a.getInfo().getUploadTimeInMillis()));
-			p.setInt(8, 0);
-			p.setInt(9, a.getInfo().getExtension().getId());
-			p.executeUpdate();
-
-			this.updatePost(a.getPostId(), 1);
-		}
-		catch (SQLException e) {
-			throw new RuntimeException(e);
-		}
-		finally {
-			DbUtils.close(p);
-		}
+//		PreparedStatement p = null;
+//		try {
+//			p = this.getStatementForAutoKeys("AttachmentModel.addAttachment");
+//			p.setInt(1, a.getPostId());
+//			p.setInt(2, a.getPrivmsgsId());
+//			p.setInt(3, a.getUserId());
+//
+//			this.setAutoGeneratedKeysQuery(SystemGlobals.getSql("AttachmentModel.lastGeneratedAttachmentId"));
+//			int id = this.executeAutoKeysQuery(p);
+//			p.close();
+//			p = null;
+//
+//			p = JForumExecutionContext.getConnection().prepareStatement(
+//					SystemGlobals.getSql("AttachmentModel.addAttachmentInfo"));
+//			p.setInt(1, id);
+//			p.setString(2, a.getInfo().getPhysicalFilename());
+//			p.setString(3, a.getInfo().getRealFilename());
+//			p.setString(4, a.getInfo().getComment());
+//			p.setString(5, a.getInfo().getMimetype());
+//			p.setLong(6, a.getInfo().getFilesize());
+//			p.setTimestamp(7, new Timestamp(a.getInfo().getUploadTimeInMillis()));
+//			p.setInt(8, 0);
+//			p.setInt(9, a.getInfo().getExtension().getId());
+//			p.executeUpdate();
+//
+//			this.updatePost(a.getPostId(), 1);
+//		}
+//		catch (SQLException e) {
+//			throw new RuntimeException(e);
+//		}
+//		finally {
+//			DbUtils.close(p);
+//		}
 	}
 
 	protected void updatePost(int postId, int count)

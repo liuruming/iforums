@@ -45,15 +45,13 @@ package net.iforums.sso;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Map;
-
-import org.springframework.stereotype.Repository;
 
 import net.iforums.beans.User;
 import net.iforums.dao.UserDao;
 import net.iforums.utils.DbUtils;
 import net.iforums.utils.MD5;
-import net.iforums.utils.preferences.SystemGlobals;
+
+import org.springframework.stereotype.Repository;
 
 /**
  * Default login authenticator for JForum.
@@ -79,7 +77,7 @@ public class DefaultLoginAuthenticator implements LoginAuthenticator
 	/**
 	 * @see net.jforum.sso.LoginAuthenticator#validateLogin(String, String, java.util.Map) 
 	 */
-	public User validateLogin(String username, String password, Map extraParams)
+	public User validateLogin(String username, String password)
 	{
 		User user = null;
 		ResultSet rs=null;
@@ -94,7 +92,7 @@ public class DefaultLoginAuthenticator implements LoginAuthenticator
 
 			rs = p.executeQuery();
 			if (rs.next() && rs.getInt("user_id") > 0) {
-				user = this.userModel.selectById(rs.getInt("user_id"));
+				user = this.userModel.getObjectById(rs.getInt("user_id"));
 			}
 		}
 		catch (SQLException e)

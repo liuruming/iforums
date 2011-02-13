@@ -3,17 +3,8 @@ package net.iforums;
 import java.io.File;
 import java.util.Date;
 
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
-
-import org.apache.commons.lang.StringUtils;
-import org.jboss.logging.Logger;
-
-import freemarker.cache.FileTemplateLoader;
-import freemarker.cache.MultiTemplateLoader;
-import freemarker.cache.TemplateLoader;
-import freemarker.template.Configuration;
 
 import net.iforums.dao.CategoryDao;
 import net.iforums.dao.ConfigDao;
@@ -29,6 +20,14 @@ import net.iforums.utils.I18n;
 import net.iforums.utils.bbcode.BBCodeHandler;
 import net.iforums.utils.preferences.ConfigKeys;
 import net.iforums.utils.preferences.SystemGlobals;
+
+import org.apache.commons.lang.StringUtils;
+import org.jboss.logging.Logger;
+
+import freemarker.cache.FileTemplateLoader;
+import freemarker.cache.MultiTemplateLoader;
+import freemarker.cache.TemplateLoader;
+import freemarker.template.Configuration;
 
 /**
  * 论坛启动的时候自动加载

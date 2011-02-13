@@ -53,11 +53,13 @@ import org.jboss.cache.Fqn;
 import org.jboss.cache.Node;
 import org.jboss.cache.PropertyConfigurator;
 import org.jboss.cache.TreeCache;
+import org.springframework.stereotype.Component;
 
 /**
  * @author Rafael Steil
  * @version $Id: JBossCacheEngine.java,v 1.7 2005/09/25 02:40:28 rafaelsteil Exp $
  */
+@Component
 public class JBossCacheEngine implements CacheEngine
 {
 	private Logger logger = Logger.getLogger(JBossCacheEngine.class);

@@ -49,7 +49,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import net.iforums.SessionFacade;
 import net.iforums.repository.SecurityRepository;
 import net.iforums.security.PermissionControl;
 import net.iforums.security.SecurityConstants;
@@ -286,7 +285,7 @@ public class Category  implements Serializable
 	 */
 	public Forum getForum(int forumId)
 	{
-		return this.getForum(SessionFacade.getUserSession().getUserId(), forumId);
+		return null;
 	}
 
 	/**

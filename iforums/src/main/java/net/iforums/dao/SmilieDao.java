@@ -52,40 +52,5 @@ import net.iforums.beans.Smilie;
  */
 public interface SmilieDao extends BaseDao<Smilie>
 {
-	/**
-	 * Insert a new Smilie
-	 * 
-	 * @param smilie  Smilie
-	 * @return The Smilie id
-	 */
-	public int addNew(Smilie smilie) ;
 	
-	/**
-	 * Deletes a smilie
-	 * 
-	 * @param id int
-	 */
-	public void delete(int id) ;
-	
-	/**
-	 * Updates a smilie
-	 * 
-	 * @param smilie Smilie
-	 */
-	public void update(Smilie smilie) ;
-	
-	/**
-	 * Select all smilies
-	 * 
-	 * @return List
-	 */
-	public List selectAll() ;
-	
-	/**
-	 * Gets some specific smilie.
-	 * 
-	 * @param id int
-	 * @return Smilie
-	 */
-	public Smilie selectById(int id) ;
 }

@@ -20,7 +20,12 @@ import net.sf.ehcache.CacheException;
 import net.sf.ehcache.CacheManager;
 import net.sf.ehcache.Element;
 
+import org.apache.commons.configuration.Configuration;
+import org.apache.commons.configuration.ConfigurationUtils;
+import org.apache.commons.configuration.PropertiesConfiguration;
+import org.apache.commons.configuration.ConfigurationFactory.ConfigurationBuilder;
 import org.apache.log4j.Logger;
+import org.springframework.stereotype.Component;
 /**
  * The rest of the application seems to make some invalid assumptions about how
  * things are cached.  Those assumptions might be benign, but it is hard to tell
@@ -32,6 +37,7 @@ import org.apache.log4j.Logger;
  * @author Jake Fear
  * @version $Id: EhCacheEngine.java,v 1.1 2005/10/14 00:15:54 rafaelsteil Exp $
  */
+@Component
 public class EhCacheEngine implements CacheEngine {
 
 	private static final Logger log = Logger.getLogger(EhCacheEngine.class);

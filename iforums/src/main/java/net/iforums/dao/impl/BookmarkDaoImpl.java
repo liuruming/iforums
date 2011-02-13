@@ -6,8 +6,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.stereotype.Repository;
-
 import net.iforums.JForumExecutionContext;
 import net.iforums.beans.Bookmark;
 import net.iforums.beans.BookmarkType;
@@ -15,6 +13,8 @@ import net.iforums.dao.BaseORMDao;
 import net.iforums.dao.BookmarkDao;
 import net.iforums.utils.DbUtils;
 import net.iforums.utils.preferences.SystemGlobals;
+
+import org.springframework.stereotype.Repository;
 @Repository
 public class BookmarkDaoImpl extends BaseORMDao<Bookmark> implements BookmarkDao{
 	/**

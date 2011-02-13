@@ -47,10 +47,13 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.stereotype.Component;
+
 /**
  * @author Rafael Steil
  * @version $Id: DefaultCacheEngine.java,v 1.9 2005/09/25 02:40:28 rafaelsteil Exp $
  */
+@Component
 public class DefaultCacheEngine implements CacheEngine
 {
 	private Map cache = new HashMap();

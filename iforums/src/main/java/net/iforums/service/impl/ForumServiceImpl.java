@@ -4,23 +4,21 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.springframework.stereotype.Service;
-
 import net.iforums.beans.Category;
 import net.iforums.beans.Forum;
 import net.iforums.dao.CategoryDao;
 import net.iforums.dao.ForumDao;
-import net.iforums.dao.TopicDao;
 import net.iforums.service.ForumService;
 
+import org.springframework.stereotype.Service;
+
 @Service
-public class ForumServiceImpl implements ForumService {
+public class ForumServiceImpl extends BaseServiveImpl implements ForumService {
 
 	@Resource
 	private CategoryDao categoryDao;
 	@Resource
 	private ForumDao forumDao;
-	
 	@Override
 	public List<Category> selectCategoryList(int page, int size,boolean hasForum) {
 		List<Category> categoryList = categoryDao.select(page, size);

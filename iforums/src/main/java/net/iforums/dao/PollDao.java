@@ -45,21 +45,6 @@ package net.iforums.dao;
 import net.iforums.beans.Poll;
 
 public interface PollDao extends BaseDao<Poll>{
-
-	/**
-	 * Gets a specific <code>Poll</code>.
-	 * 
-	 * @param pollId The Poll ID to search
-	 * @return <code>Poll</code>object containing all the information
-	 */
-	public Poll selectById(int pollId) ;
-		
-	/**
-	 * Delete a Poll.
-	 * 
-	 * @param pollId The Poll to delete
-	 */
-	public void delete(int pollId) ;
 		
 	/**
 	 * Delete a Poll.
@@ -67,21 +52,6 @@ public interface PollDao extends BaseDao<Poll>{
 	 * @param topicId The topic id for the poll to delete
 	 */
 	public void deleteByTopicId(int topicId) ;
-	
-	/**
-	 * Updates a Poll.
-	 * 
-	 * @param poll Reference to a <code>Poll</code> object to update
-	 */
-	public void update(Poll poll) ;
-	
-	/**
-	 * Adds a new Poll.
-	 * 
-	 * @param poll Poll Reference to a valid and configured <code>Poll</code> object
-	 * @return The new ID
-	 */
-	public int addNew(Poll poll) ;
 
 	/**
 	 * Increments the vote count on the poll for the given poll id and option id

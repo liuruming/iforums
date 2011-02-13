@@ -145,7 +145,7 @@ public class ControllerUtils
 					int userId = Integer.parseInt(uid);
 					userSession.setUserId(userId);
 					
-					User user = userDao.selectById(userId);
+					User user = userDao.getObjectById(userId);
 	
 					if (user == null || user.getId() != userId || user.isDeleted()) {
 						userSession.makeAnonymous();
