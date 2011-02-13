@@ -283,7 +283,7 @@
 			<IMG src="${contextPath}/templates/${templateName}/images/newtopic.gif" border=0>
 		</A>
 	</SPAN>
-	#if(!$readonly && $topic.status != 1)
+	#if(!$topic.readonly && $topic.status != 1)
 		<SPAN class=replybtn><A href="javascript:replyTopic();">
 			<a href="/posts/reply/${start}/${topic.id}")}" rel="nofollow" class="icon_reply nav">
 				<IMG alt="Reply" src="${contextPath}/templates/${templateName}/images/reply.gif" border=0>

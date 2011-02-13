@@ -1,7 +1,6 @@
 #parse("/templates/$!{templateName}/inc/header.vm")
-<#assign preview = preview?default(false)/>
-<#assign logModeration = moderationLoggingEnabled && isEdit?default(false) && isModerator && user.id != post.userId/>
-<#assign allowPoll = setType?default(true) && canCreatePolls?default(false)/>
+#set($logModeration = $moderationLoggingEnabled && $isEdit&& $isModerator && $user.id != $post.userId)
+#set($allowPoll = $setType&& $canCreatePolls)
 
 <script type="text/javascript">
 var CONTEXTPATH = "${contextPath}";
@@ -13,9 +12,9 @@ var SERVLET_EXTENSION  = "${extension}";
 <script type="text/javascript" src="${contextPath}/templates/${templateName}/js/jquery.js?${startupTime}"></script>
 <script type="text/javascript" src="${contextPath}/templates/${templateName}/js/post.js?${startupTime}"></script>
 <script type="text/javascript">
-<#include "js/bbcode_help.js"/>
-<#include "js/utils.js"/>
-<#include "js/attachments.js"/>
+#include("/templates/$!{templateName}/js/bbcode_help.js")
+#include("/templates/$!{templateName}/js/utils.js")
+#include("/templates/$!{templateName}/js/attachments.js")
 </script>
 
 <script type="text/javascript">
@@ -81,114 +80,108 @@ function smiliePopup()
 -->
 </script>
 
-<#assign preview = preview?exists && preview/>
-<#assign isNewPost = isNewPost?exists && isNewPost/>
-<#assign isEdit = isEdit?if_exists/>
-<#assign isNewTopic = (!topic?exists || topic.id == -1)/>
-<#assign attachmentsEnabled = attachmentsEnabled?exists && attachmentsEnabled/>
-
 #if($maxAttachments)
 	<#set($maxAttachments = 0)
 #end
 
-<#assign htmlChecked = "checked=\"checked\""/>
-<#assign bbChecked = ""/>
-<#assign signatureChecked = "checked=\"checked\""/>
-<#assign repliesChecked = "checked=\"checked\""/>
-<#assign smiliesChecked = ""/>
+#set($htmlChecked = "checked=\"checked\"")
+#set($bbChecked = "")
+#set($signatureChecked = "checked=\"checked\"")
+#set($repliesChecked = "checked=\"checked\"")
+#set($smiliesChecked = "")
 
-<#if isNewPost && !preview && !post?exists>
-	<#if user.isHtmlEnabled()><#assign htmlChecked = ""/></#if>
-	<#if !user.isBbCodeEnabled()><#assign bbChecked = "checked=\"checked\""/></#if>
-	<#if !user.isSmiliesEnabled()><#assign smiliesChecked = "checked=\"checked\""/></#if>
-	<#if !user.getAttachSignatureEnabled()><#assign signatureChecked = ""/></#if>
-<#elseif post?exists>
-	<#if post.isHtmlEnabled()><#assign htmlChecked = ""/></#if>
-	<#if !post.isBbCodeEnabled()><#assign bbChecked = "checked=\"checked\""/></#if>
-	<#if !post.isSmiliesEnabled()><#assign smiliesChecked = "checked=\"checked\""/></#if>
-	<#if !post.isSignatureEnabled()><#assign signatureChecked = ""/></#if>
-</#if>
+#if($isNewPost && !$spreview)
+	#if(!$user.isHtmlEnabled())#set($htmlChecked = "")#end
+	#if(!$user.isBbCodeEnabled())#set($bbChecked = "checked=\"checked\"")#end
+	#if(!$user.isSmiliesEnabled())#set($smiliesChecked = "checked=\"checked\"")#end
+	#if(!$user.getAttachSignatureEnabled())#set($signatureChecked = "")#end
+#else
+	#if(!$post.isHtmlEnabled())#set($htmlChecked = "")#end
+	#if(!$post.isBbCodeEnabled())#set($bbChecked = "checked=\"checked\"")#end
+	#if(!$post.isSmiliesEnabled())#set($smiliesChecked = "checked=\"checked\"")#end
+	#if(!$post.isSignatureEnabled())#set($signatureChecked = "")#end
+#end
 
-<#if !user.isNotifyOnMessagesEnabled()><#assign repliesChecked = ""/></#if>
+#if(!$user.isNotifyOnMessagesEnabled())#set($repliesChecked = "")#end
 
 <form action="/jforum")}" method="post" enctype="multipart/form-data" name="post" id="post" onsubmit="return validatePostForm(this)">
 <input type="hidden" name="action" value="${action}" />
 <input type="hidden" name="module" value="${moduleName}" />
 <input type="hidden" name="preview" value="0"/>
-<#if forum?exists><input type="hidden" name="forum_id" value="${forum.id}" /></#if>
-<input type="hidden" name="start" value="${start?default("")}" />
-<#if isEdit><input type="hidden" name="post_id" value="${post.id}" /></#if>
-<#if !isNewTopic><input type="hidden" name="topic_id" value="${topic.id}" /></#if>
+#if($forum)<input type="hidden" name="forum_id" value="${forum.id}" />#end
+<input type="hidden" name="start" value="${start}" />
+#if($isEdit)<input type="hidden" name="post_id" value="${post.id}" />#end
+#if($!isNewTopic)<input type="hidden" name="topic_id" value="${topic.id}" />#end
 <div id="nav">
-	<a class="nav" href="/forums/list")}">${I18n.getMessage("ForumListing.forumIndex")}</a>
+	<a class="nav" href="${contextPath}/index.html")}">${I18n.getMessage("ForumListing.forumIndex")}</a>
 
-	<#if forum?exists>
-	&raquo; <a class="nav" href="/forums/show/${forum.id}")}">${forum.name}</a>
-	</#if>
+	#if($forum)
+	&raquo; <a class="nav" href="${contextPath}/forum-${forum.id}.html">${forum.name}</a>
+	#end
 </div>
 <DIV class="mainbox viewtopic">
 	<H1>
-		<#if forum?exists>
-				<#if (topic?exists && topic.id > -1)>
-				    <#if isEdit>
-				    	${I18n.getMessage("PostForm.edit")} "${topic.title?html}"
-				    <#else>
-						${I18n.getMessage("PostForm.reply")} "${topic.title?html}"
-					</#if>
-				<#else>
+		#if($forum)
+				#if($topic)
+				    #if($isEdit)
+				    	${I18n.getMessage("PostForm.edit")} "${topic.title}"
+				    #else
+						${I18n.getMessage("PostForm.reply")} "${topic.title}"
+					#end
+				#else
 					${I18n.getMessage("PostForm.title")}
-				</#if>
+				#end
 			<#else>
-				<#if pmReply?default(false)>
+				#if($pmReply)
 					${I18n.getMessage("PrivateMessage.reply")}
-				<#else>
+				#else
 					${I18n.getMessage("PrivateMessage.title")}
-				</#if>
-		</#if>
+				#end
+		#end
 	</H1>
 	<table class="mainbox" cellspacing="1" cellpadding="3" width="100%" border="0">
-		<#if !forum?exists>
+		#if(!$forum)
 			<tr>
 				<td class="row1" width="15%"><span class="gen"><b>${I18n.getMessage("PrivateMessage.user")}</b></span></td>
 				<td class="row2" width="85%">
-					<#if pmRecipient?exists>
-						<#assign toUsername = toUsername/>
-						<#assign toUserId = toUserId/>
-						<#elseif preview>
-						<#assign toUsername = pm.toUser.username/>
-						<#assign toUserId = pm.toUser.id/>
-						<#elseif quote?default("") == "true" || pmReply?default(false)>
-						<#assign toUsername = pm.fromUser.username/>
-						<#assign toUserId = pm.fromUser.id/>
-					<#else>
-						<#assign toUsername = ""/>
-						<#assign toUserId = ""/>
-					</#if>
+					#if($pmRecipient)
+						#set($toUsername = $toUsername)
+						#set($toUserId = $toUserId)
+					#elseif($preview)
+						#set($toUsername = $pm.toUser.username)
+						#set($toUserId = $pm.toUser.id)
+					#elseif($quote == "true" || $pmReply)
+						#set($toUsername = $pm.fromUser.username)
+						#set($toUserId = $pm.fromUser.id)
+					#else
+						#set($toUsername = "")
+						#set($toUserId = "")
+					#end
 	
 					<input type="text" class="post" size="25" name="toUsername" value="${toUsername}"/>&nbsp;
 					<input type="button" value="${I18n.getMessage("PrivateMessage.findUser")}" name="findUser" class="liteoption" onclick="openFindUserWindow(); return false;" />
 					<input type="hidden" name="toUserId" value="${toUserId}" />
 				</td>
 			</tr>
-		</#if>
+		#end
 	
-		<#if errorMessage?exists>
+		#if($errorMessage)
 			<tr>
 				<td colspan="2" align="center"><span class="gen"><font color="#ff0000"><b>${errorMessage}</b></font></span></td>
 			</tr>
-		</#if>
+		#end
 	
 		<tr>
 			<td class="row1" width="15%"><span class="gen"><b>${I18n.getMessage("PostForm.subject")}</b></span></td>
-			<#if post?exists>
-				<#assign subject = post.subject?default("")?html/>
-				<#elseif pmReply?default(false)>
-				<#assign subject = pm.post.subject?html/>
-				<#elseif topic?exists>
-				<#assign subject = I18n.getMessage("Message.replyPrefix") + topic.title?default("")?html/>
-			</#if>
+			#if($post)
+				#set($subject = $post.subject)
+			#elseif($pmReply)
+				#set($subject = $pm.post.subject)
+			#elseif($topic)
+				#set($subject = $I18n.getMessage("Message.replyPrefix") + $topic.title)
+			#end
 			<td class="row2" width="100%">
-				<input width="100%" class="subject" type="text" tabindex="2" maxlength="100" name="subject" value="${subject?default("")}" />
+				<input width="100%" class="subject" type="text" tabindex="2" maxlength="100" name="subject" value="${subject}" />
 			</td>
 		</tr>
 	
@@ -201,26 +194,26 @@ function smiliePopup()
 								<tr align="center">
 									<td align="left" class="gensmall" colspan="4"><b>${I18n.getMessage("PostForm.emoticons")}</b></td>
 								</tr>
-								<#assign count = 0/>
-								<#assign lastSmilie = ""/>
-									<#list smilies as smilie>
-										<#if (count < 20)>
-											<#if lastSmilie == "" || lastSmilie.url != smilie.url>
-												<#if count % 4 == 0>
+								#set($count = 0)
+								#set($lastSmilie = "")
+								#foreach($smilie in $smilies)
+										#if($count < 20)
+											#if($lastSmilie == "" || $lastSmilie.url != $smilie.url)
+												#if($count % 4 == 0)
 													<tr>
-												</#if>
+												#end
 												<td><a href="javascript:emoticon('${smilie.code}');">${smilie.url}</a></td>
-												<#assign count = count + 1/>
-												<#if count % 4 == 0>
+												#set($count = $count + 1)
+												#if($count % 4 == 0)
 													</tr>
-												</#if>
-												<#assign lastSmilie = smilie/>
-											</#if>
-										</#if>
-									</#list>
+												#end
+												#set($lastSmilie = $smilie)
+											#end
+										#end
+								#end
 	
-									<#if !(count % 4 == 0)>
-									</#if>
+									#if(!($count % 4 == 0))
+									#end
 								<tr align="center">
 									<td colspan="4">
 										<span class="nav"><a href="#" onclick="smiliePopup();return false;">${I18n.getMessage("PostForm.moreSmilies")}</a></span>
@@ -290,7 +283,7 @@ function smiliePopup()
 						<!-- Textarea -->
 						<tr>
 							<td valign="top">
-								<textarea  onkeyup="storeCaret(this);" onclick="storeCaret(this);" onselect="storeCaret(this);" tabindex="3" name="message" rows="15"  cols="70" width="100%"><#if post?exists><#if quote?exists>[quote=${quoteUser}]${post.text?html}[/quote]<#else>${post.text?html}</#if></#if></textarea> 
+								<textarea  onkeyup="storeCaret(this);" onclick="storeCaret(this);" onselect="storeCaret(this);" tabindex="3" name="message" rows="15"  cols="70" width="100%">#if($post)#if($quote)[quote=${quoteUser}]${post.text}[/quote]#else${post.text}#end#end</textarea> 
 							</td>
 						</tr>
 					</table>
@@ -306,39 +299,39 @@ function smiliePopup()
 					<ul>
 					    <li target="postOptions"><a href="javascript:void(0);" onClick="activateTab('postOptions', this);"><span>Options</span></a></li>
 	
-						<#if allowPoll>
+						#if($allowPoll)
 							<li target="postPoll"><a href="javascript:void(0);" onClick="activateTab('postPoll', this);"><span>${I18n.getMessage("PostForm.pollQuestion")}</span></a></li>
-						</#if>
-						<#if attachmentsEnabled>
+						#end
+						#if($attachmentsEnabled)
 						    <li target="postAttachments"><a href="javascript:void(0);" onClick="activateTab('postAttachments', this);"><span>Attachments</span></a></li>
-						</#if>
+						#end
 					</ul>
 				</div>
 	
 				<!-- Post Options -->
-				<#include "post_options_tab.htm"/>
+				#parse("/templates/$!{templateName}/inc/postOptionsTab.vm")
 	
 				<!-- Poll tab -->
-				<#if allowPoll>
+				#if($allowPoll)
 					<div id="postPoll" class="postTabContents" style="display: none;">
 						<div>
 							<#include "post_poll_tab.htm"/>
 						</div>
 					</div>
-				</#if>
+				#end
 	
 				<!-- Attachments tab -->
-				<#if attachmentsEnabled || attachments?exists>
+				#if($attachmentsEnabled || $attachments)
 					<div id="postAttachments" class="postTabContents" style="display: none; ">
 						<div>
-							<#include "post_attachments_tab.htm"/>
+							#include("/templates/$!{templateName}/inc/post_attachments_tab.htm")
 						</div>
 					</div>
-				</#if>
+				#end
 			</td>
 		</tr
 	
-		<#if needCaptcha?default(false)>
+		#if($needCaptcha)
 			<tr>
 				<td class="row1" valign="middle"><span class="gensmall"><b>${I18n.getMessage("User.captchaResponse")}:</b></span></td>
 				<td class="row2">
@@ -348,21 +341,21 @@ function smiliePopup()
 					<span class="gensmall">${I18n.getMessage("User.hardCaptchaPart1")} <a href="#newCaptcha" onClick="newCaptcha()"><b>${I18n.getMessage("User.hardCaptchaPart2")}</b></a></span>
 				</td>
 			</tr>
-		</#if>
+		#end
 	
-		<#if logModeration>
+		#if($logModeration)
 			<tr>
 				<td align="center" class="row1 gen"><b>${I18n.getMessage("ModerationLog.moderationLog")}</b></td>
 				<td class="row2 genmed">${I18n.getMessage("ModerationLog.changeReason")} <input type="text" name="log_description" size="50" /><input type="hidden" name="log_type" value="2" /></td>
 			</tr>
-		</#if>
+		#end
 	
-		<#if error?exists>
+		#if($error)
 			<tr>
 				<td class="row1">&nbsp;</td>
 				<td class="row2"><span class="gen"><font color="red"><b>${error}</b></font></span></td>
 			</tr>
-		</#if>
+		#end
 		
 		<tr>
 		<td/>
@@ -374,17 +367,17 @@ function smiliePopup()
 	</table>
 </div>
 <DIV class="mainbox viewtopic">
-	<table class="mainbox" width="100%" cellspacing="1" cellpadding="4" border="0" <#if !preview>style="display: none"</#if> id="previewTable">
+	<table class="mainbox" width="100%" cellspacing="1" cellpadding="4" border="0" #if($!preview)style="display: none"#end id="previewTable">
 		<tr>
 			<td class="row1">
 			<h1>${I18n.getMessage("PostForm.preview")}</h1>
 				<img src="${contextPath}/templates/${templateName}/images/icon_minipost.gif" alt="Post" />
-				<span class="postdetails" id="previewSubject"> ${I18n.getMessage("PostForm.subject")}: <#if postPreview?exists>${postPreview.subject?html}</#if></span>
+				<span class="postdetails" id="previewSubject"> ${I18n.getMessage("PostForm.subject")}: #if($postPreview)${postPreview.subject}#end</span>
 			</td>
 		</tr>
 		<tr>
 			<td class="row1" height="100%">
-				<span id="previewMessage" class="postbody"><#if postPreview?exists>${postPreview.text}</#if></span>
+				<span id="previewMessage" class="postbody">#if($postPreview)${postPreview.text}#end</span>
 			</td>
 		</tr>
 	</table>
