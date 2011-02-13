@@ -2,6 +2,11 @@
 <!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
 <sqlMap namespace="Ranking">
 	<select id="isValid" resultClass="java.lang.Integer" parameterClass="java.lang.String">
-		SELECT 1 FROM JFORUM_API WHERE API_KEY = #key#
+RankingModel.selectById = SELECT * FROM jforum_ranks WHERE rank_id = ?
+RankingModel.selectSpecials = SELECT * FROM jforum_ranks WHERE rank_special = 1
+RankingModel.selectAll = SELECT * FROM jforum_ranks ORDER BY rank_min
+RankingModel.delete = DELETE FROM jforum_ranks WHERE rank_id = ?
+RankingModel.update = UPDATE jforum_ranks SET rank_title = ?, rank_image = ?, rank_special = ?, rank_min = ? WHERE rank_id = ?
+RankingModel.addNew = INSERT INTO jforum_ranks ( rank_title, rank_min, rank_special) VALUES ( ?, ?, ? )
 	</select>
 </sqlMap>

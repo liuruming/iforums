@@ -48,8 +48,10 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -1138,5 +1140,12 @@ public class UserDaoImpl extends BaseORMDao<User> implements UserDao
 		}
 		
 		return u;
+	}
+	
+	public User getUserByName(String userName,String password){
+        Map<String,Object> params = new HashMap<String,Object>();
+        params.put("userName",userName);
+        params.put("password",password);
+        return queryForEntry("getUserByName", params);
 	}
 }

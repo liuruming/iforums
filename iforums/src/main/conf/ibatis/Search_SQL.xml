@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="Smilie">
+	<select id="isValid" resultClass="java.lang.Integer" parameterClass="java.lang.String">
+		SELECT 1 FROM JFORUM_API WHERE API_KEY = #key#
+	</select>
+	<sql id="sd">
+	SearchModel.firstPostIdByDate = SELECT post_id FROM jforum_posts WHERE post_time > ? LIMIT 1
+SearchModel.lastPostIdByDate = SELECT post_id FROM jforum_posts WHERE post_time < ? ORDER BY post_id DESC LIMIT 1
+
+SearchModel.getPostsToIndexForLucene = SELECT p.post_id, p.forum_id, p.enable_bbcode, p.enable_smilies, '' AS topic_title, p.topic_id, p.user_id, p.post_time, pt.post_text, pt.post_subject \
+	FROM jforum_posts p, jforum_posts_text pt \
+	WHERE p.post_id = pt.post_id \
+	AND p.post_id >= ? AND p.post_id < ?
+
+SearchModel.getPostsDataForLucene = SELECT p.post_id, p.forum_id, p.topic_id, p.user_id, u.username, p.enable_bbcode, p.enable_smilies, p.post_time, pt.post_subject, pt.post_text, t.topic_title \
+	FROM jforum_posts p, jforum_posts_text pt, jforum_users u, jforum_topics t \
+	WHERE p.post_id IN (:posts:) \
+	AND p.post_id = pt.post_id  \
+	AND p.topic_id = t.topic_id \
+	AND p.user_id = u.user_Id
+	</sql>
+</sqlMap>

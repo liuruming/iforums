@@ -5,9 +5,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.iforums.utils.ParamUtil;
-
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -19,10 +18,9 @@ public class LoginController extends AbstractController{
 	protected ModelAndView handleGetPostRequestInternal(
 			HttpServletRequest request, HttpServletResponse response,
 			Map<String, Object> model) throws Exception {
-		ParamUtil paramUtil = new ParamUtil(request);
+		int errorCode = ServletRequestUtils.getIntParameter(request, "error", 0);
 		
-		String username = paramUtil.getString("username", "");
-		String password = paramUtil.getString("password", "");
+		model.put("errorCode", errorCode);
 		return new ModelAndView(getViewName(),model);
 	}
 

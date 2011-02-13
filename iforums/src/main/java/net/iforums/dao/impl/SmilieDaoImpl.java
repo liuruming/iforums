@@ -64,6 +64,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class SmilieDaoImpl extends BaseORMDao<Smilie> implements SmilieDao
 {
+	public SmilieDaoImpl(){
+		this.setNamespace("Smilie");
+	}
 
 	/**
 	 * @see net.jforum.repository.SmilieDao#delete(int, int)

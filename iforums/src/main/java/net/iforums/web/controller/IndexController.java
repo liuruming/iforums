@@ -15,6 +15,7 @@ import net.iforums.utils.ParamUtil;
 import net.iforums.web.ParamConstants;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -29,8 +30,7 @@ public class IndexController extends AbstractController{
 	protected ModelAndView handleGetPostRequestInternal(
 			HttpServletRequest request, HttpServletResponse response,Map<String,Object> model)
 			throws Exception {
-		ParamUtil paramUtil = new ParamUtil(request);
-		long catId = paramUtil.getLong(ParamConstants.ID, -1l);
+		long catId = ServletRequestUtils.getIntParameter(request, ParamConstants.ID, -1);//paramUtil.getLong(, -1l);
 		
 		List<Category> categoryList = null;
 		if(catId!=-1){

@@ -16,10 +16,12 @@ import net.iforums.utils.bbcode.BBCode;
 import net.iforums.utils.bbcode.BBCodeHandler;
 import net.iforums.utils.preferences.ConfigKeys;
 
+import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class RepositoryServiceImpl extends BaseServiveImpl implements RepositoryService{
+public class RepositoryServiceImpl extends BaseServiveImpl implements RepositoryService, InitializingBean{
 	/**
 	 * banlist
 	 */
@@ -44,6 +46,10 @@ public class RepositoryServiceImpl extends BaseServiveImpl implements Repository
 	
 	@Resource
 	private SmilieDao smilieDao;
+	
+	public RepositoryServiceImpl(){
+
+	}
 	public boolean shouldBan(Banlist b) {
 		boolean status = false;
 		
@@ -100,9 +106,10 @@ public class RepositoryServiceImpl extends BaseServiveImpl implements Repository
 		}
 	}
 	
-	public void setBBCollection(BBCodeHandler bbCollection)
+	@Autowired
+	public void setBBCollection(BBCodeHandler defaultHandler)
 	{
-		cache.add(BBCODE_FQN, BBCOLLECTION, bbCollection);
+		cache.add(BBCODE_FQN, BBCOLLECTION, defaultHandler);
 	}
 	
 	public BBCodeHandler getBBCollection()
@@ -130,6 +137,10 @@ public class RepositoryServiceImpl extends BaseServiveImpl implements Repository
 	public List<Smilie> getSmilies()
 	{
 		List<Smilie> list = (List<Smilie>)cache.get(SMILIES_FQN, ENTRIES);
+		if(list==null){
+			loadSmilies();
+			list = (List<Smilie>)cache.get(SMILIES_FQN, ENTRIES);
+		}
 		if (!contexted) {
 			String forumLink = config.getString(ConfigKeys.FORUM_LINK);
 			
@@ -143,5 +154,10 @@ public class RepositoryServiceImpl extends BaseServiveImpl implements Repository
 		}
 		
 		return list;
+	}
+	@Override
+	public void afterPropertiesSet() throws Exception {
+		loadBanlist();
+		loadSmilies();
 	}
 }

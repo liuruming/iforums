@@ -2,6 +2,17 @@
 <!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
 <sqlMap namespace="Sumary">
 	<select id="isValid" resultClass="java.lang.Integer" parameterClass="java.lang.String">
-		SELECT 1 FROM JFORUM_API WHERE API_KEY = #key#
+SummaryDao.selectAllRecipients = SELECT username, user_email FROM jforum_users 
+
+SummaryDao.selectPosts = SELECT p.post_id, p.topic_id, p.forum_id, p.user_id, post_time, \
+	pt.post_subject, pt.post_text, username \
+	FROM jforum_topics t,jforum_posts p, jforum_posts_text pt, jforum_users u \
+	WHERE p.post_id = pt.post_id \
+	AND p.post_id = t.topic_first_post_id \
+	AND p.user_id = u.user_id \
+	AND p.need_moderate = 0 \
+	AND status = 1 \
+	AND t.topic_time BETWEEN ? AND ? \
+	ORDER BY post_time DESC 
 	</select>
 </sqlMap>

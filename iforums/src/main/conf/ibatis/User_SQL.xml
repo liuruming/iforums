@@ -2,10 +2,115 @@
 <!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
 <sqlMap namespace="User">
 	<select id="getObjectById" resultClass="net.iforums.beans.User" parameterClass="java.util.Map">
-		SELECT COUNT(pm.privmsgs_to_userid) AS private_messages, u.* 
-		FROM jforum_users u 
-		LEFT JOIN jforum_privmsgs pm ON pm.privmsgs_type = 1 AND pm.privmsgs_to_userid = u.id 
-		WHERE u.id = #id# 
-		GROUP BY pm.privmsgs_to_userid
+		<![CDATA[
+			SELECT COUNT(pm.privmsgs_to_userid) AS private_messages, u.* 
+			FROM jforum_users u 
+			LEFT JOIN jforum_privmsgs pm ON pm.privmsgs_type = 1 AND pm.privmsgs_to_userid = u.id 
+			WHERE u.id = #id# 
+			GROUP BY pm.privmsgs_to_userid
+		]]>
 	</select>
+	<select id="getUserByName" resultClass="net.iforums.beans.User" parameterClass="java.util.Map">
+		<![CDATA[
+			SELECT COUNT(pm.privmsgs_to_userid) AS private_messages, u.* 
+			FROM jforum_users u 
+			LEFT JOIN jforum_privmsgs pm ON pm.privmsgs_type = 1 AND pm.privmsgs_to_userid = u.id 
+			WHERE LOWER(username) = LOWER(#userName#) AND PASSWORD = #password# 
+			GROUP BY pm.privmsgs_to_userid
+		]]>
+	</select>
+	<sql id="xx">
+	<![CDATA[
+	UserModel.pendingActivations = SELECT user_id, username, user_regdate FROM jforum_users WHERE user_actkey IS NOT NULL ORDER BY user_id
+
+UserModel.selectById = SELECT COUNT(pm.privmsgs_to_userid) AS private_messages, u.* \
+	FROM jforum_users u \
+	LEFT JOIN jforum_privmsgs pm ON pm.privmsgs_type = 1 AND pm.privmsgs_to_userid = u.user_id \
+	WHERE u.user_id = ? \
+	GROUP BY pm.privmsgs_to_userid
+
+UserModel.selectAll = SELECT user_email, user_id, user_posts, user_regdate, username, deleted, user_karma, user_from, \
+	user_website, user_viewemail FROM jforum_users ORDER BY user_id
+
+UserModel.selectAllByLimit = SELECT user_email, user_id, user_posts, user_regdate, username, deleted, user_karma, user_from, user_website, user_viewemail \
+	FROM jforum_users ORDER BY username LIMIT ?, ?
+
+UserModel.selectAllByGroup = SELECT user_email, u.user_id, user_posts, user_regdate, username, deleted, user_karma, user_from, \
+	user_website, user_viewemail \
+	FROM jforum_users u, jforum_user_groups ug \
+	WHERE u.user_id = ug.user_id \
+	AND ug.group_id = ? \
+	ORDER BY user_id LIMIT ?, ?
+
+UserModel.saveUserAuthHash = UPDATE jforum_users SET user_authhash = ? WHERE user_id = ?
+UserModel.getUserAuthHash = SELECT user_authhash FROM jforum_users WHERE user_id = ?
+UserModel.totalUsersByGroup = SELECT COUNT(1) FROM jforum_user_groups WHERE group_id = ?
+UserModel.deletedStatus = UPDATE jforum_users SET deleted = ? WHERE user_id = ?
+UserModel.isDeleted = SELECT deleted FROM jforum_users WHERE user_id = ?
+UserModel.incrementPosts = UPDATE jforum_users SET user_posts = user_posts + 1 WHERE user_id = ?
+UserModel.decrementPosts = UPDATE jforum_users SET user_posts = user_posts - 1 WHERE user_id = ?
+UserModel.rankingId = UPDATE jforum_users SET rank_id = ? WHERE user_id = ?
+UserModel.activeStatus = UPDATE jforum_users SET user_active = ? WHERE user_id = ?
+UserModel.addNew = INSERT INTO jforum_users (username, user_password, user_email, user_regdate, user_actkey, rank_id) VALUES (?, ?, ?, ?, ?, 0)
+UserModel.findByName = SELECT user_id, username, user_email, deleted FROM jforum_users WHERE UPPER(username) LIKE UPPER(?)
+UserModel.findByEmail = SELECT * FROM jforum_users WHERE LOWER(user_email) = LOWER(?)
+UserModel.selectByName = SELECT * FROM jforum_users WHERE LOWER(username) = LOWER(?)
+UserModel.addNewWithId = INSERT INTO jforum_users (username, user_password, user_email, user_regdate, user_actkey, user_id) VALUES (?, ?, ?, ?, ?, ?)
+
+UserModel.update = UPDATE jforum_users SET user_aim = ?, \
+	user_avatar = ?,\
+	gender = ?, \
+	themes_id = ?,\
+	user_allow_pm = ?, \
+	user_allowavatar = ?, \
+	user_allowbbcode = ?, \
+	user_allowhtml = ?, \
+	user_allowsmilies = ?, \
+	user_email = ?, \
+	user_from = ?, \
+	user_icq = ?, \
+	user_interests = ?, \
+	user_occ = ?, \
+	user_sig = ?, \
+	user_website = ?, \
+	user_yim = ?, \
+	user_msnm = ?, \
+	user_password = ?, \
+	user_viewemail = ?, \
+	user_viewonline = ?, \
+	user_notify = ?, \
+	user_attachsig = ?, \
+	username = ?, \
+	user_lang = ?, \
+	user_notify_pm = ?, \
+	user_biography = ?, \
+	user_lastvisit = ?, \
+	user_notify_always = ?, \
+	user_notify_text = ?, \
+	rank_id = ? \
+	WHERE user_id = ?
+	
+UserModel.lastUserRegistered = SELECT user_id, username FROM jforum_users ORDER BY user_regdate DESC LIMIT 1
+UserModel.totalUsers = SELECT COUNT(1) as total_users FROM jforum_users
+UserModel.isUsernameRegistered = SELECT COUNT(1) as registered FROM jforum_users WHERE LOWER(username) = LOWER(?)
+UserModel.login = SELECT user_id FROM jforum_users WHERE LOWER(username) = LOWER(?) AND user_password = ?
+UserModel.loginMatch = SELECT user_id FROM jforum_users WHERE LOWER(username) = LOWER(?)
+UserModel.addToGroup = INSERT INTO jforum_user_groups ( user_id, group_id ) VALUES ( ?, ? )
+UserModel.removeFromGroup = DELETE FROM jforum_user_groups WHERE user_id = ? AND group_id = ?
+
+UserModel.selectGroups = SELECT ug.group_id, g.group_name FROM jforum_user_groups ug, jforum_groups g \
+	WHERE ug.group_id = g.group_id \
+	AND ug.user_id = ? \
+	ORDER BY g.group_id
+
+UserModel.saveNewPassword = UPDATE jforum_users SET user_password = ?, security_hash = null WHERE user_email = ?
+UserModel.validateLostPasswordHash = SELECT COUNT(1) AS valid FROM jforum_users WHERE security_hash = ? AND user_email = ?
+UserModel.writeLostPasswordHash = UPDATE jforum_users SET security_hash = ? WHERE user_email = ?
+UserModel.getUsernameByEmail = SELECT username FROM jforum_users WHERE user_email = ?
+UserModel.validateActivationKeyHash = SELECT COUNT(1) AS valid FROM jforum_users WHERE user_actkey = ? AND user_id = ?
+UserModel.writeUserActive = UPDATE jforum_users SET user_active = 1, user_actkey = NULL WHERE user_id = ?
+UserModel.updateUsername = UPDATE jforum_users SET username = ? WHERE user_id = ?
+UserModel.getUsername = SELECT username FROM jforum_users WHERE user_id = ?
+	]]>
+	</sql>
 </sqlMap>

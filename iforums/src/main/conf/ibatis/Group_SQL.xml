@@ -1,7 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
 <sqlMap namespace="Group">
-	<select id="isValid" resultClass="java.lang.Integer" parameterClass="java.lang.String">
-		SELECT 1 FROM JFORUM_API WHERE API_KEY = #key#
+	<select id="select">
+		SELECT ID, NAME, PARENTID, DESCRIPTION FROM JFORUM_GROUPS
+		ORDER BY NAME
+	</select>
+	<select id="getObjectById">
+		SELECT ID, NAME, PARENTID, DESCRIPTION FROM JFORUM_GROUPS
+		WHERE ID = #id#
+	</select>
+	<delete id="deleteObjectById">
+		DELETE FROM JFORUM_GROUPS WHERE ID = #id#
+	</delete>
+	<update id="update">
+		UPDATE JFORUM_GROUPS SET NAME = #name#, PARENTID = #parentid#, DESCRIPTION =
+		#description# WHERE ID = #id#
+	</update>
+	<insert id="insert">
+		INSERT INTO JFORUM_GROUPS (NAME, DESCRIPTION, PARENTID) VALUES
+		(#name#, #description#, #parentid#)
+	</insert>
+	<select id="selectUsersIds">
+		SELECT USER_ID FROM JFORUM_USER_GROUPS WHERE ID = #id#
 	</select>
 </sqlMap>

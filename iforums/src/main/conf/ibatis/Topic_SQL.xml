@@ -2,18 +2,123 @@
 <!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
 <sqlMap namespace="Topic">
 	<select id="selectByForumId" resultClass="net.iforums.beans.Topic" parameterClass="java.util.Map">
-		SELECT t.*, p.user_id AS last_user_id, p.post_time, p.attach AS lastPostHasAttach 
+		SELECT t.*, p.userid AS last_user_id, p.createtime, p.attach AS lastPostHasAttach 
 		FROM jforum_topics t, jforum_posts p 
 		WHERE (t.forumid = #forumId# OR t.movedid = #forumId#) 
-		AND p.post_id = t.lastpostid 
-		AND p.need_moderate = 0 
+		AND p.id = t.lastpostid 
+		AND p.needmoderate = 0 
 		ORDER BY t.type DESC, t.lastpostid DESC 
 		LIMIT #startId#, #size#
 	</select>
 	<select id="getObjectById" resultClass="net.iforums.beans.Topic" parameterClass="java.util.Map">
-		SELECT t.*, p.user_id AS last_user_id, p.post_time, p.attach AS attach 
+		SELECT t.*, p.userid AS last_user_id, p.createtime, p.attach AS attach 
 		FROM jforum_topics t, jforum_posts p 
 		WHERE t.id = #id# 
-		AND p.post_id = t.lastpostid
+		AND p.id = t.lastpostid
 	</select>
+	<sql id="sadf">
+	<![CDATA[
+	TopicModel.findTopicsByDateRange = SELECT DISTINCT topic_id FROM jforum_posts WHERE post_time >= ? AND post_time <= ?
+
+TopicModel.selectById = SELECT t.*, p.user_id AS last_user_id, p.post_time, p.attach AS attach \
+	FROM jforum_topics t, jforum_posts p \
+	WHERE t.topic_id = ? \
+	AND p.post_id = t.topic_last_post_id
+	
+TopicModel.selectRaw = SELECT topic_id, forum_id, topic_title, user_id, topic_views, topic_replies, topic_status, topic_vote_id, topic_type, \
+	topic_first_post_id, topic_last_post_id, moderated, topic_time, topic_moved_id \
+	FROM jforum_topics WHERE topic_id = ?
+
+TopicModel.selectAllByForumByLimit = SELECT t.*, p.user_id AS last_user_id, p.post_time, p.attach AS attach \
+	FROM jforum_topics t, jforum_posts p \
+	WHERE (t.forum_id = ? OR t.topic_moved_id = ?) \
+	AND p.post_id = t.topic_last_post_id \
+	AND p.need_moderate = 0 \
+	ORDER BY t.topic_type DESC, t.topic_last_post_id DESC \
+	LIMIT ?, ?
+
+TopicModel.topicPosters = SELECT user_id, username, user_karma, user_avatar, user_allowavatar, user_regdate, user_posts, user_icq, \
+	user_from, user_email, rank_id, user_sig, user_attachsig, user_viewemail, user_msnm, user_yim, user_website, user_sig, user_aim \
+	FROM jforum_users \
+	WHERE user_id IN (:ids:)
+
+TopicModel.distinctPosters = SELECT DISTINCT user_id FROM jforum_posts WHERE topic_id = ?
+
+TopicModel.selectTopicTitlesByIds = SELECT topic_id, topic_title FROM jforum_topics WHERE topic_id IN (:ids:)
+TopicModel.setModerationStatus = UPDATE jforum_topics SET moderated = ? WHERE forum_id = ?
+TopicModel.setModerationStatusByTopic = UPDATE jforum_topics SET moderated = ? WHERE topic_id = ?
+TopicModel.deleteByForum = SELECT topic_id FROM jforum_topics where forum_id = ?
+
+TopicModel.delete = DELETE FROM jforum_topics WHERE topic_id = ?
+TopicModel.deletePosts = DELETE FROM jforum_posts WHERE topic_id = ?
+TopicModel.incrementTotalViews = UPDATE jforum_topics SET topic_views = topic_views + 1 WHERE topic_id = ?
+TopicModel.incrementTotalReplies = UPDATE jforum_topics SET topic_replies = topic_replies + 1 WHERE topic_id = ?
+TopicModel.decrementTotalReplies = UPDATE jforum_topics SET topic_replies = topic_replies - 1 WHERE topic_id = ?
+TopicModel.setLastPostId = UPDATE jforum_topics SET topic_last_post_id = ? WHERE topic_id = ?
+TopicModel.setFirstPostId = UPDATE jforum_topics SET topic_first_post_id = ? WHERE topic_id = ?
+TopicModel.getMinPostId = SELECT MIN(post_id) AS post_id FROM jforum_posts WHERE topic_id = ?
+
+TopicModel.addNew = INSERT INTO jforum_topics (forum_id, topic_title, user_id, topic_time, topic_first_post_id, topic_last_post_id, topic_type, moderated) \
+	VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+
+TopicModel.update = UPDATE jforum_topics SET topic_title = ?, topic_last_post_id = ?, topic_first_post_id = ?, topic_type = ?, moderated = ?, topic_vote_id = ? WHERE topic_id = ?
+TopicModel.getMaxPostId = SELECT MAX(post_id) AS post_id FROM jforum_posts WHERE topic_id = ?
+TopicModel.getTotalPosts = SELECT COUNT(1) AS total FROM jforum_posts WHERE topic_id = ? AND need_moderate = 0
+
+TopicModel.subscribeUser = INSERT INTO jforum_topics_watch(topic_id, user_id, is_read) VALUES (?, ?, 1)
+TopicModel.isUserSubscribed = SELECT user_id FROM jforum_topics_watch WHERE topic_id = ? AND user_id = ?
+TopicModel.removeSubscription = DELETE FROM jforum_topics_watch WHERE topic_id = ? AND user_id = ?
+TopicModel.removeSubscriptionByTopic = DELETE FROM jforum_topics_watch WHERE topic_id = ?
+TopicModel.updateReadStatus = UPDATE jforum_topics_watch SET is_read = ? WHERE topic_id = ? AND user_id = ?
+
+TopicModel.notifyUsers = SELECT u.user_id, u.username, u.user_lang, u.user_email, u.user_notify_text \
+	FROM jforum_topics_watch tw, jforum_users u \
+	WHERE tw.user_id = u.user_id \
+	AND tw.topic_id = ? \
+	AND (tw.is_read = 1 OR u.user_notify_always = 1) \
+	AND u.user_id NOT IN ( ?, ? )
+	
+TopicModel.markAllAsUnread = UPDATE jforum_topics_watch SET is_read = '0' WHERE topic_id = ? AND user_id NOT IN (?, ?)
+TopicModel.lockUnlock = UPDATE jforum_topics SET topic_status = ? WHERE topic_id = ?
+
+TopicModel.selectRecentTopicsByLimit = SELECT t.*, p.user_id AS last_user_id, p.post_time, p.attach AS attach \
+	FROM jforum_topics t, jforum_posts p \
+	WHERE p.post_id = t.topic_last_post_id \
+	AND p.need_moderate = 0 \
+	ORDER BY topic_last_post_id DESC \
+	LIMIT ?
+	
+TopicModel.selectForNewMessages = SELECT t.*, p.user_id AS last_user_id, p.post_time, p.attach AS attach \
+	FROM jforum_topics t, jforum_posts p \
+	WHERE t.topic_id IN (:topicIds:) \
+	AND p.need_moderate = 0 \
+	AND p.post_id = t.topic_last_post_id \
+	ORDER BY topic_last_post_id DESC
+
+TopicModel.selectHottestTopicsByLimit = SELECT t.*, p.user_id AS last_user_id, p.post_time, p.attach AS attach \
+    FROM jforum_topics t, jforum_posts p \
+    WHERE p.post_id = t.topic_last_post_id \
+    AND p.need_moderate = 0 \
+    ORDER BY topic_views DESC \
+    LIMIT ?
+    
+TopicModel.getUserInformation = SELECT user_id, username FROM jforum_users WHERE user_id IN (#ID#)
+
+TopicModel.selectByUserByLimit = SELECT t.*, p.user_id AS last_user_id, p.post_time, p.attach AS attach \
+	FROM jforum_topics t, jforum_posts p \
+	WHERE p.post_id = t.topic_last_post_id \
+	AND t.user_id = ? \
+	AND p.need_moderate = 0 \
+	AND t.forum_id IN(:fids:) \
+	ORDER BY t.topic_last_post_id DESC \
+	LIMIT ?, ?
+
+TopicModel.countUserTopics = SELECT COUNT(1) AS total FROM jforum_topics t, jforum_posts p WHERE t.user_id = ? AND t.forum_id IN (:fids:) AND p.post_id = t.topic_first_post_id AND p.need_moderate = 0
+	
+TopicModel.getFirstLastPostId = SELECT MIN(post_id) AS first_post_id, MAX(post_id) AS last_post_id FROM jforum_posts WHERE topic_id = ?
+TopicModel.fixFirstLastPostId = UPDATE jforum_topics SET topic_first_post_id = ?, topic_last_post_id = ? WHERE topic_id = ?
+TopicModel.totalTopics = SELECT COUNT(1) FROM jforum_topics
+	TopicListing.selectTopicData = SELECT topic_id, topic_title, topic_views, topic_replies, topic_last_post_id, user_id FROM jforum_topics WHERE forum_id = ?
+	]]>
+	</sql>
 </sqlMap>

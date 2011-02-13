@@ -2,6 +2,33 @@
 <!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
 <sqlMap namespace="Banner">
 	<select id="isValid" resultClass="java.lang.Integer" parameterClass="java.lang.String">
-		SELECT 1 FROM JFORUM_API WHERE API_KEY = #key#
+BannerDao.selectById = SELECT banner_id, name, banner_placement, banner_description, banner_clicks, banner_views, \
+	banner_url, banner_weight, banner_active, banner_comment, banner_type, banner_width, banner_height \
+	FROM jforum_banner \
+	WHERE banner_id = ?
+	
+BannerDao.selectAll = SELECT banner_id, banner_name, banner_placement, banner_description, banner_clicks, banner_views, \
+	banner_url, banner_weight, banner_active, banner_comment, banner_type, banner_width, banner_height \
+	FROM jforum_banner \
+	ORDER BY comment
+	
+BannerDao.canDelete = SELECT COUNT(1) AS total FROM jforum_banner WHERE banner_id = ?
+BannerDao.delete = DELETE FROM jforum_banner WHERE banner_id = ?
+
+BannerDao.update = UPDATE jforum_banner SET banner_name = ?, banner_placement = ?, banner_description = ?, banner_clicks = ?, \
+	banner_views = ?, banner_url = ?, banner_weight = ?, banner_active = ?, banner_comment = ?, banner_type = ?, \
+	banner_width = ?, banner_height = ? \
+	WHERE banner_id = ?
+
+BannerDao.addNew = INSERT INTO jforum_banner (banner_name, banner_placement, banner_description, banner_clicks, banner_views, banner_url, banner_weight, \
+	banner_active, banner_comment, banner_type, banner_width, banner_height) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+
+BannerDao.selectActiveBannerByPlacement = SELECT banner_id, banner_name, banner_placement, banner_description, banner_clicks, \
+	banner_views, banner_url, \
+	banner_weight, banner_active, banner_comment, banner_type, banner_width, banner_height \
+	FROM jforum_banner \
+	WHERE banner_placement = ? \
+	AND banner_active = 1 \
+	ORDER BY banner_weight ASC
 	</select>
 </sqlMap>

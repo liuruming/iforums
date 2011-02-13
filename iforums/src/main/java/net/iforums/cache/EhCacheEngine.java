@@ -37,7 +37,7 @@ import org.springframework.stereotype.Component;
  * @author Jake Fear
  * @version $Id: EhCacheEngine.java,v 1.1 2005/10/14 00:15:54 rafaelsteil Exp $
  */
-@Component
+@Component(value="ehCacheEngine")
 public class EhCacheEngine implements CacheEngine {
 
 	private static final Logger log = Logger.getLogger(EhCacheEngine.class);

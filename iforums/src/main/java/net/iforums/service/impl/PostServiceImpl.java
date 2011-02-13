@@ -15,11 +15,10 @@ import net.iforums.beans.Smilie;
 import net.iforums.context.RequestContext;
 import net.iforums.dao.PostDao;
 import net.iforums.dao.UserDao;
-import net.iforums.repository.BBCodeRepository;
 import net.iforums.repository.SecurityRepository;
-import net.iforums.repository.SmiliesRepository;
 import net.iforums.security.SecurityConstants;
 import net.iforums.service.PostService;
+import net.iforums.service.RepositoryService;
 import net.iforums.utils.SafeHtml;
 import net.iforums.utils.bbcode.BBCode;
 import net.iforums.utils.preferences.ConfigKeys;
@@ -27,6 +26,7 @@ import net.iforums.utils.preferences.SystemGlobals;
 import net.iforums.view.forum.common.ViewCommon;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.InitBinder;
 
 @Service
 public class PostServiceImpl extends BaseServiveImpl implements PostService {
@@ -35,6 +35,10 @@ public class PostServiceImpl extends BaseServiveImpl implements PostService {
 	@Resource
 	private UserDao userDao;
 	
+	@Resource
+	private RepositoryService repositoryService;
+	
+	@InitBinder
 	public Post getPostById(long id){
 		Post post = postDao.getObjectById(id);
 		if(post!=null){
@@ -52,7 +56,7 @@ public class PostServiceImpl extends BaseServiveImpl implements PostService {
 		return postList;
 	}
 	
-	public static Post preparePostForDisplay(Post post)
+	public Post preparePostForDisplay(Post post)
 	{
 		if (post.getText() == null) {
 			return post;
@@ -81,7 +85,7 @@ public class PostServiceImpl extends BaseServiveImpl implements PostService {
 		return post;
 	}
 	
-	private static void processText(Post post)
+	private void processText(Post post)
 	{
 		int codeIndex = post.getText().indexOf("[code");
 		int codeEndIndex = codeIndex > -1 ? post.getText().indexOf("[/code]") : -1;
@@ -129,9 +133,9 @@ public class PostServiceImpl extends BaseServiveImpl implements PostService {
 //		}
 	}
 	
-	private static String parseCode(String text)
+	private String parseCode(String text)
 	{
-		for (Iterator iter = BBCodeRepository.getBBCollection().getBbList().iterator(); iter.hasNext();) {
+		for (Iterator iter = repositoryService.getBBCollection().getBbList().iterator(); iter.hasNext();) {
 			BBCode bb = (BBCode)iter.next();
 			
 			if (bb.getTagName().startsWith("code")) {
@@ -197,7 +201,7 @@ public class PostServiceImpl extends BaseServiveImpl implements PostService {
 		return text;
 	}
 	
-	public static String prepareTextForDisplayExceptCodeTag(String text, boolean isBBCodeEnabled, boolean isSmilesEnabled)
+	public String prepareTextForDisplayExceptCodeTag(String text, boolean isBBCodeEnabled, boolean isSmilesEnabled)
 	{
 		if (text == null) {
 			return text;
@@ -208,7 +212,7 @@ public class PostServiceImpl extends BaseServiveImpl implements PostService {
 		}
 		
 		if (isBBCodeEnabled && text.indexOf('[') > -1 && text.indexOf(']') > -1) {
-			for (Iterator iter = BBCodeRepository.getBBCollection().getBbList().iterator(); iter.hasNext();) {
+			for (Iterator iter = repositoryService.getBBCollection().getBbList().iterator(); iter.hasNext();) {
 				BBCode bb = (BBCode)iter.next();
 				
 				if (!bb.getTagName().startsWith("code")) {
@@ -222,9 +226,9 @@ public class PostServiceImpl extends BaseServiveImpl implements PostService {
 		return text;
 	}
 	
-	public static String parseDefaultRequiredBBCode(String text)
+	public String parseDefaultRequiredBBCode(String text)
 	{
-		Collection list = BBCodeRepository.getBBCollection().getAlwaysProcessList();
+		Collection list = repositoryService.getBBCollection().getAlwaysProcessList();
 		
 		for (Iterator iter = list.iterator(); iter.hasNext(); ) {
 			BBCode bb = (BBCode)iter.next();
@@ -240,11 +244,11 @@ public class PostServiceImpl extends BaseServiveImpl implements PostService {
 	 * @return the parsed text. Note that the StringBuffer you pass as parameter
 	 * will already have the right contents, as the replaces are done on the instance
 	 */
-	public static String processSmilies(StringBuffer text)
+	public String processSmilies(StringBuffer text)
 	{
-		List smilies = SmiliesRepository.getSmilies();
+		List<Smilie> smilies = repositoryService.getSmilies();
 		
-		for (Iterator iter = smilies.iterator(); iter.hasNext(); ) {
+		for (Iterator<Smilie> iter = smilies.iterator(); iter.hasNext(); ) {
 			Smilie s = (Smilie) iter.next();
 			int pos = text.indexOf(s.getCode());
 			

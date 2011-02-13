@@ -52,6 +52,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import net.iforums.utils.JsonUtil;
 import net.iforums.utils.preferences.ConfigKeys;
 import net.iforums.utils.preferences.SystemGlobals;
 
@@ -940,5 +941,9 @@ public class User implements Serializable
 
 	public void setRegistrationDate(Date registrationDate) {
 		this.registrationDate = registrationDate;
+	}
+	
+	public String toString(){
+		return JsonUtil.toString(this);
 	}
 }

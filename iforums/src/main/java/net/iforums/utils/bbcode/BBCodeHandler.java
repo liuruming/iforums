@@ -54,6 +54,7 @@ import javax.xml.parsers.SAXParserFactory;
 import net.iforums.utils.preferences.ConfigKeys;
 import net.iforums.utils.preferences.SystemGlobals;
 
+import org.springframework.stereotype.Component;
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -64,6 +65,7 @@ import org.xml.sax.helpers.DefaultHandler;
  * @author Rafael Steil
  * @version $Id: BBCodeHandler.java,v 1.19 2007/07/28 14:17:09 rafaelsteil Exp $
  */
+@Component
 public class BBCodeHandler extends DefaultHandler implements Serializable
 {
 	/**

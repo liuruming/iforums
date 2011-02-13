@@ -2,9 +2,18 @@
 <!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
 <sqlMap namespace="Category">
 	<select id="select" resultClass="net.iforums.beans.Category" parameterClass="java.util.Map">
-		SELECT * FROM JFORUM_CATEGORIES ORDER BY 'ORDER' limit #startId#,#endId#
+		SELECT * FROM JFORUM_CATEGORIES ORDER BY 'ORDER' LIMIT #startId#,#endId#
 	</select>
 	<select id="getObjectById" resultClass="net.iforums.beans.Category" parameterClass="java.util.Map">
 		SELECT * FROM JFORUM_CATEGORIES WHERE ID=#id#
 	</select>
+	<delete id="deleteObjectById">
+		DELETE FROM JFORUM_CATEGORIES WHERE ID=#id#
+	</delete>
+	<update id="update">
+		UPDATE JFORUM_CATEGORIES SET TITLE = #title#, MODERATED = #moderated# WHERE ID = #id#
+	</update>
+	<insert id="insert">
+		INSERT INTO JFORUM_CATEGORIES (ID,TITLE, ORDER, MODERATED) VALUES ((SELECT MAX(ID) FROM JFORUM_CATEGORIES),TITLE, ORDER, MODERATED)
+	</insert>
 </sqlMap>

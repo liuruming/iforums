@@ -1,7 +1,81 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
 <sqlMap namespace="Post">
-	<select id="isValid" resultClass="java.lang.Integer" parameterClass="java.lang.String">
-		SELECT 1 FROM JFORUM_API WHERE API_KEY = #key#
+	<select id="selectPostByTopicId" resultClass="net.iforums.beans.Post" parameterClass="java.util.Map">
+		<![CDATA[
+			SELECT p.id, topicid, forumid, p.userid, createtime, userip, enablebbcode, p.attach, 
+			enablehtml, enablesmilies, enablesig, edittime, editcount, status, pt.subject, pt.text, username, p.needmoderate 
+			FROM jforum_posts p, jforum_posts_text pt, jforum_users u 
+			WHERE p.id = pt.postid 
+			AND topicid = #topicId# 
+			AND p.userid = u.id 
+			AND p.needmoderate = 0 
+			ORDER BY createtime ASC 
+			LIMIT #startId#, #endId#
+		]]>
 	</select>
+	<sql id="sdf">
+	<![CDATA[PostModel.selectLatestByForumForRSS = SELECT p.topic_id, p.topic_id, p.post_id, p.forum_id, pt.post_subject AS subject, pt.post_text, p.post_time, p.user_id, u.username \
+	FROM jforum_topics t, jforum_posts p, jforum_posts_text pt, jforum_users u \
+	WHERE p.post_id = t.topic_first_post_id \
+	AND p.topic_id = t.topic_id \
+	AND p.user_id = u.user_id \
+	AND p.post_id = pt.post_id \
+	AND p.need_moderate = 0 \
+	AND t.forum_id = ? \
+	ORDER BY t.topic_id DESC \
+	LIMIT ?
+	
+PostModel.selectHotForRSS = SELECT t.topic_id, t.topic_title AS subject, p.post_id, t.forum_id, pt.post_text, p.post_time, p.user_id, u.username \
+	FROM jforum_topics t, jforum_posts p, jforum_posts_text pt, jforum_users u \
+	WHERE p.post_id = t.topic_first_post_id \
+	AND p.topic_id = t.topic_id \
+	AND p.user_id = u.user_id \
+	AND p.post_id = pt.post_id \
+	AND p.need_moderate = 0  \
+	ORDER BY topic_first_post_id DESC \
+	LIMIT ?
+
+PostModel.countPreviousPosts = SELECT COUNT(p2.post_id) AS prev_posts \
+	FROM jforum_posts p, jforum_posts p2 \
+	WHERE p.post_id = ? \
+	AND p2.topic_id = p.topic_id \
+	AND p2.post_id <= ?
+
+PostModel.selectById = SELECT p.post_id, topic_id, forum_id, p.user_id, post_time, poster_ip, enable_bbcode, enable_html, \
+	enable_smilies, enable_sig, post_edit_time, post_edit_count, status, pt.post_subject, pt.post_text, username, p.attach, p.need_moderate \
+	FROM jforum_posts p, jforum_posts_text pt, jforum_users u \
+	WHERE p.post_id = pt.post_id \
+	AND p.post_id = ? \
+	AND p.user_id = u.user_id
+
+PostModel.deletePost = DELETE FROM jforum_posts WHERE post_id = ?
+PostModel.deletePostText = DELETE FROM jforum_posts_text WHERE post_id = ?
+
+PostModel.updatePost = UPDATE jforum_posts SET topic_id = ?, forum_id = ?, enable_bbcode = ?, enable_html = ?, enable_smilies = ?, enable_sig = ?, post_edit_time = ?, post_edit_count = ?, poster_ip = ? WHERE post_id = ?
+PostModel.updatePostText = UPDATE jforum_posts_text SET post_text = ?, post_subject = ? WHERE post_id = ?
+
+PostModel.addNewPost = INSERT INTO jforum_posts (topic_id, forum_id, user_id, post_time, poster_ip, enable_bbcode, enable_html, enable_smilies, enable_sig, post_edit_time, need_moderate) \
+	VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), ?)
+PostModel.addNewPostText = INSERT INTO jforum_posts_text ( post_id, post_text, post_subject ) VALUES (?, ?, ?)
+
+PostModel.selectAllByTopicByLimit = 
+
+PostModel.selectByUserByLimit = SELECT p.post_id, topic_id, forum_id, p.user_id, post_time, poster_ip, enable_bbcode, p.attach, \
+	enable_html, enable_smilies, enable_sig, post_edit_time, post_edit_count, status, pt.post_subject, pt.post_text, username, p.need_moderate \
+	FROM jforum_posts p, jforum_posts_text pt, jforum_users u \
+	WHERE p.post_id = pt.post_id \
+	AND p.user_id = u.user_id \
+	AND p.user_id = ? \
+	AND p.need_moderate = 0 \
+	AND forum_id IN(:fids:) \
+	ORDER BY p.post_id DESC \
+	LIMIT ?, ?
+
+PostModel.countUserPosts = SELECT COUNT(1) AS total FROM jforum_posts where user_id = ? AND forum_id IN (:fids:) AND need_moderate = 0
+	
+PostModel.setForumByTopic = UPDATE jforum_posts SET forum_id = ? WHERE topic_id = ?
+PostModel.deleteByTopic = SELECT post_id, user_id FROM jforum_posts WHERE topic_id = ?
+	]]>
+	</sql>
 </sqlMap>

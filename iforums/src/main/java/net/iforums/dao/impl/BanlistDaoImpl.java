@@ -16,6 +16,10 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class BanlistDaoImpl extends BaseORMDao<Banlist> implements BanlistDao{
+	
+	public BanlistDaoImpl(){
+		setNamespace("Banlist");
+	}
 	/**
 	 * @see net.iforums.dao.BanlistDao#delete(int)
 	 */

@@ -2,6 +2,13 @@
 <!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
 <sqlMap namespace="Smilie">
 	<select id="isValid" resultClass="java.lang.Integer" parameterClass="java.lang.String">
-		SELECT 1 FROM JFORUM_API WHERE API_KEY = #key#
+SmiliesModel.addNew = INSERT INTO jforum_smilies ( code, url, disk_name) VALUES (?, ?, ?)
+SmiliesModel.delete = DELETE FROM jforum_smilies WHERE smilie_id = ?
+SmiliesModel.update = UPDATE jforum_smilies SET code = ?, url = ?, disk_name =? WHERE smilie_id = ?
+SmiliesModel.selectAll = SELECT * FROM jforum_smilies ORDER BY smilie_id
+SmiliesModel.selectById = SELECT * FROM jforum_smilies WHERE smilie_id = ?
+	</select>
+	<select id="select" resultClass="net.iforums.beans.Smilie">
+		SELECT * FROM jforum_smilies ORDER BY smilie_id
 	</select>
 </sqlMap>

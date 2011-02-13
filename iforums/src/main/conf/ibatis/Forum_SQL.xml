@@ -2,17 +2,17 @@
 <!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
 <sqlMap namespace="Forum">
 	<select id="getObjectById" resultClass="net.iforums.beans.Forum" parameterClass="java.util.Map">
-		SELECT JFORUM_FORUMS.*,(SELECT COUNT(1) FROM JFORUM_POSTS WHERE FORUM_ID=ID) TOTALPOSTS  
+		SELECT JFORUM_FORUMS.*,(SELECT COUNT(1) FROM JFORUM_POSTS WHERE FORUMID=ID) TOTALPOSTS  
 		FROM JFORUM_FORUMS 
 		WHERE ID = #id#
 	</select>
 	<select id="select" resultClass="net.iforums.beans.Forum" parameterClass="java.util.Map">
-		SELECT JFORUM_FORUMS.*,(SELECT COUNT(1) FROM JFORUM_POSTS WHERE FORUM_ID=ID) TOTALPOSTS 
+		SELECT JFORUM_FORUMS.*,(SELECT COUNT(1) FROM JFORUM_POSTS WHERE FORUMID=ID) TOTALPOSTS 
 		FROM JFORUM_FORUMS 
 		ORDER BY 'ORDER' ASC LIMIT #startId#,#endId#
 	</select>
 	<select id="selectForumByCatId" resultClass="net.iforums.beans.Forum" parameterClass="java.util.Map">
-		SELECT JFORUM_FORUMS.*,(SELECT COUNT(1) FROM JFORUM_POSTS WHERE FORUM_ID=ID) TOTALPOSTS 
+		SELECT JFORUM_FORUMS.*,(SELECT COUNT(1) FROM JFORUM_POSTS WHERE FORUMID=ID) TOTALPOSTS 
 		FROM JFORUM_FORUMS 
 		WHERE CATID = #catId# 
 		ORDER BY 'ORDER' ASC 
@@ -20,4 +20,76 @@
 	<delete id="deleteObjectById">
 		DELETE FROM JFORUM_FORUMS WHERE ID = #id#
 	</delete>
+	<sql id="">
+	ForumModel.selectById = SELECT forum_id, forum_name, categories_id, forum_desc, forum_order, forum_topics, forum_last_post_id, moderated \
+	FROM jforum_forums \
+	WHERE forum_id = ?
+
+ForumModel.selectAll = SELECT forum_id, forum_name, categories_id, forum_desc, forum_order, forum_topics, forum_last_post_id, moderated \
+	FROM jforum_forums \
+	ORDER BY forum_order ASC
+
+ForumModel.selectAllForPermissions = SELECT forum_id, forum_name FROM jforum_forums ORDER BY forum_name
+
+ForumModel.statsFirstPostTime = SELECT MIN(post_time) FROM jforum_posts WHERE post_time > 0
+ForumModel.statsFirstRegisteredUserTime = SELECT MIN(user_regdate) FROM jforum_users WHERE user_regdate > 0
+ForumModel.discoverForumId = SELECT forum_id FROM jforum_mail_integration WHERE forum_email = ?
+ForumModel.countForumPosts = SELECT COUNT(1) FROM jforum_posts WHERE forum_id = ?
+ForumModel.setModerated = UPDATE jforum_forums SET moderated = ? WHERE categories_id = ?
+ForumModel.delete = DELETE FROM jforum_forums WHERE forum_id = ?
+ForumModel.update = UPDATE jforum_forums SET categories_id = ?, forum_name = ?, forum_desc = ?, moderated = ? WHERE forum_id = ?
+ForumModel.addNew = INSERT INTO jforum_forums (categories_id, forum_name, forum_desc, forum_order, moderated) VALUES (?, ?, ?, ?, ?)
+ForumModel.updateLastPost = UPDATE jforum_forums SET forum_last_post_id = ? WHERE forum_id = ?
+ForumModel.incrementTotalTopics = UPDATE jforum_forums SET forum_topics = forum_topics + ? WHERE forum_id = ?
+ForumModel.decrementTotalTopics = UPDATE jforum_forums SET forum_topics = forum_topics - ? WHERE forum_id = ?
+ForumModel.decrementTotalPosts = UPDATE jforum_forums SET total_posts = total_posts - ? WHERE forum_id = ?
+ForumModel.getTotalTopics = SELECT COUNT(topic_id) as total FROM jforum_topics WHERE forum_id = ?
+ForumModel.setOrderById = UPDATE jforum_forums SET forum_order = ? WHERE forum_id = ? 
+ForumModel.getMaxOrder = SELECT MAX(forum_order) FROM jforum_forums
+
+ForumModel.lastPostInfo = SELECT post_time, p.topic_id, t.topic_replies, post_id, u.user_id, username \
+	FROM jforum_posts p, jforum_users u, jforum_topics t , jforum_forums f \
+	WHERE t.forum_id = f.forum_id \
+	AND t.topic_id = p.topic_id \
+	AND f.forum_last_post_id = t.topic_last_post_id \
+	AND t.topic_last_post_id = p.post_id \
+	AND p.forum_id = ? \
+	AND p.user_id = u.user_id \
+    AND p.need_moderate = 0
+
+ForumModel.getModeratorList = SELECT g.group_id AS id, g.group_name AS name \
+	FROM jforum_groups g, jforum_roles r, jforum_role_values rv, jforum_roles r2 \
+	WHERE g.group_id = r.group_id \
+	AND r.role_id = rv.role_id \
+	AND r.name = 'perm_moderation_forums' \
+	AND rv.role_value = ? \
+	AND r2.name = 'perm_moderation' \
+	AND r2.group_id = g.group_id 		
+
+ForumModel.totalMessages = SELECT COUNT(1) as total_messages FROM jforum_posts WHERE need_moderate = 0
+ForumModel.getMaxPostId = SELECT MAX(post_id) AS post_id FROM jforum_posts WHERE forum_id = ?
+ForumModel.moveTopics = UPDATE jforum_topics SET forum_id = ?, topic_moved_id = ? WHERE topic_id = ?
+ForumModel.checkUnreadTopics = SELECT MAX(post_time), topic_id FROM jforum_posts WHERE forum_id = ? AND post_time > ? GROUP BY topic_id
+ForumModel.latestTopicIdForfix = SELECT MAX(topic_id) AS topic_id FROM jforum_posts WHERE forum_id = ? AND need_moderate = 0
+ForumModel.fixLatestPostData = UPDATE jforum_topics SET topic_last_post_id = ? WHERE topic_id = ?
+ForumModel.fixForumLatestPostData = UPDATE jforum_forums SET forum_last_post_id = ? WHERE forum_id = ?
+
+ForumModel.getUnreadForums = SELECT t.forum_id, t.topic_id, p.post_time \
+	FROM jforum_topics t, jforum_posts p \
+	WHERE p.post_id = t.topic_last_post_id \
+	AND p.post_time > ?
+
+ForumModel.subscribeUser = INSERT INTO jforum_forums_watch(forum_id, user_id) VALUES (?, ?)
+ForumModel.isUserSubscribed = SELECT user_id FROM jforum_forums_watch WHERE forum_id = ? AND user_id = ?
+ForumModel.removeSubscription = DELETE FROM jforum_forums_watch WHERE forum_id = ? AND user_id = ?
+ForumModel.removeSubscriptionByForum = DELETE FROM jforum_forums_watch WHERE forum_id = ?
+
+ForumModel.notifyUsers = SELECT u.user_id, u.username, u.user_lang, u.user_email, \
+	u.user_notify_always, u.user_notify_text \
+	FROM jforum_forums_watch fw, jforum_users u \
+	WHERE fw.user_id = u.user_id \
+	AND fw.forum_id = ? \
+	AND u.user_id NOT IN ( ?, ? )
+	AND u.user_notify_always IN (0, 1)
+	</sql>
 </sqlMap>

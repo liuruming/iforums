@@ -2,6 +2,11 @@
 <!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
 <sqlMap namespace="MailIntegration">
 	<select id="isValid" resultClass="java.lang.Integer" parameterClass="java.lang.String">
-		SELECT 1 FROM JFORUM_API WHERE API_KEY = #key#
+MailIntegration.findAll = SELECT * FROM jforum_mail_integration
+MailIntegration.find = SELECT * FROM jforum_mail_integration WHERE forum_id = ?
+MailIntegration.delete = DELETE FROM jforum_mail_integration WHERE forum_id = ?
+MailIntegration.add = INSERT INTO jforum_mail_integration (forum_id, forum_email, pop_host, pop_username, pop_password, pop_port, pop_ssl) VALUES (?, ?, ?, ?, ?, ?, ?)
+MailIntegration.update = UPDATE jforum_mail_integration SET forum_id = ?, forum_email = ?, pop_host = ?, pop_username = ?, pop_password = ?, pop_port = ?, pop_ssl = ? WHERE forum_id = ?
+
 	</select>
 </sqlMap>

@@ -12,7 +12,7 @@ import org.jboss.logging.Logger;
 public class BaseServiveImpl {
 	static Logger logger = Logger.getLogger(BaseServiveImpl.class);
 	
-	@Resource(name="ehCacheEngine")
+	@Resource
 	protected CacheEngine cache;
 	
 	protected static Configuration config;

@@ -365,4 +365,6 @@ public interface UserDao  extends BaseDao<User>
 	 * @return the user instance if a match is found, or null otherwise
 	 */
 	public User findByEmail(String email);
+	
+	public User getUserByName(String userName,String password);
 }

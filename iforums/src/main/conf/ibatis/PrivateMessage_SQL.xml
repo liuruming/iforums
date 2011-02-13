@@ -2,6 +2,43 @@
 <!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
 <sqlMap namespace="PrivateMessage">
 	<select id="isValid" resultClass="java.lang.Integer" parameterClass="java.lang.String">
-		SELECT 1 FROM JFORUM_API WHERE API_KEY = #key#
+PrivateMessageModel.add = INSERT INTO jforum_privmsgs ( privmsgs_type, privmsgs_subject, privmsgs_from_userid, \
+	privmsgs_to_userid, privmsgs_date, privmsgs_enable_bbcode, privmsgs_enable_html, privmsgs_enable_smilies, \
+	privmsgs_attach_sig ) \
+	VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ? )
+	
+PrivateMessagesModel.addText = INSERT INTO jforum_privmsgs_text ( privmsgs_id, privmsgs_text ) VALUES (?, ?)
+	
+PrivateMessagesModel.isDeleteAllowed = SELECT 1 FROM jforum_privmsgs WHERE privmsgs_id = ? \
+	AND ( \
+	    (privmsgs_from_userid = ? AND privmsgs_type = 2) \
+	    OR (privmsgs_to_userid = ? AND privmsgs_type IN(0, 1, 5)) \
+	)
+
+PrivateMessageModel.delete = DELETE FROM jforum_privmsgs WHERE privmsgs_id = ?	
+PrivateMessagesModel.deleteText = DELETE FROM jforum_privmsgs_text WHERE privmsgs_id = ?
+
+PrivateMessageModel.baseListing = SELECT pm.privmsgs_type, pm.privmsgs_id, pm.privmsgs_date, pm.privmsgs_subject, u.user_id, u.username \
+	FROM jforum_privmsgs pm, jforum_users u \
+	#FILTER# \
+	ORDER BY pm.privmsgs_date DESC
+	
+PrivateMessageModel.inbox = WHERE privmsgs_to_userid = ? \
+	AND u.user_id = pm.privmsgs_from_userid \
+	AND ( pm.privmsgs_type = 1 \
+	OR pm.privmsgs_type = 0 \
+	OR privmsgs_type = 5)
+	
+PrivateMessageModel.sent = WHERE privmsgs_from_userid = ? \
+	AND u.user_id = pm.privmsgs_to_userid \
+	AND pm.privmsgs_type = 2
+	
+PrivateMessageModel.updateType = UPDATE jforum_privmsgs SET privmsgs_type = ? WHERE privmsgs_id = ?
+
+PrivateMessageModel.selectById = SELECT p.*, pt.privmsgs_text \
+	FROM jforum_privmsgs p, jforum_privmsgs_text pt \
+	WHERE p.privmsgs_id = pt.privmsgs_id \
+	AND p.privmsgs_id = ?
+
 	</select>
 </sqlMap>
