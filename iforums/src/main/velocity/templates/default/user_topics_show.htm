@@ -4,10 +4,10 @@
 
 <script type="text/javascript" src="${contextPath}/templates/${templateName}/js/pagination.js?${startupTime}"></script>
 <div id="nav">
-	<a class="nav" href="${JForumContext.encodeURL("/forums/list")}">${I18n.getMessage("ForumListing.forumIndex")}</a> &raquo;
-	<a class="nav" href="${JForumContext.encodeURL("/user/profile/${u.id}")}">${I18n.getMessage("UserProfile.profileFor")} ${u.username}</a> 
+	<a class="nav" href="/forums/list")}">${I18n.getMessage("ForumListing.forumIndex")}</a> &raquo;
+	<a class="nav" href="/user/profile/${u.id}")}">${I18n.getMessage("UserProfile.profileFor")} ${u.username}</a> 
 	&raquo;
-	<a class="nav" href="${JForumContext.encodeURL("/recentTopics/showTopicsByUser/${u.id}")}">${u.username?html}${I18n.getMessage("ForumListing.userTopics")}</a>
+	<a class="nav" href="/recentTopics/showTopicsByUser/${u.id}")}">${u.username?html}${I18n.getMessage("ForumListing.userTopics")}</a>
 </div>
 <DIV class=pages_btns>
 	<#assign paginationData>
@@ -34,10 +34,10 @@
 		<tr>
 			<td valign="middle" align="left" width="15px"><@presentation.folderImage topic/></td>
 			<#assign forum = forums.get(topic.forumId)/>
-			<td valign="middle" align="left"><a class="postdetails" href="${JForumContext.encodeURL("/forums/show/${forum.id}")}">${forum.name?html}</a></td>
+			<td valign="middle" align="left"><a class="postdetails" href="/forums/show/${forum.id}")}">${forum.name?html}</a></td>
 			<td align="left" width="30%">
 				<span class="topictitle">
-				<a href="${JForumContext.encodeURL("/posts/list/${topic.id}")}"><#if (topic.title?length == 0)>No Subject<#else>${topic.title?html}</#if></a>
+				<a href="/posts/list/${topic.id}")}"><#if (topic.title?length == 0)>No Subject<#else>${topic.title?html}</#if></a>
 				</span>
 
 				<#if topic.paginate>
@@ -50,7 +50,7 @@
 
 			<td class="row2" valign="middle" align="center"><span class="postdetails">${topic.totalReplies}</span></td>
 			<td class="row3" valign="middle" align="center">
-				<span class="name"><a href="${JForumContext.encodeURL("/user/profile/${topic.postedBy.id}")}">${topic.postedBy.username?html}</a></span>
+				<span class="name"><a href="/user/profile/${topic.postedBy.id}")}">${topic.postedBy.username?html}</a></span>
 			</td>
 
 			<td class="row2" valign="middle" align="center"><span class="postdetails">${topic.totalViews}</span></td>
@@ -60,8 +60,8 @@
 					<#if (topic.totalReplies + 1 > postsPerPage?number)>
 						<#assign startPage = ((topic.totalReplies / postsPerPage?number)?int * postsPerPage?number) +"/"/>
 					</#if>
-					<em><a href="${JForumContext.encodeURL("/posts/list/${startPage}${topic.id}")}#${topic.lastPostId}">${topic.lastPostTime}</a></em>
-					<cite>by <a href="${JForumContext.encodeURL("/user/profile/${topic.lastPostBy.id}")}">${topic.lastPostBy.username?html}</a></cite>
+					<em><a href="/posts/list/${startPage}${topic.id}")}#${topic.lastPostId}">${topic.lastPostTime}</a></em>
+					<cite>by <a href="/user/profile/${topic.lastPostBy.id}")}">${topic.lastPostBy.username?html}</a></cite>
 				</#if>
 			</td>
 		</tr>
@@ -74,9 +74,9 @@
 	${paginationData}
 </DIV>
 <div id="nav">
-	<a class="nav" href="${JForumContext.encodeURL("/forums/list")}">${I18n.getMessage("ForumListing.forumIndex")}</a> &raquo;
-	<a class="nav" href="${JForumContext.encodeURL("/user/profile/${u.id}")}">${I18n.getMessage("UserProfile.profileFor")} ${u.username}</a> 
+	<a class="nav" href="/forums/list")}">${I18n.getMessage("ForumListing.forumIndex")}</a> &raquo;
+	<a class="nav" href="/user/profile/${u.id}")}">${I18n.getMessage("UserProfile.profileFor")} ${u.username}</a> 
 	&raquo;
-	<a class="nav" href="${JForumContext.encodeURL("/recentTopics/showTopicsByUser/${u.id}")}">${u.username?html}${I18n.getMessage("ForumListing.userTopics")}</a>
+	<a class="nav" href="/recentTopics/showTopicsByUser/${u.id}")}">${u.username?html}${I18n.getMessage("ForumListing.userTopics")}</a>
 </div>
 <#include "bottom.htm"/>

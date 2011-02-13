@@ -49,8 +49,8 @@ function newCaptcha()
 	document.getElementById("captcha_img").src = "${contextPath}/jforum${extension}?module=captcha&action=regenerate&timestamp=" + new Date().getTime();
 }
 </script>
-<div id="nav"><a class="nav" href="${JForumContext.encodeURL("/forums/list")}">${I18n.getMessage("ForumListing.forumIndex")}</a></div>
-<form id="formregister" accept-charset="${encoding}" name="formregister" action="${JForumContext.encodeURL("/jforum")}" method="post" onsubmit="return validateRegistrationForm(this);">
+<div id="nav"><a class="nav" href="/forums/list")}">${I18n.getMessage("ForumListing.forumIndex")}</a></div>
+<form id="formregister" accept-charset="${encoding}" name="formregister" action="/jforum")}" method="post" onsubmit="return validateRegistrationForm(this);">
 <input type="hidden" name="action" value="${action}" />
 <input type="hidden" name="module" value="${moduleName}" />
 <div class="mainbox formbox">	
@@ -82,7 +82,7 @@ function newCaptcha()
 			<td><span class="gen">${I18n.getMessage("User.captchaResponse")}: *</span></td>
 			<td align="left">
 				<input class="post" type="text" style="WIDTH: 100px; font-weight: bold;" maxlength="25" size="25" name="captchaResponse" /> 
-				<img src="${JForumContext.encodeURL("/captcha/generate/${timestamp}")}" border="0" align="top" alt="Captcha unavailable" id="captcha_img"/>
+				<img src="/captcha/generate/${timestamp}")}" border="0" align="top" alt="Captcha unavailable" id="captcha_img"/>
 				<br/><span class="gensmall">${I18n.getMessage("User.hardCaptchaPart1")} <a href="#newCaptcha" onClick="newCaptcha()"><b>${I18n.getMessage("User.hardCaptchaPart2")}</b></a></span>
 			</td>
 		</tr>

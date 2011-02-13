@@ -3,10 +3,10 @@
 <link rel="alternate" type="application/rss+xml" title="RSS" href="${contextPath}/rss/forums${extension}" />
 <div id="foruminfo">
 <div id="nav">
-<a class="forumlink" href="${JForumContext.encodeURL("/forums/list")}">${I18n.getMessage("ForumListing.forumIndex")}</a>
+<a class="forumlink" href="/forums/list")}">${I18n.getMessage("ForumListing.forumIndex")}</a>
 <p>
 	<#if !logged && !sso>
-		<form name="formlogin" accept-charset="${encoding}" action="${JForumContext.encodeURL("/jforum")}" method="post">
+		<form name="formlogin" accept-charset="${encoding}" action="/jforum")}" method="post">
 		<input type="hidden" name="module" value="user" />
 		<input type="hidden" name="action" value="validateLogin" />
 		${I18n.getMessage("Login.user")}:<input class="post" size="10" name="username" type="text"/>
@@ -44,7 +44,7 @@ function checkfield(theform) {
 <p style="margin-bottom: 5px; margin-right: 2px;">
 ${I18n.getMessage("ForumListing.totalMessagesInfo", [ totalMessages ])}&nbsp;
 ${I18n.getMessage("ForumListing.registeredUsers", [ totalRegisteredUsers ])}&nbsp;
-${I18n.getMessage("ForumListing.newestUser")} <a href="${JForumContext.encodeURL("/user/profile/${lastUser.id}")}">${lastUser.username}</a>
+${I18n.getMessage("ForumListing.newestUser")} <a href="/user/profile/${lastUser.id}")}">${lastUser.username}</a>
 <script type="text/javascript">
 function doSearch() {
 	if(trim($('frmsearch').q.value)=='')
@@ -72,7 +72,7 @@ function doSearch() {
 <DIV class="mainbox forumlist">
 	<SPAN class=headactions><IMG id=section_0_img title="open/close" onClick="toggle_collapse('section_${category.id}');"
 		alt="open/close" src="${contextPath}/templates/${templateName}/images/collapsed_no.gif"></SPAN>
-	<H3><a href="${JForumContext.encodeURL("/forums/list")}?catid=${category.id}">${category.name}</a></H3>
+	<H3><a href="/forums/list")}?catid=${category.id}">${category.name}</a></H3>
 	<TABLE id="section_${category.id}" cellSpacing=0 cellPadding=0>
 	<TBODY>
 	  	<TR>
@@ -92,7 +92,7 @@ function doSearch() {
 	<#assign lpi = forumRepository.getLastPostInfo(forum.id)/>
 	<TR>
 	<td align="center">
-		<A title="Open In New Window" href='${JForumContext.encodeURL("/forums/show/${forum.id}")}' target=_blank>
+		<A title="Open In New Window" href='/forums/show/${forum.id}")}' target=_blank>
 			<#if forum.unread>
 				<img src="${contextPath}/templates/${templateName}/images/forum_new.gif" alt="[New Folder]" />
 			<#else>
@@ -101,7 +101,7 @@ function doSearch() {
 		</A>
 	</td>
 	<td align="left">
-		<b><a class="forumlink" href="${JForumContext.encodeURL("/forums/show/${forum.id}")}">${forum.name?html}</a></b>
+		<b><a class="forumlink" href="/forums/show/${forum.id}")}">${forum.name?html}</a></b>
 		<br/>${forum.description?default("")}
 		<p class="moderators">
 			<!--${forum.description?default("")}-->
@@ -109,7 +109,7 @@ function doSearch() {
 			<#assign moderators = forumRepository.getModeratorIdList(forum.id)/>
 			<#if (moderators.size()>0)>
 				<#list moderators as m>
-				  <a href="${JForumContext.encodeURL("/user/profile/${m.id}")}">${m.username?html}</a>
+				  <a href="/user/profile/${m.id}")}">${m.username?html}</a>
 				</#list>
 			<#else>
 				${I18n.getMessage("ForumIndex.withoutAdmins")}
@@ -136,7 +136,7 @@ function doSearch() {
 			<em><a href="${url}">${lpi.postDate}</a></em>
 		</#if>
 		<CITE>by &nbsp;
-		<#if (lpi.userId > 0)><a href="${JForumContext.encodeURL("/user/profile/${lpi.userId}")}" target='_blank'></#if>${lpi.username}</a>
+		<#if (lpi.userId > 0)><a href="/user/profile/${lpi.userId}")}" target='_blank'></#if>${lpi.username}</a>
 		</CITE>
 	<#else>
 			${I18n.getMessage("ForumListing.noMessages")}

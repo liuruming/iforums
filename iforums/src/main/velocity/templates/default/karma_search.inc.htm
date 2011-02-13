@@ -16,7 +16,7 @@ function activateAdvancedQuery()
 </script>
 
 <div id="nav">
-	<a class="nav" href="${JForumContext.encodeURL("/forums/list")}">${I18n.getMessage("ForumListing.forumIndex")}</a></span>
+	<a class="nav" href="/forums/list")}">${I18n.getMessage("ForumListing.forumIndex")}</a></span>
 </div>
 <div class="pages_btns" valign="center">
 	<#if thisPage?exists><@pagination.doPagination "${action}", -1/></#if>
@@ -34,7 +34,7 @@ function activateAdvancedQuery()
 	<tr>
 		<td>
 			<div class="mainbox formbox">
-				<form action="${JForumContext.encodeURL("/iforums")}" method="post" name="searchByMonthForm" id="post">
+				<form action="/iforums")}" method="post" name="searchByMonthForm" id="post">
 				<input type="hidden" name="action" value="searchByMonth" />
 				<input type="hidden" name="module" value="karma" />
 				<table class="mainbox" width="100%" align="center">				
@@ -91,7 +91,7 @@ function activateAdvancedQuery()
 				</table>
 				</form>
 	
-					<form action="${JForumContext.encodeURL("/iforums")}" method="post" name="searchByPeriodForm" id="post2">
+					<form action="/iforums")}" method="post" name="searchByPeriodForm" id="post2">
 					<input type="hidden" name="action" value="searchByPeriod" />
 					<input type="hidden" name="module" value="karma" />
 				<table class="mainbox" width="100%" align="center">				

@@ -1,8 +1,6 @@
 #parse("/templates/$!{templateName}/inc/header.vm")
-<form action="${contextPath}/login.html" method="post" name="loginform" id="loginform" accept-charset="${encoding}">
-  <input type="hidden" name="module" value="user" />
-  <input type="hidden" name="action" value="validateLogin" />
-  <input type="hidden" name="returnPath" value="$!{returnPath}" />
+<form action="${contextPath}/sso.html" method="post" name="loginform" id="loginform" accept-charset="${encoding}">
+  <input type="hidden" name="path" value="${contextPath}/index.html" />
 <div id="nav">
 	<a class="nav" href="${contextPath}/index.html">${I18n.getMessage("ForumListing.forumIndex")}</a>
 </div>
@@ -22,14 +20,15 @@
 		    <td width="15%"><label for="userID">${I18n.getMessage("Login.user")}:</label></td>
 		    <td>
 			    <input class="post" tabindex="1" maxlength="40" size="25" name="username" type="text"/>
-			    <a href="${JForumContext.encodeURL("/user/activateManual")}">${I18n.getMessage("ActivateAccount.activate")}</a>
+			    <a href="/user/activateManual")}">${I18n.getMessage("ActivateAccount.activate")}</a>
 		    </td>
 	    </tr>
 	
 		<tr>
 			<td><label for="pwd1">${I18n.getMessage("Login.password")}:</label></td>
 			<td><input class="post" tabindex="2" type="password" maxlength="25" size="25" name="password" />
-			<a href="${JForumContext.encodeURL("/user/lostPassword")}">${I18n.getMessage("Login.lostPassword")}</a>
+			<a href="/user/lostPassword")}">${I18n.getMessage("Login.lostPassword")}</a>
+			<font color="red">#if($errorCode==1)登录失败#end</font>
 			</td>
 		</tr>
 		<tr align="center">

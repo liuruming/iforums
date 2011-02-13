@@ -1,4 +1,4 @@
-<#include "header.htm"/>
+#parse("/templates/$!{templateName}/inc/header.vm")
 <#assign preview = preview?default(false)/>
 <#assign logModeration = moderationLoggingEnabled && isEdit?default(false) && isModerator && user.id != post.userId/>
 <#assign allowPoll = setType?default(true) && canCreatePolls?default(false)/>
@@ -27,14 +27,14 @@ function newCaptcha()
 
 function validatePostForm(f)
 {
-	<#if setType?default(true)>
+	#if($setType)
 	if (f.subject.value == "") {
 		alert("${I18n.getMessage("PostForm.subjectEmpty")}");
 		f.subject.focus();
 		
 		return false;
 	}
-	</#if>
+	#end
 	
 	if (f.message.value.replace(/^\s*|\s*$/g, "").length == 0) {
 		alert("${I18n.getMessage("PostForm.textEmpty")}");
@@ -43,23 +43,21 @@ function validatePostForm(f)
 		return false;
 	}
 
-	<#if !forum?exists>
 	if (f.toUsername.value == "") {
 		alert("${I18n.getMessage("PrivateMessage.toUserIsEmpy")}");
 		f.toUsername.focus();
 
 		return false;
 	}
-	</#if>
 
-	<#if logModeration>
+	#if($logModeration)
 	if (f.log_description.value == "") {
 		alert("${I18n.getMessage("ModerationLog.reasonIsEmpty")}");
 		f.log_description.focus();
 
 		return false;
 	}
-	</#if>
+	#end
 	
 	$("#icon_saving").css("display", "inline");
 	$("#btnPreview").attr("disabled", "disabled");
@@ -89,9 +87,9 @@ function smiliePopup()
 <#assign isNewTopic = (!topic?exists || topic.id == -1)/>
 <#assign attachmentsEnabled = attachmentsEnabled?exists && attachmentsEnabled/>
 
-<#if !maxAttachments?exists>
-	<#assign maxAttachments = 0/>
-</#if>
+#if($maxAttachments)
+	<#set($maxAttachments = 0)
+#end
 
 <#assign htmlChecked = "checked=\"checked\""/>
 <#assign bbChecked = ""/>
@@ -393,15 +391,15 @@ function smiliePopup()
 </div>
 <script type="text/javascript">
 <!--
-<#if attachments?exists>
+#if($attachments)
 	ignoreStart = true;
 	editAttachments();
-</#if>
+#end
 
-<#if preview>document.location = "#preview";</#if>
+#if($preview)document.location = "#preview";#end
 -->
 </script>
 
 </form>
-<#include "highlighter_js.htm"/>
-<#include "bottom.htm"/>
+#include("/templates/$!{templateName}/inc/highlighter_js.htm")
+#parse("/templates/$!{templateName}/inc/bottom.vm")

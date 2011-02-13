@@ -4,10 +4,9 @@
 <div id="nav">
 <a class="forumlink" href="$!{contextPath}/index.html">$!{I18n.getMessage("ForumListing.forumIndex")}</a>
 <p>
-#if(!$logged&&!$sso)
-		<form name="formlogin" accept-charset="$!{encoding}" action="$!{JForumContext.encodeURL("/jforum")}" method="post">
-		<input type="hidden" name="module" value="user" />
-		<input type="hidden" name="action" value="validateLogin" />
+#if(!$loginUser)
+		<form name="formlogin" accept-charset="$!{encoding}" action="${contextPath}/sso.html" method="post">
+		<input type="hidden" name="path" value="$!{contextPath}/index.html" />
 		$!{I18n.getMessage("Login.user")}:<input class="post" size="10" name="username" type="text"/>
 		$!{I18n.getMessage("Login.password")}:<input class="post" type="password" size="10" name="password" />
 #if($autoLoginEnabled)
@@ -18,8 +17,8 @@
 		</form>
 #end
 
-#if($logged)
-		<span class="gensmall">$!{session.username}:$!{I18n.getMessage("ForumListing.lastVisit")}: $!{lastVisit}</span><br />
+#if($loginUser)
+		<span class="gensmall">$!{loginUser.username}:$!{I18n.getMessage("ForumListing.lastVisit")}: $!{lastVisit}</span><br />
 #end
 
 </p>
@@ -88,7 +87,7 @@ function doSearch() {
 #foreach($forum in $category.getForumList())
 		<TR>
 	<td align="center">
-		<A title="Open In New Window" href='${JForumContext.encodeURL("/forums/show/${forum.id}")}' target=_blank>
+		<A title="Open In New Window" href='/forums/show/${forum.id}")}' target=_blank>
 #if($forum.unread)
 				<img src="${contextPath}/templates/${templateName}/images/forum_new.gif" alt="[New Folder]" />
 #else

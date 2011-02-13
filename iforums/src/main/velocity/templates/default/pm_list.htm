@@ -2,19 +2,19 @@
 
 <div id="nav">
 	<span class="nav">
-		<a class="nav" href="${JForumContext.encodeURL("/forums/list")}">${I18n.getMessage("ForumListing.forumIndex")}</a>
+		<a class="nav" href="/forums/list")}">${I18n.getMessage("ForumListing.forumIndex")}</a>
 	</span>
 </div>
 <div id="headfilter">
 <ul class="tabs">
 		<li <#if inbox?default(false)>class="spec"</#if>>
-			<a href="${JForumContext.encodeURL("/pm/inbox")}">${I18n.getMessage("PrivateMessage.inbox")}</a>
+			<a href="/pm/inbox")}">${I18n.getMessage("PrivateMessage.inbox")}</a>
 		</li>
 		<li <#if sentbox?default(false)>class="spec"</#if>>
-			<a href="${JForumContext.encodeURL("/pm/sentbox")}" title="${I18n.getMessage("PrivateMessage.sentbox")}">${I18n.getMessage("PrivateMessage.sentbox")}</a>
+			<a href="/pm/sentbox")}" title="${I18n.getMessage("PrivateMessage.sentbox")}">${I18n.getMessage("PrivateMessage.sentbox")}</a>
 		</li>
 		<li style="border: medium none;">
-			<a href="${JForumContext.encodeURL("/pm/send")}">${I18n.getMessage("PrivateMessage.title")}</a>
+			<a href="/pm/send")}">${I18n.getMessage("PrivateMessage.title")}</a>
 		</li>
 	</ul>
 </div>
@@ -28,7 +28,7 @@ function select_switch(status)
 	}
 }
 </script>
-<form action="${JForumContext.encodeURL("/jforum")}" method="post" name="privmsg_list" id="privmsg_list">
+<form action="/jforum")}" method="post" name="privmsg_list" id="privmsg_list">
 <input type="hidden" name="module" value="${moduleName}" />
 <input type="hidden" name="action" value="delete" />
 <table cellspacing="0" cellpadding="10" width="100%" align="center" border="0">
@@ -71,12 +71,12 @@ function select_switch(status)
 					<img src="${contextPath}/templates/${templateName}/images/msg.gif" alt="Folder" />
 				</#if>
 			</td>
-			<td valign="middle" width="60%"><span class="topictitle">&nbsp;<a class="topictitle" href="${JForumContext.encodeURL("/pm/read/${pm.id}")}">${pm.post.subject?html}</a></span></td>
+			<td valign="middle" width="60%"><span class="topictitle">&nbsp;<a class="topictitle" href="/pm/read/${pm.id}")}">${pm.post.subject?html}</a></span></td>
 			<td valign="middle" align="left" width="20%">
 				<#if inbox?default(false)>
-				<span class="name">&nbsp;<a class="name" href="${JForumContext.encodeURL("/user/profile/${pm.fromUser.id}")}">${pm.fromUser.username}</a></span>
+				<span class="name">&nbsp;<a class="name" href="/user/profile/${pm.fromUser.id}")}">${pm.fromUser.username}</a></span>
 				<#else>
-				<span class="name">&nbsp;<a class="name" href="${JForumContext.encodeURL("/user/profile/${pm.toUser.id}")}">${pm.toUser.username}</a></span>
+				<span class="name">&nbsp;<a class="name" href="/user/profile/${pm.toUser.id}")}">${pm.toUser.username}</a></span>
 				</#if>
 			</td>
 			<td valign="middle" align="center" width="100px"><span class="postdetails">${pm.formatedDate}</span></td>

@@ -1,4 +1,4 @@
-<#if post.userId != 1>
+#if($post.userId != 1)
 	<table>
 	<tr>
 	<td><img align="absmiddle" border="0" alt="${I18n.getMessage("UserProfile.profileFor")}" src="${contextPath}/templates/${templateName}/images/user_add.gif" alt="" />
@@ -9,40 +9,37 @@
 	<tr>
 	<td>
 	<img src="${contextPath}/templates/${templateName}/images/mail.gif" alt="${I18n.getMessage("UserProfile.emailAddress")}" align="absmiddle" border="0"/>
-	<#if (user.isViewEmailEnabled() && user.email?exists && user.email?length > 0)>
-		<#assign e = user.email.split("@")/>
-		<#if e?size == 2>
-			<a class="icon_profile" href="javascript:sendEmail('${e[0]}', '${e[1]}');" title="${I18n.getMessage("UserProfile.emailAddress")}">${I18n.getMessage("UserProfile.emailAddress")}</a>&nbsp;&nbsp;
-		</#if>
-	</#if>
+	#if($user.isViewEmailEnabled() && $user.email)
+		<a class="icon_profile" href="javascript:sendEmail('$user.email', '$user.email');" title="${I18n.getMessage("UserProfile.emailAddress")}">${I18n.getMessage("UserProfile.emailAddress")}</a>&nbsp;&nbsp;
+	#end
 	</td>
 	<td>
 	<img align="absmiddle" border="0" src="${contextPath}/templates/${templateName}/images/icon_www.gif" alt="${I18n.getMessage("UserProfile.webSite")}"/>
-	<#if (user.webSite?exists && user.webSite?length > 0)>
-		<a class="icon_profile" href="${user.webSite?html}" target="_new">${I18n.getMessage("UserProfile.webSite")}</a>
-	</#if>
+	#if ($user.webSite)
+		<a class="icon_profile" href="${user.webSite}" target="_new">${I18n.getMessage("UserProfile.webSite")}</a>
+	#end
 	</td>
 	</tr>
 	<tr>
 	<td>
 	<img align="absmiddle" src="${contextPath}/templates/${templateName}/images/icon_aim.gif" border="0" alt="${I18n.getMessage("User.aim")}"/>
-	<#if (user.aim?exists && user.aim?length > 0)>
+	#if($user.aim)
 		<a target="_new" href="https://my.screenname.aol.com/_cqr/login/login.psp">${I18n.getMessage("User.aim")}</a>
-	</#if>
+	#end
 	</td>
 	<td>
 	<img align="absmiddle" border="0" src="${contextPath}/templates/${templateName}/images/icon_msnm.gif" alt="${I18n.getMessage("User.msn")}"  />
-	<#if (user.msnm?exists && user.msnm?length > 0)>
+	#if($user.msnm)
 		<a href="/user/profile/${user.id}")}">${I18n.getMessage("User.msn")}</a>
-	</#if>
+	#end
 	</td>
 	</tr>
 	<tr>
 	<td>
 	<img align="absmiddle" border="0" src="${contextPath}/templates/${templateName}/images/icon_icq_add.gif" alt="${I18n.getMessage("User.icq")}" />
-	<#if (user.icq?exists && user.icq?length > 0)>
-		<a href="http://wwp.icq.com/scripts/search.dll?to=${user.icq?html}">${I18n.getMessage("User.icq")}</a>
-	</#if>
+	#if ($user.icq)
+		<a href="http://wwp.icq.com/scripts/search.dll?to=${user.icq}">${I18n.getMessage("User.icq")}</a>
+	#end
 	</td>
 	<td>
 	<img align="absmiddle" border="0" src="${contextPath}/templates/${templateName}/images/icon_qq.gif" alt="${I18n.getMessage("User.icq")}" />
@@ -51,10 +48,10 @@
 	<tr>
 	<td colspan="2">
 	<img align="absmiddle" border="0" src="${contextPath}/templates/${templateName}/images/icon_yim.gif" alt="${I18n.getMessage("User.yahoo")}" />
-	<#if (user.yim?exists && user.yim?length > 0)>
-		<a href="http://edit.yahoo.com/config/send_webmesg?.target=${user.yim?html}&amp;.src=pg">${I18n.getMessage("User.yahoo")}</a>
-	</#if>
+	#if($user.yim)
+		<a href="http://edit.yahoo.com/config/send_webmesg?.target=${user.yim}&amp;.src=pg">${I18n.getMessage("User.yahoo")}</a>
+	#end
 	</td>
 	</tr>
 	</table>
-</#if>	
+#end

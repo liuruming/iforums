@@ -4,8 +4,8 @@
 
 <#assign breadCrumb>
 	<div id="nav">
-	<a class="nav" href="${JForumContext.encodeURL("/forums/list")}">${I18n.getMessage("ForumListing.forumIndex")}</a> &raquo;
-	<a id="latest3" class="nav" href="${JForumContext.encodeURL("/hottestTopics/list")}">${I18n.getMessage("ForumBase.hottestTopics")}</a>
+	<a class="nav" href="/forums/list")}">${I18n.getMessage("ForumListing.forumIndex")}</a> &raquo;
+	<a id="latest3" class="nav" href="/hottestTopics/list")}">${I18n.getMessage("ForumBase.hottestTopics")}</a>
 	</div>
 </#assign>
 
@@ -28,11 +28,11 @@ ${breadCrumb}
 	<!-- TOPICS LISTING -->
 	<#list topics as topic>
 	<tr>
-		<td><a class="postdetails" href="${JForumContext.encodeURL("/forums/show/${forums.get(topic_index).getId()}")}">${forums.get(topic_index).getName()}</a></td>
+		<td><a class="postdetails" href="/forums/show/${forums.get(topic_index).getId()}")}">${forums.get(topic_index).getName()}</a></td>
 		<td><@presentation.folderImage topic/></td>
 		<td width="50%">
 			<span class="topictitle">
-			<a href="${JForumContext.encodeURL("/posts/list/${topic.id}")}"><#if (topic.title?length == 0)>No Subject<#else>${topic.title?html}</#if></a>
+			<a href="/posts/list/${topic.id}")}"><#if (topic.title?length == 0)>No Subject<#else>${topic.title?html}</#if></a>
 			</span>
 
 			<#if topic.paginate>
@@ -44,7 +44,7 @@ ${breadCrumb}
 
 		<td><span class="postdetails">${topic.totalReplies}</span></td>
 		<td>
-			<span class="name"><a href="${JForumContext.encodeURL("/user/profile/${topic.postedBy.id}")}">${topic.postedBy.username}</a></span>
+			<span class="name"><a href="/user/profile/${topic.postedBy.id}")}">${topic.postedBy.username}</a></span>
 		</td>
 
 		<td><span class="postdetails">${topic.totalViews}</span></td>
@@ -54,8 +54,8 @@ ${breadCrumb}
 				<#if (topic.totalReplies + 1 > postsPerPage?number)>
 					<#assign startPage = ((topic.totalReplies / postsPerPage?number)?int * postsPerPage?number) +"/"/>
 				</#if>
-				<em><a href="${JForumContext.encodeURL("/posts/list/${startPage}${topic.id}")}#${topic.lastPostId}">${topic.lastPostTime}</a></em>
-				<br/><cite>by <a href="${JForumContext.encodeURL("/user/profile/${topic.lastPostBy.id}")}">${topic.lastPostBy.username}</a>
+				<em><a href="/posts/list/${startPage}${topic.id}")}#${topic.lastPostId}">${topic.lastPostTime}</a></em>
+				<br/><cite>by <a href="/user/profile/${topic.lastPostBy.id}")}">${topic.lastPostBy.username}</a>
 				</cite>	  
 				</span>
 			</#if>		 

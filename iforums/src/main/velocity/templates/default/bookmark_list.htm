@@ -14,9 +14,9 @@ function confirmDelete(id)
 </script>
 	
 <div id="nav">
-	<a class="nav" href="${JForumContext.encodeURL("/forums/list")}">${I18n.getMessage("ForumListing.forumIndex")}</a>
+	<a class="nav" href="/forums/list")}">${I18n.getMessage("ForumListing.forumIndex")}</a>
 	->
-	<a href="${JForumContext.encodeURL("/bookmarks/list/${user.id}")}">${user.username}${I18n.getMessage("Bookmarks.for")}</a>
+	<a href="/bookmarks/list/${user.id}")}">${user.username}${I18n.getMessage("Bookmarks.for")}</a>
 </div>
 <div class="mainbox formbox">
 	<h1>${user.username}${I18n.getMessage("Bookmarks.for")} </h1>
@@ -47,7 +47,7 @@ function confirmDelete(id)
 							<img src="${contextPath}/templates/${templateName}/images/bookmark.gif" align="middle" alt="[Post]" />
 						</td>
 						<td class="${color}">
-							<a href="${JForumContext.encodeURL("/posts/list/${b.relationId}")}" class="gen">${b.title}</a>
+							<a href="/posts/list/${b.relationId}")}" class="gen">${b.title}</a>
 						</td>
 						<td width="60%" class="${color}" valign="center"><#if (b.description?default("")?length > 0)>${b.description}</#if></td>
 						<#if owner><td width="25px" class="${color}"><a href="javascript:addBookmark(2, ${b.relationId});">${I18n.getMessage("Edit")}</a></td></#if>
@@ -70,8 +70,8 @@ function confirmDelete(id)
 	</tr>
 </table>
 <div id="nav">
-	<a class="nav" href="${JForumContext.encodeURL("/forums/list")}">${I18n.getMessage("ForumListing.forumIndex")}</a>
+	<a class="nav" href="/forums/list")}">${I18n.getMessage("ForumListing.forumIndex")}</a>
 	->
-	<a href="${JForumContext.encodeURL("/bookmarks/list/${user.id}")}">${user.username}${I18n.getMessage("Bookmarks.for")} </a>
+	<a href="/bookmarks/list/${user.id}")}">${user.username}${I18n.getMessage("Bookmarks.for")} </a>
 </div>
 <#include "bottom.htm"/>

@@ -1,7 +1,4 @@
-<#include "header.htm"/>
-
-<#import "../macros/pagination.ftl" as pagination>
-<#import "../macros/presentation.ftl" as presentation/>
+#parse("/templates/$!{templateName}/inc/header.vm")
 
 <script type="text/javascript" src="${contextPath}/templates/${templateName}/js/pagination.js?${startupTime}"></script>
 <div id="nav">
@@ -18,7 +15,7 @@
 </DIV>
 <div class="mainbox formbox"><span class="headactions">
 	<a class="notabs" href="/forum/help/member.jsp" target="_blank"></a></span> 
-	<h1>${I18n.getMessage("Search.searchResults")}:${totalRecords} <#if (totalRecords == 1)>${I18n.getMessage("Search.recordFound")}<#else>${I18n.getMessage("Search.recordsFound")}</#if></h1>
+	<h1>${I18n.getMessage("Search.searchResults")}:${totalRecords} #if ($totalRecords == 1)${I18n.getMessage("Search.recordFound")}#else${I18n.getMessage("Search.recordsFound")}#end</h1>
 	<table class="mainbox" cellspacing="1" cellpadding="4" border="0">
 		<thead>
 			<tr class="catlogs">
@@ -32,15 +29,15 @@
 			</tr>
 		</thead>
 		
-		<#if (results.size()==0)>
+		#if($results.size()==0)
 			<tr>
 				<td align="center" width="10%">&nbsp;</td>
 				<td align="left" colspan="6">${I18n.getMessage("ForumListing.noMessages")}</td>
 			</tr>
-		</#if>
+		#end
 		<!-- TOPICS LISTING -->
-		<#list results as topic>
-			<#assign forum = fr.getForum(topic.forumId)/>
+		#foreach($topic in $topics)
+			#set($forum = $fr.getForum($topic.forumId))
 
 			<tr>
 				<td class="row1" valign="middle" align="center" width="20">
@@ -50,14 +47,14 @@
 					<a href="${contextPath}/forums/show/${forum.id}${extension}">${forum.name}</a>
 				</td>
 				<td class="row1">
-					<a href="${contextPath}/posts/list/${topic.id}${extension}" class="topictitle"><#if (topic.title?length == 0)>No Subject<#else>${topic.title?html}</#if></a>
+					<a href="${contextPath}/posts/list/${topic.id}${extension}" class="topictitle">#if($topic.title)No Subject#else${topic.title}#end</a>
 
-					<#if topic.paginate>
+					#if($topic.paginate)
 						<span class="gensmall">
 							<br />
 							<@pagination.littlePostPagination topic.id, postsPerPage, topic.totalReplies/>
 						</span>
-					</#if>
+					#end
 				</td>
 				<td class="row2 postdetails" valign="middle" align="center">
 					${topic.totalReplies}
@@ -69,20 +66,20 @@
 					${topic.totalViews}
 				</td>
 				<td class="row3" valign="middle" nowrap="nowrap" align="center">
-					<#if (topic.lastPostTime?length > 0)>
+					#if($topic.lastPostTime)
 						<span class="postdetails">${topic.lastPostTime}<br />
 						<a href="${contextPath}/user/profile/${topic.lastPostBy.id}${extension}">${topic.lastPostBy.username}</a>
 
-						<#assign startPage = ""/>
-						<#if (topic.totalReplies + 1 > postsPerPage)>
-							<#assign startPage = ((topic.totalReplies / postsPerPage)?int * postsPerPage) +"/"/>
-						</#if>
+						#set ($startPage = 0)
+						#if($topic.totalReplies + 1 > $postsPerPage)
+							#set( $startPage = (($topic.totalReplies / $postsPerPage)* $postsPerPage))
+						#end
 						<a href="${contextPath}/posts/list/${startPage}${topic.id}${extension}#${topic.lastPostId}"><img src="${contextPath}/templates/${templateName}/images/icon_latest_reply.gif" border="0" alt="[Latest Reply]" /></a>
 						</span>
-					</#if>
+					#end
 				</td>
 			</tr>
-		</#list>		
+		#end
 		<!-- END OF TOPICS LISTING -->
 	</table>
 </div>
@@ -90,20 +87,10 @@
 	<div class="pages">
 		<a class="nav" href="/forums/list")}">${I18n.getMessage("ForumListing.forumIndex")}</a>
 	</div>
-	<#assign paginationLinks>
-		<@pagination.doPagination action/>
-	</#assign>
 	${paginationLinks}
 </DIV>
 <div id="nav">
 	<a class="nav" href="/forums/list")}">${I18n.getMessage("ForumListing.forumIndex")}</a>
 </div>
-<table cellspacing="0" cellpadding="0" width="100%" align="center" border="0">
-	<tr>
-		<td valign="top" align="left">
-			<#include "folder_descriptions.htm"/>
-		</td>
-		<td align="right">&nbsp;</td>
-	</tr>
-</table>
-<#include "bottom.htm"/>
+#parse("/templates/$!{templateName}/inc/folder.vm")
+#parse("/templates/$!{templateName}/inc/bottom.vm")

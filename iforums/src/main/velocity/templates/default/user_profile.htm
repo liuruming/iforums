@@ -7,7 +7,7 @@
 -->
 </script>
 <div id="nav">
-<a class="forumlink" href="${JForumContext.encodeURL("/forums/list")}">${I18n.getMessage("ForumListing.forumIndex")}</a>
+<a class="forumlink" href="/forums/list")}">${I18n.getMessage("ForumListing.forumIndex")}</a>
 </div>
 <div class="mainbox topiclist">
 <h1>${u.username}${I18n.getMessage("UserProfile.profileFor")}</h1>
@@ -45,7 +45,7 @@
 		<td valign="middle" nowrap="nowrap" align="right"><span class="gen">${I18n.getMessage("UserProfile.totalMessages")}:&nbsp;</span></td>
 		<td valign="middle">
 			<#if (nposts > 0)>
-				<a  href="${JForumContext.encodeURL("/posts/listByUser/${u.id}")}">${I18n.getMessage("PostShow.userPosts")}[${nposts}]</a>
+				<a  href="/posts/listByUser/${u.id}")}">${I18n.getMessage("PostShow.userPosts")}[${nposts}]</a>
 			<#else>
 				${I18n.getMessage("PostShow.noUserCreatedPosts")}
 			</#if>
@@ -55,7 +55,7 @@
 		<td valign="middle" nowrap="nowrap" align="right"><span class="gen">${I18n.getMessage("ForumListing.userCreatedTopics")}:</span></td>
 		<td>
 			<#if (ntopics > 0)>
-				<a class="gen" href="${JForumContext.encodeURL("/recentTopics/showTopicsByUser/${u.id}")}">${I18n.getMessage("ForumListing.userTopics")?html}[${ntopics}]</a>
+				<a class="gen" href="/recentTopics/showTopicsByUser/${u.id}")}">${I18n.getMessage("ForumListing.userTopics")?html}[${ntopics}]</a>
 			<#else>
 				<span class="gensmall">${I18n.getMessage("ForumListing.noUserCreatedTopics")}</span>
 			</#if>
@@ -101,7 +101,7 @@
 		<td valign="middle" nowrap="nowrap" align="right"><span class="gen">${I18n.getMessage("Bookmarks.myBag")}:</span></td>
 		<td>
 			<#if (nbookmarks > 0)>
-				<a class="gen" href="${JForumContext.encodeURL("/bookmarks/list/${u.id}")}"> ${u.username}${I18n.getMessage("Bookmarks.for")}[${nbookmarks}]</a>
+				<a class="gen" href="/bookmarks/list/${u.id}")}"> ${u.username}${I18n.getMessage("Bookmarks.for")}[${nbookmarks}]</a>
 			<#else>
 				<span class="gensmall">${I18n.getMessage("Bookmarks.empty")}</span>
 			</#if>
@@ -129,7 +129,7 @@
 				<td valign="middle" nowrap="nowrap" align="right"><span class="gen">${I18n.getMessage("UserProfile.privateMessage")}:</span></td>
 				<td class="row1" valign="middle">
 					<b><span class="gen">
-					<a href="${JForumContext.encodeURL("/pm/sendTo/${u.id}")}" class="icon_pm"><img src="${contextPath}/templates/${templateName}/images/sendsms.gif"  alt="" /></a>
+					<a href="/pm/sendTo/${u.id}")}" class="icon_pm"><img src="${contextPath}/templates/${templateName}/images/sendsms.gif"  alt="" /></a>
 					</span></b>
 				</td>
 			</tr>

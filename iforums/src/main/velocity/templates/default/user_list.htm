@@ -29,8 +29,8 @@
 		<#if (user.id > 1)>
 			<tr align="left">		  
 				<td><span class="gen">${user.id}</span></td>			
-				<td><span class="gen"><a href="${JForumContext.encodeURL("/user/profile/${user.id}")}">${user.username}</a></span></td>
-				<td><span class="gen"><#if user.id != 1><a href="${JForumContext.encodeURL("/pm/sendTo/${user.id}")}" class="icon_pm"><img src="${contextPath}/templates/${templateName}/images/msg_new.gif" alt="" /></a><#else>&nbsp;</#if></span></td>
+				<td><span class="gen"><a href="/user/profile/${user.id}")}">${user.username}</a></span></td>
+				<td><span class="gen"><#if user.id != 1><a href="/pm/sendTo/${user.id}")}" class="icon_pm"><img src="${contextPath}/templates/${templateName}/images/msg_new.gif" alt="" /></a><#else>&nbsp;</#if></span></td>
 				<td><span class="gen">
 					<#if (user.isViewEmailEnabled() && user.email?exists && user.email?length > 0)>
 						<#assign e = user.email.split("@")/>
@@ -54,6 +54,6 @@
 </div>
 <#if thisPage?exists><@pagination.doPagination "${action}", -1/></#if>
 <div id="foruminfo">
-<div id="nav"><a class="nav" href="${JForumContext.encodeURL("/forums/list")}">${I18n.getMessage("ForumListing.forumIndex")}</a></span></div>
+<div id="nav"><a class="nav" href="/forums/list")}">${I18n.getMessage("ForumListing.forumIndex")}</a></span></div>
 </div>
 <#include "bottom.htm"/>

@@ -27,3 +27,46 @@
 		</tr>
 	</table>
 #end
+
+<#-- ********************************************* -->
+<#-- Displays the topic folder image by its status -->
+<#-- ********************************************* -->
+#macro(topicImage,$topic)
+	#if($topic.movedId == 0)
+		#if($topic.read)
+			#if($topic.status == 0)
+				#if($topic.type == 2)
+					<img class="icon_folder_announce" src="${contextPath}/templates/${templateName}/images/icon_folder_announce.gif" alt="" />
+				#elseif($topic.type == 1)
+					<img class="icon_folder_sticky" src="${contextPath}/templates/${templateName}/images/icon_folder_sticky.gif" alt="" />
+				<#else>
+					#if($topic.isHot())
+						<img class="icon_folder_hot" src="${contextPath}/templates/${templateName}/images/folder_hot.gif" alt="" />
+					<#else>
+						<img class="icon_folder" src="${contextPath}/templates/${templateName}/images/folder_common.gif" alt="" />
+					#end
+				#end
+			#else
+				<img class="icon_folder_lock" src="${contextPath}/templates/${templateName}/images/folder_lock.gif" alt="" />
+			#end
+		#else
+			#if($topic.status == 0)
+				#if($topic.type == 2)
+					<img class="icon_folder_announce_new" src="${contextPath}/templates/${templateName}/images/folder_hot.gif" alt="" />
+				#elseif($topic.type == 1)
+					<img class="icon_folder_sticky_new" src="${contextPath}/templates/${templateName}/images/icon_folder_sticky.gif" alt="" />
+				#else
+					#if($topic.isHot())
+						<img class="icon_folder_new_hot" src="${contextPath}/templates/${templateName}/images/folder_hot.gif" alt="" />
+					#else
+						<img class="icon_folder_new" src="${contextPath}/templates/${templateName}/images/folder_common.gif" alt="" />
+					#end
+				#end
+			#else
+				<img class="icon_folder_lock_new" src="${contextPath}/templates/${templateName}/images/folder_lock.gif" alt="" />
+			#end
+		#end
+	#else
+		<img class="icon_topic_move" src="${contextPath}/templates/${templateName}/images/folder_common.gif" alt="" />
+	#end
+#end

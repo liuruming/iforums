@@ -1,4 +1,4 @@
-	<b><A href="${JForumContext.encodeURL("/user/profile/${user.id}")}" target=_blank>${I18n.getMessage("PostShow.author")}:${user.username?html}</A></b>
+	<b><A href="/user/profile/${user.id}")}" target=_blank>${I18n.getMessage("PostShow.author")}:${user.username?html}</A></b>
 	<#if post.userId != 1>
 		<P><EM>${rank.getRankTitle(user.rankId, user.totalPosts)}</EM>&nbsp;
 	<#else>

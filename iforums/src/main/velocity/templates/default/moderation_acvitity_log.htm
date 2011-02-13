@@ -7,9 +7,9 @@
 	<table cellspacing="0" cellpadding="2" width="100%" align="center" border="0">
 		<tr>
 			<td valign="bottom" align="left">
-				<a class="nav" href="${JForumContext.encodeURL("/forums/list")}">${I18n.getMessage("ForumListing.forumIndex")}</a>
+				<a class="nav" href="/forums/list")}">${I18n.getMessage("ForumListing.forumIndex")}</a>
 				<span class="nav">&raquo;</span>
-				<a id="latest3" class="nav" href="${JForumContext.encodeURL("/moderation/showActivityLog")}">${I18n.getMessage("ModerationLog.moderationLog")}</a>
+				<a id="latest3" class="nav" href="/moderation/showActivityLog")}">${I18n.getMessage("ModerationLog.moderationLog")}</a>
 			</td>
 		</tr>
 	</table>
@@ -58,12 +58,12 @@ ${sectionTable}
 
 		<#if canAccessFullModerationLog>
 			<td >
-				<a href="${JForumContext.encodeURL("/user/profile/${log.user.id}")}">${log.user.username}</a>
+				<a href="/user/profile/${log.user.id}")}">${log.user.username}</a>
 			</td>
 		</#if>
 		<td>
 			<#if log.posterUser.username?exists>
-				<a href="${JForumContext.encodeURL("/user/profile/${log.posterUser.id}")}">${log.posterUser.username}</a>
+				<a href="/user/profile/${log.posterUser.id}")}">${log.posterUser.username}</a>
 			</#if>
 		</td>
 		<td>
@@ -85,10 +85,10 @@ ${sectionTable}
 
 		<td>
 			<#if log.topicId != 0>
-				[<a href="${JForumContext.encodeURL("/posts/list/${log.topicId}")}">${I18n.getMessage("ModerationLog.viewTopic")}</a>]
+				[<a href="/posts/list/${log.topicId}")}">${I18n.getMessage("ModerationLog.viewTopic")}</a>]
 			</#if>
 			<#if log.postId != 0>
-				[<a href="${JForumContext.encodeURL("/posts/preList/${log.topicId}/${log.postId}")}">${I18n.getMessage("ModerationLog.viewMessage")}</a>]
+				[<a href="/posts/preList/${log.topicId}/${log.postId}")}">${I18n.getMessage("ModerationLog.viewMessage")}</a>]
 			</#if>
 		</td>
 	</tr>

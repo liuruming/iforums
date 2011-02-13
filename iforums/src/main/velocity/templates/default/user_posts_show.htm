@@ -13,10 +13,10 @@
 </script>
 <div id="nav">
 	<#assign breadCrumb>
-		<a class="nav" href="${JForumContext.encodeURL("/forums/list")}">${I18n.getMessage("ForumListing.forumIndex")}</a> &raquo;
-		<a class="nav" href="${JForumContext.encodeURL("/user/profile/${u.id}")}">${u.username}${I18n.getMessage("UserProfile.profileFor")}</a> 
+		<a class="nav" href="/forums/list")}">${I18n.getMessage("ForumListing.forumIndex")}</a> &raquo;
+		<a class="nav" href="/user/profile/${u.id}")}">${u.username}${I18n.getMessage("UserProfile.profileFor")}</a> 
 		&raquo;
-		<a class="nav" href="${JForumContext.encodeURL("/posts/listByUser/${u.id}")}">${I18n.getMessage("PostShow.userPosts")}</a>
+		<a class="nav" href="/posts/listByUser/${u.id}")}">${I18n.getMessage("PostShow.userPosts")}</a>
 	</#assign>
 	${breadCrumb}	
 </div>
@@ -50,9 +50,9 @@
 				<td width="50%">${I18n.getMessage("PostShow.postAt")}:
 					<span class="gen">
 						<b>
-							<a href="${JForumContext.encodeURL("/forums/show/${forum.id}")}">${forum.name?html}</a> 
-							&raquo; <a href="${JForumContext.encodeURL("/posts/list/${post.topicId}")}">${topic.title?default("Empty")?html}</a>
-							&raquo; <a href="${JForumContext.encodeURL("/posts/preList/${post.topicId}/${post.id}${extension}#${post.id}", "")}">${I18n.getMessage("PostShow.goToMessage")}</a>
+							<a href="/forums/show/${forum.id}")}">${forum.name?html}</a> 
+							&raquo; <a href="/posts/list/${post.topicId}")}">${topic.title?default("Empty")?html}</a>
+							&raquo; <a href="/posts/preList/${post.topicId}/${post.id}${extension}#${post.id}", "")}">${I18n.getMessage("PostShow.goToMessage")}</a>
 						</b>
 					</span>
 				</td>

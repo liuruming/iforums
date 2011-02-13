@@ -9,7 +9,7 @@
 <table class="mainbox" cellspacing="1" cellpadding="3" width="100%" border="0">
 	<tr>
 		<td class="gen" align="center" colspan="6">
-			<form id="formusersearch" action="${JForumContext.encodeURL("/jforum")}" accept-charset="${encoding}" method="post">
+			<form id="formusersearch" action="/jforum")}" accept-charset="${encoding}" method="post">
 			<span class="gensmall">
 			${I18n.getMessage("User.searchByUsername")}: 
 			<input type="hidden" name="action" value="search" />
@@ -24,7 +24,7 @@
 		</td>
 	</tr>
 
-	<form accept-charset="${encoding}" name="form" action="${JForumContext.encodeURL("/jforum")}" method="post">
+	<form accept-charset="${encoding}" name="form" action="/jforum")}" method="post">
 	<input type="hidden" name="action" value="delete" />
 	<input type="hidden" name="module" value="${moduleName}" />
 	<input type="hidden" name="start" value="${start}" />

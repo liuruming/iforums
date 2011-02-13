@@ -1,6 +1,6 @@
 #parse("/templates/$!{templateName}/inc/header.vm")
 <div id="nav">
-<a class="nav" href="${JForumContext.encodeURL("/forums/list")}">${I18n.getMessage("ForumListing.forumIndex")}</a>
+<a class="nav" href="/forums/list")}">${I18n.getMessage("ForumListing.forumIndex")}</a>
 </div>
 <div class="mainbox formbox"><span class="headactions">
 <a class="notabs" href="/forum/help/member.jsp" target="_blank"></a></span> 

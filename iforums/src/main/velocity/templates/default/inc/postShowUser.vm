@@ -1,0 +1,45 @@
+	<b><A href="/user/profile/$!{user.id}")}" target=_blank>${I18n.getMessage("PostShow.author")}:$!{user.username}</A></b>
+	#if($post.userId != 1)
+		<P><EM>$!{rank.getRankTitle($user.rankId, $user.totalPosts)}</EM>&nbsp;
+	#else
+		<P><EM>$!{rank.getRankTitle($user.rankId, $user.totalPosts)}</EM>&nbsp;
+	#end
+	#if($user.avatar)
+		#if($user.isExternalAvatar() || $user.avatar.startsWith("http://"))
+			#if($user.avatarAllowExternalUrl)
+				<img src="$!{user.avatar}" border="0" alt="[头像]" />
+			#end
+		#else
+			<img src="${contextPath}/images/avatar/$!{user.avatar}" border="0" alt="[头像]" />
+		#end
+	#else
+			<img src="${contextPath}/images/avatar/avatar.jpg" border="0" alt="[头像]" />
+	#end
+	#if($user.karmaEnabled && $post.userId != 1)
+		<br/><script type="text/javascript">writeStars($!{user.karma.karmaPoints}, "$!{user.id}${post.id}");</script>
+	#end
+	#if($post.userId != 1)
+		<DL class="profile">
+			<DT>${I18n.getMessage("PostShow.userTotalMessages")}:</DT><DD>$!{user.totalPosts}</DD>
+			<#if ($user.from)
+				<DT>${I18n.getMessage("PostShow.userFrom")}:</DT><DD>$!{user.from}</DD>
+			#end
+			#if($post.userId != 1)
+				#if($user.isOnline())
+					<DT>${I18n.getMessage("UserProfile.status")}:</DT><DD><span class="online">${I18n.getMessage("PostShow.userOnline")}</span></DD>
+				#else
+					<DT>${I18n.getMessage("UserProfile.status")}:</DT><DD><span class="offline">${I18n.getMessage("PostShow.userOffline")} </span></DD>
+				#end
+				<DT>${I18n.getMessage("PostShow.userRegistrationDate")}:</DT><DD>$!dt.format("yyyy-MM-dd hh:mm:ss",$!{user.registrationDate})</DD>
+			#end
+		</DL>
+	#else
+		<DL class="profile">
+			<DT>${I18n.getMessage("PostShow.userTotalMessages")}:</DT><DD>$!{user.totalPosts}</DD>
+			#if($user.from)
+				<DT>${I18n.getMessage("PostShow.userFrom")}:</DT><DD>$!{user.from}</DD>
+			#end
+			<DT>${I18n.getMessage("UserProfile.status")}:</DT><DD><span class="online">${I18n.getMessage("PostShow.userOnline")}</span></DD>
+			<DT>${I18n.getMessage("PostShow.userRegistrationDate")}:</DT><br/><DD></DD>
+		</DL>
+	#end

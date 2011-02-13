@@ -27,11 +27,11 @@ function validateForm(f)
 }
 </script>
 
-<form id="formregister" accept-charset="${encoding}" name="formactivate" action="${JForumContext.encodeURL("/jforum")}" method="post" onsubmit="return validateForm(this);">
+<form id="formregister" accept-charset="${encoding}" name="formactivate" action="/jforum")}" method="post" onsubmit="return validateForm(this);">
 <input type="hidden" name="action" value="activateAccount" />
 <input type="hidden" name="module" value="user" />
 
-<div id="nav"><a class="nav" href="${JForumContext.encodeURL("/forums/list")}">${I18n.getMessage("ForumListing.forumIndex")}</a></div>
+<div id="nav"><a class="nav" href="/forums/list")}">${I18n.getMessage("ForumListing.forumIndex")}</a></div>
 <div class="mainbox formbox">
 	<h1>${I18n.getMessage("ActivateAccount.title")}<font color="red">(${I18n.getMessage("User.requiredFields")})</font></h1>
 	<table class="mainbox" cellspacing="1" cellpadding="3" width="100%" border="0">

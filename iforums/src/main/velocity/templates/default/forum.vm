@@ -15,7 +15,7 @@
 		</p>
 	</div>
 	<div id="headsearch">
-		<form accept-charset="${encoding}" action="${JForumContext.encodeURL("/iforums")}" method="get" id="formSearch" name="formSearch">
+		<form accept-charset="${encoding}" action="/iforums")}" method="get" id="formSearch" name="formSearch">
 			<input type="hidden" name="module" value="search"/>
 			<input type="hidden" name="action" value="search"/>
 			<input type="hidden" name="forum" value="${forum.id}">
@@ -25,12 +25,12 @@
 			<input type="submit" value="${I18n.getMessage("ForumBase.search")}" class="liteoption">
 		</form>
 	</div>
-#if ($moderators.size() > 0)
+#if ($moderators&&$moderators.size() > 0)
 			<br/>
 			<div id="nav">
 				${I18n.getMessage("ForumIndex.forumAdmins")}:
 #foreach($moderator in $moderators)
-				  	<a href="${JForumContext.encodeURL("/user/profile/${m.id}")}">${moderator.username}</a>
+				  	<a href="/user/profile/${m.id}")}">${moderator.username}</a>
 #end
 			</div>
 #else
@@ -43,7 +43,7 @@
 	</div>
 	${paginationData}
 	<SPAN class=postbtn id="newtopic" onmouseover="$('newtopic').id = 'newtopictmp';this.id = 'newtopic';showMenu(this.id);">
-		<A href="${JForumContext.encodeURL("/jforum${extension}?module=posts&amp;action=insert&amp;forum_id=${forum.id}", "")}">
+		<A href="${contextPath}/newTopic-$!{forum.id}.html">
 			<IMG src="${contextPath}/templates/${templateName}/images/newtopic.gif" border=0>
 		</A>
 	</SPAN>
@@ -61,7 +61,7 @@
 	</script>
 	<div class="mainbox topiclist">
 		<h1>${I18n.getMessage("Moderation.checkQueue")}</h1>
-		<form action="${JForumContext.encodeURL("/jforum")}" method="post" accept-charset="${encoding}">
+		<form action="/jforum")}" method="post" accept-charset="${encoding}">
 		<input type="hidden" name="action" value="approveMessages" />
 		<input type="hidden" name="module" value="${moduleName}" />
 		<input type="hidden" name="forum_id" value="${forum.id}" />
@@ -71,7 +71,7 @@
 		     <tr #if($velocityCount % 2 == 1)class="bg_small_yellow"#end>
 					<td width="90%">
 #if ($topic.topicReplies > 0)
-							<a href="${JForumContext.encodeURL("/posts/list/${topic.topicId}")}" class="gen">${topic.topicTitle}</a>
+							<a href="/posts/list/${topic.topicId}")}" class="gen">${topic.topicTitle}</a>
 #else
 							<span class="gen">${topic.topicTitle}</span>
 #end
@@ -84,7 +84,7 @@
 					<td colspan="2">
 						<table width="95%" align="right">
 #foreach($post in $topic.posts)
-								<tr><td><span class="gensmall"><b>${I18n.getMessage("PostShow.author")}</b>: <a href="${JForumContext.encodeURL("/user/profile/${post.userId}")}">${post.postUsername}</a></span></td></tr>
+								<tr><td><span class="gensmall"><b>${I18n.getMessage("PostShow.author")}</b>: <a href="/user/profile/${post.userId}")}">${post.postUsername}</a></span></td></tr>
 								<tr><td><span class="gensmall">${post.text}</span></td></tr>
 								<tr>
 									<td colspan="2" align="right">
@@ -115,10 +115,10 @@
 #end
 
 #if($moderator)
-	<form action="${JForumContext.encodeURL("/jforum")}" method="post" name="formModeration" id="formModeration" accept-charset="${encoding}">
+	<form action="/jforum")}" method="post" name="formModeration" id="formModeration" accept-charset="${encoding}">
 	<input type="hidden" name="action" value="doModeration" />
 	<input type="hidden" name="module" value="moderation" />
-	<input type="hidden" name="returnUrl" value="${JForumContext.encodeURL("/${moduleName}/${action}/${start}/${forum.id}")}" />
+	<input type="hidden" name="returnUrl" value="/${moduleName}/${action}/${start}/${forum.id}")}" />
 	<input type="hidden" name="forum_id" value="${forum.id}" />
 	<input type="hidden" name="log_type" value="0"/>
 	<input type="hidden" name="log_description">
@@ -128,13 +128,13 @@
 #if($logged)
 	<li>
 #if(!$watching)
-		<a href="#watch" onClick="watchForum('${JForumContext.encodeURL("/forums/watchForum/${forum.id}")}', '${I18n.getMessage("ForumShow.confirmWatch")}');">
+		<a href="#watch" onClick="watchForum('/forums/watchForum/${forum.id}")}', '${I18n.getMessage("ForumShow.confirmWatch")}');">
 			I18n.getMessage("ForumShow.watch")</a>
 #else
-		<a href="${JForumContext.encodeURL("/forums/unwatchForum/${forum.id}")}">I18n.getMessage("ForumShow.unwatch")</a>
+		<a href="/forums/unwatchForum/${forum.id}")}">I18n.getMessage("ForumShow.unwatch")</a>
 #end
 	</li>
-	<li><a href="${JForumContext.encodeURL("/forums/readAll/${forum.id}")}">${I18n.getMessage("ForumIndex.setAllTopicsAsRead")}</a></li>
+	<li><a href="/forums/readAll/${forum.id}")}">${I18n.getMessage("ForumIndex.setAllTopicsAsRead")}</a></li>
 #end
 
 #if($moderator)
@@ -148,13 +148,13 @@
 #end
 #if($rssEnabled)
 		  <li style="border: medium none ;">
-			<a href="${JForumContext.encodeURL("/rss/forumTopics/${forum.id}")}"><img src="${contextPath}/templates/${templateName}/images/xml_button.gif" border="0" alt="[XML]" /></a>
+			<a href="/rss/forumTopics/${forum.id}")}"><img src="${contextPath}/templates/${templateName}/images/xml_button.gif" border="0" alt="[XML]" /></a>
 		  </li>
 #end
 	</ul>
 </div>
 <div class="mainbox topiclist">
-<h1><a class="forumlink" href="${JForumContext.encodeURL("/forums/show/${forum.id}")}">${forum.name}</a></h1>
+<h1><a class="forumlink" href="${contextPath}/forum-$!{forum.id}.html">$!{forum.name}</a></h1>
 <TABLE cellSpacing=0 cellPadding=0>
 	<THEAD class=category>
 	<tr>
@@ -170,7 +170,7 @@
 	</THEAD>
 
 	<!-- TOPICS LISTING -->
-#if($topics.size() <= 0)
+#if($topicList.size() <= 0)
 		<TR>
 		    <TD class=folder></TD>
 		    <TD>No Topics</TD>
@@ -179,6 +179,45 @@
 		    <TD class="lastpost" align="right"></TD>
 	    </TR>
 #else
+	#foreach($topic in $topicList)
+		<!------->
+	 	<TR>
+	    <TD class=folder>#topicImage($topic)</TD>
+	    <TD ${class1}>
+			<a href="${contextPath}/topic-${topic.id}.html">
+			#if($topic.vote)${I18n.getMessage("ForumListing.pollLabel")}#end
+			${topic.title}</A>
+			#if($topic.paginate)
+					<span class="gensmall">
+						<@pagination.littlePostPagination topic.id, postsPerPage, topic.totalReplies/>
+					</span>
+			#end
+		</TD>
+	    <TD class=author><CITE><a href="${contextPath}/user/profile/${topic.postedBy.id}">${topic.postedBy.username}</a>
+	      </CITE>
+	    </TD>
+	    <TD class=nums><SPAN>${topic.totalReplies}</SPAN> / <EM>${topic.totalViews}</EM></TD>
+	    <TD class="lastpost" align="right">
+		    #if($topic.lastPostTime)
+				#set ($startPage = "")
+				#if ($topic.totalReplies + 1 > $postsPerPage)
+					
+				#end
+			    <em><a href="/posts/list/${startPage}${topic.id}")}#${topic.lastPostId}">${topic.lastPostTime}</a></em>
+				<cite>by <a href="/user/profile/${topic.lastPostBy.id}")}">${topic.lastPostBy.username}</a>
+				</span>
+				</cite>
+			#end
+	    </TD>
+	    #if($moderator && $openModeration)
+			<td ${class2} valign="middle" align="center">
+				<input type="checkbox" #if($topic.movedId != 0 && $topic.forumId != $forum.id) disabled="disabled" #end name="topic_id" value="${topic.id}" onclick="changeTrClass(this, ${topic_index});"/>
+			</td>
+		#end
+	    </TR>
+	    <!------->
+	#end
+	<!-- END OF TOPICS LISTING -->
 #end
 	<!-- END OF TOPICS LISTING -->
 	
@@ -194,11 +233,11 @@
 #if($moderator)</form>#end
 <div class="pages_btns">
 	<div class="pages">
-		<a href="${JForumContext.encodeURL("/forums/list")}" class="next"> &lsaquo;&lsaquo; ${I18n.getMessage("ForumListing.forumIndex")}</a>
+		<a href="/forums/list")}" class="next"> &lsaquo;&lsaquo; ${I18n.getMessage("ForumListing.forumIndex")}</a>
 	</div>
 	${paginationData}
 	<SPAN class=postbtn id="newtopic" onmouseover="$('newtopic').id = 'newtopictmp';this.id = 'newtopic';showMenu(this.id);">
-		<A href="${JForumContext.encodeURL("/jforum${extension}?module=posts&amp;action=insert&amp;forum_id=${forum.id}", "")}">
+		<A href="${contextPath}/newTopic-$!{forum.id}.html">
 			<IMG src="${contextPath}/templates/${templateName}/images/newtopic.gif" border=0>
 		</A>
 	</SPAN>
@@ -207,7 +246,7 @@
 	<div id="nav">
 		<p>
 		<a class="forumlink" href="${contextPath}/index.html">${I18n.getMessage("ForumListing.forumIndex")}</a> &raquo;&nbsp; 
-		<a class="forumlink" href="${JForumContext.encodeURL("/forums/show/${forum.id}")}">${forum.name}</a>
+		<a class="forumlink" href="/forums/show/${forum.id}")}">${forum.name}</a>
 		</p>
 	</div>
 </div>
