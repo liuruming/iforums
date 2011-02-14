@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import net.iforums.beans.Category;
 import net.iforums.service.ForumService;
 import net.iforums.utils.JsonUtil;
-import net.iforums.utils.ParamUtil;
 import net.iforums.web.ParamConstants;
 
 import org.springframework.stereotype.Controller;

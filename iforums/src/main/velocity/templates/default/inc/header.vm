@@ -44,7 +44,7 @@
 		<li><a id="moderationlog" class="mainmenu" href="$!{contextPath}/moderation/showActivityLog")}">$!{I18n.getMessage("ModerationLog.moderationLog")}</a></li>
 #end
 #if($loginUser)
-		<li><a id="myprofile" class="mainmenu" href="$!{contextPath}/user/edit/$!{session.userId}.html">
+		<li><a id="myprofile" class="mainmenu" href="$!{contextPath}/user/profile.html">
 		 $!{I18n.getMessage("ForumBase.profile")}</a>&nbsp; </li>
 #if($loginUser.bookmarksEnabled)
 			<li><a class="mainmenu" href="$!{contextPath}/bookmarks/list/$!{session.userId}.html">

@@ -103,6 +103,7 @@ public class BBCodeHandler extends DefaultHandler implements Serializable
 		}
 		catch (Exception e)
 		{
+			e.printStackTrace();
 			throw new RuntimeException(e);
 		}
 	}

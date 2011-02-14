@@ -1,0 +1,162 @@
+#parse("/templates/$!{templateName}/inc/header.vm")
+<script type="text/javascript">
+<!--
+#include("/templates/$!{templateName}/js/utils.js")
+-->
+</script>
+<div id="nav">
+<a class="forumlink" href="/forums/list")}">${I18n.getMessage("ForumListing.forumIndex")}</a>
+</div>
+<div class="mainbox topiclist">
+<h1>${u.username}${I18n.getMessage("UserProfile.profileFor")}</h1>
+<table class="mainbox" cellspacing="1" cellpadding="3" width="100%" align="center" border="0">
+	<tr>
+		<td valign="middle" nowrap="nowrap" align="right"><span class="gen">${I18n.getMessage("UserProfile.avatar")}:&nbsp;</span></td>
+		<td width="100%">
+			#set($u=$loginUser)
+			#if($u.avatar)
+				#if( $u.isExternalAvatar() || $u.avatar.startsWith("http://"))
+					#if( $avatarAllowExternalUrl)
+						<img src="${u.avatar}" border="0">
+					#end
+				#else
+					<img src="${contextPath}/images/avatar/${u.avatar}" border="0" /><br />
+				#end
+			#end
+		</td>
+	</tr>
+	<tr>
+		<td valign="middle" nowrap="nowrap" align="right"><span class="gen">${I18n.getMessage("PostShow.ranking")}:&nbsp;</span></td>
+		<td width="100%">${rank.getRankTitle($u.rankId, $u.totalPosts)}</td>
+	</tr>
+	#if( $karmaEnabled)
+		<tr>
+			<td valign="middle" nowrap="nowrap" align="right"><span class="gen">${I18n.getMessage("Karma.karma")}:&nbsp;</span></td>
+			<td width="100%"><script type="text/javascript">writeStars(${u.karma.karmaPoints}, ${u.id});</script></td>
+		</tr>
+	#end
+	<tr>
+		<td valign="middle" nowrap="nowrap" align="right"><span class="gen">${I18n.getMessage("UserProfile.registrationDate")}:&nbsp;</span></td>
+		<td width="100%"><b><span class="gen">${u.registrationDate}</span></b></td>
+	</tr>
+	
+	<tr>
+		<td valign="middle" nowrap="nowrap" align="right"><span class="gen">${I18n.getMessage("UserProfile.totalMessages")}:&nbsp;</span></td>
+		<td valign="middle">
+			#if($nposts > 0)
+				<a  href="/posts/listByUser/${u.id}")}">${I18n.getMessage("PostShow.userPosts")}[${nposts}]</a>
+			#else
+				${I18n.getMessage("PostShow.noUserCreatedPosts")}
+			#end
+		</td>
+	</tr>
+	<tr>
+		<td valign="middle" nowrap="nowrap" align="right"><span class="gen">${I18n.getMessage("ForumListing.userCreatedTopics")}:</span></td>
+		<td>
+			#if($ntopics > 0)
+				<a class="gen" href="/recentTopics/showTopicsByUser/${u.id}")}">${I18n.getMessage("ForumListing.userTopics")}[${ntopics}]</a>
+			#else
+				<span class="gensmall">${I18n.getMessage("ForumListing.noUserCreatedTopics")}</span>
+			#end
+			</td>
+	</tr>
+	#if($u.from)
+	<tr>
+		<td valign="middle" nowrap="nowrap" align="right"><span class="gen">${I18n.getMessage("UserProfile.from")}:&nbsp;</span></td>
+		<td><b><span class="gen">${u.from}</span></b></td>
+	</tr>
+	#end
+	
+	#if($u.webSite)
+	<tr>
+		<td valign="middle" nowrap="nowrap" align="right"><span class="gen">${I18n.getMessage("UserProfile.webSite")}:&nbsp;</span></td>
+		<td><span class="gen"><b><a href="${u.webSite}" target="_new">${u.webSite}</a></b></span></td>
+	</tr>
+	#end
+	
+	#if($u.occupation)
+	<tr>
+		<td valign="middle" nowrap="nowrap" align="right"><span class="gen">${I18n.getMessage("UserProfile.occupation")}:&nbsp;</span></td>
+		<td><b><span class="gen">${u.occupation}</span></b></td>
+	</tr>
+	#end
+	
+	#if($u.interests)
+	<tr>
+		<td valign="middle" nowrap="nowrap" align="right"><span class="gen">${I18n.getMessage("UserProfile.interests")}:</span></td>
+		<td><b><span class="gen">${u.interests}</span></b></td>
+	</tr>
+	#end
+	
+	#if($u.biography)
+	<tr>
+		<td valign="middle" nowrap="nowrap" align="right"><span class="gen">${I18n.getMessage("UserProfile.biography")}:</span></td>
+		<td><b><span class="gen">${u.biography}</span></b></td>
+	</tr>
+	#end
+	
+	#if( $bookmarksEnabled)
+	<tr>
+		<td valign="middle" nowrap="nowrap" align="right"><span class="gen">${I18n.getMessage("Bookmarks.myBag")}:</span></td>
+		<td>
+			#if($nbookmarks > 0)
+				<a class="gen" href="/bookmarks/list/${u.id}")}"> ${u.username}${I18n.getMessage("Bookmarks.for")}[${nbookmarks}]</a>
+			#else
+				<span class="gensmall">${I18n.getMessage("Bookmarks.empty")}</span>
+			#end
+			</td>
+	</tr>
+	#end    
+	<tr>
+		<td class="catleft" align="left" height="28" colspan="2"><h1>${u.username}${I18n.getMessage("UserProfile.contact")}</span></h1></td>
+	</tr>
+	<tr>
+			#if($u.isViewEmailEnabled() && $u.email)
+			<tr>
+				<td valign="middle" nowrap="nowrap" align="right"><span class="gen">${I18n.getMessage("UserProfile.emailAddress")}:</span></td>
+				<td class="row1" valign="middle" width="100%">
+					<b><span class="gen">
+					<#assign e = u.email.split("@")/>
+					<a href="#" onclick="document.location = 'mailto:' + showEmail('${e}', '${e}');"><img src="${contextPath}/templates/${templateName}/images/icon_mail.gif" border="0" /></a>
+					</span></b>
+				</td>
+			</tr>
+			#end
+
+			#if( $u.id != 1)
+			<tr>
+				<td valign="middle" nowrap="nowrap" align="right"><span class="gen">${I18n.getMessage("UserProfile.privateMessage")}:</span></td>
+				<td class="row1" valign="middle">
+					<b><span class="gen">
+					<a href="/pm/sendTo/${u.id}")}" class="icon_pm"><img src="${contextPath}/templates/${templateName}/images/sendsms.gif"  alt="" /></a>
+					</span></b>
+				</td>
+			</tr>
+			#end
+            
+			#if($u.msnm)
+			<tr>
+				<td valign="middle" nowrap="nowrap" align="right"><span class="gen">${I18n.getMessage("User.msn")}:</span></td>
+				<td class="row1" valign="middle"><span class="gen">${u.msnm}</span></td>
+			</tr>
+			#end
+            
+			#if($u.yim)
+			<tr>
+				<td valign="middle" nowrap="nowrap" align="right"><span class="gen">${I18n.getMessage("User.yahoo")}:</span></td>
+				<td class="row1" valign="middle"><span class="gen">${u.yim}</span></td>
+			</tr>
+			#end
+
+			#if($u.icq)
+			<tr>
+				<td valign="middle" nowrap="nowrap" align="right"><span class="gen">${I18n.getMessage("User.icq")}:</span></td>
+				<td class="row1">
+					<a href="http://wwp.icq.com/scripts/search.dll?to=${u.icq}"><img src="${contextPath}/templates/${templateName}/images/icon_icq_add.gif" border="0" /></a>
+				</td>
+			</tr>
+			#end
+	</tr>
+</table>
+</div>
+#parse("/templates/$!{templateName}/inc/bottom.vm")
