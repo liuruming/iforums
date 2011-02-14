@@ -26,4 +26,6 @@
           <property name="exposeSpringMacroHelpers" value="true"/>
           <property name="toolboxConfigLocation" value="/WEB-INF/classes/toolbox.xml"/>
 	</bean>
+	<!-- maps request URLs to Controller names -->
+    <bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping"/>
 </beans>
