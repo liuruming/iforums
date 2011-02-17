@@ -167,7 +167,7 @@ public class Captcha extends ListImageCaptchaEngine
 
 	public void writeCaptchaImage()
 	{
-		BufferedImage image = SessionFacade.getUserSession().getCaptchaImage();
+		BufferedImage image = null;//SessionFacade.getUserSession().getCaptchaImage();
 		
 		if (image == null) {
 			return;

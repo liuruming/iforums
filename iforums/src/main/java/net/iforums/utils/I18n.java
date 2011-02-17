@@ -271,7 +271,7 @@ public class I18n
 	public static String getMessage(String messageName, Object params[])
 	{
 		String lang = "";
-		UserSession us = SessionFacade.getUserSession();
+		UserSession us = null;//SessionFacade.getUserSession();
 
 		if (us != null && us.getLang() != null) {
 			lang = us.getLang();
@@ -336,7 +336,7 @@ public class I18n
 	 */
 	public static String getUserLanguage()
 	{
-		UserSession us = SessionFacade.getUserSession();
+		UserSession us = null;//SessionFacade.getUserSession();
 
 		if (us == null || us.getLang() == null || us.getLang().trim().equals("")) {
 			return defaultName;
