@@ -9,17 +9,17 @@ iforum的开发环境搭建是把整个工程目录当做一个应用发布的�
 
 步骤2：
 tomcat配置虚拟目录：
-host节点中加入如下配置
+host节点中加入如下配置<br>
 <Context path="/iforums" docBase="本地工程目录"
 			privileged="true" antiResourceLocking="false" antiJARLocking="false"/>
 
 步骤3
-删除工程中 WEB-INF/config/configration.properties 文件。
+删除工程中 WEB-INF/config/configration.properties 文件。<br>
 建立数据库：
 CREATE DATABASE iforums /*!40100 DEFAULT CHARACTER SET utf8 */; 
 
 步骤4
-启动tomcat
+启动tomcat<br>
 访问 http://localhost:8080/iforums/install/install.html?module=install&action=welcome
 
 看到安装界面就算成功。
