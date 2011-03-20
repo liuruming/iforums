@@ -9,6 +9,8 @@
 <ul>
 <li class="treeleaf">[http://code.google.com/p/iforums/wiki/installation 新安装]</li>
 <li class="treeleaf">[http://code.google.com/p/iforums/wiki/installation_tips 安装注意事项]</li>
+<li class="treeleaf">[http://code.google.com/p/iforums/wiki/developstep 开发环境搭建]</li>
+
 </ul>
 <li>搜索</li>
 <ul>
