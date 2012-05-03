@@ -1,0 +1,21 @@
+<div id=footer>
+    <div class=wrap>
+        <div id=footlinks>
+            <p>当前时区&nbsp;GMT+8, 现在时间是&nbsp;$!{dt}</p> 
+            <p><a href="mailto:zhurx4g@gmail.com">联系我们</a>&nbsp;-&nbsp;<a href="http://code.google.com/p/iforums/" target=_blank>http://code.google.com/p/iforums/</a>&nbsp;-&nbsp;&nbsp;-&nbsp;<span class="scrolltop" title="点击返回顶部" onclick="scroll(0,0)">TOP</span>&nbsp;-&nbsp;<span class=dropmenu id=stylelist onmouseover=showmenu(this.id)>界面风格</span> 
+            <div class="popmenu_popup poplist" id=stylelist_menu style="display: none">
+                <ul> 
+                    <li class=current><a href="javascript:changestyle('default')">默认风格</a></li>
+                    <li><a href="javascript:changestyle('cyan')">青色主题</a></li>
+                    <li><a href="javascript:changestyle('black')">黑色主题</a></li>
+                    <li><a href="javascript:changestyle('green')">绿色主题</a></li>
+                    <li><a href="javascript:changestyle('red')">红色主题</a></li>
+                </ul>
+            </div>
+            </p>
+        </div> 
+        <p class=copyright>Powered by <strong><a href="http://code.google.com/p/iforums/" target=_blank>iforums</a></strong> <em>2.0</em> &copy; 2012 
+            <a href="http://code.google.com/p/iforums/" target=_blank>iforums</a>
+        </p>
+    </div>
+</div>

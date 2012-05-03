@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>$!{title}</title>
+#parse('/inc/page/meta.vm')
+    <link title="iforums 技术论坛" href="http://www.globle.tk" type=text/x-opml rel=outline>
+    <link href="$!{contextpath}/skin/default/css/style.css" type=text/css rel=stylesheet>
+    <script src="$!{contextpath}/js/jquery-1.4.2.min.js" type=text/javascript></script>
+    <script src="$!{contextpath}/js/common.js" type=text/javascript></script>
+</head>
+<body>
+<div class=wrap>
+#parse('/inc/page/header.vm')
+#parse('/inc/page/nav.vm')
+    <div id=foruminfo>
+        <div id=nav>
+            <a href="$!{contextpath}/">iforums 技术支持论坛</a>
+            <p>
+#if(!$loginUser)
+                <form id="loginform" method="post" name="login" action="$!{contextpath}/login.html" style="vertical-align:middle" onsubmit="checkfield(this); return false;">
+                    <b>用户名:</b><input type="text" id="username" name="username" size="13" maxlength="30" tabindex="1" />
+                    <b>密码:</b><input type="password" id="password" name="password" size=8 tabindex="2" />
+                    <button type=submit name=loginsubmit tabindex=3 style="width:46px">登录</button>
+                </form>
+#else
+    欢迎<b><a href="$!{contextpath}/editInfo.html" title="编辑个人资料">$!{loginUser.userName}</a></b>访问iforums论坛!
+#end
+            </p>
+        </div>
+        
+        <div id=headsearch>
+ <p style="margin-bottom: 5px; margin-right: 2px;">
+目前总共发表了<b>$!totalPosts</b>篇文章,&nbsp;&nbsp;总共有<b>$!totalUsers</b>位注册会员,&nbsp;&nbsp;最新注册的会员: <b><a href="$p.url($latestUser)">zhurx</a></b>
+</p>
+        </div>
+    </div>
+
+#foreach($category in $categoryList)
+#parse('/inc/page/category.vm')
+#end
+
+#parse('/inc/page/online.vm')
+
+    <div class=legend>
+        <label><img alt=有新帖的版块 align="absmiddle" src="$!{contextpath}/skin/default/images/forum_new.gif">有新帖的版块</label>
+        <label><img alt=无新帖的版块 align="absmiddle" src="$!{contextpath}/skin/default/images/forum.gif">无新帖的版块</label> </div>
+    </div>
+#parse('/inc/page/footer.vm')
+</div>
+</body>
+</html>

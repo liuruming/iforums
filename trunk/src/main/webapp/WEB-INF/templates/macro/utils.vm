@@ -1,0 +1,71 @@
+##**************************
+##论坛展示页面,话题分页
+##**************************
+#macro(paginationForum,$total, $page, $size)
+<div class="pages">
+    <em>&nbsp;$!{total}&nbsp;</em>
+#if($previous)
+<a class="prev" href="$!{contextPath}/forum-$!{forum.id}-$!{previous}.html">&nbsp;‹‹&nbsp;上一页&nbsp;</a>
+#else
+<font style="float:left;border-right: 1px solid #DDDDDD;font-family: Verdana,Arial,Helvetica,sans-serif;line-height: 24px;padding-left: 10px;padding-right: 10px;">&nbsp;‹‹&nbsp;上一页&nbsp;</font>
+#end
+
+#if(1<$startNumber)
+    <a href="$!{contextPath}/forum-$!{forum.id}-1.html">&nbsp;1&nbsp;...</a>
+#end
+
+#foreach($currentIndex in [$startNumber..$endNumber])
+#if($current==$currentIndex)
+    <strong>&nbsp;$!{current}&nbsp;</strong>
+#else
+    <a href="$!{contextPath}/forum-$!{forum.id}-$!{currentIndex}.html">&nbsp;${currentIndex}&nbsp;</a>
+#end
+#end
+
+#if($endNumber<$pageNumber)
+    <a href="$!{contextPath}/forum-$!{forum.id}-$!{pageNumber}.html">...&nbsp;$!{pageNumber}&nbsp;</a>
+#end
+
+#if($next)
+    <a class="next" href="$!{contextPath}/forum-$!{forum.id}-$!{next}.html">&nbsp;下一页&nbsp;››&nbsp;</a>
+#else
+    <font style="border-right: 1px solid #DDDDDD;font-family: Verdana,Arial,Helvetica,sans-serif;line-height: 24px; padding: 4.5px 10px;">&nbsp;下一页&nbsp;››&nbsp;</font>
+#end
+</div>
+#end
+
+##**************************
+##话题展示页面,回复分页
+##**************************
+#macro(paginationTopic,$total, $page, $size)
+<div class="pages">
+    <em>&nbsp;$!{total}&nbsp;</em>
+#if($previous)
+<a class="prev" href="$!{contextPath}/$!p.url($topic, $!{previous})">&nbsp;‹‹&nbsp;上一页&nbsp;</a>
+#else
+<font style="float:left;border-right: 1px solid #DDDDDD;font-family: Verdana,Arial,Helvetica,sans-serif;line-height: 24px;padding-left: 10px;padding-right: 10px;">&nbsp;‹‹&nbsp;上一页&nbsp;</font>
+#end
+
+#if(1<$startNumber)
+    <a href="$!{contextPath}/$!p.url($topic)">&nbsp;1&nbsp;...</a>
+#end
+
+#foreach($currentIndex in [$startNumber..$endNumber])
+#if($current==$currentIndex)
+    <strong>&nbsp;$!{current}&nbsp;</strong>
+#else
+    <a href="$!{contextPath}/$!p.url($topic, $!{currentIndex})">&nbsp;${currentIndex}&nbsp;</a>
+#end
+#end
+
+#if($endNumber<$pageNumber)
+    <a href="$!{contextPath}/$!p.url($topic, $!{pageNumber})">...&nbsp;$!{pageNumber}&nbsp;</a>
+#end
+
+#if($next)
+    <a class="next" href="$!{contextPath}/$!p.url($topic, $!{next})">&nbsp;下一页&nbsp;››&nbsp;</a>
+#else
+    <font style="border-right: 1px solid #DDDDDD;font-family: Verdana,Arial,Helvetica,sans-serif;line-height: 24px; padding: 4.5px 10px;">&nbsp;下一页&nbsp;››&nbsp;</font>
+#end
+</div>
+#end

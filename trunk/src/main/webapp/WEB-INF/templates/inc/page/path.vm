@@ -1,0 +1,17 @@
+    <div id="nav">
+        <p>
+        <a class="forumlink" href="$!{contextpath}/">论坛首页</a>
+#if($category)
+        &raquo;&nbsp; <a class="forumlink" href="$!{contextpath}/$!p.url($category)">$!{category.name}</a>
+#end
+#if($forum)
+         &raquo;&nbsp; <a class="forumlink" href="$!{contextpath}/$!p.url($forum)">$!{forum.name}</a>
+#end
+#if($topic)
+         &raquo;&nbsp; <a class="forumlink" href="$!{contextpath}/$!p.url($topic)">$!{topic.title}</a>
+#end
+#if($info)
+         &raquo;&nbsp; <a class="forumlink" href="#">$info</a>
+#end
+        </p>
+    </div>

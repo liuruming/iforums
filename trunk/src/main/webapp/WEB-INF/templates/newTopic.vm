@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>$!{title}</title>
+#parse('/inc/page/meta.vm')
+    <link title="iforums 技术论坛" href="http://www.globle.tk" type=text/x-opml rel=outline>
+    <link href="$!{contextpath}/skin/default/css/style.css" type=text/css rel=stylesheet>
+    <script src="$!{contextpath}/js/jquery-1.4.2.min.js" type=text/javascript></script>
+    <script src="$!{contextpath}/js/jquery.form.js" type=text/javascript></script>
+    <script src="$!{contextpath}/js/common.js" type=text/javascript></script>
+#parse('/inc/page/kindEditor.vm')
+    </head>
+    <body>
+    <div class=wrap>
+#parse('/inc/page/header.vm')
+#parse('/inc/page/nav.vm')
+
+<table width="100%" border="0">
+    <tr>
+        <td>
+            <div id="foruminfo">
+#parse('/inc/page/path.vm')
+            </div>
+<form action="/addTopic.do" method="post" name="post" id="newTopicForum" onsubmit="return false;">
+<input type="hidden" name="categoryId" value="$!{category.id}" />
+<input type="hidden" name="forumId" value="$!{forum.id}" />
+<DIV class="mainbox viewtopic">
+    <h1>发表新主题</h1>
+    <table class="mainbox" cellspacing="0" cellpadding="0" width="100%" border="0">
+        <tr>
+            <td class="row1" width="15%" align="right"><span class="gen"><b>主题</b></span></td>
+            <td class="row2" width="100%">
+                <input style="width:800px;" class="" type="text" tabindex="2" maxlength="100" name="title" value="" />
+            </td>
+        </tr>
+        <tr>
+            <td class="row1" width="15%" align="right" valign="top"><span class="gen"><b>内容</b></span></td>
+            <td class="row2" width="100%">
+                <textarea id="text" name="text" style="width:800px;height:400px;visibility:hidden;">KindEditor</textarea>
+            </td>
+        </tr>
+        <tr>
+            <td class="row1" width="15%" align="right" valign="center"><span class="gen"><b>验证码</b></span></td>
+            <td class="row2" width="100%" valign="center" style="padding-left: 4px;">
+                <table style="border:0px;">
+                    <tr>
+                        <td width="80px" style="border: none;">
+                            <input style="width:80px;valign:center;" class="" type="text" tabindex="2" maxlength="4" name="vcode" value="" />
+                        </td>
+                        <td style="border: none;">
+                            <a href="javascript:void(0);" onclick="jQuery('#captchaImg').attr('src','/captcha.do?r=' + new Date());" title="看不清楚,点击换一张">
+                                <img src="/captcha.do" width="80px" height="25px" id="captchaImg" />
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td class="row1" width="15%"></td>
+            <td align="left" height="28" colspan="2" class="catbottom">
+                <input class="submit" id="btnSubmit" onclick="ajaxSubmit('#newTopicForum', this);" accesskey="s" tabindex="6" type="submit" value="发布帖子" name="post" />
+            </td>
+        </tr>
+    </table>
+</div>
+#parse('/inc/page/footer.vm')
+    </div>
+        <script>
+            var editor;
+            KindEditor.ready(function(K) {
+                editor = K.create('textarea[id="text"]', {
+                    resizeType : 1,
+                    allowPreviewEmoticons : false,
+                    allowImageUpload : false,
+                    items : [
+                        'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
+                        'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+                        'insertunorderedlist', '|', 'emoticons', 'image', 'link']
+                });
+            });
+            
+            function ajaxSubmit(formId, obj) {
+                jQuery(obj).attr("value", "发布中...");
+                var queryString = jQuery(formId).formSerialize();
+                jQuery.post('addTopic.do', queryString, function(data) {
+                    var resultMap = eval("("+data+")");
+                    if(resultMap.result=="0"){
+                        window.location = "$!{contextpath}/$!p.url($forum)";
+                    }
+                }); 
+            }
+        </script>
+    </body>
+</html>

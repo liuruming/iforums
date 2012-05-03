@@ -1,0 +1,138 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>$!{title}</title>
+#parse('/inc/page/meta.vm')
+    <link title="iforums 技术论坛" href="http://www.globle.tk" type=text/x-opml rel=outline>
+    <link href="$!{contextpath}/skin/default/css/style.css" type=text/css rel=stylesheet>
+    <script src="$!{contextpath}/js/jquery-1.4.2.min.js" type=text/javascript></script>
+    <script src="$!{contextpath}/js/common.js" type=text/javascript></script>
+</head>
+<body>
+<div class=wrap>
+#parse('/inc/page/header.vm')
+#parse('/inc/page/nav.vm')
+<table width="100%" border="0">
+    <tr>
+        <td>
+<div id="foruminfo">
+#parse('/inc/page/path.vm')
+    <div id="headsearch">
+        <form accept-charset="UTF-8" action="/iforums/iforums.html" method="get" id="formSearch" name="formSearch">
+            <input type="hidden" name="module" value="search"/>
+            <input type="hidden" name="action" value="search"/>
+            <input type="hidden" name="forum" value="1">
+            <input type="hidden" name="match_type" value="all">
+            <img valign="bottom" onclick="javascript:window.open('http://www.google.cn/')" src="/iforums/templates/default/images/google.png">
+            <input type="text" onblur="if (this.value == '') this.value = '搜索这个版面...';" onclick="if (this.value == '搜索这个版面...') this.value = '';" value="搜索这个版面..." size="20" name="search_keywords" class="inputSearchForum"/>
+            <input type="submit" value="搜索" class="liteoption">
+        </form>
+    </div>
+            <br/>
+            <div id="nav">
+                版主:
+                    <a href="/iforums/user/profile/2.html">admin</a>
+            </div>
+</div>
+#parse('/inc/page/forumPage.vm')
+<div id="headfilter">
+    <ul class="tabs">
+        <li>
+            <a onclick="watchForum('/iforums/forums/watchForum/1.html', '请确认您是否要开始订阅这个版面');" href="#watch">&nbsp;订阅这个版面</a>
+        </li>
+        <li>
+            <a onclick="watchForum('/iforums/forums/watchForum/1.html', '请确认您是否要开始订阅这个版面');" href="#watch">&nbsp;将所有主题设置为已阅读</a>
+        </li>
+        <li style="border: medium none ;">
+            <a href="/iforums/rss/forumTopics/1.html"><img src="/iforums/templates/default/images/xml_button.gif" border="0" alt="[XML]" /></a>
+        </li>
+    </ul>
+</div>
+<div class="mainbox topiclist">
+    <h1><a class="forumlink" href="$!{contextpath}/forum-$!{category.id}-$!{forum.id}.html">$!{forum.name}</a></h1>
+    <table cellspacing=0 cellpadding=0>
+        <THEAD class=category>
+        <tr>
+            <TD>&nbsp;</TD>
+            <TD>&nbsp;主题&nbsp;</TD>
+            <TD class=author>&nbsp;发表人&nbsp;</TD>
+            <TD class=nums>&nbsp;回复/查看&nbsp;</TD>
+            <TD class=lastpost>&nbsp;最后发表&nbsp;</TD>
+        </tr>
+        </THEAD>
+#if($topicList.size()==0)
+    <tr>
+        <td colspan="5">目前还没有人发帖~</td>
+    </tr>
+#else
+#foreach($topic in $topicList)
+            <tr>
+                <td class=folder><img class="icon_folder" src="/iforums/templates/default/images/folder_common.gif" alt="" /></td>
+                <td class="row1">
+                    <a href="$!{contextpath}/$p.url($!{topic})">$!{topic.title}</a>
+                </td>
+                <td class=author><cite><a href="$!{contextpath}/$!p.url($!{topic.user})">#if(${topic.user})$!{topic.user.userName}#else 用户不存在 #end</a></cite></td>
+                <td class=nums><span>$!{topic.replies}</span> / <em>$!{topic.views}</em></td>
+                <td class="lastpost" align="right">
+                        <em><a href="$!{contextpath}/$p.url($!{topic}, 0)">$!dt.format($!{topic.lastPost.postTime})</a></em>
+                        <cite>by <a href="$!{contextpath}/$!p.url($!{topic.lastPost.user})">$!{topic.lastPost.user.userName}</a>
+                        </span>
+                        </cite>
+                </td>
+            </tr>
+#end
+#end
+    </table>
+</div>
+    
+#parse('/inc/page/forumPage.vm')
+<div id="foruminfo">
+#parse('/inc/page/path.vm')
+</div>
+<div class="legend" id="footfilter">
+    <div class="jump_sort">
+            <table cellspacing="0" cellpadding="0" border="0">
+        <tr>              
+            <td nowrap="nowrap">
+                <form action="" name="f" id="f" accept-charset="UTF-8">
+                    <span class="gensmall">前往:&nbsp;</span>
+                    <select onchange="if(this.options[this.selectedIndex].value != -1){ document.location = this.options[this.selectedIndex].value; }" name="select">
+                        <option value="-1" selected="selected">选择一个版面</option>              
+#foreach($category in $allCategoryList)
+                            <optgroup label="$category.name">
+#foreach($forum in $category.forumList)
+                                <option value="$!{contextpath}/$!{p.url($forum)}">$!{forum.name}</option>
+#end
+                            </optgroup>
+#end
+                    </select>
+                    &nbsp;
+                    <!--input class="liteoption" type="button" value="Go" onclick="if(document.f.select.options[document.f.select.selectedIndex].value != -1){ document.location = '/iforums/forums/show/'+ document.f.select.options[document.f.select.selectedIndex].value +'.html'; }" /-->
+                </form>
+            </td>
+        </tr>
+    </table>
+    </div>
+    <div align="left">
+        <label><img alt="新文章" src="/iforums/templates/default/images/folder_hot.gif">新文章</label> 
+        <label><img alt="没有新文章" src="/iforums/templates/default/images/folder_common.gif">没有新文章</label> 
+        <label><img alt="公告" src="/iforums/templates/default/images/icon_folder_announce.gif">公告</label> 
+        <!--
+        <label><img alt="新文章 [ 热门 ]" src="/iforums/templates/default/images/folder_hot.gif">新文章 [ 热门 ]</label> 
+        <label><img alt="没有文章 [ 热门 ]" src="/iforums/templates/default/images/folder_common.gif">没有文章 [ 热门 ]</label>
+        --> 
+        <label><img alt="置顶" src="/iforums/templates/default/images/icon_folder_sticky.gif">置顶</label> 
+        <!--
+        <label><img alt="新文章 [ 锁定 ]" src="/iforums/templates/default/images/folder_hot.gif">新文章 [ 锁定 ]</label> 
+        <label><img alt="没有文章 [ 锁定 ]" src="/iforums/templates/default/images/folder_common.gif">没有文章 [ 锁定 ]</label>
+        --> 
+    </div>
+</div>
+</td>
+</tr>
+</table>
+
+#parse('/inc/page/footer.vm')
+</div>
+</body>
+</html>

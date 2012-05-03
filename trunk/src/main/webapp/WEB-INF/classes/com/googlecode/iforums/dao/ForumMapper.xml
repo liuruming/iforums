@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.googlecode.iforums.dao.ForumMapper">
+	<resultMap type="com.googlecode.iforums.bean.Forum" id="Forum">
+	</resultMap>
+	<resultMap type="com.googlecode.iforums.bean.Forum" id="Forum_LastPost">
+	   <result property="id" column="id"/>
+	   <association property="posts" column="id" javaType="int" select="com.googlecode.iforums.dao.PostMapper.countPostsByForumId" />
+	   <association property="lastTopic" column="lastTopicId" javaType="com.googlecode.iforums.bean.Topic" select="com.googlecode.iforums.dao.TopicMapper.getObjectById" />
+	</resultMap>
+	<cache />
+	<insert id="insert" parameterType="Forum" keyProperty="obj.id" useGeneratedKeys="true">
+		INSERT INTO forums VALUES(null,#{obj.categoryId},#{obj.name},#{obj.description},#{obj.weight},#{obj.topics},#{obj.lastTopicId},#{obj.moderated},#{obj.posts})
+	</insert>
+	<select id="getObjectById" parameterType="int" resultMap="Forum_LastPost">
+		SELECT *
+		FROM forums 
+		WHERE ID = #{id}
+	</select>
+	<update id="setLastTopicId" parameterType="java.util.Map">
+        <![CDATA[
+          UPDATE FORUMS 
+          SET 
+              topics = topics + 1 ,
+              LASTTOPICID = #{topicId} 
+          WHERE id = #{id}
+        ]]>
+	</update>
+	<update id="decTopics" parameterType="java.util.Map">
+        <![CDATA[
+          UPDATE FORUMS 
+          SET 
+              topics = topics - #{inc} 
+          WHERE id = #{id}
+        ]]>
+	</update>
+	<select id="getForumById" parameterType="java.util.Map" resultMap="Forum">
+		SELECT *
+		FROM forums 
+		WHERE ID = #{forumId} and categoryid=#{categoryId}
+	</select>
+	<select id="select" parameterType="java.util.Map" resultMap="Forum">
+		SELECT *
+		FROM forums 
+		ORDER BY WEIGHT 
+		LIMIT #{offset},#{size}
+	</select>
+	<select id="getForumListByCategoryId" parameterType="int" resultMap="Forum_LastPost">
+		SELECT *
+		FROM forums 
+		WHERE CATEGORYID=#{categoryId}
+		ORDER BY WEIGHT 
+	</select>
+</mapper>

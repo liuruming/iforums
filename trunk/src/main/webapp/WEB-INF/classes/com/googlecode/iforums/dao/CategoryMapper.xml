@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.googlecode.iforums.dao.CategoryMapper">
+	<cache />
+	<resultMap type="com.googlecode.iforums.bean.Category" id="Category">
+	   <result property="id" column="id"/>
+	   <result property="name" column="name"/>
+	   <result property="weight" column="weight"/>
+	   <result property="moderated" column="moderated"/>
+	   <collection property="forumList" column="id" resultMap="com.googlecode.iforums.dao.ForumMapper.Forum" select="com.googlecode.iforums.dao.ForumMapper.getForumListByCategoryId">
+	   </collection>
+	</resultMap>
+	<insert id="insert" parameterType="Category" keyProperty="obj.id" useGeneratedKeys="true">
+		INSERT INTO CATEGORIES VALUES(null,#{obj.name},#{obj.weight},#{obj.moderated})
+	</insert>
+	<select id="getObjectById" parameterType="int" resultMap="Category">
+		SELECT *
+		FROM CATEGORIES 
+		WHERE ID = #{id}
+	</select>
+	<select id="select" parameterType="java.util.Map" resultMap="Category">
+		SELECT *
+		FROM CATEGORIES 
+		LIMIT #{offset},#{size}
+	</select>
+</mapper>

@@ -1,0 +1,4 @@
+    <div id=header>
+        <h2><a href="$!{contextpath}/"><img alt="iforums 技术论坛" src="$!{contextpath}/images/logo.jpg" border=0></a></h2>
+        <div id=ad_headerbanner><div style="padding-top:10px; padding-right:1px"></div></div>
+    </div>

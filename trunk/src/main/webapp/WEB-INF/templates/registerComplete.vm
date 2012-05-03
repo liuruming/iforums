@@ -1,0 +1,37 @@
+<!doctype html public "-//w3c//dtd html 4.01 transitional//en" "http://www.w3.org/tr/xhtml1/dtd/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>$!{title}</title>
+#parse('/inc/page/meta.vm')
+    <link title="用户登录 - iforums 技术论坛" href="http://www.globle.tk" type=text/x-opml rel=outline>
+    <link href="$!{contextpath}/skin/default/css/style.css" type=text/css rel=stylesheet>
+    <script src="$!{contextpath}/js/jquery-1.4.2.min.js" type=text/javascript></script>
+    <script src="$!{contextpath}/js/common.js" type=text/javascript></script>
+</head>
+<body>
+        <div class=wrap>
+#parse('/inc/page/header.vm')
+#parse('/inc/page/nav.vm')
+<table width="100%" border="0">
+    <tr>
+        <td>
+
+<a name="top" id="top"></a>
+<div id="nav">
+<a class="nav"  href="/iforums/forums/list.html">论坛首页</a>
+</div>
+<div class="mainbox formbox"><span class="headactions">
+    <a class="notabs" href="/forum/help/member.jsp" target="_blank"></a></span> 
+    <!-- <h1>注册完成</h1> -->
+    <div class="box message">
+            <h1>注册完成</h1>
+            <b>恭喜您!</b>您已经完成注册程序. 您可以按 <a href="/iforums/user/edit/3.html" class="nav">这里</a> 填写更多个人资料如头像等, 或点选 <a href="/iforums/forums/list.html" class="nav">这里</a> 回到首页. <br><br>记得喔!您随时可以点网页上方的 "<a href="/iforums/user/edit/3.html" class="nav">个人资料</a>" 链接来修改您的个人资料.
+        </div>
+</div>
+</td>
+</tr>
+</table>
+#parse('/inc/page/footer.vm')
+</div>
+    </body>
+</html>

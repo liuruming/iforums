@@ -1,0 +1,30 @@
+    <tr>
+        <td style="padding-left:0px">
+            <table border=0 cellspacing=0 cellpadding=0 width="100%">
+                <tr>
+                    <td align="left" style="border:0px; padding:0px; width:55px">
+                        <a href="$!{contextPath}/$!p.url($!{forum})"><img src="$!{contextpath}/skin/default/images/forum.gif" style="padding-left:13px"
+                                alt="easyjmboard 程序发布" border="0"/></a>
+                    </td>
+                    <td style="border:0px; padding:0px">
+                        <h2>
+                            <a href='$!{contextPath}/$!p.url($!{forum})'>$!{forum.name}</a>
+                        </h2>
+                        <p>$!{forum.description}</p>
+                        <p class="moderators">版主: 空缺中</p>
+                    </td>
+                </tr>
+            </table>
+        </td>
+        <td class=nums>$!{forum.topics}</td>
+        <td class=nums>$!{forum.posts}</td>
+        <td class=lastpost>
+#if(${forum.lastTopic})
+            <a target="_blank" href="$!{contextPath}/$!p.url($!{forum.lastTopic})" title="${forum.lastTopic.title}">${forum.lastTopic.title}</a>
+            <cite>$!dt.format($!{forum.lastTopic.Time})&nbsp; by &nbsp;<a href='$!{contextPath}/$p.url($!{forum.lastTopic.user})' target='_blank' title="查看用户 $!{forum.lastTopic.user.userName} 信息">$!{forum.lastTopic.user.userName}</a>
+            </cite>
+#else
+            <cite>目前还没有人发帖~</cite>
+#end
+        </td>
+    </tr>

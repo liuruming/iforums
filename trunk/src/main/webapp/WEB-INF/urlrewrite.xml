@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<urlrewrite default-match-type="wildcard" >
+    <rule>
+        <from>^/$</from>
+        <to>/categoryList.do</to>
+    </rule>
+    <rule>
+        <from>^/forum-([0-9]+)\.html</from>
+        <to>/category.do?categoryId=$1</to>
+    </rule>
+    <rule>
+        <from>^/forum-([0-9]+)-([0-9]+)-([0-9]+)\.html</from>
+        <to last="true">/forum.do?forumId=$1&amp;page=$2&amp;categoryId=$3</to>
+    </rule>
+    <rule>
+        <from>^/newTopic-([0-9]+)-([0-9]+)\.html</from>
+        <to>/newTopic.do?categoryId=$2&amp;forumId=$1</to>
+    </rule>
+    <rule>
+        <from>^/topic-([0-9]+)-([0-9]+)-([0-9]+)\.html</from>
+        <to>/topic.do?topicId=$1&amp;page=$2&amp;forumId=$3</to>
+    </rule>
+    <rule>
+        <from>^/userInfo-([0-9]+)\.html</from>
+        <to>/userInfo.do?userId=$1</to>
+    </rule>
+    <rule>
+        <from>^/([a-zA-Z0-9]+)\.html</from>
+        <to>/$1.do</to>
+    </rule>
+    <rule>
+        <from>^/pm/inbox.html</from>
+        <to>/pm/inbox.do</to>
+    </rule>
+    <rule>
+        <from>^/pm/outbox.html</from>
+        <to>/pm/outbox.do</to>
+    </rule>
+</urlrewrite>

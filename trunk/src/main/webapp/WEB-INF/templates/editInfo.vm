@@ -1,0 +1,353 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>$!{title}</title>
+        #parse('/inc/page/meta.vm')
+        <link title="iforums 技术论坛" href="http://www.globle.tk" type=text/x-opml rel=outline />
+        <link href="$!{contextpath}/skin/default/css/style.css" type=text/css rel=stylesheet />
+        <script src="$!{contextpath}/js/jquery-1.4.2.min.js" type=text/javascript></script>
+        <script src="$!{contextpath}/js/common.js" type=text/javascript></script>
+    </head>
+    <body>
+        <div class=wrap>
+#parse('/inc/page/header.vm')
+#parse('/inc/page/nav.vm')
+<table width="100%" border="0">
+    <tr>
+        <td>
+<div id="nav">
+    <span class="forumlink">
+        <a class="forumlink" href="/iforums/forums/list.html">论坛首页</a>
+    </span>
+</div>
+<form action="/iforums/jforum.html" method="post" enctype="multipart/form-data" name="post" id="post" accept-charset="UTF-8" onsubmit="return validateForm();">
+    <input type="hidden" name="action" value="editSave" />
+    <input type="hidden" name="module" value="user" />
+    <input type="hidden" name="user_id" value="4" />
+    <div class="mainbox formbox">
+        <span class="headactions">
+            <a class="notabs" href="/forum/help/member.jsp" target="_blank"></a>
+        </span>
+        <h1>会员注册资料 - (<font color="red">标示有 * 的项目须填写</font>
+            )</h1>
+            <table class="mainbox" cellspacing="1" cellpadding="3" width="100%" border="0">
+                <tr>
+                    <td><b>会员名称: </b></td>
+                    <td ><span class="gen">$!{loginUser.userName}</span></td>
+                </tr>
+                <tr>
+                    <td class="row1">
+                        <b>电子邮箱: *</b>
+                    </td>
+                    <td >
+                        <input type="text" class="post" style="WIDTH: 300px" maxlength="255" size="25" name="email" value="$!{loginUser.email}" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row1">
+                        <b>目前密码: *</b>
+                    </td>
+                    <td >
+                        <input name="current_password" type="password" class="post" id="current_password" style="WIDTH: 300px" size="25" maxlength="100" />
+                        只有在修改密码或是电子邮件的时候才需要输入目前密码</td>
+                </tr>
+                <tr>
+                    <td class="row1">
+                        <b>新密码: *</b>
+                    </td>
+                    <td >
+                        <input class="post" style="WIDTH: 300px" type="password" maxlength="100" size="25" name="new_password" />
+                        只有在修改密码时才需输入新密码</td>
+                </tr>
+                <tr>
+                    <td class="row1">
+                        <b>确认新密码: * </b>
+                    </td>
+                    <td >
+                        <input class="post" style="WIDTH: 300px" type="password" maxlength="100" size="25" name="password_confirm" />
+                        只有在修改密码时才需输入新密码</td>
+                </tr>
+                <tr>
+                    <td class="thsides" valign="middle" colspan="3" height="25">
+                        <h1>个人资料 - <font color="red">这些信息将对外公开</font>
+                        </h1>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row1">
+                        <b>ICQ 号码:</b>
+                    </td>
+                    <td >
+                        <input type="text" class="post" style="WIDTH: 300px" maxlength="15" size="10" name="icq" value="" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row1">
+                        <b>AIM:</b>
+                    </td>
+                    <td >
+                        <input type="text" class="post" style="WIDTH: 300px" maxlength="255" name="aim" value="" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row1">
+                        <b>MSN:</b>
+                    </td>
+                    <td >
+                        <input type="text" class="post" style="WIDTH: 300px" maxlength="255" name="msn" value="" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row1">
+                        <b>Yahoo! 即时通:</b>
+                    </td>
+                    <td >
+                        <input type="text" class="post" style="WIDTH: 300px" maxlength="255" name="yim" value="" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row1">
+                        <b>个人网站:</b>
+                    </td>
+                    <td >
+                        <input type="text" class="post" style="WIDTH: 300px" maxlength="255" size="25" name="website" value="" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row1">
+                        <b>来自:</b>
+                    </td>
+                    <td >
+                        <input type="text" class="post" style="WIDTH: 300px" maxlength="100" size="25" name="location" value="" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row1">
+                        <b>职业:</b>
+                    </td>
+                    <td >
+                        <input type="text" class="post" style="WIDTH: 300px" maxlength="100" size="25" name="occupation"  value="" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row1">
+                        <b>兴趣:</b>
+                    </td>
+                    <td >
+                        <input type="text" class="post" style="WIDTH: 300px" maxlength="150" size="35" name="interests" value="" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row1">
+                        <b>自我介绍:</b>
+                    </td>
+                    <td >
+                        <textarea class="post" style="WIDTH: 300px" name="biography" rows="8" cols="30"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row1">
+                        <b>个性签名:</b>
+                    </td>
+                    <td valign="top">
+                        <textarea class="post" style="WIDTH: 300px" name="signature" rows="6" cols="30"></textarea>
+                        &nbsp;&nbsp;<font color="red">在文字区内的文字将附加在您发表的文章上, 以 255 个字为限</font>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="thsides" valign="middle" colspan="3" height="25">
+                        <h1>偏好设置</h1>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row1">
+                        <b>显示电子邮箱:</b>
+                    </td>
+                    <td >
+                        <input type="radio"  value="1" name="viewemail" />
+                        <span class="gen">是</span>
+                        &nbsp;&nbsp; 
+                        <input type="radio" value="0" checked="checked" name="viewemail" />
+                        <span class="gen">否</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row1">
+                        <b>隐藏我的上线状态:</b>
+                    </td>
+                    <td >
+                        <input type="radio" value="1"  name="hideonline" />
+                        <span class="gen">是</span>
+                        &nbsp;&nbsp; 
+                        <input type="radio" checked="checked" value="0" name="hideonline" />
+                        <span class="gen">否</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row1">
+                        <b>回复通知:</b>
+                    </td>
+                    <td >
+                        <input type="radio" checked="checked" value="1" name="notifyreply" />
+                        <span class="gen">是</span>
+                        &nbsp;&nbsp; 
+                        <input type="radio" value="0"  name="notifyreply" />
+                        <span class="gen">否</span>
+                        &nbsp;&nbsp;<font color="red">当有人回复您所发表的主题时, 系统会发送电子邮件通知您. 这项设置也可以直接在您发表文章时变更</font>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row1">
+                        <b>发送所有新文章的提示邮件:</b>
+                    </td>
+                    <td >
+                        <input type="radio"  value="1" name="notify_always" />
+                        <span class="gen">是</span>
+                        &nbsp;&nbsp; 
+                        <input type="radio" value="0" checked="checked"  name="notify_always" />
+                        <span class="gen">否</span>
+                        &nbsp;&nbsp;<font color="red">持续发送提示邮件即使其他文章还没阅读过.</font>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row1">
+                        <b>在提示邮件中包含文章内容:</b>
+                    </td>
+                    <td >
+                        <input type="radio"  value="1" name="notify_text" />
+                        <span class="gen">是</span>
+                        &nbsp;&nbsp; 
+                        <input type="radio" value="0" checked="checked"  name="notify_text" />
+                        <span class="gen">否</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row1">
+                        <b>当有新的短信时以电子邮件通知:</b>
+                    </td>
+                    <td >
+                        <input type="radio" checked="checked" value="1" name="notifypm" />
+                        <span class="gen">是</span>
+                        &nbsp;&nbsp; 
+                        <input type="radio" value="0"   name="notifypm" />
+                        <span class="gen">否</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row1">
+                        <b>在文章内附加个性签名:</b>
+                    </td>
+                    <td >
+                        <input type="radio" checked="checked" value="1" name="attachsig" />
+                        <span class="gen">是</span>
+                        &nbsp;&nbsp; 
+                        <input type="radio" value="0"  name="attachsig" />
+                        <span class="gen">否</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row1">
+                        <b>使用 HTML 语法:</b>
+                    </td>
+                    <td >
+                        <input type="radio" value="1"  name="allowhtml" />
+                        <span class="gen">是</span>
+                        &nbsp;&nbsp; 
+                        <input type="radio" checked="checked" value="0" name="allowhtml" />
+                        <span class="gen">否</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row1">
+                        <b>使用 BBCode 代码:</b>
+                    </td>
+                    <td >
+                        <input type="radio" value="1" checked="checked" name="allowbbcode" />
+                        <span class="gen">是</span>
+                        &nbsp;&nbsp; 
+                        <input type="radio"  value="0" name="allowbbcode" />
+                        <span class="gen">否</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row1">
+                        <b>使用表情符号:</b>
+                    </td>
+                    <td >
+                        <input type="radio" value="1" checked="checked" name="allowsmilies" />
+                        <span class="gen">是</span>
+                        &nbsp;&nbsp; 
+                        <input type="radio"  value="0" name="allowsmilies" />
+                        <span class="gen">否</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row1">
+                        <b>语言设置:</b>
+                    </td>
+                    <td >
+                        <select name="language">
+                            <option value="" selected="selected">默认</option>
+                            <option value="en_US" >英文 (美国)</option>
+                            <option value="zh_TW" >繁体中文</option>
+                            <option value="zh_CN" >简体中文</option>
+                            <option value="fr_FR" >法文</option>
+                            <option value="de_DE" >德文</option>
+                            <option value="nl_NL" >荷兰文</option>
+                            <option value="pt_PT" >葡萄牙文(葡萄牙)</option>
+                            <option value="pt_BR" >葡萄牙文(巴西)</option>
+                            <option value="ru_RU" >俄文</option>
+                            <option value="fi_FI" >芬兰文</option>
+                            <option value="vi_VN" >越南文</option>
+                            <option value="es_ES" >西班牙文</option>
+                            <option value="pl_PL" >波兰文</option>
+                            <option value="nb_NO" >挪威文</option>
+                            <option value="it_IT" >意大利</option>
+                            <option value="hu_HU" >匈牙利文</option>
+                        </select>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td valign="middle" colspan="2" height="12">
+                        <h1>头像控制面板</h1>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td valign="top">您的头像将会显示在您所发表的文章旁边. 一次只能只用一个图片, 宽度不可超过  130 像素, 高度不可超过  130 像素.</td>
+                </tr>
+                <tr>
+                    <td class="row1">
+                        <span class="gen">从您的电脑上传头像:</span>
+                    </td>
+                    <td >
+                        <input style="WIDTH: 400px;" type="file" name="avatar" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row1">
+                        <span class="gen">使用网址链接头像图片 (输入网址):</span>
+                    </td>
+                    <td >
+                        <input class="post" style="WIDTH: 400px" type="text" name="avatarUrl" value=""/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="catbottom" align="center"  colspan="2" height="28">
+                        <input class="submit" type="submit" value="确定" name="submit" />
+                        &nbsp;&nbsp;
+                        <input class="submit" type="reset" value="重设" name="reset" />
+                    </td>
+                </tr>
+            </table>
+    </div>
+</form>
+</td>
+</tr>
+</table>
+#parse('/inc/page/footer.vm')
+        </div>
+    </body>
+</html>

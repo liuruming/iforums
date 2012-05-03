@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>$!{title}</title>
+        #parse('/inc/page/meta.vm')
+        <link title="iforums 技术论坛" href="http://www.globle.tk" type=text/x-opml rel=outline>
+            <link href="$!{contextpath}/skin/default/css/style.css" type=text/css rel=stylesheet>
+                <script src="$!{contextpath}/js/jquery-1.4.2.min.js" type=text/javascript></script>
+                <script src="$!{contextpath}/js/common.js" type=text/javascript></script>
+</head>
+<body>
+    <div class=wrap>
+#parse('/inc/page/header.vm')
+#parse('/inc/page/nav.vm')
+        <div id="foruminfo">
+#parse('/inc/page/path.vm')
+        </div>
+        <div class="mainbox formbox">
+            <span class="headactions">
+                <a target="_blank" href="/forum/help/member.jsp" class="notabs"></a>
+            </span>
+            <h1>最新主题</h1>
+            <table width="100%" cellspacing="1" cellpadding="4" border="0" class="mainbox">
+                <thead>
+                    <tr>
+                        <td>&nbsp;版面名称</td>
+                        <td colspan="2">&nbsp;主题</td>
+                        <td>回复</td>
+                        <td>发表人</td>
+                        <td>查看</td>
+                        <td align="right">最后发表</td>
+                    </tr>
+                </thead>
+                <!-- TOPICS LISTING -->
+                <tbody>
+                    #foreach($topic in $topicList)
+                        <tr>
+                            <td valign="middle">
+                                <b>
+                                    <a href="$!{contextpath}/$!p.forum($!{topic.forum})" class="postdetails">$!{topic.forum.name}</a>
+                                </b>
+                            </td>
+                            <td valign="middle" style="width:19px;">
+                                <img alt="" src="$!{contextpath}/skin/default/images/folder_common.gif" class="icon_folder" />
+                            </td>
+                            <td width="50%">
+                                <a href='$p.url(${topic})'>$!{topic.title}</a>
+                            </td>
+                            <td valign="middle">
+                                <span class="postdetails">$!{topic.replies}</span>
+                            </td>
+                            <td valign="middle">
+                                <span class="name">
+                                    <a href="$!{contextpath}/$p.url(${topic.user})">$!{topic.user.userName}</a>
+                                </span>
+                            </td>
+                            <td valign="middle">
+                                <span class="postdetails">$!{topic.views}</span>
+                            </td>
+                            <td align="right" class="lastpost">
+                                <cite>$!dt.format($!{topic.lastPost.postTime})&nbsp; by &nbsp;<a href="$!{contextpath}/$!p.url($!{topic.lastPost.user})" target='_blank'>$!{topic.lastPost.user.userName}</a>
+                                </cite>
+                            </td>
+                        </tr>
+                    #end
+                    <!-- END OF TOPICS LISTING -->
+                </tbody>
+            </table>
+        </div>
+        <div id="foruminfo">
+            #parse('/inc/page/path.vm')
+        </div>
+        #parse('/inc/page/footer.vm')
+    </div>
+</body>
+</html>

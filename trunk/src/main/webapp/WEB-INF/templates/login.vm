@@ -1,0 +1,50 @@
+<!doctype html public "-//w3c//dtd html 4.01 transitional//en" "http://www.w3.org/tr/xhtml1/dtd/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>$!{title}</title>
+#parse('/inc/page/meta.vm')
+    <link title="用户登录 - iforums 技术论坛" href="http://www.globle.tk" type=text/x-opml rel=outline>
+    <link href="$!{contextpath}/skin/default/css/style.css" type=text/css rel=stylesheet>
+    <script src="$!{contextpath}/js/jquery-1.4.2.min.js" type=text/javascript></script>
+    <script src="$!{contextpath}/js/common.js" type=text/javascript></script>
+</head>
+<body>
+    <div class=wrap>
+#parse('/inc/page/header.vm')
+#parse('/inc/page/nav.vm')
+        <div id=nav><a href="/forum/index.jsp">easyjforum 技术支持论坛</a> &raquo; 会员登录</div>
+            <form name=login onsubmit="checkfield(this); return false;" action="$!{contextpath}/login.html" method=post>
+                <div class="mainbox formbox"><span class=headactions>
+                    <a class=notabs href="/forum/help/member.jsp" target=_blank>登录帮助</a></span> 
+                    <h1>会员登录</h1>
+                    <table cellspacing=0 cellpadding=0 summary=会员登录>
+                      <tbody>
+                      <tr>
+                        <th onclick=document.login.userid.focus();><label for=userid>用户名</label></th>
+                        <td><input id="username" tabindex=2 maxlength=40 size=25 name="username" /> 
+                          &nbsp;<a href="/forum/register.jsp?from=/forum/index.jsp">立即注册</a> 
+                          <input type=hidden name=frompath value="/forum/index.jsp"> </td></tr>
+                      <tr>
+                        <th><label for=pwd1>密码</label></th>
+                        <td><input id="password" tabindex=5 type="password" size=25 name="password"> 
+                          &nbsp;<a href="/forum/findpwd.jsp">忘记密码</a><input type=hidden id=pwd name=pwd></td></tr>
+                      <tr>
+                        <th>登录有效期</th>
+                        <td><label><input class=radio tabindex=8 type=radio value=0 name=cookietime checked> 浏览器进程（约30分钟）</label>
+                            <label><input class=radio tabindex=9 type=radio value=3600 name=cookietime> 一小时</label>
+                            <label><input class=radio tabindex=10 type=radio value=86400 name=cookietime> 一天</label>   
+                            <label><input class=radio tabindex=11 type=radio value=2592000 name=cookietime> 一个月</label> 
+                            <label><input class=radio tabindex=12 type=radio value=315360000 name=cookietime> 永久</label> 
+                        </td></tr>
+                      <tr class="btns">
+                        <th>&nbsp;</th>
+                        <td height="30"><button class=submit tabindex=100 name=loginsubmit type=submit 
+                          value="true">提交</button></td></tr></tbody>
+                    </table>
+                </div>
+            </form>
+        </div>
+    </div>
+#parse('/inc/page/footer.vm')
+    </body>
+</html>

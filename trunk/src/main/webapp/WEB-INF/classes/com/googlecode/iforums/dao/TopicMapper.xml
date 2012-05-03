@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.googlecode.iforums.dao.TopicMapper">
+    <resultMap type="com.googlecode.iforums.bean.Topic" id="Topic">
+	    <result property="userId" column="userId" />
+	    <result property="lastPostId" column="lastPostId" />
+        <association property="user" column="userId" javaType="com.googlecode.iforums.bean.User" select="com.googlecode.iforums.dao.UserMapper.getObjectById" />
+        <association property="lastPost" column="lastPostId" javaType="com.googlecode.iforums.bean.Post" select="com.googlecode.iforums.dao.PostMapper.getObjectById" >
+        </association>
+    </resultMap>
+    <resultMap type="com.googlecode.iforums.bean.Topic" id="TopicWithFirstPost">
+	    <result property="userId" column="userId" />
+	    <result property="firstPostId" column="firstPostId" />
+        <association property="user" column="userId" javaType="com.googlecode.iforums.bean.User" select="com.googlecode.iforums.dao.UserMapper.getObjectById" />
+        <association property="firstPost" column="firstPostId" javaType="com.googlecode.iforums.bean.Post" select="com.googlecode.iforums.dao.PostMapper.getObjectById" >
+        </association>
+    </resultMap>
+    
+    <resultMap type="com.googlecode.iforums.bean.Topic" id="Topic_Forum_User_LastPost">
+	    <result property="userId" column="userId" />
+	    <result property="firstPostId" column="firstPostId" />
+	    <result property="forumId" column="forumId" />
+        <association property="forum" column="forumId" javaType="com.googlecode.iforums.bean.Forum" select="com.googlecode.iforums.dao.ForumMapper.getObjectById" />
+        <association property="user" column="userId" javaType="com.googlecode.iforums.bean.User" select="com.googlecode.iforums.dao.UserMapper.getObjectById" />
+        <association property="lastPost" column="lastPostId" javaType="com.googlecode.iforums.bean.Post" select="com.googlecode.iforums.dao.PostMapper.getObjectById" >
+        </association>
+    </resultMap>
+    <select id="getObjectById" resultMap="TopicWithFirstPost">
+        <![CDATA[
+            select * from topics 
+            where id=#{id}
+        ]]>    
+    </select>
+	<insert id="insert" parameterType="java.util.Map" keyProperty="obj.id" useGeneratedKeys="true">
+		<![CDATA[
+			insert into topics 
+			values(null,#{obj.forumId},#{obj.title},#{obj.userId},now(),#{obj.views},#{obj.replies},#{obj.status},#{obj.voteId},#{obj.type},#{obj.firstPostId},#{obj.lastPostId},#{obj.movedId},#{obj.moderated})
+		]]>
+	</insert>
+	<update id="update" parameterType="java.util.Map">
+		<![CDATA[
+		  UPDATE TOPICS 
+		  SET title = #{obj.title}, firstpostid = #{obj.firstPostId}, lastpostid = #{obj.lastPostId} 
+		  WHERE id = #{obj.id}
+		]]>
+	</update>
+	<update id="incViews" parameterType="java.util.Map">
+		<![CDATA[
+		  UPDATE TOPICS 
+		  SET views = views + #{inc} 
+		  WHERE id = #{id}
+		]]>
+	</update>
+	<update id="setPostId" parameterType="java.util.Map">
+		<![CDATA[
+		  UPDATE TOPICS 
+		  SET 
+			  FIRSTPOSTID = #{postId}, 
+			  LASTPOSTID = #{postId} 
+		  WHERE id = #{id}
+		]]>
+	</update>
+	<update id="setLastPostId" parameterType="java.util.Map">
+		<![CDATA[
+          UPDATE TOPICS 
+          SET replies = replies +1,
+              LASTPOSTID = #{postId} 
+          WHERE id = #{id}
+		]]>
+	</update>
+	<select id="select" parameterType="java.util.Map" resultMap="Topic_Forum_User_LastPost">
+		<![CDATA[
+			select *
+			from topics  
+		    where forumId = #{forumId} 
+			order by time desc
+			LIMIT #{offset},#{size}
+		]]>	
+	</select>
+	<select id="getRecentTopicList" parameterType="java.util.Map" resultMap="Topic_Forum_User_LastPost">
+		<![CDATA[
+			select *
+			from topics  
+			order by time desc
+			LIMIT #{offset},#{size}
+		]]>	
+	</select>
+	<select id="getHotestTopicList" parameterType="java.util.Map" resultMap="Topic_Forum_User_LastPost">
+		<![CDATA[
+			select *
+			from topics  
+			order by views desc
+			LIMIT #{offset},#{size}
+		]]>	
+	</select>
+</mapper>

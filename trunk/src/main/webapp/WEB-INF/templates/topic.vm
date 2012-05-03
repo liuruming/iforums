@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>$!{title}</title>
+        #parse('/inc/page/meta.vm')
+        <link title="iforums 技术论坛" href="http://www.globle.tk" type=text/x-opml rel=outline>
+            <link href="$!{contextpath}/skin/default/css/style.css" type=text/css rel=stylesheet>
+                <script src="$!{contextpath}/js/jquery-1.4.2.min.js" type=text/javascript></script>
+                <script src="$!{contextpath}/js/common.js" type=text/javascript></script>
+                #parse('/inc/page/kindEditor.vm')
+</head>
+<body>
+    <div class=wrap>
+        #parse('/inc/page/header.vm')
+        #parse('/inc/page/nav.vm')
+        <div id="foruminfo">
+            #parse('/inc/page/path.vm')
+        </div>
+        #parse('/inc/page/replyPage.vm')
+        <div id="headfilter">
+            <ul class="tabs">
+                <li>
+                    <a href="javascript:addBookmark(2, 1);">加到我的书签</a>
+                </li>
+                <li>
+                    <a href="#watch" onClick="watchTopic('/iforums/posts/watch/0/1.html', '请确认您是否要开始追踪这个主题');">
+                        订阅这个主题</a>
+                        <li>
+                            <li style="border: medium none ;">
+                                <a href="/iforums/rss/topicPosts/1.html">
+                                    <img src="/iforums/templates/default/images/xml_button.gif" border="0" alt="XML" />
+                                </a>
+                            </li>
+</ul>
+</div>
+<div class="mainbox viewtopic">
+    <span class=headactions>
+    </span>
+    #set($post = $topic.firstPost)
+    <h1>${post.postText.title}</h1>
+    #parse('/inc/page/post.vm')
+</div>
+#foreach($post in $postList)
+    <div class="mainbox viewtopic">
+        #parse('/inc/page/post.vm')
+    </div>
+#end
+#parse('/inc/page/replyPage.vm')
+<form method="post" action="$!{contextpath}/reply.do" name="postform" id="postform">
+    <input type="hidden" name="forumId" value="$!{forum.id}" />
+    <input type="hidden" name="topicId" value="$!{topic.id}" />
+    <input type="hidden" name="page" value="$!{pageNumber}" />
+    <div class="box" id="quickreply">
+        <span class="headactions">
+            <a target="_blank" href="help/credits_rule.jsp">查看积分策略说明</a>
+        </span>
+        <h4>快速回复主题</h4>
+        <table cellspacing="0" cellpadding="0">
+            <tbody>
+                <tr>
+                    <td style="width:168px">标题</td>
+                    <td>
+                        <div style="float:right; padding:3px;">
+                            <a href="login.jsp">登录</a>
+                            <a href="register.jsp">注册</a>
+                        </div>
+                        <input maxlength="100" name="title" size="55" tabindex="2" id="title" value="回复:$!{topic.title}" />
+                        <em class="tips">&nbsp;(可选)</em>
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="top" style="width:168px">内容 <br/>
+                        <br/>
+                        <ul>
+                            <li>
+                                <a target="_blank" href="help/post.jsp#faq04">HTML&nbsp;代码</a>
+                                &nbsp;&nbsp;<em>禁用</em>
+                            </li>
+                            <li>
+                                <a target="_blank" href="help/post.jsp#faq03">插入图片&nbsp;[img]</a>
+                                &nbsp;<em>可用</em>
+                            </li>
+                            <li>
+                                <a target="_blank" href="help/post.jsp#faq03">插入媒体&nbsp;[media]</a>
+                                &nbsp;<em>禁用</em>
+                            </li>
+                        </ul>
+                    </td>
+                    <td>
+                        <textarea cols="60" rows="5" name="text" style="BEHAVIOR:url(#default#userdata);WIDTH:99%;HEIGHT:120px" tabindex="5" id="editor_content"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <th></th>
+                    <th align="left" style="padding-bottom:12px; padding-right:12px">
+                        <a onclick="postform.submit();" style="float:right" href="">恢复自动保存的数据</a>
+                        <button style="width:110px" class="submit" type="submit" name="post_reply" tabindex="9" id="postbtn">发表回复</button>
+                    </th>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</form>
+#parse('/inc/page/footer.vm')
+</div>
+<script>
+    var editor;
+    KindEditor.ready(function(K) {
+    editor = K.create('textarea[id="text"]', {
+    resizeType : 1,
+    allowPreviewEmoticons : false,
+    allowImageUpload : false,
+    items : [
+    'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
+    'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+    'insertunorderedlist', '|', 'emoticons', 'image', 'link']
+    });
+    });
+</script>
+</body>
+</html>

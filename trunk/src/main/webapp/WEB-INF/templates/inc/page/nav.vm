@@ -1,0 +1,17 @@
+    <div id=headermenu>
+        <ul>
+#if(!$loginUser)
+            <li><a href="$!{contextpath}/register.html">注册</a></li> 
+            <li><a href="$!{contextpath}/login.html">登录</a></li> 
+#end
+            <li><a id="backtosite" class="mainmenu" href="$!{contextpath}/">首页</a>&nbsp;</li>
+            <li><a id="latest" class="mainmenu" href="$!{contextpath}/recentTopics.html">最新主题</a></li>
+            <li><a id="hottest" class="mainmenu" href="$!{contextpath}/hotTopics.html">热门主题</a></li>
+            <li><a href="$!{contextpath}/search.html">搜索</a></li> 
+#if($loginUser)
+            <li><a href="$!{contextpath}/editInfo.html">我的资料</a></li>
+            <li><a href="$!{contextpath}/$!p.msgInbox()">短信息</a></li>
+            <li><a href="$!{contextpath}/logout.html">退出</a></li>
+#end
+        </ul>
+    </div> 
