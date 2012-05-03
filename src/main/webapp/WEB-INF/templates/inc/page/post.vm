@@ -1,0 +1,135 @@
+<table id="rid0" cellspacing=0 cellpadding=0>
+    <tbody>
+        <tr>
+            <td class=postauthor rowspan="3">
+                <b>
+                    <a href="$!{contextpath}/user/profile/2.html" target=_blank>发表人:$!{post.user.userName}</a>
+                </b>
+                <p>
+                    <em></em>
+                    &nbsp;
+                    <img src="$!{contextpath}/images/avatar/avatar.jpg" border="0" alt="[avatar]" />
+                    <br/>
+                    <script type="text/javascript">writestars(0, "21");</script>
+                    <dl class="profile">
+                        <dt>文章:</dt><dd>1</dd>
+                        <dt>状态:</dt><dd><span class="offline">离线 </span></dd>
+                        <dt>注册时间:</dt><dd>$!dt.format($!{post.user.registrationDate})</dd>
+                        <dt>最后登录:</dt><dd>$!dt.format($!{post.user.lastVisit})</dd>
+                    </dl>
+                </p>
+                <table>
+                    <tr>
+                        <td>
+                            <img align="absmiddle" border="0" alt="个人资料" src="$!{contextpath}/skin/default/images/user_add.gif" alt="" />
+                            <a href="$!{contextpath}/user/profile/2.html" class="icon_profile" title="个人资料">个人资料</a>
+                        </td>
+                        <td>
+                            <img src="$!{contextpath}/skin/default/images/sendsms.gif" align="absmiddle" border="0" alt="发送短信" />
+                            <a href="$!{contextpath}/pm/sendto/2.html" class="icon_profile" title="发送短信">发送短信</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="$!{contextpath}/skin/default/images/mail.gif" alt="电子邮箱" align="absmiddle" border="0"/>
+                        </td>
+                        <td>
+                            <img align="absmiddle" border="0" src="$!{contextpath}/skin/default/images/icon_www.gif" alt="个人网站"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img align="absmiddle" src="$!{contextpath}/skin/default/images/icon_aim.gif" border="0" alt="aim"/>
+                        </td>
+                        <td>
+                            <img align="absmiddle" border="0" src="$!{contextpath}/skin/default/images/icon_msnm.gif" alt="msn"  />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img align="absmiddle" border="0" src="$!{contextpath}/skin/default/images/icon_icq_add.gif" alt="icq 号码" />
+                        </td>
+                        <td>
+                            <img align="absmiddle" border="0" src="$!{contextpath}/skin/default/images/icon_qq.gif" alt="icq 号码" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <img align="absmiddle" border="0" src="$!{contextpath}/skin/default/images/icon_yim.gif" alt="yahoo! 即时通" />
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td class=postdetail>
+                <div class=postinfo>
+                    <strong title="id:0">#if($velocityCount) #set( $anhorIndex = $velocityCount + 1 ) $anhorIndex #else 0 #end<sup>#</sup>
+                    </strong>
+                    发表于$!dt.format($post.postTime)&nbsp;&nbsp;更新于 $!dt.format($post.postEditTime) &nbsp;by&nbsp; $!{post.user.userName}&nbsp;     
+                </div>
+                <div class="postcontent">
+                    <h2>${post.postText.title}</h2>
+                    <div id="content_0" class=contentmsg>${post.postText.text}</div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class=postfooter>
+                <hr/>
+                <b>个性签名:</b>
+            </td>
+        </tr>
+        <tr>
+            <td class=postfooter>
+                <form action="$!{contextpath}/jforum.html" method="post" name="post" id="post" onsubmit="return validatepostform(this);" enctype="multipart/form-data" accept-charset="utf-8">
+                    <input type="hidden" name="action" value="insertsave" />
+                    <input type="hidden" name="module" value="posts" />
+                    <input type="hidden" name="forum_id" value="1" />
+                    <input type="hidden" name="start" value="0" />
+                    <input type="hidden" name="topic_id" value="1" />
+                    <input type="hidden" name="disable_html" value="1" />
+                    <input type="hidden" name="quick" value="1" />
+                    <div align="center" style="display: none;" name="quickreplydivtable" id="quickreply0">
+                        <table>
+                            <tr>
+                                <td align="left" width="70%">
+                                    <input class="post" style="width: 100%" name="message" rows="0" cols="35" onkeyup="entertext(this);" onclick="entertext(this);" onselect="entertext(this);" onblur="leavetext();" type="textbox" />
+                                    <br/>
+                                    <span class="gensmall" valign="absmiddle">输入图片中显示的文字</span>
+                                    <input type="text" style="width: 80px; font-weight: bold;" valign="absmiddle" maxlength="25" name="captcha_anwser" />
+                                    <img border="0" align="middle" id="captcha_img0"/>
+                                    <span class="gensmall" valign="absmiddle">看不清楚这些字吗? <a href="#newcaptcha" onclick="newcaptcha('0')">
+                                            <b>产生一个新的</b>
+                                    </a>
+                                    </span>
+                                </td>
+                                <td align="center" valign="center" width="10%">
+                                    <input type="submit" id="btnsubmit" value="发送" class="submit" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </form>
+                <div class=postactions>
+                    <p align="right">
+                        <table>
+                            <tr>
+                                <td align="left">
+                                    <script type="text/javascript">writestars(0, 1);</script>
+                                    &nbsp;&nbsp;
+                                    <script type="text/javascript">karmapointscombo(1)</script>
+                                    &nbsp;&nbsp;
+                                </td>
+                                <td align="right">
+                                    <a href="javascript:activatequickreply('0')">快速回复</a>
+                                    <a href="$!{contextpath}/posts/quote/0/1.html" rel="nofollow" class="icon_quote">引用这个主题</a>
+                                    &nbsp;&nbsp;  
+                                    <span title="点击返回顶部" class="scrolltop" onclick="scroll(0,0)">TOP</span>
+                                </td>
+                            </tr>
+                        </table>
+                    </p>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,22 @@
+<div class="mainbox forumlist">
+    <span class=headactions>
+        <img id="category_img_$!{category.id}" title="收起/展开" onclick="toggle_collapse('category_$!{category.id}');" alt="收起/展开" src="skin/default/images/collapsed_no.gif"></span>
+        <h3>
+            <a href="$!{contextpath}/$!p.url($!{category})">$!{category.name}</a>
+        </h3>
+        <table id="category_$!{category.id}" cellspacing=0 cellpadding=0>
+            <thead class=category>
+                <tr>
+                    <th>版块</th>
+                    <td class=nums>主题</td>
+                    <td class=nums>帖数</td>
+                    <td class=lastpost>最后发表</td>
+                </tr>
+            </thead>
+            <tbody>
+#foreach($forum in $category.getForumList())
+#parse('/inc/page/forum.vm')
+#end
+        </tbody>
+        </table>
+</div>

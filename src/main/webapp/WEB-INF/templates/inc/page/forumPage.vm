@@ -1,0 +1,11 @@
+<div class="pages_btns">
+    <div class="pages">
+        <a href="$!{contextPath}/$!p.url($!{category})" class="next" title="返回论坛分区:$!{category.name}"> &lsaquo;&lsaquo; $!{category.name}</a>
+    </div>
+#paginationForum(${forum.topics}, $page, $size)
+    <SPAN class=postbtn id="newtopic" onmouseover="$('newtopic').id = 'newtopictmp';this.id = 'newtopic';showMenu(this.id);">
+        <A href="$!{contextPath}/newTopic-$!{forum.id}-$!{category.id}.html">
+            <IMG src="$!{contextPath}/skin/default/images/newtopic.gif" border=0>
+        </A>
+    </SPAN>
+</div>

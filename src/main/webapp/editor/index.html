@@ -1,0 +1,722 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>editor demo</title>
+<!--<base href="http://bbs.xiaomi.com/" />-->
+<link rel="stylesheet" type="text/css" href="css/style_7_common.css" />
+<link rel="stylesheet" type="text/css" href="css/style_7_forum_post.css" />
+<script type="text/javascript">
+	var STYLEID = '7', STATICURL = '../', IMGDIR = 'images', VERHASH = '4Uo', charset = 'utf-8', discuz_uid = '24387207', cookiepre = 'XMIL_8c63_', cookiedomain = '.xiaomi.com', cookiepath = '/', showusercard = '1', attackevasive = '0', disallowfloat = 'newthread|reply', creditnotice = '1|经验|米,2|威望|米,4|掌声|声,7|米粒|米,8|活动币|米', defaultstyle = '', REPORTURL = 'aHR0cDovL2Jicy54aWFvbWkuY29tL2ZvcnVtLnBocD9tb2Q9cG9zdCZhY3Rpb249bmV3dGhyZWFkJmZpZD0xMCZzcGVjaWFsPTA=', SITEURL = '', JSPATH = 'data/cache/';
+</script>
+<script src="js/common.js" type="text/javascript"></script>
+</head>
+<body id="nv_forum" class="pg_post"
+	onkeydown="if(event.keyCode==27) return false;">
+	<div id="wp" class="wp">
+		<script type="text/javascript">
+			var allowpostattach = parseInt('1');
+			var allowpostimg = parseInt('1');
+			var pid = parseInt('0');
+			var tid = parseInt('0');
+			var extensions = 'jpg, apk, zip, rar, jpeg, png, gif, mp3, wma, flv, swf, ogg';
+			var imgexts = 'jpg, jpeg, gif, png';
+			var postminchars = parseInt('20');
+			var postmaxchars = parseInt('100000');
+			var disablepostctrl = parseInt('0');
+			var seccodecheck = parseInt('1');
+			var secqaacheck = parseInt('0');
+			var typerequired = parseInt('1');
+			var sortrequired = parseInt('');
+			var special = parseInt('0');
+			var isfirstpost = 1;
+			var allowposttrade = parseInt('');
+			var allowpostreward = parseInt('');
+			var allowpostactivity = parseInt('');
+			var sortid = parseInt('0');
+			var special = parseInt('0');
+			var fid = 10;
+			var ispicstyleforum = 0;
+		</script>
+		<form method="post" autocomplete="off" id="postform"
+			action=""
+			onsubmit="return validate(this)">
+			<div id="ct" class="ct2_a ct2_a_r wp cl">
+				<div class="mn">
+					<input type="hidden" name="formhash" id="formhash" value="99adfddc" />
+					<input type="hidden" name="posttime" id="posttime"
+						value="1335180640" /> <input type="hidden" name="wysiwyg"
+						id="e_mode" value="1" />
+					<div class="bm bw0 cl" id="editorbox">
+						<ul class="tb cl mbw">
+							<li class="a"><a href="javascript:;"
+								onclick="switchpost('forum.php?mod=post&action=newthread')">发表帖子</a>
+							</li>
+						</ul>
+						<div id="draftlist_menu" style="display: none">
+							<ul class="xl xl1">
+								<li class="xi2"><a
+									href="http://bbs.xiaomi.com/home.php?mod=space&amp;uid=24387207&amp;do=thread&amp;view=me&amp;type=thread&amp;from=&amp;filter=save"
+									target="_blank">查看所有草稿</a></li>
+							</ul>
+						</div>
+						<div id="postbox">
+							<div class="pbt cl">
+								<div class="ftid">
+									<b>主题:</b>
+								</div>
+								<div class="z">
+									<span><input type="text" name="subject" id="subject"
+										class="px" value=""
+										onblur="if($('tags')){relatekw('-1','-1',function(){extraCheck(4)});doane();}"
+										onkeyup="strLenCalc(this, 'checklen', 80);"
+										style="width: 25em" tabindex="1" /> </span> <span id="subjectchk">还可输入
+										<strong id="checklen">80</strong> 个字符</span>
+								</div>
+							</div>
+
+							<div id="attachnotice_attach" class="tbms mbm xl"
+								style="display: none">
+								<a href="javascript:;" title="删除附件" class="d y"
+									onclick="attachoption('attach', 0)">close</a>您有 <a class="xi2"
+									href="javascript:;" onclick="attachoption('attach', 2);" /><span
+									id="unusednum_attach"></span> 个未使用的附件</a> <a class="xi2"
+									href="javascript:;" onclick="attachoption('attach', 1)"><strong>使用附件</strong>
+								</a>
+								<div id="unusedlist_attach" style="display: none"></div>
+							</div>
+							<div id="attachnotice_img" class="tbms mbm xl"
+								style="display: none">
+								<a href="javascript:;" title="删除附件" class="d y"
+									onclick="attachoption('img', 0)">close</a>您有 <a class="xi2"
+									href="javascript:;" onclick="attachoption('img', 2);" /><span
+									id="unusednum_img"></span> 个未使用的图片</a> <a class="xi2"
+									href="javascript:;" onclick="attachoption('img', 1)"><strong>使用图片</strong>
+								</a>
+								<div id="unusedlist_img" style="display: none"></div>
+							</div>
+
+							<div id="e_body_loading">
+								<img src="images/loading.gif" width="16"
+									height="16" class="vm" /> 请稍后 ...
+							</div>
+							<div class="edt" id="e_body" style="display: none">
+								<div id="e_controls" class="bar">
+									<div class="y">
+										<div class="b2r nbl nbr" id="e_adv_5">
+											<p>
+												<a id="e_undo" title="撤销">Undo</a>
+											</p>
+											<p>
+												<a id="e_redo" title="重做">Redo</a>
+											</p>
+										</div>
+										<div class="z">
+											<span class="mbn"><a id="e_fullswitcher"></a><a
+												id="e_simple"></a> </span> <label id="e_switcher"
+												class="bar_swch ptn"><input id="e_switchercheck"
+												type="checkbox" class="pc" name="checkbox" value="0"
+												onclick="switchEditor(this.checked?0:1)" />纯文本</label>
+										</div>
+									</div>
+									<div id="e_button" class="btn cl">
+										<div class="b1r" id="e_adv_s0">
+											<a id="e_paste" title="粘贴">粘贴</a>
+										</div>
+										<div class="b2r nbr" id="e_adv_s2">
+											<a id="e_fontname" class="dp" title="设置字体" menupos="43!"><span
+												id="e_font">字体</span> </a> <a id="e_fontsize" class="dp"
+												title="设置文字大小" menupos="43!" menuwidth="25"><span
+												id="e_size">大小</span> </a> <span id="e_adv_1"> <a
+												id="e_inserthorizontalrule" title="分隔线">Hr</a> <br /> </span> <a
+												id="e_bold" title="文字加粗">B</a> <a id="e_italic" title="文字斜体">I</a>
+											<a id="e_underline" title="文字加下划线">U</a> <a id="e_forecolor"
+												title="设置文字颜色">Color</a> <a id="e_backcolor" title="设置文字背景色">BgColor</a>
+											<a id="e_url" title="添加链接">Url</a> <span id="e_adv_8">
+												<a id="e_unlink" title="移除链接">Unlink</a> </span>
+										</div>
+										<div class="b2r nbl" id="e_adv_2">
+											<p id="e_adv_3">
+												<a id="e_tbl" title="添加表格">Table</a>
+											</p>
+											<p>
+												<a id="e_removeformat" title="清除文本格式">Removeformat</a>
+											</p>
+										</div>
+										<div class="b2r">
+											<p>
+												<a id="e_autotypeset" title="自动排版">Autotypeset</a> <a
+													id="e_justifyleft" title="居左">Left</a> <a
+													id="e_justifycenter" title="居中">Center</a> <a
+													id="e_justifyright" title="居右">Right</a>
+											</p>
+											<p id="e_adv_4">
+												<a id="e_floatleft" title="左浮动">FloatLeft</a> <a
+													id="e_floatright" title="右浮动">FloatRight</a> <a
+													id="e_insertorderedlist" title="排序的列表">Orderedlist</a> <a
+													id="e_insertunorderedlist" title="未排序列表">Unorderedlist</a>
+											</p>
+										</div>
+										<div class="b1r" id="e_adv_s1">
+											<a id="e_sml" title="添加表情">表情</a>
+											<div id="e_imagen" style="display: none">!</div>
+											<a id="e_image" title="添加图片" menupos="00" menuwidth="600">图片</a>
+											<div id="e_attachn" style="display: none">!</div>
+											<a id="e_attach" title="添加附件" menupos="00" menuwidth="600">附件</a>
+										</div>
+										<div class="b2r" id="e_adv_6">
+											<p>
+												<a id="e_code" title="添加代码文字">代码</a> <a id="e_free"
+													title="添加免费信息">Free</a>
+											</p>
+											<p>
+												<a id="e_quote" title="添加引用文字">引用</a> <a id="e_hide"
+													title="添加隐藏内容" style="visibility: hidden;">Hide</a>
+											</p>
+										</div>
+										<div class="b2r" id="e_adv_9">
+											<a id="e_pasteword" title="从 Word 粘贴内容">Word 粘贴</a> <br /> <a
+												id="a_magic_doodle"
+												href="home.php?mod=magic&amp;mid=doodle&amp;showid=comment_doodle&amp;target=e_textarea&amp;from=forumeditor"
+												class="cst"
+												onclick="showWindow(this.id, this.href, 'get', 0)"><img
+												src="images/doodle.small.gif" alt="doodle"
+												title="涂鸦板" style="margin-top: 2px" /> </a>
+
+										</div>
+									</div>
+								</div>
+
+								<div id="rstnotice" class="ntc_l bbs" style="display: none">
+									<a href="javascript:;" title="清除内容" class="d y"
+										onclick="userdataoption(0)">close</a>您有上次未提交成功的数据 <a
+										class="xi2" href="javascript:;" onclick="userdataoption(1)"><strong>恢复数据</strong>
+									</a>
+								</div>
+
+								<div class="area">
+									<textarea name="message" id="e_textarea" class="pt" rows="15"
+										tabindex="2"></textarea>
+								</div>
+								<link rel="stylesheet" type="text/css"
+									href="css/style_7_editor.css?4Uo" />
+								<script src="js/editor.js?4Uo" type="text/javascript"></script>
+								<script src="js/bbcode.js?4Uo" type="text/javascript"></script>
+								<script type="text/javascript">
+									var editorid = 'e';
+									var textobj = $(editorid + '_textarea');
+									var wysiwyg = (BROWSER.ie
+											|| BROWSER.firefox || (BROWSER.opera >= 9))
+											&& parseInt('1') == 1 ? 1 : 0;
+									var allowswitcheditor = parseInt('1');
+									var allowhtml = parseInt('0');
+									var allowsmilies = parseInt('1');
+									var allowbbcode = parseInt('1');
+									var allowimgcode = parseInt('1');
+									var simplodemode = parseInt('0');
+									var fontoptions = new Array("仿宋", "黑体",
+											"楷体", "宋体", "新宋体", "微软雅黑",
+											"Trebuchet MS", "Tahoma", "Arial",
+											"Impact", "Verdana",
+											"Times New Roman");
+									var smcols = 8;
+									var custombbcodes = new Array();
+								</script>
+
+								<div id="e_bbar" class="bbar">
+									<em id="e_tip"></em> <span id="e_svdsecond"></span> <a
+										href="javascript:;" onclick="discuzcode('svd');return false;"
+										id="e_svd">保存数据</a> | <a href="javascript:;"
+										onclick="discuzcode('rst');return false;" id="e_rst">恢复数据</a>
+									&nbsp;&nbsp; <a href="javascript:;"
+										onclick="discuzcode('chck');return false;" id="e_chck">字数检查</a>
+									| <a href="javascript:;"
+										onclick="discuzcode('tpr');return false;" id="e_tpr">清除内容</a>
+									&nbsp;&nbsp; <span id="e_resize"><a href="javascript:;"
+										onclick="editorsize('+');return false;">加大编辑框</a> | <a
+										href="javascript:;" onclick="editorsize('-');return false;">缩小编辑框</a><img
+										src="static/image/editor/resize.gif"
+										onmousedown="editorresize(event)" /> </span>
+								</div>
+							</div>
+
+							<div class="mtm">
+								<input name="sechash" type="hidden" value="S4ad40" /> 验证码 <span
+									id="seccodeS4ad40" onclick="showMenu(this.id);"><input
+									name="seccodeverify" id="seccodeverify_S4ad40" type="text"
+									autocomplete="off" style="ime-mode: disabled; width: 100px"
+									class="txt px vm" onblur="checksec('code', 'S4ad40')"
+									tabindex="1" /> <a href="javascript:;"
+									onclick="updateseccode('S4ad40');doane(event);" class="xi2">换一个</a>
+									<span id="checkseccodeverify_S4ad40"><img
+										src="static/image/common/none.gif" width="16" height="16"
+										class="vm" /> </span> </span>
+								<div id="seccodeS4ad40_menu" class="p_pop p_opt"
+									style="display: none">
+									<span id="seccode_S4ad40"></span>
+									<script type="text/javascript" reload="1">
+										updateseccode('S4ad40');
+									</script>
+								</div>
+
+							</div>
+
+							<div class="mtm mbm pnpost">
+								<a
+									href="http://bbs.xiaomi.com/home.php?mod=spacecp&amp;ac=credit&amp;op=rule&amp;fid=10"
+									class="y" target="_blank">本版积分规则</a>
+								<button type="submit" id="postsubmit" class="pn pnc"
+									value="true" name="topicsubmit">
+									<span>发表帖子</span>
+								</button>
+								<input type="hidden" id="postsave" name="save" value="" />
+								<button type="button" id="postsubmit" class="pn" value="true"
+									onclick="$('postsave').value = 1;$('postsubmit').click();">
+									<em>保存草稿</em>
+								</button>
+							</div>
+
+						</div>
+					</div>
+				</div>
+				<div id="psd" class="appl">
+					<h3 class="mbm pbm bbs">附加选项</h3>
+					<div class="bn">
+						<p class="mbn">
+							<input type="checkbox" name="htmlon" id="htmlon" class="pc"
+								value="0" disabled="disabled" /><label for="htmlon">HTML
+								代码</label>
+						</p>
+						<p class="mbn">
+							<input type="checkbox" id="allowimgcode" class="pc"
+								disabled="disabled" checked="checked" /><label
+								for="allowimgcode">[img] 代码</label>
+						</p>
+						<p class="mbn">
+							<input type="checkbox" id="allowimgurl" class="pc"
+								checked="checked" /><label for="allowimgurl">解析图片链接</label>
+						</p>
+						<p class="mbn">
+							<input type="checkbox" name="parseurloff" id="parseurloff"
+								class="pc" value="1" /><label for="parseurloff">禁用链接识别</label>
+						</p>
+						<p class="mbn">
+							<input type="checkbox" name="smileyoff" id="smileyoff" class="pc"
+								value="1" /><label for="smileyoff">禁用表情</label>
+						</p>
+						<p class="mbn">
+							<input type="checkbox" name="bbcodeoff" id="bbcodeoff" class="pc"
+								value="1" /><label for="bbcodeoff">禁用编辑器代码</label>
+						</p>
+
+						<hr class="bk" />
+
+						<p class="mbn">
+							<input type="checkbox" name="usesig" id="usesig" class="pc"
+								value="1" checked="checked" /><label for="usesig">使用个人签名</label>
+						</p>
+						<p class="mbn">
+							<input type="checkbox" name="hiddenreplies" id="hiddenreplies"
+								class="pc" value="1"><label for="hiddenreplies">回帖仅作者可见</label>
+						</p>
+						<p class="mbn">
+							<input type="checkbox" name="ordertype" id="ordertype" class="pc"
+								value="1" /><label for="ordertype">回帖倒序排列</label>
+						</p>
+						<p class="mbn">
+							<input type="checkbox" name="allownoticeauthor"
+								id="allownoticeauthor" class="pc" value="1" checked="checked" /><label
+								for="allownoticeauthor">接收回复通知</label>
+						</p>
+					</div>
+				</div>
+			</div>
+		</form>
+		<iframe name="ajaxpostframe" id="ajaxpostframe" style="display: none;"></iframe>
+
+		<div id="e_menus" class="editorrow"
+			style="overflow: hidden; margin-top: -5px; height: 0; border: none; background: transparent;">
+			<div id="e_editortoolbar" class="editortoolbar">
+				<div class="p_pop fnm" id="e_fontname_menu" style="display: none">
+					<ul unselectable="on">
+						<li onclick="discuzcode('fontname', '仿宋')" style="font-family: 仿宋"
+							unselectable="on"><a href="javascript:;" title="仿宋">仿宋</a></li>
+						<li onclick="discuzcode('fontname', '黑体')" style="font-family: 黑体"
+							unselectable="on"><a href="javascript:;" title="黑体">黑体</a></li>
+						<li onclick="discuzcode('fontname', '楷体')" style="font-family: 楷体"
+							unselectable="on"><a href="javascript:;" title="楷体">楷体</a></li>
+						<li onclick="discuzcode('fontname', '宋体')" style="font-family: 宋体"
+							unselectable="on"><a href="javascript:;" title="宋体">宋体</a></li>
+						<li onclick="discuzcode('fontname', '新宋体')"
+							style="font-family: 新宋体" unselectable="on"><a
+							href="javascript:;" title="新宋体">新宋体</a></li>
+						<li onclick="discuzcode('fontname', '微软雅黑')"
+							style="font-family: 微软雅黑" unselectable="on"><a
+							href="javascript:;" title="微软雅黑">微软雅黑</a></li>
+						<li onclick="discuzcode('fontname', 'Trebuchet MS')"
+							style="font-family: Trebuchet MS" unselectable="on"><a
+							href="javascript:;" title="Trebuchet MS">Trebuchet MS</a></li>
+						<li onclick="discuzcode('fontname', 'Tahoma')"
+							style="font-family: Tahoma" unselectable="on"><a
+							href="javascript:;" title="Tahoma">Tahoma</a></li>
+						<li onclick="discuzcode('fontname', 'Arial')"
+							style="font-family: Arial" unselectable="on"><a
+							href="javascript:;" title="Arial">Arial</a></li>
+						<li onclick="discuzcode('fontname', 'Impact')"
+							style="font-family: Impact" unselectable="on"><a
+							href="javascript:;" title="Impact">Impact</a></li>
+						<li onclick="discuzcode('fontname', 'Verdana')"
+							style="font-family: Verdana" unselectable="on"><a
+							href="javascript:;" title="Verdana">Verdana</a></li>
+						<li onclick="discuzcode('fontname', 'Times New Roman')"
+							style="font-family: Times New Roman" unselectable="on"><a
+							href="javascript:;" title="Times New Roman">Times New Roman</a></li>
+					</ul>
+				</div>
+				<div class="p_pop fszm" id="e_fontsize_menu" style="display: none">
+					<ul unselectable="on">
+						<li onclick="discuzcode('fontsize', 1)" unselectable="on"><a
+							href="javascript:;" title="1"><font size="1"
+								unselectable="on">1</font> </a></li>
+						<li onclick="discuzcode('fontsize', 2)" unselectable="on"><a
+							href="javascript:;" title="2"><font size="2"
+								unselectable="on">2</font> </a></li>
+						<li onclick="discuzcode('fontsize', 3)" unselectable="on"><a
+							href="javascript:;" title="3"><font size="3"
+								unselectable="on">3</font> </a></li>
+						<li onclick="discuzcode('fontsize', 4)" unselectable="on"><a
+							href="javascript:;" title="4"><font size="4"
+								unselectable="on">4</font> </a></li>
+						<li onclick="discuzcode('fontsize', 5)" unselectable="on"><a
+							href="javascript:;" title="5"><font size="5"
+								unselectable="on">5</font> </a></li>
+						<li onclick="discuzcode('fontsize', 6)" unselectable="on"><a
+							href="javascript:;" title="6"><font size="6"
+								unselectable="on">6</font> </a></li>
+						<li onclick="discuzcode('fontsize', 7)" unselectable="on"><a
+							href="javascript:;" title="7"><font size="7"
+								unselectable="on">7</font> </a></li>
+					</ul>
+				</div>
+
+			</div>
+
+			<script type="text/javascript">
+				smilies_show('smiliesdiv', 8, editorid + '_');
+			</script>
+			<div class="p_pof" id="e_image_menu" style="display: none"
+				unselectable="on">
+				<table width="100%" cellpadding="0" cellspacing="0" class="fwin">
+					<tr>
+						<td class="t_l"></td>
+						<td class="t_c"></td>
+						<td class="t_r"></td>
+					</tr>
+					<tr>
+						<td class="m_l">&nbsp;&nbsp;</td>
+						<td class="m_c"><div class="mtm mbm">
+								<ul class="tb tb_s cl" id="e_image_ctrl" style="margin-top: 0">
+									<li class="y"><span class="flbc"
+										onclick="hideAttachMenu('image')">关闭</span></li>
+									<li class="current" id="e_btn_www"><a href="javascript:;"
+										hidefocus="true" onclick="switchImagebutton('www');">网络图片</a>
+									</li>
+									<li id="e_btn_albumlist"><a href="javascript:;"
+										hidefocus="true" onclick="switchImagebutton('albumlist');">相册图片</a>
+									</li>
+									<li id="e_btn_imgattachlist"><a href="javascript:;"
+										hidefocus="true" onclick="switchImagebutton('imgattachlist');">图片列表</a>
+									</li>
+									<li id="e_btn_multi"><a href="javascript:;"
+										hidefocus="true" onclick="switchImagebutton('multi');">批量上传</a>
+									</li>
+								</ul>
+								<div class="p_opt popupfix" unselectable="on" id="e_www">
+									<table cellpadding="0" cellspacing="0" width="100%">
+										<tr class="xg1">
+											<th width="74%">请输入图片地址</th>
+											<th width="13%">宽(可选)</th>
+											<th width="13%">高(可选)</th>
+										</tr>
+										<tr>
+											<td><input type="text" id="e_image_param_1"
+												onchange="loadimgsize(this.value)" style="width: 95%;"
+												value="" class="px" autocomplete="off" /></td>
+											<td><input id="e_image_param_2" size="1" value=""
+												class="px p_fre" autocomplete="off" /></td>
+											<td><input id="e_image_param_3" size="1" value=""
+												class="px p_fre" autocomplete="off" /></td>
+										</tr>
+										<tr>
+											<td colspan="3" class="pns ptn">
+												<button type="button" class="pn pnc" id="e_image_submit">
+													<strong>提交</strong>
+												</button>
+											</td>
+										</tr>
+									</table>
+								</div>
+								<div class="p_opt" unselectable="on" id="e_multi"
+									style="display: none;">
+									<div class="bbda hm" id="e_multiimg">
+										<script type="text/javascript">
+											$('e_multiimg').innerHTML = AC_FL_RunContent(
+													'width',
+													'470',
+													'height',
+													'268',
+													'src',
+													'images/upload.swf?site=/misc.php%3fmod=swfupload%26type=image%26fid=10&type=image&random=6UCc',
+													'quality', 'high', 'id',
+													'swfupload', 'menu',
+													'false',
+													'allowScriptAccess',
+													'always', 'wmode',
+													'transparent');
+										</script>
+									</div>
+									<div class="notice uploadinfo">
+										文件尺寸: <span class="xi1">小于 2.2MB </span> , 可用扩展名: <span
+											class="xi1">jpg, jpeg, gif, png</span> <br />建议一次上传数量不超过 <strong>20</strong>
+										<br />您今日还能上传 <strong>50</strong> 个文件
+									</div>
+								</div>
+								<div class="p_opt" unselectable="on" id="e_imgattachlist"
+									style="display: none;">
+									<div class="upfilelist upfl">
+										<div id="imgattachlist">
+											<div class="emp hm bbda">
+												本帖还没有图片附件, <a href="javascript:;"
+													onclick="switchImagebutton('multi');">点击这里</a>上传
+											</div>
+										</div>
+										<div id="unusedimgattachlist"></div>
+									</div>
+									<p id="imgattach_notice" style="display: none">
+										<p class="notice">点击图片添加到帖子内容中</p>
+									</p>
+								</div>
+								<div class="p_opt" unselectable="on" id="e_albumlist"
+									style="display: none;">
+									<div class="upfilelist pbm bbda">
+										从我的相册中选择图片: <select
+											onchange="if(this.value) {ajaxget('forum.php?mod=post&action=albumphoto&aid='+this.value, 'albumphoto');}">
+											<option value="">选择相册</option>
+										</select>
+										<div id="albumphoto"></div>
+									</div>
+									<p class="notice">点击图片添加到帖子内容中</p>
+								</div>
+							</div></td>
+						<td class="m_r"></td>
+					</tr>
+					<tr>
+						<td class="b_l"></td>
+						<td class="b_c"></td>
+						<td class="b_r"></td>
+					</tr>
+				</table>
+			</div>
+
+			<div class="p_pof upf" id="e_attach_menu" style="display: none"
+				unselectable="on">
+				<table width="100%" cellpadding="0" cellspacing="0" class="fwin">
+					<tr>
+						<td class="t_l"></td>
+						<td class="t_c"></td>
+						<td class="t_r"></td>
+					</tr>
+					<tr>
+						<td class="m_l">&nbsp;&nbsp;</td>
+						<td class="m_c"><div class="mtm mbm">
+								<ul class="tb tb_s cl" id="e_attach_ctrl">
+									<li class="y"><span class="flbc"
+										onclick="hideAttachMenu('attach')">关闭</span></li>
+									<li class="current" id="e_btn_attachlist"><a
+										href="javascript:;" hidefocus="true"
+										onclick="switchAttachbutton('attachlist');">附件列表</a></li>
+									<li id="e_btn_swfupload"><a href="javascript:;"
+										hidefocus="true" onclick="switchAttachbutton('swfupload');">批量上传</a>
+									</li>
+								</ul>
+								<div class="p_opt" unselectable="on" id="e_swfupload"
+									style="display: none;">
+									<div class="hm bbda" id="e_multiattach">
+										<script type="text/javascript">
+											$('e_multiattach').innerHTML = AC_FL_RunContent(
+													'width',
+													'470',
+													'height',
+													'268',
+													'src',
+													'images/upload.swf?site=/misc.php%3fmod=swfupload%26fid=10&random=vi6l',
+													'quality', 'high', 'id',
+													'swfupload', 'menu',
+													'false',
+													'allowScriptAccess',
+													'always', 'wmode',
+													'transparent');
+										</script>
+									</div>
+									<div class="notice uploadinfo">
+										文件尺寸: <span class="xi1">小于 2.2MB </span>&nbsp; , 可用扩展名: <span
+											class="xi1">jpg, apk, zip, rar, jpeg, png, gif, mp3,
+											wma, flv, swf, ogg</span>&nbsp; <br />建议一次上传数量不超过 <strong>20</strong>
+										<br />您今日还能上传 <strong>50</strong> 个文件
+									</div>
+								</div>
+								<div class="p_opt post_tablelist" unselectable="on"
+									id="e_attachlist">
+									<table cellpadding="0" cellspacing="0" border="0" width="100%"
+										id="attach_tblheader" style="display: none">
+										<tr>
+											<td class="atnu"></td>
+											<td class="atna">文件名 ( <a
+												onclick="insertAllAttachTag();return false;"
+												href="javascript:;" class="xi2">插入全部附件</a> )</td>
+											<td class="atds">描述</td>
+											<td class="attc"></td>
+										</tr>
+									</table>
+									<div class="upfl">
+										<div id="attachlist">
+											<p class="emp hm">
+												本帖还没有附件, <a href="javascript:;"
+													onclick="switchAttachbutton('swfupload');return false;">点击这里</a>上传
+											</p>
+										</div>
+										<div id="unusedattachlist"></div>
+									</div>
+									<p class="ptm" id="attach_notice" style="display: none">点击附件文件名添加到帖子内容中</p>
+								</div>
+							</div></td>
+						<td class="m_r"></td>
+					</tr>
+					<tr>
+						<td class="b_l"></td>
+						<td class="b_c"></td>
+						<td class="b_r"></td>
+					</tr>
+				</table>
+			</div>
+
+			<iframe name="attachframe" id="attachframe" style="display: none;"
+				onload="uploadNextAttach();"></iframe>
+			<script type="text/javascript">
+				if (wysiwyg) {
+					newEditor(1, bbcode2html(textobj.value));
+				} else {
+					newEditor(0, textobj.value);
+				}
+
+				var ATTACHNUM = {
+					'imageused' : 0,
+					'imageunused' : 0,
+					'attachused' : 0,
+					'attachunused' : 0
+				}, ATTACHUNUSEDAID = new Array(), IMGUNUSEDAID = new Array();
+				function switchImagebutton(btn) {
+					switchButton(btn, 'image');
+					$(editorid + '_image_menu').style.height = '';
+					doane();
+				}
+				ATTACHNUM['imageused'] = 0;
+				switchImagebutton('multi');
+				function switchAttachbutton(btn) {
+					switchButton(btn, 'attach');
+					doane();
+				}
+				ATTACHNUM['attachused'] = 0;
+				switchAttachbutton('swfupload');
+				setCaretAtEnd();
+				if (BROWSER.ie >= 5 || BROWSER.firefox >= '2') {
+					_attachEvent(window, 'beforeunload', unloadAutoSave);
+				}
+			</script>
+		</div>
+
+		<script type="text/javascript">
+			var editorsubmit = $('postsubmit');
+			var editorform = $('postform');
+			simulateSelect('typeid');
+			function switchpost(href) {
+				editchange = false;
+				saveData(1);
+				location.href = href + '&fid=10&cedit=yes&extra=';
+				doane();
+			}
+
+			if ($('subjectbox')) {
+				var tmp_obj = $('e_textarea');
+				if (tmp_obj && tmp_obj.style.display == '') {
+					tmp_obj.focus();
+				}
+			} else if ($('subject')) {
+				$('subject').focus();
+			}
+			if (loadUserdata('forum')) {
+				$('rstnotice').style.display = '';
+			}
+		</script>
+	</div>
+
+	<ul id="xwb_unread_24387207_menu" class="p_pop" style="display: none">
+		<li id="xwb_followers_24387207_container" style="display: none"><a
+			href="http://t.bbs.xiaomi.com/index.php?m=index.fans" target="_blank"
+			onclick="xwbUnreadCtr.hideContainer('followers');">&#26032;&#22686;&#31881;&#19997;:
+				<span id="xwb_followers_24387207">0</span> </a></li>
+		<li id="xwb_comments_24387207_container" style="display: none"><a
+			href="http://t.bbs.xiaomi.com/index.php?m=index.comments"
+			target="_blank" onclick="xwbUnreadCtr.hideContainer('comments');">&#26032;&#22686;&#35780;&#35770;:
+				<span id="xwb_comments_24387207">0</span> </a></li>
+		<li id="xwb_mentions_24387207_container" style="display: none"><a
+			href="http://t.bbs.xiaomi.com/index.php?m=index.atme" target="_blank"
+			onclick="xwbUnreadCtr.hideContainer('mentions');">@&#21040;&#25105;&#30340;:
+				<span id="xwb_mentions_24387207">0</span> </a></li>
+		<li id="xwb_dm_24387207_container" style="display: none"><a
+			href="http://t.bbs.xiaomi.com/index.php?m=index.messages"
+			target="_blank" onclick="xwbUnreadCtr.hideContainer('dm');">&#26410;&#35835;&#31169;&#20449;:
+				<span id="xwb_dm_24387207">0</span> </a></li>
+	</ul>
+
+
+	<script src="xwb/images/xwb_unreadctr.js" type="text/javascript"
+		type="text/javascript"></script>
+	<script type="text/javascript">
+		xwbUnreadCtr.init(24387207);
+	</script>
+
+	<script language="javascript">
+		function xwb_loadScript(file, charset) {
+			var script = document.createElement('SCRIPT');
+			script.type = 'text/javascript';
+			script.charset = charset;
+			script.src = file;
+			document.getElementsByTagName('HEAD')[0].appendChild(script);
+		}
+
+		var _xwb_cfg_data = {
+			tipsType : '',
+			site_uid : '24387207',
+			sina_uid : '',
+			siteVer : '2',
+			siteName : '小米手机社区官方论坛',
+			pName : 'forum_post',
+			regUrl : 'http://bbs.xiaomi.com/xwb.php?m=xwbSiteInterface.reg',
+			setUrl : 'http://bbs.xiaomi.com/xwb.php?m=xwbSiteInterface.bind',
+			bindUrl : 'http://bbs.xiaomi.com/xwb.php?m=xwbSiteInterface.bind',
+			signerUrl : 'http://bbs.xiaomi.com/xwb.php?m=xwbSiteInterface.signer',
+			authUrl : 'http://bbs.xiaomi.com/xwb.php?m=xwbAuth.login',
+			getTipsUrl : 'http://bbs.xiaomi.com/xwb.php?m=xwbSiteInterface.getTips',
+			attentionUrl : 'http://bbs.xiaomi.com/xwb.php?m=xwbSiteInterface.attention',
+			wbxUrl : '',
+			tipGetCountUrl : 'http://bbs.xiaomi.com/xwb.php?m=xwbSiteInterface.getTips',
+			loadingImgUrl : 'http://bbs.xiaomi.com/xwb/images/bgimg/xwb_loading.gif',
+			switchToStd : '1',
+			baseurlToStd : 'http://t.bbs.xiaomi.com/'
+		};
+
+		xwb_loadScript("http://bbs.xiaomi.com/xwb/images/xwb.js", "UTF-8");
+	</script>
+</body>
+</html>

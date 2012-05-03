@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.googlecode.iforums.dao.PostMapper">
+    <resultMap type="com.googlecode.iforums.bean.Post" id="Post">
+	    <result property="id" column="id" />
+	    <result property="userId" column="userId" />
+        <association property="user" column="userId" javaType="com.googlecode.iforums.bean.User" select="com.googlecode.iforums.dao.UserMapper.getObjectById" />
+        <association property="postText" column="id" javaType="com.googlecode.iforums.bean.PostText" select="com.googlecode.iforums.dao.PostTextMapper.getObjectById" />
+    </resultMap>
+    <select id="countPostsByForumId" parameterType="int" resultType="int">
+        SELECT COUNT(1) 
+        FROM POSTS 
+        WHERE forumId = #{id}
+    </select>
+    <select id="getObjectById" parameterType="int" resultMap="Post">
+        <![CDATA[
+            select * from posts  
+            where id=#{id}
+        ]]>    
+    </select>
+	<insert id="insert" parameterType="java.util.Map" keyProperty="obj.id" useGeneratedKeys="true">
+		<![CDATA[
+			insert into posts  
+			values(null,#{obj.topicId},#{obj.forumId},#{obj.userId},now(),#{obj.postTime},#{obj.enableBbcode},#{obj.enableHtml},#{obj.enableSmilies},#{obj.enableSig},now(),0,#{obj.status},#{obj.attach},#{obj.needModerate})
+		]]>
+	</insert>
+	<select id="selectByTopicId" parameterType="java.util.Map" resultMap="Post">
+		<![CDATA[
+			select * 
+			from posts 
+			where topicid=#{topicId} 
+			order by posttime asc  
+			limit #{offset},#{size}
+		]]>	
+	</select>
+	<select id="getTotal" resultType="java.lang.Integer">
+        <![CDATA[
+            SELECT COUNT(1) FROM POSTS
+        ]]>
+    </select>
+</mapper>

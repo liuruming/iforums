@@ -1,0 +1,16 @@
+<DIV class=pages_btns>
+    <div class="pages">
+        <a href="$!{contextpath}/$!p.url($!{forum})" class="next" title="返回版区:$!{forum.name}"> &lsaquo;&lsaquo; $!{forum.name}</a>
+    </div>
+    #paginationTopic($!{topic.replies},$page,$size)
+    <SPAN class=postbtn id="newtopic" onmouseover="$('newtopic').id = 'newtopictmp';this.id = 'newtopic';showMenu(this.id);">
+        <A href="$!p.newTopic($forum)">
+            <IMG src="$!{contextpath}/skin/default/images/newtopic.gif" border=0 />
+        </A>
+    </SPAN>
+    <SPAN class=replybtn>
+        <a href="$!{contextpath}/posts/reply/0/1.html" rel="nofollow" class="icon_reply nav">
+            <IMG alt="Reply" src="$!{contextpath}/skin/default/images/reply.gif" border=0 />
+        </a>
+    </SPAN>
+</DIV>

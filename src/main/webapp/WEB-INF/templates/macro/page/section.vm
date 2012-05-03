@@ -1,0 +1,22 @@
+#macro(sectionIndex,$section)
+<DIV class="mainbox forumlist">
+    <SPAN class=headactions>
+        <IMG id=section_1_img title="收起/展开" onClick="toggle_collapse('section_1');" alt="收起/展开" src="skin/default/images/collapsed_no.gif"></SPAN>
+        <H3>
+            <A href="$!{contextPath}/forum-$!{section.id}.html">$!{section.name}</A>
+        </H3>
+        <TABLE id="section_1" cellSpacing=0 cellPadding=0>
+            <THEAD class=category>
+                <TR>
+                    <TH>版块</TH>
+                    <TD class=nums>主题</TD>
+                    <TD class=nums>帖数</TD>
+                    <TD class=lastpost>最后发表</TD>
+                </TR>
+            </THEAD>
+#foreach($forum in $section.getForumList())
+#forumIndex($forum)
+#end
+        </TABLE>
+</DIV>
+#end
